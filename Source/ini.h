@@ -67,7 +67,7 @@ int ini_read(STRING *targetValue, STRING *filename, STRING *section, STRING *ent
  * \param	section			The section to read from.
  * \param	entry			The key of the section entry to read.
  * \param	defaultValue	The default value which will be returned if the key doesn't exist.
- * \return					The entry value converted to an integer
+ * \return					The entry value converted to an integer.
  */
 int ini_read_int(STRING *filename, STRING *section, STRING *entry, int defaultValue);
 
@@ -77,7 +77,7 @@ int ini_read_int(STRING *filename, STRING *section, STRING *entry, int defaultVa
  * \param	section			The section to read from.
  * \param	entry			The key of the section entry to read.
  * \param	defaultValue	The default value which will be returned if the key doesn't exist.
- * \return					The entry value converted to an float
+ * \return					The entry value converted to an float.
  */
 float ini_read_float(STRING *filename, STRING *section, STRING *entry, float defaultValue);
 
@@ -87,7 +87,7 @@ float ini_read_float(STRING *filename, STRING *section, STRING *entry, float def
  * \param	section			The section to read from.
  * \param	entry			The key of the section entry to read.
  * \param	defaultValue	The default value which will be returned if the key doesn't exist.
- * \return					The entry value converted to a var
+ * \return					The entry value converted to a var.
  */
 var ini_read_var(STRING *filename, STRING *section, STRING *entry, var defaultValue);
 

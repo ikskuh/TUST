@@ -9,6 +9,7 @@
 
 #include "fs.h"
 #include "ini.h"
+#include "list.h"
 
 
 
