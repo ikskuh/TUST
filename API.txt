@@ -1,0 +1,81 @@
+=============================================================
+	TUST API Definition
+=============================================================
+
+Naming:
+	Structures:
+		Camelcase for the name, capitalized first letter, don't use prefixes or postfixes.
+		Examples:
+			Light, Pointlight, Spotlight, DoFSettings, ...
+	Global Variables:
+		Camelcase for variables, small first letter, prefixe it with the filename or shortened filename.
+		Don't use that much global variabls, try to store the information in structured data (structs) to get a better overview.
+		Examples:
+			dofSettings, gfxQuality, gfxDefaultLightExposure, ...
+	Local Variables:
+		Naming should not conflict with existing variables. The deeper the scope, the shorter the variable name.
+		Don't use variable names like a, b, c unless you are doing mathematic formulas with those letters as "official" variable names (eg. y = mx + b).
+		Exception Counting variables can be named i, j, ... because of the common usage of those names for counting.
+		Examples:
+			isDirty, mystuff, local_variable, i, thenameshouldbeshortened, ...
+	Functions:
+		Small letters, words separated by _, prefix it with the filename or shortened filename, use imperative if possible.
+		Use is_ for checking boolean, get_ for getting states or variables, set_ for setting states or variables
+		Examples:
+			gfx_is_fullscreen(), dof_is_enabled(), dof_set_active(1), dof_get_active(), gfx_enforce_forward(ent), gridpath_find(sx, sy, tx, ty), ...
+	Defines:
+		Write defines capitalied and separate words with _ if it increases the readability.
+		If defines are used for defining enums, use _ to separate enum name and enum value name.
+		Examples:
+			GFXMODE_DEFAULT, GFXMODE_LOWQUALITY, GFX_DISABLE_SHADERPIPELINE, ...
+	
+	
+Commenting:
+	Use comments where it is necessary, but not where the code is clear to understand.
+	Use documentary comments for all public methods and variables "exported" from a header file.
+	Document the usage of each file in the project. So users can look up in the manual what your file does.
+	
+	Example:
+	/**
+	 * \file tust.h
+	 * The core of all evil sources in this collection.
+	 */
+	
+	/**
+	 * Initializes tust and all of the enabled subcomponents.
+	 */
+	void tust_init();
+	
+	/**
+	 * Calculates pretty fancy math stuff.
+	 */
+	int tust_complex()
+	{
+		int i, j;
+		
+		// Why do we even count here?
+		for(i = 0; i < 1; i++)
+		{
+			for(j = 1; j >= 0; j++)
+			{
+				// Return i + j because of reasons i cannot see from the code.
+				return i + j;
+			}
+		}
+		// Return -1 because this could never happen...
+		return -1;
+	}
+
+Generic:
+	Every header file should have an include guard and includes its implementation file at the end of the header file.
+	Don't use function as a return value if you don't return anything, use void instead to make clear that nothing is returned.
+	Don't use function as a return value if you return a var, use var instead to make clear that var is returned.
+	Use action as return type only if the function is an action assignable in WED.
+	Use structures whereever it is possible and makes sense. 
+
+
+
+
+
+
+

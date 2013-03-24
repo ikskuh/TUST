@@ -1,0 +1,64 @@
+This list contains a set of features we want to bring into this project.
+Features marked with "o" are not started yet
+Features marked with "-" are work in progress
+Features marked with "x" are finished so far.
+
+If you want to work on a feature, please but your name behind the feature so we can
+see who is actually working on a feature.
+
+o Shader Pack
+	o Deferred Rendering
+		o Pointlight
+		o Spotlight
+		o Optional Shadowmapping
+		o Optional Projective Mapping (image overlay)
+		o Object Shaders
+			o "Default" mtl_model
+			o Simple Normalmapping + Fixed Specular
+			o Simple Normalmapping + Specularmap
+			o Envmapped Water
+			o Realtime Reflective Water
+			o Heat Haze
+			o ...
+	o Godray Shader
+	o Bloom
+	o Depth of Field
+	o ...
+
+o Generic Script Library
+	o Weather Effects
+		o Rain
+		o Snow
+	o Day/Night Dynamic Sky
+	o Background Music Management
+	o INI-Access
+	o Custom Save-Load System
+		o Entities
+			o Position
+			o Skills
+			o Actions?
+		o Variables
+	o Character Movement Code 
+		o PhysX
+		o c_move
+		o no collisionm, just gravity
+	o Pathfinding
+		o Gridbased
+		o Nodebased
+	o Generic Linked Lists
+
+o Game Templates
+	o Shooter
+		o First/Third Person
+		o Customizable Weapons
+		o Simple Shooter AI
+	o Shoot'Em'Up
+	o 2D Platformer
+	o RTS
+		o Simple AI example
+		o Gridbased movement of units
+
+o Models
+	o Vegetation
+	o Character
+	o 
