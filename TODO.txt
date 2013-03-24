@@ -31,7 +31,7 @@ o Generic Script Library
 		o Snow
 	o Day/Night Dynamic Sky
 	o Background Music Management
-	o INI-Access
+	x INI-Access (MasterQ32)
 	o Custom Save-Load System
 		o Entities
 			o Position
@@ -46,6 +46,13 @@ o Generic Script Library
 		o Gridbased
 		o Nodebased
 	o Generic Linked Lists
+	o Dialog API
+		o Loading from XML
+	o Basic Inventory
+	o Game Main Menu
+		o Options Dialog
+		o Save Game
+		o Load Game
 
 o Game Templates
 	o Shooter
@@ -62,3 +69,6 @@ o Models
 	o Vegetation
 	o Character
 	o 
+
+o Generic Stuff
+	o Template Wizard

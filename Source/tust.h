@@ -7,6 +7,9 @@
  * TUST provides.
  */
 
+#include "fs.h"
+#include "ini.h"
+
 
 
 
