@@ -126,6 +126,8 @@ Functions</h2></td></tr>
 <tr class="separator:ab19fb07cacc5287e44258b0a455cfe19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87554c6faa7dea6b720c278e130547fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a87554c6faa7dea6b720c278e130547fc">list_remove</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *item)</td></tr>
 <tr class="separator:a87554c6faa7dea6b720c278e130547fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bb7711241e3b57dfce78c7f4a4f4020"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a2bb7711241e3b57dfce78c7f4a4f4020">list_remove_all</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *item)</td></tr>
+<tr class="separator:a2bb7711241e3b57dfce78c7f4a4f4020"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a253d983e3e95edc22b52ef2c9049f1e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a253d983e3e95edc22b52ef2c9049f1e4">list_remove_at</a> (<a class="el" href="struct_list.html">List</a> *list, int index)</td></tr>
 <tr class="separator:a253d983e3e95edc22b52ef2c9049f1e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb4dea30c1e3758ee8e0a35b4ec1d7fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#aeb4dea30c1e3758ee8e0a35b4ec1d7fa">list_contains</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *item)</td></tr>
@@ -134,8 +136,6 @@ Functions</h2></td></tr>
 <tr class="separator:a2ef73b4144b6d77cb150bdbe7f183c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac53d4a634fec0aa2adad813d0497056"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#aac53d4a634fec0aa2adad813d0497056">list_clear</a> (<a class="el" href="struct_list.html">List</a> *list)</td></tr>
 <tr class="separator:aac53d4a634fec0aa2adad813d0497056"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c997bc4d91f688f650bfd46e3d11a9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a2c997bc4d91f688f650bfd46e3d11a9e">list_exchange_items</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *item1, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *item2)</td></tr>
-<tr class="separator:a2c997bc4d91f688f650bfd46e3d11a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae418c4063a1a2dc864a916cb5ed10366"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#ae418c4063a1a2dc864a916cb5ed10366">list_sort</a> (<a class="el" href="struct_list.html">List</a> *list, void *compare)</td></tr>
 <tr class="separator:ae418c4063a1a2dc864a916cb5ed10366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae37fa04e467b37f4e6ee3edfae8207ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#ae37fa04e467b37f4e6ee3edfae8207ba">list_reverse</a> (<a class="el" href="struct_list.html">List</a> *list)</td></tr>
@@ -427,47 +427,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2c997bc4d91f688f650bfd46e3d11a9e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void list_exchange_items </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_list.html">List</a> *&#160;</td>
-          <td class="paramname"><em>list</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *&#160;</td>
-          <td class="paramname"><em>item1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *&#160;</td>
-          <td class="paramname"><em>item2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Exchanges two items in a list. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">list</td><td>The list where the items should be exchanged. </td></tr>
-    <tr><td class="paramname">item1</td><td>The first item to exchange. </td></tr>
-    <tr><td class="paramname">item2</td><td>The second item to exchange. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a6b827d625fd9b886d640a6e69443b4ba"></a>
 <div class="memitem">
 <div class="memproto">
@@ -554,6 +513,40 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The list where the item should be removed. </td></tr>
+    <tr><td class="paramname">item</td><td>The item to remove from the list. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2bb7711241e3b57dfce78c7f4a4f4020"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void list_remove_all </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list.html">List</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Removes all matching item sfrom the list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>The list where the items should be removed. </td></tr>
     <tr><td class="paramname">item</td><td>The item to remove from the list. </td></tr>
   </table>
   </dd>
@@ -655,7 +648,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 23:53:31 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 25 2013 15:29:15 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

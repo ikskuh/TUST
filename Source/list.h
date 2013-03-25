@@ -91,6 +91,13 @@ void list_add_range(List *list, ListData **array, int count);
 void list_remove(List *list, ListData *item);
 
 /**
+ * Removes all matching item sfrom the list.
+ * \param	list		The list where the items should be removed.
+ * \param	item		The item to remove from the list.
+ */
+void list_remove_all(List *list, ListData *item);
+
+/**
  * Removes the item at a given index from the list.
  * \param	list		The list where the item should be removed.
  * \param	index		The index of the item to remove.
@@ -119,14 +126,6 @@ ListData *list_item_at(List *list, int index);
  * \param	list		The list which should be cleared.
  */
 void list_clear(List *list);
-
-/**
- * Exchanges two items in a list.
- * \param	list		The list where the items should be exchanged.
- * \param	item1		The first item to exchange.
- * \param	item2		The second item to exchange.
- */
-void list_exchange_items(List *list, ListData *item1, ListData *item2);
 
 /**
  * Sorts a list.
