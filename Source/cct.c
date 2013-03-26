@@ -1,11 +1,23 @@
 // include libs:
 #include <acknex.h>
 
+// global ressources:
+#define PRAGMA_PATH "..\\..\\Ressources\\Models\\Characters"
+
 // include physX:
 #include "..\\Source\\physX3\\ackphysX3.h"
 // include cct template:
 #include "..\\Source\\cct.h"
 
+// this are the models, used for the cct template:
+STRING* cctActor_mdl = "capsule.mdl";
+
+/**
+* Set up an actor.
+* \param	parent	The pointer to the creator entity, which is placed in WED.
+* \param	size		The size of the cct bounding ellipsoid (max_x\min_x).
+* \param	offset	The cct offset from the creator entity.
+*/
 Actor* cct_actor(ENTITY* parent, VECTOR* size, VECTOR* offset){
 	// vector:
 	VECTOR vecTemp;
@@ -28,15 +40,15 @@ Actor* cct_actor(ENTITY* parent, VECTOR* size, VECTOR* offset){
 	// flags:
 	set(bbox, TRANSLUCENT);
 	// standing and crouching size's of cct:
-	bbox.standingSize = size.z;
-	bbox.crouchingSize = size.z * 0.6;
+	actor.standingSize = size.z;
+	actor.crouchingSize = size.z * 0.6;
 	// radius and half-size of the cct:
-   var halStandfHeight = bbox.standingSize * 0.5;
-   var halCrouchfHeight = bbox.crouchingSize * 0.5;
-   var radius = size.x;
+	actor.halfStandingSize = actor.standingSize * 0.5;
+	actor.halfCrouchingSize = actor.crouchingSize * 0.5;
+	actor.cctRadius = size.x;
 	// setup scale vectors:
-   vec_set(standScale.x, vector(radius / bbox.max_x, radius / bbox.max_x, halStandfHeight / bbox.max_z));
-   vec_set(crouchScale.x, vector(radius / bbox.max_x, radius / bbox.max_x, halCrouchfHeight / bbox.max_z));
+	vec_set(standScale.x, vector(actor.cctRadius / bbox.max_x, actor.cctRadius / bbox.max_x, actor.halfStandingSize / bbox.max_z));
+	vec_set(crouchScale.x, vector(actor.cctRadius / bbox.max_x, actor.cctRadius / bbox.max_x, actor.halfCrouchingSize / bbox.max_z));
 	// scale the bbox:
 	vec_scale(bbox.scale_x, standScale.x);
 	// wait one frame:
@@ -54,26 +66,55 @@ Actor* cct_actor(ENTITY* parent, VECTOR* size, VECTOR* offset){
 	return(actor);
 }
 
+/**
+* Actor control.
+* \param	actor		The pointer to the cct actor.
+* \param	state		Current movement state (f.e. CCT_WALK).
+* \param	value		
+*/
 void cct_set_input(Actor* actor, int state, int value){
 	
 }
 
+/**
+* Rotates the actor about a relative angle and limits the rotation speed to Actor::maxRotSpeed.
+* \param	actor		The pointer to the cct actor.
+* \param	rotation	Rotation input.
+*/
 void cct_rotate(Actor* actor, var rotation){
 	
 }
 
+/**
+* Returns the value of an actors input state.
+* \param	actor		The pointer to the cct actor.
+* \param	state		Current movement state (f.e. CCT_WALK).
+*/
 int cct_get_input(Actor* actor, int state){
 	
 }
 
+/**
+* Gets the position of an actor into the vector.
+* \param	actor		The pointer to the cct actor.
+* \param	pos		The cct position.
+*/
 void cct_get_position(Actor* actor, VECTOR* pos){
 	
 }
 
+/**
+* Gets the rotation of an actor.
+* \param	actor		The pointer to the cct actor.
+*/
 var cct_get_rotation(Actor* actor){
 	
 }
 
+/**
+* Updates the actor and performs all moving, jumping etc.
+* \param	actor		The pointer to the cct actor.
+*/
 void cct_update(Actor* actor){
 	
 }
