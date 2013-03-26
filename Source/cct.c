@@ -5,19 +5,14 @@
 #define PRAGMA_PATH "..\\..\\Ressources\\Models\\Characters"
 
 // include physX:
-#include "..\\Source\\physX3\\ackphysX3.h"
+#include "physX3\\ackphysX3.h"
 // include cct template:
-#include "..\\Source\\cct.h"
+#include "cct.h"
 
 // this are the models, used for the cct template:
 STRING* cctActor_mdl = "capsule.mdl";
 
-/**
-* Set up an actor.
-* \param	parent	The pointer to the creator entity, which is placed in WED.
-* \param	size		The size of the cct bounding ellipsoid (max_x\min_x).
-* \param	offset	The cct offset from the creator entity.
-*/
+// Set up an actor:
 Actor* cct_actor(ENTITY* parent, VECTOR* size, VECTOR* offset){
 	// vector:
 	VECTOR vecTemp;
@@ -66,55 +61,37 @@ Actor* cct_actor(ENTITY* parent, VECTOR* size, VECTOR* offset){
 	return(actor);
 }
 
-/**
-* Actor control.
-* \param	actor		The pointer to the cct actor.
-* \param	state		Current movement state (f.e. CCT_WALK).
-* \param	value		
-*/
+// Removes all actor entitys and quits the actors update loop:
+void cct_remove(Actor *actor){
+	
+}
+
+// Actor control:
 void cct_set_input(Actor* actor, int state, int value){
 	
 }
 
-/**
-* Rotates the actor about a relative angle and limits the rotation speed to Actor::maxRotSpeed.
-* \param	actor		The pointer to the cct actor.
-* \param	rotation	Rotation input.
-*/
+// Rotates the actor about a relative angle and limits the rotation speed to Actor::maxRotSpeed:
 void cct_rotate(Actor* actor, var rotation){
 	
 }
 
-/**
-* Returns the value of an actors input state.
-* \param	actor		The pointer to the cct actor.
-* \param	state		Current movement state (f.e. CCT_WALK).
-*/
+// Returns the value of an actors input state:
 int cct_get_input(Actor* actor, int state){
 	
 }
 
-/**
-* Gets the position of an actor into the vector.
-* \param	actor		The pointer to the cct actor.
-* \param	pos		The cct position.
-*/
+// Gets the position of an actor into the vector:
 void cct_get_position(Actor* actor, VECTOR* pos){
 	
 }
 
-/**
-* Gets the rotation of an actor.
-* \param	actor		The pointer to the cct actor.
-*/
+// Gets the rotation of an actor:
 var cct_get_rotation(Actor* actor){
 	
 }
 
-/**
-* Updates the actor and performs all moving, jumping etc.
-* \param	actor		The pointer to the cct actor.
-*/
+// Updates the actor and performs all moving, jumping etc:
 void cct_update(Actor* actor){
 	
 }
