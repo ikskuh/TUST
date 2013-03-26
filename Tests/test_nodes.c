@@ -28,6 +28,7 @@ function main()
 	}
 	
 	// Print first node neighbors amount
+	error ( "First node neighbors amount" );
 	error ( str_for_int(NULL,node_neighbor_count(node[0])) );
 	
 	// Disconnect to nodes randomly
@@ -38,12 +39,14 @@ function main()
 	nodes_disconnect ( node[i], node[ii] );
 	
 	// Print disconnected node neighbors amount
+	error ( "two randomly disconnected neighbor amount" );
 	error ( str_for_int(NULL,node_neighbor_count(node[i])) );
 	error ( str_for_int(NULL,node_neighbor_count(node[ii])) );
 	
 	// Clone a node
 	Node *nodeNew = node_clone ( node[i] );
 	int amount = node_neighbor_count(nodeNew);
+	error ( "cloned neighbor count" );
 	error ( str_for_int(NULL,amount) );
 	
 	// Check cloned nodes neighborhood
@@ -68,6 +71,7 @@ function main()
 	while ( i == ii )
 		ii = integer(random(LOOPS));
 	var distance = nodes_distance ( node[i], node[ii] );
+	error ( "distance between two random nodes" );
 	error ( str_for_num(NULL,distance) );
 	
 	for ( i=0; i<LOOPS; i++ )
