@@ -43,7 +43,7 @@ o Generic Script Library
 		o c_move
 		o no collisionm, just gravity
 	o Pathfinding
-		- Gridbased (MasterQ32)
+		o Gridbased
 		o Nodebased
 	x Generic Linked Lists (MasterQ32)
 	o Dialog API
