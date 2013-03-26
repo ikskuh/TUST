@@ -7,7 +7,6 @@
 // include cct template:
 #include "..\\..\\Source\\cct.h"
 
-
 // player's action:
 action actHero(){
 	// flags:
