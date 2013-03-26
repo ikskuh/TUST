@@ -6,6 +6,11 @@
 #ifndef __ACKPHYSX3_H__
 #define __ACKPHYSX3_H__
 
+/**
+ * \file ackphysX3.h
+ * ackphysX3 provides a conversion of the PhysX 3 API for Gamestudio.
+ */
+
 /////////////////////////////////////////////////////////
 // PhysX3 Consts
 
