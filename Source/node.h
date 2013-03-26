@@ -7,11 +7,6 @@
  */
 
 /**
- * Dependencies
- */
-#include "list.h"
-
-/**
  * NodeData is used instead of void to give a clear difference between a normal pointer and a pointer used in nodes.
  */
 //typedef void NodeData;
@@ -22,6 +17,7 @@
 */
 typedef struct Node
 {
+//public:
 	/**
 	 * World position
 	 */
@@ -32,20 +28,21 @@ typedef struct Node
 	/**
 	 * 32 bits flags
 	 */
-//	var flags;
+	//var flags;
 	
 	/**
 	 * General purpouse variables
 	 */
-//	var skill_x;
-//	var skill_y;
-//	var skill_z;
+	//var skill_x;
+	//var skill_y;
+	//var skill_z;
 	
 	/**
 	 * Custom data pointer
 	 */
-//	NodeData *data;
+	//NodeData *data;
 	
+//private:
 	/**
 	 * A linked list of node neighborhood.
 	 */
@@ -102,6 +99,13 @@ int node_neighbor_count ( Node *node );
  * \return					Distance between nodes.
  */
 var nodes_distance ( Node *nodeFrom, Node *nodeTo );
+
+
+/**
+ * Dependencies
+ */
+#include "list.h"
+
 
 #include "node.c"
 #endif
