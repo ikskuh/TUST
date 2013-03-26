@@ -45,7 +45,10 @@ o Generic Script Library
 	o Pathfinding
 		o Gridbased
 		o Nodebased
-	x Generic Linked Lists (MasterQ32)
+	x Generic Linked Lists (MasterQ32) --> Source/list.h
+	x Generic Spatial Node Management (txesmi) --> Source/node.h
+	- Generic Node based Mesh Management (txesmi)
+	- Generic Trash Management (txesmi)
 	o Dialog API
 		o Loading from XML
 	o Basic Inventory

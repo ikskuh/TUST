@@ -66,5 +66,27 @@ function main()
 	error(str_for_int(NULL, array[1]));
 	error(str_for_int(NULL, array[2]));
 	
+	
+	// iterate throught the list
+	error("Iteration:");
+	int first = list_iterate ( list );
+	int item = first;
+	do
+	{
+		error(str_for_int(NULL, item));
+		item = list_iterate ( list );
+	} 
+	while ( item != first );
+	
+	error("New Loop:");
+	int first = list_iterate ( list );
+	int item = first;
+	do
+	{
+		error(str_for_int(NULL, item));
+		item = list_iterate ( list );
+	} 
+	while ( item != first );
+	
 	list_delete(list);
 }
