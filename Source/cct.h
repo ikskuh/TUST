@@ -1,6 +1,11 @@
 #ifndef _CCT_H_
 	#define _CCT_H_
 
+	/**
+	* \file cct.h
+	* fs.h provides helper functions related to the character controller template.
+	*/
+	
 	// The Actor struct:
 	typedef struct Actor {
 		
