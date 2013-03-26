@@ -3,7 +3,7 @@
 
 	/**
 	* \file cct.h
-	* fs.h provides helper functions related to the character controller template.
+	* cct.h provides helper functions related to the character controller template.
 	*/
 	
 	// The Actor struct:
