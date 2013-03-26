@@ -16,16 +16,11 @@ typedef void ListData;
 */
 typedef struct ListItem
 {
-	/**
-	 * The previous list item in the list.
-	 */
+//private:
 	struct ListItem *previous;
-	
-	/**
-	 * The next list item in the list.
-	 */
 	struct ListItem *next;
-	
+
+//public:	
 	/**
 	 * The data stored in this list item.
 	 */
@@ -38,6 +33,9 @@ typedef struct ListItem
  */
 typedef struct List
 {
+//private:
+	int count;
+//public:
 	/**
 	 * The first item of the list.
 	 */
@@ -48,6 +46,19 @@ typedef struct List
 	 */
 	ListItem *last;
 } List;
+
+/**
+ * An iterator for a list. You need the iterator to go through all items in a list.
+ */
+typedef struct ListIterator
+{
+//private:
+	List *list;
+	ListItem *current;
+	int valid;
+//public:
+	int hasNext;
+} ListIterator;
 
 /**
  * Creates a new list.
@@ -155,6 +166,26 @@ int list_get_count(List *list);
  * \return				The amount of items copied.
  */
 int list_copy_to(List *list, ListData **array, int arrayLength);
+
+/**
+ * Begins a list iteration.
+ * \param	list		The list to iterate through
+ * \return				A new iterator for the given list.
+ */
+ListIterator *list_begin_iterate(List *list);
+
+/**
+ * Gets the next value in a list iteration.
+ * \param	iterator	The iterator to be used.
+ * \return				The next value in the iteration.
+ */
+ListData *list_iterate(ListIterator *iterator);
+
+/**
+ * Ends an iteration and frees the iterator.
+ * \param	iterator	The iteration to be freed.
+ */
+void list_end_iterate(ListIterator *iterator);
 
 #include "list.c"
 #endif

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.3.1"/>
-<title>TUST: Source/template.h Source File</title>
+<title>TUST: ListIterator Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,8 +38,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -60,8 +60,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -78,22 +79,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_872ed32bcdcc194f75099efeed356bcf.html">Source</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_list_iterator-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">template.h</div>  </div>
+<div class="title">ListIterator Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="template_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _TEMPLATE_H_</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _TEMPLATE_H_</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;template.c&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#endif</span></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p><code>#include &lt;<a class="el" href="list_8h_source.html">list.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a9778c5dd32b3c8e2763ef4a05b9af398"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9778c5dd32b3c8e2763ef4a05b9af398"></a>
+<a class="el" href="struct_list.html">List</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>list</b></td></tr>
+<tr class="separator:a9778c5dd32b3c8e2763ef4a05b9af398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a895e8e0ab635d4c9414fffe0618bef37"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a895e8e0ab635d4c9414fffe0618bef37"></a>
+<a class="el" href="struct_list_item.html">ListItem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>current</b></td></tr>
+<tr class="separator:a895e8e0ab635d4c9414fffe0618bef37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad80ed56c2e01f1aace9a33b2ac0462a9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad80ed56c2e01f1aace9a33b2ac0462a9"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>valid</b></td></tr>
+<tr class="separator:ad80ed56c2e01f1aace9a33b2ac0462a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43e7e721ab793610a286f5a50e8d4973"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43e7e721ab793610a286f5a50e8d4973"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>hasNext</b></td></tr>
+<tr class="separator:a43e7e721ab793610a286f5a50e8d4973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An iterator for a list. You need the iterator to go through all items in a list. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>Source/<a class="el" href="list_8h_source.html">list.h</a></li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated on Tue Mar 26 2013 16:04:28 for TUST by &#160;<a href="http://www.doxygen.org/index.html">

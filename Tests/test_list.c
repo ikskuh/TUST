@@ -1,6 +1,5 @@
 #include <acknex.h>
 #include "..\\Source\\tust.h"
-#include "..\\Source\\list.2.h"
 
 int compare_int(int a, int b)
 {
@@ -52,12 +51,15 @@ function main()
 	list_reverse(list);
 
 
-	error("List:");
-	ListItem *it;
-	for(it = list->first; it != NULL; it = it->next)
+	error("List Iteration:");
+	int value;
+	ListIterator *it = list_begin_iterate(list);
+	for(value = list_iterate(it); it->hasNext; value = list_iterate(it))
 	{
-		error(str_for_int(NULL, it->data));
+		error(str_for_int(NULL, value));
 	} 
+	list_end_iterate(it);
+	
 	error("Count:");
 	error(str_for_int(NULL, list_get_count(list)));
 	
@@ -68,26 +70,27 @@ function main()
 	error(str_for_int(NULL, array[2]));
 	
 	
-	// iterate throught the list
-	error("Iteration:");
-	int first = list_iterate ( list );
-	int item = first;
-	do
-	{
-		error(str_for_int(NULL, item));
-		item = list_iterate ( list );
-	} 
-	while ( item != first );
-	
-	error("New Loop:");
-	int first = list_iterate ( list );
-	int item = first;
-	do
-	{
-		error(str_for_int(NULL, item));
-		item = list_iterate ( list );
-	} 
-	while ( item != first );
 	
 	list_delete(list);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

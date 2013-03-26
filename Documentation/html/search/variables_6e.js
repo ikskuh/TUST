@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['next',['next',['../struct_list_item.html#a3a9c06ae85f60557666cb569b36072a9',1,'ListItem']]]
+  ['neighborhood',['neighborhood',['../struct_node.html#a9dd7b08af051b0a0d3f50cd320bd0d1f',1,'Node']]]
 ];

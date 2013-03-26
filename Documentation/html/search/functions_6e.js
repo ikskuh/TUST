@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['neighborhood',['neighborhood',['../struct_node.html#a9dd7b08af051b0a0d3f50cd320bd0d1f',1,'Node']]],
-  ['node',['Node',['../struct_node.html',1,'Node'],['../node_8h.html#a0466fc5f1bc9e6de776e48149b19c471',1,'Node():&#160;node.h']]],
-  ['node_2eh',['node.h',['../node_8h.html',1,'']]],
   ['node_5fclone',['node_clone',['../node_8h.html#a3b78ecf52ed2a2cfc1eb4c9e2c44abea',1,'node.c']]],
   ['node_5fcreate',['node_create',['../node_8h.html#a6c7dd584588bbd50bcc0e89d06dac727',1,'node.c']]],
   ['node_5fdelete',['node_delete',['../node_8h.html#aad31e268386f51aff6a12e6890bf586d',1,'node.c']]],

@@ -6,6 +6,7 @@ List *list_create()
 	List *list = sys_malloc(sizeof(List));
 	list->first = NULL;
 	list->last = NULL;
+	list->count = 0;
 	return list;
 }
 
@@ -50,6 +51,7 @@ void list_add(List *list, ListData *data)
 		list->last->next = item;
 	}
 	list->last = item;
+	list->count += 1;
 }
 
 void list_add_range(List *list, ListData **array, int count)
@@ -58,6 +60,7 @@ void list_add_range(List *list, ListData **array, int count)
 	for(i = 0; i < count; i++)
 	{
 		list_add(list, array[i]);
+		list->count += 1;
 	}
 }
 
@@ -89,6 +92,7 @@ void list_remove(List *list, ListData *data)
 			list->last = previous;
 		}
 		sys_free(it);
+		list->count -= 1;
 		return;
 	}
 }
@@ -124,6 +128,7 @@ void list_remove_all(List *list, ListData *data)
 			list->last = previous;
 		}
 		sys_free(it);
+		list->count -= 1;
 		it = next;
 	}
 }
@@ -160,6 +165,7 @@ void list_remove_at(List *list, int index)
 			list->last = previous;
 		}
 		sys_free(it);
+		list->count -= 1;
 		return;
 	}
 }
@@ -203,6 +209,7 @@ void list_clear(List *list)
 	}
 	list->first = NULL;
 	list->last = NULL;
+	list->count = 0;
 }
 
 void list_sort(List *list, void *compare)
@@ -247,13 +254,13 @@ void list_reverse(List *list)
 
 int list_get_count(List *list)
 {
-	int count = 0;
-	ListItem *it = list->first;
-	for(it = list->first; it != NULL; it = it->next)
-	{
-		count++;
-	}
-	return count;
+	//int count = 0;
+	//ListItem *it = list->first;
+	//for(it = list->first; it != NULL; it = it->next)
+	//{
+	//	count++;
+	//}
+	return list->count;
 }
 
 int list_copy_to(List *list, ListData **array, int arrayLength)
@@ -269,6 +276,46 @@ int list_copy_to(List *list, ListData **array, int arrayLength)
 	}
 	return count;
 }
+
+
+ListIterator *list_begin_iterate(List *list)
+{
+	ListIterator *iterator = sys_malloc(sizeof(ListIterator));
+	
+	iterator->list = list;
+	iterator->current = NULL;
+	iterator->valid = 0;
+	iterator->hasNext = list->first != NULL;
+	return iterator;
+}
+
+ListData *list_iterate(ListIterator *iterator)
+{
+	if(iterator->hasNext == 0)
+		return NULL;
+	if(iterator->valid)
+	{
+		iterator->current = iterator->current->next;
+		iterator->hasNext = iterator->current != NULL;
+		if(iterator->current == NULL)
+			return NULL;
+	}
+	else
+	{
+		iterator->current = iterator->list->first;
+		iterator->valid = 1;
+	}
+	return iterator->current->data;
+}
+
+void list_end_iterate(ListIterator *iterator)
+{
+	sys_free(iterator);
+}
+
+
+
+
 
 
 
