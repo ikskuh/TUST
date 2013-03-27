@@ -10,7 +10,8 @@
 #include "fs.h"
 #include "ini.h"
 #include "list.h"
-#include "menu.h"
+#include "trash.h"
+#include "node.h"
 
 
 
