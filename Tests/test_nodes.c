@@ -1,6 +1,5 @@
 #include <acknex.h>
-#include "..\\Source\\list.h"
-#include "..\\Source\\node.h"
+#include "..\\Source\\tust.h"
 
 #define LOOPS		10
 
@@ -9,6 +8,7 @@ function main()
 	int i, ii;
 	random_seed (0);
 	wait(1);
+	
 	
 	// Create a nodes array
 	Node **node = sys_malloc(sizeof(Node*)*LOOPS);
@@ -50,6 +50,7 @@ function main()
 	error ( str_for_int(NULL,amount) );
 	
 	// Check cloned nodes neighborhood
+	
 	Node *neighbor1 = (Node*)list_item_at ( node[i]->neighborhood, 0 );
 	Node *neighbor2 = (Node*)list_item_at ( nodeNew->neighborhood, 0 );
 	int iii = 0;
@@ -74,10 +75,17 @@ function main()
 	error ( "distance between two random nodes" );
 	error ( str_for_num(NULL,distance) );
 	
+	error ( "delete nodes" );
 	for ( i=0; i<LOOPS; i++ )
 	{
-		node_delete ( node[i] );
+		node_remove ( node[i] );
 	}
+	
+	error ( "nodes into trash" );
+	error ( str_for_int(NULL,nodeTrash->count) );
+	
+	node_close (); // <-- need a global solution
+	
 	sys_free ( node );
 	sys_free ( nodeNew );
 	

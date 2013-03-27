@@ -1,22 +1,30 @@
 #include <acknex.h>
 #include "node.h"
 
-/*
+Trash *nodeTrash;
+
 void node_startup ()
 {
-	
+	nodeTrash = trash_create ( 50, node_remove );
 }
-*/
+
+void node_close ()
+{
+	trash_remove ( nodeTrash );
+}
+
 
 Node *node_create ( VECTOR* position )
 {
-	Node *node = sys_malloc(sizeof(Node));
+	Node *node = trash_recover ( nodeTrash );
+	if ( node == NULL )
+		node = sys_malloc(sizeof(Node));
 	vec_set ( node->pos_x, position );
 	node->neighborhood = list_create ();
 	return node;
 }
 
-void *node_delete ( Node *node )
+void *node_remove ( Node *node )
 {
 	Node *neighbor;
 	ListIterator *it = list_begin_iterate(node->neighborhood);
@@ -24,7 +32,7 @@ void *node_delete ( Node *node )
 		nodes_disconnect ( node, neighbor );
 	list_end_iterate(it);
 	list_delete ( node->neighborhood );
-	sys_free ( node );
+	trash_add ( nodeTrash, node );
 }
 
 Node *node_clone ( Node *node )

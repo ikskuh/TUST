@@ -62,7 +62,7 @@ Node *node_create ( VECTOR *position );
  * Deletes a node.
  * \param	node			The node to delete.
  */
-void *node_delete ( Node *node );
+void *node_remove ( Node *node );
 
 /**
  * Clones a node.
@@ -105,6 +105,7 @@ var nodes_distance ( Node *nodeFrom, Node *nodeTo );
  * Dependencies
  */
 #include "list.h"
+#include "trash.h"
 
 
 #include "node.c"
