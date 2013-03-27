@@ -99,13 +99,5 @@
 	*/
 	void cct_update(Actor* actor);
 	
-	
-	/**
-	* Gets the extents of an actor.
-	* \param	actor		The pointer to the cct actor.
-	* \param	pos			Returned vector of the cct extents (radius, radius, height).
-	*/
-	VECTOR* cct_getextents(Actor* actor, VECTOR* pos);
-	
 	#include "cct.c"
 #endif

@@ -95,11 +95,3 @@ var cct_get_rotation(Actor* actor){
 void cct_update(Actor* actor){
 	
 }
-
-// Gets the extents of an actor:
-VECTOR* cct_getextents(Actor* actor, VECTOR* pos){
-	// radius, radius, height:
-	pX3ent_getcctextents(actor, pos.x);
-	// return vector:
-	return(pos.x);
-}
