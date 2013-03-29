@@ -1,0 +1,23 @@
+<Dialog>
+	<NPC id="0" file="test_dialog\\speech\\Woman01.ogg" name="Woman">Oh, you are still alive!</NPC>
+	<Choice id="1">
+		<ChoiceItem target="2" returnvalue="2">Who are you?</ChoiceItem>
+	</Choice>
+	<NPC id="2" file="test_dialog\\speech\\Woman02.ogg" name="Woman">My name is Erade, I am living in the small village over there!</NPC>
+	<Choice id="3">
+		<ChoiceItem target="2" returnvalue="2">WHO are you?</ChoiceItem>
+		<ChoiceItem target="4" returnvalue="2">What happened to me?</ChoiceItem>
+	</Choice>
+	<NPC id="4" file="test_dialog\\speech\\Woman03.ogg" name="Erade">I do not know, I found you lying in the river. What's your name boy?</NPC>
+	<Player id="5" file="test_dialog\\speech\\Woman04.ogg" name="?">I do not know, I remember nothing!</Player>
+	<NPC id="6" file="test_dialog\\speech\\Woman05.ogg" name="Erade">Well you need a name! What about Finn?</NPC>
+	<Choice id="7">
+		<ChoiceItem target="8" returnvalue="2">Not very much...</ChoiceItem>
+		<ChoiceItem target="10" returnvalue="2">Finn... sounds good!</ChoiceItem>
+	</Choice>
+	<NPC id="8" file="test_dialog\\speech\\Woman06.ogg" name="Erade">So I will call you Finn. Follow me to my house, Finn! You look like you are hungry!</NPC>
+	<Goto id="9" target="11"/>	
+	<NPC id="10" file="test_dialog\\speech\\Woman07.ogg" name="Erade">That was not so difficult was it? Follow me to my house, you look like you are hungry!</NPC>
+	<Player id="11" file="test_dialog\\speech\\Woman08.ogg" name="Finn">Hey, wait! Not so fast!</Player>
+	<End id="12"/>
+</Dialog>
