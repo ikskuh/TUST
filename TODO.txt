@@ -52,9 +52,12 @@ o Generic Script Library
 	x Generic Trash Management (txesmi) --> SOurce/trash.h
 	x Dialog API (padmalcom)
 		x Loading from XML
-	o Basic Inventory
+	x Basic Inventory (padmalcom)
 	- Game Main Menu (MasterQ32) --> Source\menu.h
 		o Options Dialog
+			o Graphic Options
+			o Sound Options
+			o Key Options
 		o Save Game
 		o Load Game
 	o Enemies
