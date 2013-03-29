@@ -32,6 +32,7 @@ o Generic Script Library
 	o Day/Night Dynamic Sky
 	o Background Music Management
 	x INI-Access (MasterQ32)
+	x XML-Access (padmalcom)
 	o Custom Save-Load System
 		o Entities
 			o Position
@@ -49,8 +50,8 @@ o Generic Script Library
 	x Generic Spatial Node Management (txesmi) --> Source/node.h
 	- Generic Node based Mesh Management (txesmi)
 	x Generic Trash Management (txesmi) --> SOurce/trash.h
-	o Dialog API
-		o Loading from XML
+	x Dialog API (padmalcom)
+		x Loading from XML
 	o Basic Inventory
 	- Game Main Menu (MasterQ32) --> Source\menu.h
 		o Options Dialog
@@ -69,6 +70,7 @@ o Game Templates
 	- RTS (MasterQ32)
 		o Simple AI example
 		o Gridbased movement of units
+	o RPG
 
 o Models
 	o Vegetation
