@@ -7,6 +7,10 @@
  * TUST provides.
  */
 
+
+
+typedef unsigned char bool;
+
 #include "fs.h"
 #include "ini.h"
 #include "list.h"
@@ -15,8 +19,7 @@
 #include "math.h"
 #include "dialogs.h"
 #include "network.h"
-
-
+#include "webkit.h"
 
 
 #ifdef _TEMPLATE_H_
