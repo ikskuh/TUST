@@ -1,5 +1,5 @@
-#ifndef _TEMPLATE_H_
-#define _TEMPLATE_H_
+#ifndef _MATH_H_
+#define _MATH_H_
 
 /**
  * \file math.h

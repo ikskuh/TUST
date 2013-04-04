@@ -18,5 +18,9 @@
 
 
 
+#ifdef _TEMPLATE_H_
+	#error Template include guard still exists!
+#endif
+
 #include "tust.c"
 #endif
