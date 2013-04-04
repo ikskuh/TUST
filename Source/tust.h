@@ -12,6 +12,7 @@
 #include "list.h"
 #include "trash.h"
 #include "node.h"
+#include "dialogs.h"
 
 
 
