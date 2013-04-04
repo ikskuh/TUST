@@ -3,8 +3,8 @@
 
 var ang_lerp_single(var a1, var a2, var f)
 {
-	var angle = ang(a2 - a1);
-	return ang(a2 - (f * angle));
+	var angle = ang(a1 - a2);
+	return ang(a1 - (f * angle));
 }
 
 ANGLE* ang_lerp(ANGLE* a, ANGLE* a1, ANGLE* a2, var f)
