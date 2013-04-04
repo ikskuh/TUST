@@ -13,6 +13,7 @@
 #include "trash.h"
 #include "node.h"
 #include "math.h"
+#include "dialogs.h"
 
 
 
