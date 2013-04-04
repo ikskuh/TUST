@@ -14,6 +14,7 @@
 #include "node.h"
 #include "math.h"
 #include "dialogs.h"
+#include "network.h"
 
 
 
