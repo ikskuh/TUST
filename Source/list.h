@@ -80,7 +80,7 @@ void list_delete(List *list);
 List *list_clone(List *list);
 
 /**
- * Adds a new item to the list.
+ * Adds a new item to the last position of a list
  * \param	list		The list where the item should be added.
  * \param	item		The item which should be added to the list.
  */
@@ -93,6 +93,21 @@ void list_add(List *list, ListData *item);
  * \param	count		The number of items which should be copied.
  */
 void list_add_range(List *list, ListData **array, int count);
+
+/**
+ * Adds a new item in the first position of a list.
+ * \param	list		The list where the item should be added.
+ * \param	item		The item which should be added to the list.
+ */
+void list_add_first ( List *list, ListData *item );
+
+/**
+ * Adds a new item sorted by a comparision function
+ * \param	list			The list where the item should be added.
+ * \param	item			The item which should be added to the list.
+ * \param	compare		A pointer to a comparision function. The function needs this signature: int compare(ListData *left, ListData *right) and returns 1 if left>right, 0 if left=right and -1 if left<right.
+ */
+void list_add_sorted ( List *list, ListData *item, void *compare );
 
 /**
  * Removes the item from the list.
@@ -137,6 +152,14 @@ ListData *list_item_at(List *list, int index);
  * \param	list		The list which should be cleared.
  */
 void list_clear(List *list);
+
+/**
+ * Clears the listitems and the listitems data of a list
+ * \param	list		The list where the item should be added.
+ * \param	remove_function		A pointer to a remove function. The function needs this signature: void remove_function ( ListData *item )
+ */
+void list_clear_content ( List *list, void *remove_function );
+
 
 /**
  * Sorts a list.
@@ -186,6 +209,9 @@ ListData *list_iterate(ListIterator *iterator);
  * \param	iterator	The iteration to be freed.
  */
 void list_end_iterate(ListIterator *iterator);
+
+
+
 
 #include "list.c"
 #endif

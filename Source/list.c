@@ -313,6 +313,82 @@ void list_end_iterate(ListIterator *iterator)
 	sys_free(iterator);
 }
 
+void list_clear_content ( List *list, void *remove_function )
+{
+	ListItem *it = list->first;
+	void itemdata_remover ( ListData *data );
+	itemdata_remover = remove_function;
+	for ( it = list->first; it != NULL; )
+	{
+		ListItem *next = it->next;
+		itemdata_remover ( it->data );
+		sys_free(it);		
+		it = next;
+	}
+	list->first = NULL;
+	list->last = NULL;
+	list->count = 0;
+}
+
+void list_add_first ( List *list, ListData *item )
+{
+	ListItem *listitem = sys_malloc(sizeof(ListItem));
+	listitem->previous = NULL;
+	listitem->next = list->first;
+	listitem->data = item;
+	if ( list->first == NULL )
+		list->last = listitem;
+	else
+		list->first->previous = listitem;
+	list->first = listitem;
+	list->count += 1;
+}
+
+void list_add_sorted ( List *list, ListData *item, void *compare )
+{
+	ListItem *newitem = sys_malloc(sizeof(ListItem));
+	newitem->previous = NULL;
+	newitem->next = NULL;
+	newitem->data = item;
+	ListItem *it = list->first;
+	if ( it == NULL )
+	{
+		list->last = newitem;
+		list->first = newitem;
+		list->count += 1;
+		return;
+	}
+	int compare_func(ListData *left, ListData *right);
+	compare_func = compare;
+	if ( compare_func ( it->data, item ) > 0 )
+	{
+		newitem->next = list->first;
+		list->first->previous = newitem;
+		list->first = newitem;
+		list->count += 1;
+		return;
+	}
+	for ( it = list->first; it != list->last; )
+	{
+		ListItem *next = it->next;
+		if ( compare_func ( next->data, item ) > 0 )
+		{
+			newitem->previous = it;
+			newitem->next = next;
+			next->previous = newitem;
+			it->next = newitem;
+			list->count += 1;
+			return;
+		}
+		it = next;
+	}
+	newitem->previous = list->last;
+	list->last->next = newitem;
+	list->last = newitem;
+	list->count += 1;
+}
+
+
 
 
 
