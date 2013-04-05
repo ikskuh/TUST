@@ -95,8 +95,7 @@ void nodes_disconnect ( Node *nodeFrom, Node *nodeTo );
 
 /**
  * Disconnects a mode from all of it neighbors.
- * \param	nodeFrom		First node to disconnect.
- * \param	nodeTo		Second node to disconnect.
+ * \param	node			Node to disconnect.
  */
 void node_isolate ( Node *node );
 
