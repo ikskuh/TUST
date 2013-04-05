@@ -7,8 +7,6 @@
  * TUST provides.
  */
 
-
-
 typedef unsigned char bool;
 
 #include "fs.h"
