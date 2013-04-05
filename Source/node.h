@@ -7,6 +7,13 @@
  */
 
 /**
+ * Dependencies
+ */
+#include "list.h"
+#include "trash.h"
+
+
+/**
  * NodeData is used instead of void to give a clear difference between a normal pointer and a pointer used in nodes.
  */
 //typedef void NodeData;
@@ -50,6 +57,7 @@ typedef struct Node
 	
 } Node;
 
+
 /**
  * Creates a new node.
  * \param	position		World position.
@@ -86,6 +94,13 @@ void nodes_connect ( Node *nodeFrom, Node *nodeTo );
 void nodes_disconnect ( Node *nodeFrom, Node *nodeTo );
 
 /**
+ * Disconnects a mode from all of it neighbors.
+ * \param	nodeFrom		First node to disconnect.
+ * \param	nodeTo		Second node to disconnect.
+ */
+void node_isolate ( Node *node );
+
+/**
  * Gives node neighbors amount.
  * \param	node			The node.
  * \return					Neighbor amount .
@@ -100,12 +115,14 @@ int node_neighbor_count ( Node *node );
  */
 var nodes_distance ( Node *nodeFrom, Node *nodeTo );
 
-
 /**
- * Dependencies
+ * Does a c_trace between two nodes position
+ * \param	nodeFrom		Start node.
+ * \param	nodeTo		End node.
+ * \param	mode			c_trace mode.
+ * \return					0 if collides with something, 1 if not.
  */
-#include "list.h"
-#include "trash.h"
+int nodes_trace ( Node *nodeFrom, Node *nodeTo, var mode );
 
 
 #include "node.c"
