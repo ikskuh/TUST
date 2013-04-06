@@ -19,3 +19,39 @@ ANGLE* ang_lerp(ANGLE* a, ANGLE* a1, ANGLE* a2, var f)
 	
 	return vector(ai.pan, ai.tilt, ai.roll);
 }
+
+void vec_rotateXY ( VECTOR *vec, var ang )
+{
+	var x = fcos(ang,vec->x) - fsin(ang,vec->y);
+	vec.y = fsin(ang,vec->x) + fcos(ang,vec->y);
+	vec.x = x;
+}
+
+void vec_rotateXZ ( VECTOR *vec, var ang )
+{
+	var x = fcos(ang,vec->x) - fsin(ang,vec->z);
+	vec.z = fsin(ang,vec->x) + fcos(ang,vec->z);
+	vec.x = x;
+}
+
+void vec_rotateYZ ( VECTOR *vec, var ang )
+{
+	var y = fcos(ang,vec->y) - fsin(ang,vec->z);
+	vec.z = fsin(ang,vec->y) + fcos(ang,vec->z);
+	vec.y = y;
+}
+
+var point_to_line2D_dist ( var px, var py, var l1x, var l1y, var l2x, var l2y )
+{
+	var varA = l2y - l1y;
+	var varB = -( l2x - l1x );
+	var varC = ( ( l2x - l1x ) * l1y ) - ( ( l2y - l1y ) * l1x );
+	
+	return ( ( varA * px ) + ( varB * py ) + varC ) / sqrt ( ( varA * varA ) + ( varB * varB ) );
+}
+
+var point_to_line2D_escalar ( var px, var py, var l1x, var l1y, var l2x, var l2y )
+{
+	return ( ( ( px - l1x ) * ( l2x - l1x ) ) + ( ( py - l1y ) * ( l2y - l1y ) ) ) / ( pow ( l2x - l1x, 2 ) + pow ( l2y - l1y, 2 ) );
+}
+
