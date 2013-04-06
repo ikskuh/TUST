@@ -49,11 +49,11 @@ o Generic Script Library
 	x Generic Linked Lists (MasterQ32) --> Source/list.h
 	x Generic Spatial Node Management (txesmi) --> Source/node.h
 	- Generic Node based Mesh Management (txesmi)
-	x Generic Trash Management (txesmi) --> SOurce/trash.h
+	x Generic Trash Management (txesmi) --> Source/trash.h
 	x Dialog API (padmalcom)
 		x Loading from XML
 	x Basic Inventory (padmalcom)
-	- Game Main Menu (MasterQ32) --> Source\menu.h
+	- Game Main Menu (MasterQ32) --> Source/menu.h
 		o Options Dialog
 			o Graphic Options
 			o Sound Options
@@ -62,6 +62,11 @@ o Generic Script Library
 		o Load Game
 	o Enemies
 	o Quests
+	o Procedural Library
+		o Simplex Noise (MasterQ32)
+		o DynamicModels (MasterQ32) --> Source/DynamicModels.h
+	o Lua Scripting Support
+	o Generic Array Lists (MasterQ32)
 
 o Game Templates
 	o Shooter

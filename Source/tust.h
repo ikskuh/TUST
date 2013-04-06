@@ -19,6 +19,7 @@ typedef unsigned char bool;
 #include "dialogs.h"
 #include "network.h"
 #include "webkit.h"
+#include "DynamicModels.h"
 
 
 #ifdef _TEMPLATE_H_
