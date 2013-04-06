@@ -73,10 +73,7 @@ void nmesh_close ()
 
 void nmesh_remove ( NodeMesh *nmesh )
 {
-	Node *node;
-	ListIterator *it = list_begin_iterate(nmesh);
-	for ( node = list_iterate(it); it->hasNext; node = list_iterate(it) )
-		node_remove ( node );
+	list_clear_content ( nmesh, node_remove );
 	list_delete ( nmesh );
 }
 
@@ -99,26 +96,31 @@ int nmesh_add ( NodeMesh *nmesh, VECTOR *pos )
 	}
 	list_end_iterate(it);
 	list_add ( nmesh, newnode );
-	return list_get_count ( nmesh );
+	return list_get_count ( nmesh ) - 1;
 }
 
 int nmesh_nearest ( NodeMesh *nmesh, VECTOR *pos )
 {
 	var distance = 100000;
 	Node *node, *nearest=NULL;
-	int index = 0;
+	int index = 0, nearest_index = 0;
 	ListIterator *it = list_begin_iterate(nmesh);
 	for ( node = list_iterate(it); it->hasNext; node = list_iterate(it) )
 	{
-		index ++;
-		if ( vec_dist ( &node->pos_x, pos ) < distance )
+		var new_distance = vec_dist ( &node->pos_x, pos );
+		if ( new_distance < distance )
+		{
+			distance = new_distance;
 			nearest = node;
+			nearest_index = index;
+		}
+		index ++;
 	}
 	list_end_iterate(it);
 	if ( distance < 100000 )
-		return index;
+		return nearest_index;
 	else
-		return 0;
+		return -1;
 }
 
 int compare_nodes_weight ( Node *left, Node *right )
@@ -218,7 +220,7 @@ void nmesh_draw ( NodeMesh *nmesh, COLOR *color )
 	VECTOR vtemp;
 	Node *node, *neighbor;
 	ListIterator *it = list_begin_iterate(nmesh);
-	int i=0;
+	int i=-1;
 	for ( node = list_iterate(it); it->hasNext; node = list_iterate(it) )
 	{
 		vec_set ( &vtemp, &node->pos_x );
@@ -242,9 +244,8 @@ void route_draw ( Route *route, COLOR *color )
 {
 	Node *node, *prev;
 	ListIterator *it = list_begin_iterate(route);
-	var i=0;
 	prev = list_iterate(it);
-//	if ( it->hasNext )
+	if ( it->hasNext )
 		for ( node = list_iterate(it); it->hasNext; node = list_iterate(it) )
 		{
 			draw_line3d ( &node->pos_x, color, 0 );
@@ -252,7 +253,6 @@ void route_draw ( Route *route, COLOR *color )
 			draw_line3d ( &prev->pos_x, color, 100 );
 			draw_line3d ( &prev->pos_x, color, 0 );
 			prev = node;
-			i++;
 		}
 	list_end_iterate(it);
 }
