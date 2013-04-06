@@ -3,14 +3,8 @@
 #include "..\\..\\Source\\tust.h"
 
 #define PRAGMA_POINTER
-VECTOR vtemp;
-void route_delete ( Route *route )
-{
-	list_delete ( route );
-}
 
 NodeMesh *myNMesh = NULL;
-
 
 function main()
 {
