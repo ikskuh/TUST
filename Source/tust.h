@@ -21,6 +21,8 @@ typedef unsigned char bool;
 #include "webkit.h"
 #include "DynamicModels.h"
 #include "noise.h"
+#include "arraylist.h"
+
 
 
 #ifdef _TEMPLATE_H_
