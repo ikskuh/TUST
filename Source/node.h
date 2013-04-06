@@ -40,9 +40,9 @@ typedef struct Node
 	/**
 	 * General purpouse variables
 	 */
-	//var skill_x;
-	//var skill_y;
-	//var skill_z;
+	var skill_x;
+	var skill_y;
+	var skill_z;
 	
 	/**
 	 * Custom data pointer
@@ -121,7 +121,7 @@ var nodes_distance ( Node *nodeFrom, Node *nodeTo );
  * \param	mode			c_trace mode.
  * \return					0 if collides with something, 1 if not.
  */
-int nodes_trace ( Node *nodeFrom, Node *nodeTo, var mode );
+int nodes_trace ( Node *nodeFrom, Node *nodeTo, var mode, ENTITY *collider );
 
 
 #include "node.c"

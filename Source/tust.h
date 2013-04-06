@@ -14,6 +14,7 @@ typedef unsigned char bool;
 #include "list.h"
 #include "trash.h"
 #include "node.h"
+#include "nodemesh.h"
 #include "math.h"
 #include "dialogs.h"
 #include "network.h"

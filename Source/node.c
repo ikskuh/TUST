@@ -18,7 +18,8 @@ Node *node_create ( VECTOR* position )
 	Node *node = trash_recover ( nodeTrash );
 	if ( node == NULL )
 		node = sys_malloc(sizeof(Node));
-	vec_set ( node->pos_x, position );
+	vec_set ( &node->pos_x, position );
+	vec_zero ( &node->skill_x );
 	node->neighborhood = list_create ();
 	return node;
 }
@@ -80,9 +81,14 @@ var nodes_distance ( Node *nodeFrom, Node *nodeTo )
 	return vec_dist ( &nodeFrom->pos_x, &nodeTo->pos_x );
 }
 
-int nodes_trace ( Node *nodeFrom, Node *nodeTo, var mode )
+int nodes_trace ( Node *nodeFrom, Node *nodeTo, var mode, ENTITY *collider )
 {
-	return !( c_trace ( &nodeFrom->pos_x, &nodeTo->pos_y, mode ) > 0 );
+	ENTITY *me_old = me;
+	me = collider;
+	mode |= USE_BOX;
+	int free_way = !(c_trace ( &nodeFrom->pos_x, &nodeTo->pos_x, mode ) > 0);
+	me = me_old;
+	return free_way;
 }
 
 
