@@ -20,6 +20,7 @@ typedef unsigned char bool;
 #include "network.h"
 #include "webkit.h"
 #include "DynamicModels.h"
+#include "noise.h"
 
 
 #ifdef _TEMPLATE_H_

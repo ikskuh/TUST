@@ -63,8 +63,8 @@ o Generic Script Library
 	o Enemies
 	o Quests
 	o Procedural Library
-		o Simplex Noise (MasterQ32)
-		o DynamicModels (MasterQ32) --> Source/DynamicModels.h
+		x Simplex Noise (MasterQ32) --> Source/noise.h
+		- DynamicModels (MasterQ32) --> Source/DynamicModels.h
 	o Lua Scripting Support
 	o Generic Array Lists (MasterQ32)
 
