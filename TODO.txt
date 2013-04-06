@@ -23,6 +23,7 @@ o Shader Pack
 	o Godray Shader
 	o Bloom
 	o Depth of Field
+	o Bitmap processes
 	o ...
 
 o Generic Script Library
@@ -46,6 +47,7 @@ o Generic Script Library
 	o Pathfinding
 		o Gridbased
 		o Nodebased
+			x ModeMesh based pathfinder (txesmi) --> Source/nodemesh.h
 	x Generic Linked Lists (MasterQ32) --> Source/list.h
 	x Generic Spatial Node Management (txesmi) --> Source/node.h
 	- Generic Node based Mesh Management (txesmi) --> Source/nodemesh.h
