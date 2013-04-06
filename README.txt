@@ -10,6 +10,9 @@ to get access to the git repository (https://github.com/MasterQ32/TUST).
 
 Current Team Members:
 	MasterQ32	-	Felix Queiﬂner
-	Kartoffel
+	Kartoffel	-	
 	3run		-	Magomet Kochkarov
 	txesmi		-	
+	padmalcom	-	
+	3dgs_snake	-	
+	
