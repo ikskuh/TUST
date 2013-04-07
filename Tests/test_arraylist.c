@@ -8,13 +8,15 @@ function main()
 {
 	ArrayList *list = arraylist_create(sizeof(int), 15);	// Initial capacity of 15 elements
 	
-	//genarray(list, int)[0] = 1;
+	arraylist_add(list, 30);
+	arraylist_add(list, 45);
+	arraylist_insert(list, 0, 15);
 	
-	arraylist_add(list, 15);
-	
-	error(str_for_int(NULL, genarray(list, int)[0]));
-	
-	
+	int i;
+	for(i = 0; i < list->count; i++)
+	{
+		error(str_for_int(NULL, genarray(list, int)[i]));
+	}
 	
 	arraylist_delete(list);
 }

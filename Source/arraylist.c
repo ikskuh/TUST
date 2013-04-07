@@ -1,4 +1,5 @@
 #include <acknex.h>
+#include "tust.h"
 #include "arraylist.h"
 
 ArrayList *arraylist_create(int itemsize, int capacity)
@@ -30,6 +31,7 @@ int arraylist_insert_internal(ArrayList *list, int index, void *element)
 	
 	if(list->count >= list->capacity)
 	{
+		error("enlarge!");
 		//Enlarge list size with 4 elements
 		void *newMem = sys_malloc(list->itemsize * (list->capacity + 4));
 		memcpy(newMem, list->array, list->itemsize * list->count);
@@ -39,15 +41,16 @@ int arraylist_insert_internal(ArrayList *list, int index, void *element)
 	if(index < list->count)
 	{
 		// Move elements to free index position
-		void *memOld = list->array + index * list->itemsize;
-		void *memNew = memOld + list->itemsize;
+		void *memOld = (int)list->array + index * list->itemsize;
+		void *memNew = (int)memOld + list->itemsize;
 		int len = list->itemsize * (list->count - index);
-		
-		error(str_for_int(NULL, list->count - index));
 		
 		memmove(memNew, memOld, len);
 	}
-	void *mem = list->array + index * list->itemsize;
+	
+	
+	// Copy new element
+	int mem = (int)list->array + (index * list->itemsize);
 	memcpy(mem, element, list->itemsize);
 	list->count += 1;
 	return index;

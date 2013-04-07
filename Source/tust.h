@@ -49,7 +49,7 @@ COLOR *colorf(float r, float g, float b);
  * \return					destination is returned.
  * \remarks Copied from http://www.cplusplus.com/reference/cstring/memmove/
  */
-void *memmove(void *destination, void *source, unsigned int num);
+void *memmove(BYTE *destination, BYTE *source, unsigned int num);
 
 #include "fs.h"
 #include "ini.h"
