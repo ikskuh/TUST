@@ -9,5 +9,7 @@ var searchData=
   ['ini_5fwrite',['ini_write',['../ini_8h.html#ad0724fd2eb4a07a20dbd0427b4c6a658',1,'ini.c']]],
   ['ini_5fwrite_5ffloat',['ini_write_float',['../ini_8h.html#ae4f674535aaae9355254045d32fdfa57',1,'ini.c']]],
   ['ini_5fwrite_5fint',['ini_write_int',['../ini_8h.html#a08fccc1a93252eba80cfe93b7a7c85e0',1,'ini.c']]],
-  ['ini_5fwrite_5fvar',['ini_write_var',['../ini_8h.html#a44ad10566896361bfb9c36f458032137',1,'ini.c']]]
+  ['ini_5fwrite_5fvar',['ini_write_var',['../ini_8h.html#a44ad10566896361bfb9c36f458032137',1,'ini.c']]],
+  ['inventory',['Inventory',['../struct_inventory.html',1,'']]],
+  ['item',['item',['../structitem.html',1,'']]]
 ];

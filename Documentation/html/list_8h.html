@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -124,22 +124,28 @@ Functions</h2></td></tr>
 <tr class="separator:a4166b139835cd42a14c6766436a5b30f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97c3ed174dd9f81fb8ca605e05ce8409"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_list.html">List</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a97c3ed174dd9f81fb8ca605e05ce8409">list_clone</a> (<a class="el" href="struct_list.html">List</a> *list)</td></tr>
 <tr class="separator:a97c3ed174dd9f81fb8ca605e05ce8409"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a249649f317a4d4eb86f7dc682cf56a0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a249649f317a4d4eb86f7dc682cf56a0d">list_add</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *item)</td></tr>
+<tr class="memitem:a249649f317a4d4eb86f7dc682cf56a0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a249649f317a4d4eb86f7dc682cf56a0d">list_add</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *<a class="el" href="structitem.html">item</a>)</td></tr>
 <tr class="separator:a249649f317a4d4eb86f7dc682cf56a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab19fb07cacc5287e44258b0a455cfe19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#ab19fb07cacc5287e44258b0a455cfe19">list_add_range</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> **array, int count)</td></tr>
 <tr class="separator:ab19fb07cacc5287e44258b0a455cfe19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87554c6faa7dea6b720c278e130547fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a87554c6faa7dea6b720c278e130547fc">list_remove</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *item)</td></tr>
+<tr class="memitem:a940bd22709adcde2ebeb6ac860b463ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a940bd22709adcde2ebeb6ac860b463ab">list_add_first</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *<a class="el" href="structitem.html">item</a>)</td></tr>
+<tr class="separator:a940bd22709adcde2ebeb6ac860b463ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf2ec81f9359c30358165df4547af3c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#abf2ec81f9359c30358165df4547af3c6">list_add_sorted</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *<a class="el" href="structitem.html">item</a>, void *compare)</td></tr>
+<tr class="separator:abf2ec81f9359c30358165df4547af3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87554c6faa7dea6b720c278e130547fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a87554c6faa7dea6b720c278e130547fc">list_remove</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *<a class="el" href="structitem.html">item</a>)</td></tr>
 <tr class="separator:a87554c6faa7dea6b720c278e130547fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bb7711241e3b57dfce78c7f4a4f4020"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a2bb7711241e3b57dfce78c7f4a4f4020">list_remove_all</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *item)</td></tr>
+<tr class="memitem:a2bb7711241e3b57dfce78c7f4a4f4020"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a2bb7711241e3b57dfce78c7f4a4f4020">list_remove_all</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *<a class="el" href="structitem.html">item</a>)</td></tr>
 <tr class="separator:a2bb7711241e3b57dfce78c7f4a4f4020"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a253d983e3e95edc22b52ef2c9049f1e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a253d983e3e95edc22b52ef2c9049f1e4">list_remove_at</a> (<a class="el" href="struct_list.html">List</a> *list, int index)</td></tr>
 <tr class="separator:a253d983e3e95edc22b52ef2c9049f1e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb4dea30c1e3758ee8e0a35b4ec1d7fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#aeb4dea30c1e3758ee8e0a35b4ec1d7fa">list_contains</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *item)</td></tr>
+<tr class="memitem:aeb4dea30c1e3758ee8e0a35b4ec1d7fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#aeb4dea30c1e3758ee8e0a35b4ec1d7fa">list_contains</a> (<a class="el" href="struct_list.html">List</a> *list, <a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *<a class="el" href="structitem.html">item</a>)</td></tr>
 <tr class="separator:aeb4dea30c1e3758ee8e0a35b4ec1d7fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ef73b4144b6d77cb150bdbe7f183c6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a2ef73b4144b6d77cb150bdbe7f183c6c">list_item_at</a> (<a class="el" href="struct_list.html">List</a> *list, int index)</td></tr>
 <tr class="separator:a2ef73b4144b6d77cb150bdbe7f183c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac53d4a634fec0aa2adad813d0497056"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#aac53d4a634fec0aa2adad813d0497056">list_clear</a> (<a class="el" href="struct_list.html">List</a> *list)</td></tr>
 <tr class="separator:aac53d4a634fec0aa2adad813d0497056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19ac28be1e1eb4f68809e7b13d905719"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a19ac28be1e1eb4f68809e7b13d905719">list_clear_content</a> (<a class="el" href="struct_list.html">List</a> *list, void *remove_function)</td></tr>
+<tr class="separator:a19ac28be1e1eb4f68809e7b13d905719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae418c4063a1a2dc864a916cb5ed10366"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#ae418c4063a1a2dc864a916cb5ed10366">list_sort</a> (<a class="el" href="struct_list.html">List</a> *list, void *compare)</td></tr>
 <tr class="separator:ae418c4063a1a2dc864a916cb5ed10366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae37fa04e467b37f4e6ee3edfae8207ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#ae37fa04e467b37f4e6ee3edfae8207ba">list_reverse</a> (<a class="el" href="struct_list.html">List</a> *list)</td></tr>
@@ -234,7 +240,41 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Adds a new item to the list. </p>
+<p>Adds a new item to the last position of a list </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>The list where the item should be added. </td></tr>
+    <tr><td class="paramname">item</td><td>The item which should be added to the list. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a940bd22709adcde2ebeb6ac860b463ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void list_add_first </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list.html">List</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *&#160;</td>
+          <td class="paramname"><em>item</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a new item in the first position of a list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The list where the item should be added. </td></tr>
@@ -286,6 +326,47 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="abf2ec81f9359c30358165df4547af3c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void list_add_sorted </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list.html">List</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="list_8h.html#a4c1f76c75a9741254d68b90c9246c914">ListData</a> *&#160;</td>
+          <td class="paramname"><em>item</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>compare</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a new item sorted by a comparision function </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>The list where the item should be added. </td></tr>
+    <tr><td class="paramname">item</td><td>The item which should be added to the list. </td></tr>
+    <tr><td class="paramname">compare</td><td>A pointer to a comparision function. The function needs this signature: int compare(ListData *left, ListData *right) and returns 1 if left&gt;right, 0 if left=right and -1 if left&lt;right. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a6ccd6850bf18d04a7f3e82231dfc2c21"></a>
 <div class="memitem">
 <div class="memproto">
@@ -327,6 +408,40 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The list which should be cleared. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a19ac28be1e1eb4f68809e7b13d905719"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void list_clear_content </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list.html">List</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>remove_function</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Clears the listitems and the listitems data of a list </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>The list where the item should be added. </td></tr>
+    <tr><td class="paramname">remove_function</td><td>A pointer to a remove function. The function needs this signature: void remove_function ( ListData *item ) </td></tr>
   </table>
   </dd>
 </dl>
@@ -742,7 +857,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 26 2013 21:33:39 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 6 2013 16:09:26 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

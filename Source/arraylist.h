@@ -14,11 +14,19 @@ typedef struct ArrayList
 	void *array;
 } ArrayList;
 
-#define genarray(list, T, i) ((T*)(list->array))
+/**
+ * This macro allows you to access the array list as a normal array.
+ * \param	list	The array list to be accessed.
+ * \param	T		The type of the array you want to access.
+ * \return			The array list as an array of type T.
+ */
+#define genarray(list, T) ((T*)((list)->array))
 
 /**
  * Creates a new array list.
- * \param	capacity	Initial capacity of the list.
+ * \param	itemsize	The size of one item in the array.
+ * \param	capacity	The initial capacity of the list.
+ * \return				The newly created array list.
  */
 ArrayList *arraylist_create(int itemsize, int capacity);
 
@@ -27,6 +35,16 @@ ArrayList *arraylist_create(int itemsize, int capacity);
  * \param	list		The list to delete.
  */
 void arraylist_delete(ArrayList *list);
+
+/**
+ * Adds a new item to the array list and returns its index
+ */
+#define arraylist_add(list, element) arraylist_add_internal((list), &(element))
+
+/**
+ * Adds a new item to the array list and returns its index
+ */
+#define arraylist_insert(list, index, element) arraylist_insert_internal((list), (index), &(element))
 
 #include "arraylist.c"
 #endif

@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -84,19 +84,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">menu.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;menu.c&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br/>
+<code>#include &quot;menu.c&quot;</code><br/>
 </div>
 <p><a href="menu_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_menu_settings.html">MenuSettings</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a749f1b509b737ec6dd21cdf98c8a16a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a749f1b509b737ec6dd21cdf98c8a16a7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENUOPTION_VAR</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a749f1b509b737ec6dd21cdf98c8a16a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99b3b5cf13612fc399efdc6985b1f4d8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99b3b5cf13612fc399efdc6985b1f4d8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENUOPTION_INTEGER</b>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a99b3b5cf13612fc399efdc6985b1f4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab527e8f46ee0aa9ccde6a79eddf078de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab527e8f46ee0aa9ccde6a79eddf078de"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENUOPTION_QUALITY</b>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:ab527e8f46ee0aa9ccde6a79eddf078de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92bc5d387a49258540d324f5f96792e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92bc5d387a49258540d324f5f96792e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENUOPTION_STRING</b>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:ae92bc5d387a49258540d324f5f96792e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a015c4b2c8b7a68791941756fe2339ccf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a015c4b2c8b7a68791941756fe2339ccf"></a>
+typedef struct <a class="el" href="struct_menu_settings.html">MenuSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MenuSettings</b></td></tr>
+<tr class="separator:a015c4b2c8b7a68791941756fe2339ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a179dbd25d6cf0ed00c8a27c9550c50df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a179dbd25d6cf0ed00c8a27c9550c50df"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_init</b> (Menu *menu)</td></tr>
+<tr class="separator:a179dbd25d6cf0ed00c8a27c9550c50df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="menu_8h.html">menu.h</a> provides a complete main menu API for your game. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 26 2013 21:33:39 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 6 2013 16:09:26 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

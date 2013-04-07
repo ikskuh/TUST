@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="trash_8h_source.html">trash.h</a>&quot;</code><br/>
 <code>#include &quot;node.c&quot;</code><br/>
 </div>
 <p><a href="node_8h_source.html">Go to the source code of this file.</a></p>
@@ -111,18 +112,22 @@ Typedefs</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a6c7dd584588bbd50bcc0e89d06dac727"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#a6c7dd584588bbd50bcc0e89d06dac727">node_create</a> (VECTOR *position)</td></tr>
 <tr class="separator:a6c7dd584588bbd50bcc0e89d06dac727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad31e268386f51aff6a12e6890bf586d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#aad31e268386f51aff6a12e6890bf586d">node_delete</a> (<a class="el" href="struct_node.html">Node</a> *node)</td></tr>
-<tr class="separator:aad31e268386f51aff6a12e6890bf586d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf28f6a34700ff737624c3829ffed929"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#adf28f6a34700ff737624c3829ffed929">node_remove</a> (<a class="el" href="struct_node.html">Node</a> *node)</td></tr>
+<tr class="separator:adf28f6a34700ff737624c3829ffed929"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b78ecf52ed2a2cfc1eb4c9e2c44abea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#a3b78ecf52ed2a2cfc1eb4c9e2c44abea">node_clone</a> (<a class="el" href="struct_node.html">Node</a> *node)</td></tr>
 <tr class="separator:a3b78ecf52ed2a2cfc1eb4c9e2c44abea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c66792c22ea91be47a6d510d1ee31c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#a0c66792c22ea91be47a6d510d1ee31c3">nodes_connect</a> (<a class="el" href="struct_node.html">Node</a> *nodeFrom, <a class="el" href="struct_node.html">Node</a> *nodeTo)</td></tr>
 <tr class="separator:a0c66792c22ea91be47a6d510d1ee31c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a152154b1d5d3569b378761c572526962"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#a152154b1d5d3569b378761c572526962">nodes_disconnect</a> (<a class="el" href="struct_node.html">Node</a> *nodeFrom, <a class="el" href="struct_node.html">Node</a> *nodeTo)</td></tr>
 <tr class="separator:a152154b1d5d3569b378761c572526962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c955f58cfaa1d6d699961547918a06d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#a9c955f58cfaa1d6d699961547918a06d">node_isolate</a> (<a class="el" href="struct_node.html">Node</a> *node)</td></tr>
+<tr class="separator:a9c955f58cfaa1d6d699961547918a06d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a713a74b51d5412a06fdb3a975392793b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#a713a74b51d5412a06fdb3a975392793b">node_neighbor_count</a> (<a class="el" href="struct_node.html">Node</a> *node)</td></tr>
 <tr class="separator:a713a74b51d5412a06fdb3a975392793b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa054c596d502e61ef795c79f5769e044"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#aa054c596d502e61ef795c79f5769e044">nodes_distance</a> (<a class="el" href="struct_node.html">Node</a> *nodeFrom, <a class="el" href="struct_node.html">Node</a> *nodeTo)</td></tr>
 <tr class="separator:aa054c596d502e61ef795c79f5769e044"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae72ece2add73e868d2bc1381126aee8c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="node_8h.html#ae72ece2add73e868d2bc1381126aee8c">nodes_trace</a> (<a class="el" href="struct_node.html">Node</a> *nodeFrom, <a class="el" href="struct_node.html">Node</a> *nodeTo, var mode, ENTITY *collider)</td></tr>
+<tr class="separator:ae72ece2add73e868d2bc1381126aee8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="node_8h.html">node.h</a> provides a linked list based neighborhood management </p>
@@ -136,7 +141,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>NodeData is used instead of void to give a clear difference between a normal pointer and a pointer used in nodes. <a class="el" href="struct_node.html">Node</a> struct </p>
+<p>Dependencies NodeData is used instead of void to give a clear difference between a normal pointer and a pointer used in nodes. <a class="el" href="struct_node.html">Node</a> struct </p>
 
 </div>
 </div>
@@ -190,12 +195,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aad31e268386f51aff6a12e6890bf586d"></a>
+<a class="anchor" id="a9c955f58cfaa1d6d699961547918a06d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* node_delete </td>
+          <td class="memname">void node_isolate </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_node.html">Node</a> *&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
@@ -203,10 +208,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Deletes a node. </p>
+<p>Disconnects a mode from all of it neighbors. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">node</td><td>The node to delete. </td></tr>
+    <tr><td class="paramname">node</td><td><a class="el" href="struct_node.html">Node</a> to disconnect. </td></tr>
   </table>
   </dd>
 </dl>
@@ -234,6 +239,29 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Neighbor amount . </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adf28f6a34700ff737624c3829ffed929"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* node_remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Deletes a node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>The node to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -340,10 +368,58 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae72ece2add73e868d2bc1381126aee8c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nodes_trace </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>nodeFrom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>nodeTo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ENTITY *&#160;</td>
+          <td class="paramname"><em>collider</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Does a c_trace between two nodes position </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodeFrom</td><td>Start node. </td></tr>
+    <tr><td class="paramname">nodeTo</td><td>End node. </td></tr>
+    <tr><td class="paramname">mode</td><td>c_trace mode. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if collides with something, 1 if not. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 26 2013 21:33:39 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 6 2013 16:09:26 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
