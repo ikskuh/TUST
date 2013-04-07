@@ -2,7 +2,7 @@
 #include <default.c>
 #include "..\\Source\\tust.h"
 
-#define macro(T, name) T name = 2
+char* str = "memmove can be very useful......";
 
 function main()
 {
