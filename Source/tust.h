@@ -22,6 +22,7 @@ typedef unsigned char bool;
 #include "DynamicModels.h"
 #include "noise.h"
 #include "arraylist.h"
+#include "bmap.h"
 
 
 
