@@ -23,7 +23,6 @@ o Shader Pack
 	o Godray Shader
 	o Bloom
 	o Depth of Field
-	o Bitmap processes
 	o ...
 
 o Generic Script Library
@@ -69,6 +68,8 @@ o Generic Script Library
 		- DynamicModels (MasterQ32) --> Source/DynamicModels.h
 	o Lua Scripting Support
 	o Generic Array Lists (MasterQ32)
+	o Bitmap processes --> Source\bmap.h
+		x bmap_lerp (txesmi)  --> Source\bmap.h
 
 o Game Templates
 	o Shooter
