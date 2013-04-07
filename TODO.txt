@@ -70,6 +70,7 @@ o Generic Script Library
 	o Generic Array Lists (MasterQ32)
 	o Bitmap processes --> Source\bmap.h
 		x bmap_lerp (txesmi)  --> Source\bmap.h
+		x bmap_rotate (txesmi)  --> Source\bmap.h
 
 o Game Templates
 	o Shooter
