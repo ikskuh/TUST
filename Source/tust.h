@@ -22,6 +22,7 @@ typedef unsigned char bool;
 #include "DynamicModels.h"
 #include "noise.h"
 #include "arraylist.h"
+#include "bmap.h"
 
 /**
  * This macro maps a varible from type a into type b without changing the bits.
