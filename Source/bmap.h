@@ -2,6 +2,6 @@
 #define _BMAP_H_
 
 
-#include "bitmap.c"
+#include "bmap.c"
 #endif
 
