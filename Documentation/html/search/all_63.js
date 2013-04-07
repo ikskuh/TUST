@@ -8,5 +8,7 @@ var searchData=
   ['cct_5fremove',['cct_remove',['../cct_8h.html#a999857467c208532269ba4dd687cb786',1,'cct.c']]],
   ['cct_5frotate',['cct_rotate',['../cct_8h.html#afd9fe987b6b5cb78874b6dffd9ffff1b',1,'cct.c']]],
   ['cct_5fset_5finput',['cct_set_input',['../cct_8h.html#adc1fa8301602d5b2166d0d158612a51b',1,'cct.c']]],
-  ['cct_5fupdate',['cct_update',['../cct_8h.html#acc4a132b6c2b900c8b33a5e239c50479',1,'cct.c']]]
+  ['cct_5fupdate',['cct_update',['../cct_8h.html#acc4a132b6c2b900c8b33a5e239c50479',1,'cct.c']]],
+  ['colorf',['colorf',['../tust_8h.html#a98d900db2d2606ae2dd531e78fabf767',1,'tust.c']]],
+  ['colorv',['colorv',['../tust_8h.html#adcd8f4c8848cc1a908bd7457584d83ec',1,'tust.c']]]
 ];

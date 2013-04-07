@@ -104,9 +104,12 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a54687a41ab9e622e2c9e8e78aad60fec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54687a41ab9e622e2c9e8e78aad60fec"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>genarray</b>(list, T, i)&#160;&#160;&#160;((T*)(list-&gt;array))</td></tr>
-<tr class="separator:a54687a41ab9e622e2c9e8e78aad60fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af52ac98d96bb29600b7fd141613ac814"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8h.html#af52ac98d96bb29600b7fd141613ac814">genarray</a>(list, T)&#160;&#160;&#160;((T*)((list)-&gt;array))</td></tr>
+<tr class="separator:af52ac98d96bb29600b7fd141613ac814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bf9ca2609e3ded717d78ef1a5eff59b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8h.html#a4bf9ca2609e3ded717d78ef1a5eff59b">arraylist_add</a>(list, element)&#160;&#160;&#160;arraylist_add_internal((list), &amp;(element))</td></tr>
+<tr class="separator:a4bf9ca2609e3ded717d78ef1a5eff59b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1266b92a6f73414fdb44e2e046a6fbe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arraylist_8h.html#aa1266b92a6f73414fdb44e2e046a6fbe">arraylist_insert</a>(list, index, element)&#160;&#160;&#160;arraylist_insert_internal((list), (index), &amp;(element))</td></tr>
+<tr class="separator:aa1266b92a6f73414fdb44e2e046a6fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -123,7 +126,103 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides a generic array list. Array lists have fast direct access, but slower adding of elements </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a4bf9ca2609e3ded717d78ef1a5eff59b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define arraylist_add</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">list, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">element&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;arraylist_add_internal((list), &amp;(element))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a new item to the array list and returns its index </p>
+
+</div>
+</div>
+<a class="anchor" id="aa1266b92a6f73414fdb44e2e046a6fbe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define arraylist_insert</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">list, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">index, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">element&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;arraylist_insert_internal((list), (index), &amp;(element))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a new item to the array list and returns its index </p>
+
+</div>
+</div>
+<a class="anchor" id="af52ac98d96bb29600b7fd141613ac814"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define genarray</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">list, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">T&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((T*)((list)-&gt;array))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This macro allows you to access the array list as a normal array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>The array list to be accessed. </td></tr>
+    <tr><td class="paramname">T</td><td>The type of the array you want to access. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The array list as an array of type T. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a86504843e693dcaed1e236c262894f50"></a>
 <div class="memitem">
 <div class="memproto">
@@ -150,10 +249,12 @@ Functions</h2></td></tr>
 <p>Creates a new array list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">capacity</td><td>Initial capacity of the list. </td></tr>
+    <tr><td class="paramname">itemsize</td><td>The size of one item in the array. </td></tr>
+    <tr><td class="paramname">capacity</td><td>The initial capacity of the list. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The newly created array list. </dd></dl>
 
 </div>
 </div>
@@ -183,7 +284,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 6 2013 16:09:26 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 7 2013 13:46:41 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

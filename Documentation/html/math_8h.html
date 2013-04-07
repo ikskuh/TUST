@@ -100,6 +100,18 @@ Functions</h2></td></tr>
 <tr class="separator:a26f0647978690bd69a18b76fdfc84516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85fd94060f0d46d9e7ec9325a13e7832"><td class="memItemLeft" align="right" valign="top">ANGLE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a85fd94060f0d46d9e7ec9325a13e7832">ang_lerp</a> (ANGLE *a, ANGLE *a1, ANGLE *a2, var f)</td></tr>
 <tr class="separator:a85fd94060f0d46d9e7ec9325a13e7832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7de23a19f08e7f11e28af94564c86120"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7de23a19f08e7f11e28af94564c86120">vec_rotateXY</a> (VECTOR *vec, var angle)</td></tr>
+<tr class="separator:a7de23a19f08e7f11e28af94564c86120"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24c3bf84517de0fcdc2b58f823ee8fc5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24c3bf84517de0fcdc2b58f823ee8fc5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vec_rotateXZ</b> (VECTOR *vec, var angle)</td></tr>
+<tr class="separator:a24c3bf84517de0fcdc2b58f823ee8fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b534f2eff3a476b381a01fb7bbcd64"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8b534f2eff3a476b381a01fb7bbcd64"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>vec_rotateYZ</b> (VECTOR *vec, var angle)</td></tr>
+<tr class="separator:ac8b534f2eff3a476b381a01fb7bbcd64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bd2699511031abba46369ad730dffc1"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a8bd2699511031abba46369ad730dffc1">point_to_line2D_dist</a> (var px, var py, var l1x, var l1y, var l2x, var l2y)</td></tr>
+<tr class="separator:a8bd2699511031abba46369ad730dffc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d502c28812d6b01a0ba81ca64f95530"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2d502c28812d6b01a0ba81ca64f95530">point_to_line2D_escalar</a> (var px, var py, var l1x, var l1y, var l2x, var l2y)</td></tr>
+<tr class="separator:a2d502c28812d6b01a0ba81ca64f95530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides math helpers and useful functions. </p>
@@ -194,10 +206,166 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8bd2699511031abba46369ad730dffc1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">var point_to_line2D_dist </td>
+          <td>(</td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>px</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>py</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>l1x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>l1y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>l2x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>l2y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gives the distance from a point to a line described by two other points </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">px,py</td><td>Coords of the point </td></tr>
+    <tr><td class="paramname">l1x,l1y</td><td>Coords of a point in the line </td></tr>
+    <tr><td class="paramname">l2x,l2y</td><td>Coords of a different point in the line </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance to the line</dd></dl>
+<p>WARNING! this function results in a division by zero when both line description points are same! </p>
+
+</div>
+</div>
+<a class="anchor" id="a2d502c28812d6b01a0ba81ca64f95530"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">var point_to_line2D_escalar </td>
+          <td>(</td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>px</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>py</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>l1x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>l1y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>l2x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>l2y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gives the escalar of the orthogonal projection of a point over a vector described by two other points </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">px,py</td><td>Coords of the point </td></tr>
+    <tr><td class="paramname">l1x,l1y</td><td>Coords of a point in the line </td></tr>
+    <tr><td class="paramname">l2x,l2y</td><td>Coords of a different point in the line </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The escalar of the projection to the line vector</dd></dl>
+<p>WARNING! this function results in a division by zero when both line description points are same! </p>
+
+</div>
+</div>
+<a class="anchor" id="a7de23a19f08e7f11e28af94564c86120"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_rotateXY </td>
+          <td>(</td>
+          <td class="paramtype">VECTOR *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>angle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Rotates a vector about an orthogonal axis. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+    <tr><td class="paramname">angle</td><td>Angle of rotation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 6 2013 16:09:26 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 7 2013 13:46:41 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

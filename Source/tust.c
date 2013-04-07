@@ -7,9 +7,9 @@ COLOR tustColorRepo[64];
 COLOR *colorv(var r, var g, var b)
 {
 	tustCurrentColor++;
-	tustColorRepo[tustCurrentColor % 64].red = r;
-	tustColorRepo[tustCurrentColor % 64].green = g;
-	tustColorRepo[tustCurrentColor % 64].blue = b;
+	tustColorRepo[tustCurrentColor % 64].red = clamp(r, 0, 255);
+	tustColorRepo[tustCurrentColor % 64].green = clamp(g, 0, 255);
+	tustColorRepo[tustCurrentColor % 64].blue = clamp(b, 0, 255);
 	return &(tustColorRepo[tustCurrentColor % 64]);
 }
 

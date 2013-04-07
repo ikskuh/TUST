@@ -86,7 +86,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">tust.h File Reference</div>  </div>
 </div><!--header-->
@@ -104,6 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;DynamicModels.h&quot;</code><br/>
 <code>#include &quot;<a class="el" href="noise_8h_source.html">noise.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="arraylist_8h_source.html">arraylist.h</a>&quot;</code><br/>
+<code>#include &quot;bmap.h&quot;</code><br/>
 <code>#include &quot;tust.c&quot;</code><br/>
 </div>
 <p><a href="tust_8h_source.html">Go to the source code of this file.</a></p>
@@ -118,6 +120,13 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a97a80ca1602ebf2303258971a2c938e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97a80ca1602ebf2303258971a2c938e2"></a>
 typedef unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>bool</b></td></tr>
 <tr class="separator:a97a80ca1602ebf2303258971a2c938e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:adcd8f4c8848cc1a908bd7457584d83ec"><td class="memItemLeft" align="right" valign="top">COLOR *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tust_8h.html#adcd8f4c8848cc1a908bd7457584d83ec">colorv</a> (var r, var g, var b)</td></tr>
+<tr class="separator:adcd8f4c8848cc1a908bd7457584d83ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d900db2d2606ae2dd531e78fabf767"><td class="memItemLeft" align="right" valign="top">COLOR *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tust_8h.html#a98d900db2d2606ae2dd531e78fabf767">colorf</a> (float r, float g, float b)</td></tr>
+<tr class="separator:a98d900db2d2606ae2dd531e78fabf767"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The core of the scripting library. Include this file to get all functions TUST provides. </p>
@@ -157,10 +166,95 @@ typedef unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>bool
 
 </div>
 </div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a98d900db2d2606ae2dd531e78fabf767"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">COLOR* colorf </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a temporary color value. The internal values are clamped to a range between 0.0 and 1.0. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>The red component of the color. </td></tr>
+    <tr><td class="paramname">g</td><td>The green component of the color. </td></tr>
+    <tr><td class="paramname">b</td><td>The blue component of the color. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A temporary pointer to the color. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adcd8f4c8848cc1a908bd7457584d83ec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">COLOR* colorv </td>
+          <td>(</td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a temporary color value. The internal values are clamped to a range between 0 and 255. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>The red component of the color. </td></tr>
+    <tr><td class="paramname">g</td><td>The green component of the color. </td></tr>
+    <tr><td class="paramname">b</td><td>The blue component of the color. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A temporary pointer to the color. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 6 2013 16:09:26 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 7 2013 13:46:41 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
