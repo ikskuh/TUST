@@ -71,6 +71,7 @@ o Generic Script Library
 	o Bitmap processes --> Source\bmap.h
 		x bmap_lerp (txesmi)  --> Source\bmap.h
 		x bmap_rotate (txesmi)  --> Source\bmap.h
+	o Logging (padmalcom)
 
 o Game Templates
 	o Shooter
