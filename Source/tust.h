@@ -55,8 +55,6 @@ void *memmove(BYTE *destination, BYTE *source, unsigned int num);
 #include "ini.h"
 #include "list.h"
 #include "trash.h"
-#include "node.h"
-#include "nodemesh.h"
 #include "math.h"
 #include "dialogs.h"
 #include "network.h"
