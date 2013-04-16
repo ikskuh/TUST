@@ -12,6 +12,8 @@ function main()
 	arraylist_add(list, 45);
 	arraylist_insert(list, 0, 15);
 	
+	arraylist_remove_at(list, 1);
+	
 	int i;
 	for(i = 0; i < list->count; i++)
 	{

@@ -46,5 +46,7 @@ void arraylist_delete(ArrayList *list);
  */
 #define arraylist_insert(list, index, element) arraylist_insert_internal((list), (index), &(element))
 
+#define arraylist_remove_at(list, index) arraylist_remove_at_internal(list, index)
+
 #include "arraylist.c"
 #endif
