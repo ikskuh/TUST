@@ -22,6 +22,8 @@ void bmap_lerp ( BMAP *destiny, BMAP* source1, BMAP *source2, var factor );
  */
 void bmap_rotate ( BMAP *destiny, BMAP* source, var source_offset_x, var source_offset_y, var destiny_offset_x, var destiny_offset_y, var angle );
 
+BOOL bmap_savetga (BMAP* b, char* filename);
+
 #include "bmap.c"
 #endif
 

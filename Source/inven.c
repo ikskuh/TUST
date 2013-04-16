@@ -14,7 +14,7 @@ Inventory* inv_create(BMAP* _bg, STRING* _title) {
 		// Draw item boxes
 		var vFormat = bmap_lock(inv.panel.bmap, 0);
 		var vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		int i,j, k;
+		int i, j, k;
 		
 		// For each box...
 		for(i=0; i<INV_ITEMS_X; i++) {
