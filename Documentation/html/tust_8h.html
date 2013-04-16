@@ -127,6 +127,9 @@ Functions</h2></td></tr>
 <tr class="separator:adcd8f4c8848cc1a908bd7457584d83ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98d900db2d2606ae2dd531e78fabf767"><td class="memItemLeft" align="right" valign="top">COLOR *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tust_8h.html#a98d900db2d2606ae2dd531e78fabf767">colorf</a> (float r, float g, float b)</td></tr>
 <tr class="separator:a98d900db2d2606ae2dd531e78fabf767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83f9535de21da838bf4f970ea0bc6c19"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tust_8h.html#a83f9535de21da838bf4f970ea0bc6c19">memmove</a> (BYTE *destination, BYTE *source, unsigned int num)</td></tr>
+<tr class="memdesc:a83f9535de21da838bf4f970ea0bc6c19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move block of memory. Copies the values of num bytes from the location pointed by source to the memory block pointed by destination. Copying takes place as if an intermediate buffer were used, allowing the destination and source to overlap. The underlying type of the objects pointed by both the source and destination pointers are irrelevant for this function; The result is a binary copy of the data. The function does not check for any terminating null character in source - it always copies exactly num bytes. To avoid overflows, the size of the arrays pointed by both the destination and source parameters, shall be at least num bytes.  <a href="#a83f9535de21da838bf4f970ea0bc6c19">More...</a><br/></td></tr>
+<tr class="separator:a83f9535de21da838bf4f970ea0bc6c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The core of the scripting library. Include this file to get all functions TUST provides. </p>
@@ -251,10 +254,54 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a83f9535de21da838bf4f970ea0bc6c19"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* memmove </td>
+          <td>(</td>
+          <td class="paramtype">BYTE *&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BYTE *&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move block of memory. Copies the values of num bytes from the location pointed by source to the memory block pointed by destination. Copying takes place as if an intermediate buffer were used, allowing the destination and source to overlap. The underlying type of the objects pointed by both the source and destination pointers are irrelevant for this function; The result is a binary copy of the data. The function does not check for any terminating null character in source - it always copies exactly num bytes. To avoid overflows, the size of the arrays pointed by both the destination and source parameters, shall be at least num bytes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>Pointer to the destination array where the content is to be copied, type-casted to a pointer of type void*. </td></tr>
+    <tr><td class="paramname">source</td><td>Pointer to the source of data to be copied, type-casted to a pointer of type void*. </td></tr>
+    <tr><td class="paramname">num</td><td>Number of bytes to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>destination is returned. </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>Copied from <a href="http://www.cplusplus.com/reference/cstring/memmove/">http://www.cplusplus.com/reference/cstring/memmove/</a> </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 7 2013 13:46:41 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 7 2013 15:14:16 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

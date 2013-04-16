@@ -48,13 +48,13 @@ o Generic Script Library
 		o Nodebased
 			x ModeMesh based pathfinder (txesmi) --> Source/nodemesh.h
 	x Generic Linked Lists (MasterQ32) --> Source/list.h
-	x Generic Spatial Node Management (txesmi) --> Source/node.h
+	- Generic Spatial Node Management (txesmi) --> Source/node.h
 	- Generic Node based Mesh Management (txesmi) --> Source/nodemesh.h
 	x Generic Trash Management (txesmi) --> Source/trash.h
 	x Dialog API (padmalcom)
 		x Loading from XML
 	x Basic Inventory (padmalcom)
-	- Game Main Menu (MasterQ32) --> Source/menu.h
+	- Game Main Menu (MasterQ32, padmalcom) --> Source/menu.h
 		o Options Dialog
 			o Graphic Options
 			o Sound Options
@@ -70,6 +70,8 @@ o Generic Script Library
 	o Generic Array Lists (MasterQ32)
 	o Bitmap processes --> Source\bmap.h
 		x bmap_lerp (txesmi)  --> Source\bmap.h
+		x bmap_rotate (txesmi)  --> Source\bmap.h
+	x Logging (padmalcom)
 
 o Game Templates
 	o Shooter
@@ -78,10 +80,12 @@ o Game Templates
 		o Simple Shooter AI
 	o Shoot'Em'Up
 	o 2D Platformer
+	- 3D Platformer (txesmi)
 	- RTS (MasterQ32)
 		o Simple AI example
 		o Gridbased movement of units
 	o RPG
+		o Minimap
 
 o Models
 	o Vegetation

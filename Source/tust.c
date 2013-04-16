@@ -15,5 +15,44 @@ COLOR *colorv(var r, var g, var b)
 
 COLOR *colorf(float r, float g, float b)
 {
-	return colorv(255.0f * r, 255.0f * g, 255.0f * b);
+	return colorv(255.0 * r, 255.0 * g, 255.0 * b);
 }
+
+void *memmove(BYTE *destination, BYTE *source, unsigned int num)
+{
+	// Nothing to do here!
+	if(num <= 0) return destination;
+	if(destination == source) return destination;
+
+	if(abs((int)destination - (int)source) >= num)
+	{
+		// No overlapping
+		memcpy(destination, source, num);
+		return destination;
+	}
+	
+	if(destination < source)
+	{
+		while(num > 0)
+		{
+			*destination = *source;
+			destination++;
+			source++;
+			num--;
+		}
+	}
+	else
+	{
+		destination += num - 1;
+		source += num - 1;
+		while(num > 0)
+		{
+			*destination = *source;
+			destination--;
+			source--;
+			num--;
+		}
+	}
+	
+	return destination;
+} 
