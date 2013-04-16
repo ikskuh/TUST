@@ -1,0 +1,14 @@
+Player
+
+bone rotation angle: 70
+bone rotation bones: stomach chest neck head 
+
+default idle animation: stand
+default move animation: run
+
+animations: stand run block punch kick 
+stand animation: blend=1 animspeed=6 blendspeed=30 
+run animation: blend=1 animspeed=10 blendspeed=40 
+block animation: blend=1 animspeed=6 blendspeed=40 
+punch animation: blend=1 animspeed=10 blendspeed=50 
+kick animation: blend=1 animspeed=10 blendspeed=65 

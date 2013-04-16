@@ -1,0 +1,71 @@
+Bob
+
+Dialogue file: Data\Dialogue\bob_dialogue.ds
+Dialogue start: 100
+Dialogue speed: 5
+Dialogue delay: 1
+
+bone rotation angle: 80
+bone rotation bones: stomach chest neck head 
+
+default idle animation: stand
+default move animation: run
+
+animations: stand run block punch kick 
+stand animation: blend=1 animspeed=6 blendspeed=30 
+run animation: blend=1 animspeed=10 blendspeed=40 
+
+
+Jack
+
+Dialogue file: Data\Dialogue\test_level.ds
+Dialogue start: 130
+Dialogue speed: 5
+Dialogue delay: 1
+
+bone rotation angle: 80
+bone rotation bones: stomach chest neck head 
+
+default idle animation: stand
+default move animation: run
+
+animations: stand run block punch kick 
+stand animation: blend=1 animspeed=6 blendspeed=30 
+run animation: blend=1 animspeed=10 blendspeed=40 
+
+
+Dennis
+
+Dialogue file: Data\Dialogue\test_level.ds
+Dialogue start: 1
+Dialogue speed: 5
+Dialogue delay: 1
+
+bone rotation angle: 80
+bone rotation bones: stomach chest neck head 
+
+default idle animation: stand
+default move animation: run
+
+animations: stand run block punch kick 
+stand animation: blend=1 animspeed=6 blendspeed=30 
+run animation: blend=1 animspeed=10 blendspeed=40 
+
+
+Sjors
+
+Dialogue file: Data\Dialogue\bob_dialogue.ds
+Dialogue start: 100
+Dialogue speed: 5
+Dialogue delay: 1
+
+bone rotation angle: 80
+bone rotation bones: stomach chest neck head 
+
+default idle animation: stand
+default move animation: run
+
+animations: stand run block punch kick 
+stand animation: blend=1 animspeed=6 blendspeed=30 
+run animation: blend=1 animspeed=10 blendspeed=40 
+

@@ -6,6 +6,8 @@ Features marked with "x" are finished so far.
 If you want to work on a feature, please but your name behind the feature so we can
 see who is actually working on a feature.
 
+ADD YOURSELF TO THE LICENCE!
+
 o Shader Pack
 	o Deferred Rendering
 		o Pointlight
