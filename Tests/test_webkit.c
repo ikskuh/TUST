@@ -1,4 +1,6 @@
 #include <acknex.h>
+#include <default.c>
+
 
 #include "..\\Source\\tust.h"
 
@@ -30,6 +32,7 @@ function main()
 {
 	video_set(1024, 768, 32, 2);
 	mouse_mode = 4;
+	level_load("..\\Ressources\\Terrains\\small.hmp");
 	
 	wke_init();
 	
@@ -40,6 +43,7 @@ function main()
 	wke_resize(view, screen_size.x, screen_size.y);
 	wke_focus(view);
 	wke_load_url(view, "http://www.google.de");
+	wke_set_transparent(view, 1);
 
 	float zoom = 1;
 	while(!key_esc)
