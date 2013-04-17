@@ -3,10 +3,15 @@
 
 /**
  * \file tust.h
+ * \brief Script library core.
+ *
  * The core of the scripting library. Include this file to get all functions
  * TUST provides.
  */
 
+/**
+ * Typedef of a boolean type.
+ */
 typedef unsigned char bool;
 
 /**

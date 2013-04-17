@@ -3,6 +3,8 @@
 
 /**
  * \file list.h
+ * \brief Linked list implementation.
+ *
  * list.h provides a generic linked list
  */
 

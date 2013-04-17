@@ -3,6 +3,8 @@
 
 /**
  * \file network.h
+ * \brief Network synchronisation and helpers.
+ *
  * Provides functions for synchronizing entities in multiplayer games.
  */
 

@@ -10,6 +10,7 @@ unsigned int _controlfp(int newvalue, int mask);
 
 void wke_init()
 {
+	// Hack to provide a properly working webkit access
 	_controlfp(_PC_53, _MCW_PC);
 	wke_init_private();
 }

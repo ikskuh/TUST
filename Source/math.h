@@ -3,6 +3,7 @@
 
 /**
  * \file math.h
+ * \brief Math helpers and other function
  * Provides math helpers and useful functions.
  */
 
@@ -30,7 +31,19 @@ ANGLE* ang_lerp(ANGLE* a, ANGLE* a1, ANGLE* a2, var f);
  * \param	angle		Angle of rotation
  */
 void vec_rotateXY ( VECTOR *vec, var angle );
+
+/**
+ * Rotates a vector about an orthogonal axis.
+ * \param	vec		The vector.
+ * \param	angle		Angle of rotation
+ */
 void vec_rotateXZ ( VECTOR *vec, var angle );
+
+/**
+ * Rotates a vector about an orthogonal axis.
+ * \param	vec		The vector.
+ * \param	angle		Angle of rotation
+ */
 void vec_rotateYZ ( VECTOR *vec, var angle );
 
 /**

@@ -90,6 +90,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">math.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Math helpers and other function Provides math helpers and useful functions.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;math.c&quot;</code><br/>
 </div>
 <p><a href="math_8h_source.html">Go to the source code of this file.</a></p>
@@ -102,11 +105,9 @@ Functions</h2></td></tr>
 <tr class="separator:a85fd94060f0d46d9e7ec9325a13e7832"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7de23a19f08e7f11e28af94564c86120"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7de23a19f08e7f11e28af94564c86120">vec_rotateXY</a> (VECTOR *vec, var angle)</td></tr>
 <tr class="separator:a7de23a19f08e7f11e28af94564c86120"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24c3bf84517de0fcdc2b58f823ee8fc5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24c3bf84517de0fcdc2b58f823ee8fc5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>vec_rotateXZ</b> (VECTOR *vec, var angle)</td></tr>
+<tr class="memitem:a24c3bf84517de0fcdc2b58f823ee8fc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a24c3bf84517de0fcdc2b58f823ee8fc5">vec_rotateXZ</a> (VECTOR *vec, var angle)</td></tr>
 <tr class="separator:a24c3bf84517de0fcdc2b58f823ee8fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8b534f2eff3a476b381a01fb7bbcd64"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8b534f2eff3a476b381a01fb7bbcd64"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>vec_rotateYZ</b> (VECTOR *vec, var angle)</td></tr>
+<tr class="memitem:ac8b534f2eff3a476b381a01fb7bbcd64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac8b534f2eff3a476b381a01fb7bbcd64">vec_rotateYZ</a> (VECTOR *vec, var angle)</td></tr>
 <tr class="separator:ac8b534f2eff3a476b381a01fb7bbcd64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bd2699511031abba46369ad730dffc1"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a8bd2699511031abba46369ad730dffc1">point_to_line2D_dist</a> (var px, var py, var l1x, var l1y, var l2x, var l2y)</td></tr>
 <tr class="separator:a8bd2699511031abba46369ad730dffc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,7 +115,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>vec_rotateYZ</b> (VEC
 <tr class="separator:a2d502c28812d6b01a0ba81ca64f95530"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides math helpers and useful functions. </p>
+<div class="textblock"><p>Math helpers and other function Provides math helpers and useful functions. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a85fd94060f0d46d9e7ec9325a13e7832"></a>
 <div class="memitem">
@@ -362,10 +363,78 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>vec_rotateYZ</b> (VEC
 
 </div>
 </div>
+<a class="anchor" id="a24c3bf84517de0fcdc2b58f823ee8fc5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_rotateXZ </td>
+          <td>(</td>
+          <td class="paramtype">VECTOR *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>angle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Rotates a vector about an orthogonal axis. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+    <tr><td class="paramname">angle</td><td>Angle of rotation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac8b534f2eff3a476b381a01fb7bbcd64"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_rotateYZ </td>
+          <td>(</td>
+          <td class="paramtype">VECTOR *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>angle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Rotates a vector about an orthogonal axis. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+    <tr><td class="paramname">angle</td><td>Angle of rotation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 7 2013 15:14:16 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 17 2013 16:11:09 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

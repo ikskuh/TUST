@@ -3,6 +3,8 @@
 
 /**
  * \file noise.h
+ * \brief Noise functions
+ *
  * Provides an implementation of simplex noise.
  */
 

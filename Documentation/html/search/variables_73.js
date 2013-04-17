@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['skill_5fx',['skill_x',['../struct_node.html#ae01762468bb7aa7c94465a382b4e539d',1,'Node']]]
+  ['skin',['skin',['../struct_dynamic_model.html#a4e826e115f70652d808681c3abeea184',1,'DynamicModel']]]
 ];

@@ -1,0 +1,269 @@
+
+-dialog level.$$M -pal palette.pcx -az 0 -el 60 -sunrgb 58 58 58 -ambrgb 19 19 19  -fog1 100 100 100  -fog2 19 39 100  -fog3 100 19 19 -noportals -hiprec -litmapsonly -writelog -mesh -mergeacross -terralit -tesselate -solidsky -nodetail -verbose -supsam -threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -sizeshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscale 0.50 -radsubdiv 64 -radbounce 0 -noportals -nobsp -bound 56000 -fat 64  48  8  -narrow 32  32  0  
+WMP to WMB Compiler V7.35 (WMB7) [CPUs: 1]
+ Report mode: VERBOSE
+-noportals -hiprec -litmapsonly -writelog -mesh -mergeacross
+ -terralit -tesselate -solidsky -nodetail -verbose -supsam 
+-threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -siz
+eshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscal
+e 0.50 -r
+
+Initialize map  ... [Load map] ...  ok 
+Building geometry ... ok 
+Placing 2 objects ..... ok 
+Prepare lighting ... ok 
+Generating 1 direct lights .............. ok 
+Radiosity disabled. 
+Generating lightmaps .............. ok
+Generating meshes ... ok
+Writing WMB file ... 
+292 vertices 
+304 visible surfaces 
+9 textures 
+Texture	space 862 Kb 
+Lightmap space 384 Kb 
+1 regions ok
+ 
+Time:   1.0 sec
+
+ 
+-dialog level.$$M -pal palette.pcx -az 0 -el 60 -sunrgb 58 58 58 -ambrgb 19 19 19  -fog1 100 100 100  -fog2 19 39 100  -fog3 100 19 19 -noportals -hiprec -litmapsonly -writelog -mesh -mergeacross -terralit -tesselate -solidsky -nodetail -verbose -supsam -threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -sizeshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscale 0.50 -radsubdiv 64 -radbounce 0 -bound 56000 -fat 64  48  8  -narrow 32  32  0  
+WMP to WMB Compiler V7.35 (WMB7 BSP) [CPUs: 1]
+ Report mode: VERBOSE
+-noportals -hiprec -litmapsonly -writelog -mesh -mergeacross
+ -terralit -tesselate -solidsky -nodetail -verbose -supsam 
+-threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -siz
+eshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscal
+e 0.50 -r
+
+Initialize map  ... [Load map] ...  ok 
+Building fat hull ... 
+WARNING W090: Region leaking!
+ ok 
+Building narrow hull .... 
+WARNING W090: Region leaking!
+ ok 
+Building BSP tree ... ok 
+Tesselating surfaces ... 
+WARNING W090: Region leaking!
+ ok
+Checking midpoints ... ok 
+Generating 337 portals ........ ok 
+Placing 2 objects ..... ok 
+Prepare lighting ... ok 
+Generating 1 direct lights ............ ok 
+Radiosity disabled. 
+Generating lightmaps ............ ok
+Generating meshes ... ok
+Writing WMB file ... 
+Level size 1080 units 
+523 vertices 
+265 visible surfaces 
+9 textures 
+Texture	space 862 Kb 
+Lightmap space 384 Kb 
+87 regions ok
+ 
+Time:   1.0 sec
+
+ 
+-dialog level.$$M -pal palette.pcx -az 0 -el 60 -sunrgb 58 58 58 -ambrgb 19 19 19  -fog1 100 100 100  -fog2 19 39 100  -fog3 100 19 19 -noportals -hiprec -litmapsonly -writelog -mesh -mergeacross -terralit -tesselate -solidsky -nodetail -verbose -supsam -threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -sizeshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscale 0.50 -radsubdiv 64 -radbounce 0 -bound 56000 -fat 64  48  8  -narrow 32  32  0  
+WMP to WMB Compiler V7.35 (WMB7 BSP) [CPUs: 1]
+ Report mode: VERBOSE
+-noportals -hiprec -litmapsonly -writelog -mesh -mergeacross
+ -terralit -tesselate -solidsky -nodetail -verbose -supsam 
+-threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -siz
+eshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscal
+e 0.50 -r
+
+Initialize map  ... [Load map] ...  ok 
+Building fat hull ... 
+WARNING W090: Region leaking!
+ ok 
+Building narrow hull .... 
+WARNING W090: Region leaking!
+ ok 
+Building BSP tree ... ok 
+Tesselating surfaces ... 
+WARNING W090: Region leaking!
+ ok
+Checking midpoints ... ok 
+Generating 337 portals ........ ok 
+Placing 2 objects ..... ok 
+Prepare lighting ... ok 
+Generating 1 direct lights ............ ok 
+Radiosity disabled. 
+Generating lightmaps ............ ok
+Generating meshes ... ok
+Writing WMB file ... 
+Level size 1080 units 
+523 vertices 
+265 visible surfaces 
+9 textures 
+Texture	space 862 Kb 
+Lightmap space 384 Kb 
+87 regions ok
+ 
+Time:   1.0 sec
+
+ 
+-dialog level.$$M -pal palette.pcx -az 0 -el 60 -sunrgb 58 58 58 -ambrgb 19 19 19  -fog1 100 100 100  -fog2 19 39 100  -fog3 100 19 19 -noportals -hiprec -litmapsonly -writelog -mesh -mergeacross -terralit -tesselate -solidsky -nodetail -verbose -supsam -threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -sizeshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscale 0.50 -radsubdiv 64 -radbounce 0 -bound 56000 -fat 64  48  8  -narrow 32  32  0  
+WMP to WMB Compiler V7.35 (WMB7 BSP) [CPUs: 1]
+ Report mode: VERBOSE
+-noportals -hiprec -litmapsonly -writelog -mesh -mergeacross
+ -terralit -tesselate -solidsky -nodetail -verbose -supsam 
+-threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -siz
+eshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscal
+e 0.50 -r
+
+Initialize map  ... [Load map] ...  ok 
+Building fat hull ... 
+WARNING W090: Region leaking!
+ ok 
+Building narrow hull .... 
+WARNING W090: Region leaking!
+ ok 
+Building BSP tree ... ok 
+Tesselating surfaces ... 
+WARNING W090: Region leaking!
+ ok
+Checking midpoints ... ok 
+Generating 281 portals ....... ok 
+Placing 9 objects ..... ok 
+Prepare lighting ... ok 
+Generating 1 direct lights ........... ok 
+Radiosity disabled. 
+Generating lightmaps ........... ok
+Generating meshes ... ok
+Writing WMB file ... 
+Level size 1080 units 
+460 vertices 
+227 visible surfaces 
+8 textures 
+Texture	space 851 Kb 
+Lightmap space 384 Kb 
+76 regions ok
+ 
+Time:   1.0 sec
+
+ 
+-dialog level.$$M -pal palette.pcx -az 0 -el 60 -sunrgb 58 58 58 -ambrgb 19 19 19  -fog1 100 100 100  -fog2 19 39 100  -fog3 100 19 19 -noportals -hiprec -litmapsonly -writelog -mesh -mergeacross -terralit -tesselate -solidsky -nodetail -verbose -supsam -threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -sizeshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscale 0.50 -radsubdiv 64 -radbounce 0 -bound 56000 -fat 64  48  8  -narrow 32  32  0  
+WMP to WMB Compiler V7.35 (WMB7 BSP) [CPUs: 1]
+ Report mode: VERBOSE
+-noportals -hiprec -litmapsonly -writelog -mesh -mergeacross
+ -terralit -tesselate -solidsky -nodetail -verbose -supsam 
+-threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -siz
+eshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscal
+e 0.50 -r
+
+Initialize map  ... [Load map] ...  ok 
+Building fat hull ... 
+WARNING W090: Region leaking!
+ ok 
+Building narrow hull .... 
+WARNING W090: Region leaking!
+ ok 
+Building BSP tree ... ok 
+Tesselating surfaces ... 
+WARNING W090: Region leaking!
+ ok
+Checking midpoints ... ok 
+Generating 281 portals ....... ok 
+Placing 9 objects ..... ok 
+Prepare lighting ... ok 
+Generating 1 direct lights ........... ok 
+Radiosity disabled. 
+Generating lightmaps ........... ok
+Generating meshes ... ok
+Writing WMB file ... 
+Level size 1080 units 
+460 vertices 
+227 visible surfaces 
+8 textures 
+Texture	space 851 Kb 
+Lightmap space 384 Kb 
+76 regions ok
+ 
+Time:   1.0 sec
+
+ 
+-dialog level.$$M -pal palette.pcx -az 0 -el 60 -sunrgb 58 58 58 -ambrgb 19 19 19  -fog1 100 100 100  -fog2 19 39 100  -fog3 100 19 19 -noportals -hiprec -litmapsonly -writelog -mesh -mergeacross -terralit -tesselate -solidsky -nodetail -verbose -supsam -threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -sizeshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscale 0.50 -radsubdiv 64 -radbounce 0 -bound 56000 -fat 64  48  8  -narrow 32  32  0  
+WMP to WMB Compiler V7.35 (WMB7 BSP) [CPUs: 1]
+ Report mode: VERBOSE
+-noportals -hiprec -litmapsonly -writelog -mesh -mergeacross
+ -terralit -tesselate -solidsky -nodetail -verbose -supsam 
+-threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -siz
+eshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscal
+e 0.50 -r
+
+Initialize map  ... [Load map] ...  ok 
+Building fat hull ... 
+WARNING W090: Region leaking!
+ ok 
+Building narrow hull .... 
+WARNING W090: Region leaking!
+ ok 
+Building BSP tree ... ok 
+Tesselating surfaces ... 
+WARNING W090: Region leaking!
+ ok
+Checking midpoints ... ok 
+Generating 281 portals ....... ok 
+Placing 9 objects ..... ok 
+Prepare lighting ... ok 
+Generating 1 direct lights ........... ok 
+Radiosity disabled. 
+Generating lightmaps ........... ok
+Generating meshes ... ok
+Writing WMB file ... 
+Level size 1080 units 
+460 vertices 
+227 visible surfaces 
+8 textures 
+Texture	space 851 Kb 
+Lightmap space 384 Kb 
+76 regions ok
+ 
+Time:   1.0 sec
+
+ 
+-dialog level.$$M -pal palette.pcx -az 0 -el 60 -sunrgb 58 58 58 -ambrgb 19 19 19  -fog1 100 100 100  -fog2 19 39 100  -fog3 100 19 19 -noportals -hiprec -litmapsonly -writelog -mesh -mergeacross -terralit -tesselate -solidsky -nodetail -verbose -supsam -threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -sizeshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscale 0.50 -radsubdiv 64 -radbounce 0 -bound 56000 -fat 64  48  8  -narrow 32  32  0  
+WMP to WMB Compiler V7.35 (WMB7 BSP) [CPUs: 1]
+ Report mode: VERBOSE
+-noportals -hiprec -litmapsonly -writelog -mesh -mergeacross
+ -terralit -tesselate -solidsky -nodetail -verbose -supsam 
+-threads 1 -gamma 1.50 -phongangle 120  -lmambient 50  -siz
+eshaded 497 -litres 1.00 -litcomp 0.50 -litmax 196 -litscal
+e 0.50 -r
+
+Initialize map  ... [Load map] ...  ok 
+Building fat hull ... 
+WARNING W090: Region leaking!
+ ok 
+Building narrow hull .... 
+WARNING W090: Region leaking!
+ ok 
+Building BSP tree ... ok 
+Tesselating surfaces ... 
+WARNING W090: Region leaking!
+ ok
+Checking midpoints ... ok 
+Generating 281 portals ....... ok 
+Placing 10 objects ..... ok 
+Prepare lighting ... ok 
+Generating 1 direct lights ........... ok 
+Radiosity disabled. 
+Generating lightmaps ........... ok
+Generating meshes ... ok
+Writing WMB file ... 
+Level size 1080 units 
+460 vertices 
+227 visible surfaces 
+8 textures 
+Texture	space 851 Kb 
+Lightmap space 384 Kb 
+76 regions ok
+ 
+Time:   0.0 sec
+
+ 

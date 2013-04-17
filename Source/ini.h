@@ -3,6 +3,8 @@
 
 /**
  * \file ini.h
+ * \brief INI Access.
+ *
  * ini.h provides functions to read or write ini files.
  */
 

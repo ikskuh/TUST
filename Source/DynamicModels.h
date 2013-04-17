@@ -4,85 +4,123 @@
 #include <acknex.h>
 #include <d3d9.h>
 
-#define DYNAMIC_FACE_T 1
-#define DYNAMIC_QUAD_T 2
-#define DYNAMIC_MESH_T 3
+/**
+ * \file DynamicModels.h
+ * \brief Library for dynamic model creation
+ *
+ * DynamicModels.h allows you to create new models at runtime. 
+ */
 
-typedef struct _D3DXWELDEPSILONS {
-  FLOAT Position;
-  FLOAT BlendWeights;
-  FLOAT Normal;
-  FLOAT PSize;
-  FLOAT Specular;
-  FLOAT Diffuse;
-  FLOAT Texcoord[8];
-  FLOAT Tangent;
-  FLOAT Binormal;
-  FLOAT TessFactor;
-} D3DXWELDEPSILONS;
-
-
-#define D3DXWELDEPSILONS_WELDALL				1
-#define D3DXWELDEPSILONS_WELDPARTIALMATCHES		2
-#define D3DXWELDEPSILONS_DONOTREMOVEVERTICES	4
-#define D3DXWELDEPSILONS_DONOTSPLIT				8 
-
-HRESULT WeldVertices(
-	LPD3DXMESH pMesh,
-	DWORD Flags,
-	D3DXWELDEPSILONS *pEpsilons,
-	DWORD *pAdjacencyIn,
-	DWORD *pAdjacencyOut,
-	DWORD *pFaceRemap,
-	LPD3DXBUFFER *ppVertexRemap);
-
-typedef void D3DXEFFECTINSTANCE;
-
-#define D3DXF_FILEFORMAT_BINARY		0
-#define D3DXF_FILEFORMAT_TEXT		1
-#define D3DXF_FILEFORMAT_COMPRESSED	2
-
-HRESULT SaveMeshToX(
-	char *pFilename,
-	LPD3DXMESH pMesh,
-	DWORD *pAdjacency,
-	D3DXMATERIAL *pMaterials,
-	D3DXEFFECTINSTANCE *pEffectInstances,
-	DWORD NumMaterials,
-	DWORD Format);
-
+/**
+ * A single face definition of a dynamic model.
+ */
 typedef struct
 {
+	/**
+	 * Array of three vertices. The vertices are ordered CCW.
+	 */
 	D3DVERTEX v[3];
 } DYNAMIC_FACE;
 
+
+/**
+ * A two-faced quad definition of a dynamic model.
+ */
 typedef struct
 {
+	/**
+	 * Array of three vertices. The vertices are ordered CCW.
+	 * \image html dynamic_quad_order.png
+	 */
 	D3DVERTEX v[4];
 } DYNAMIC_QUAD;
 
+/**
+ * Maximum vertex count of a dynamic model.
+ */
 #define DMDL_MAX_VERTEXCOUNT 65536
+
+/**
+ * Maximum index count of a dynamic model.
+ */
 #define DMDL_MAX_INDEXCOUNT 128000
 
+/** 
+ * A dynamic model. It contains all data to build a mesh from it.
+ */
 typedef struct
 {
+	/**
+	 * Number of vertices stored in the model.
+	 */
 	int vertexCount;
+	
+	/**
+	 * Number of faces stored in the model.
+	 */
 	int faceCount;
+	
+	/**
+	 * The vertex buffer of the dynamic model. Contains actual vertex data.
+	 */
 	D3DVERTEX vertexBuffer[DMDL_MAX_VERTEXCOUNT];
+	
 	DWORD attributeBuffer[DMDL_MAX_VERTEXCOUNT];
+	
+	/**
+	 * The index buffer of the dynamic model. Contains all faces of the model.
+	 */
 	short indexBuffer[DMDL_MAX_INDEXCOUNT];
 	
+	/**
+	 * Array with the four first skins of a newly created dynamic entity.
+	 */
 	BMAP* skin[4];
 } DynamicModel;
 
+/** 
+ * DynamicModels System Flag.
+ * Activates normal fixing when creating the mesh. Normals will be smoothed out and calculated correctly for each vertex.
+ */
 #define DMDL_FIXNORMALS	(1<<0)
+
+/** 
+ * DynamicModels System Flag.
+ * Activates mesh optimizations when creating the mesh. Vertices will be welded if they are close together and enables a smoother lighting and faster rendering.
+ */
 #define DMDL_OPTIMIZE	(1<<1)
+
+/** 
+ * DynamicModels System Flag.
+ * Clones the textures of a newly created entity from the original ones.
+ */
 #define DMDL_CLONE_TEX	(1<<2)
+
+/** 
+ * Save dynamic models in a binary x format.
+ */
+#define D3DXF_FILEFORMAT_BINARY		0
+
+/** 
+ * Save dynamic models in a text x format.
+ */
+#define D3DXF_FILEFORMAT_TEXT		1
+
+/** 
+ * Save dynamic models in a compressed x format.
+ */
+#define D3DXF_FILEFORMAT_COMPRESSED	2
 
 typedef struct
 {
-	int optimization;
+	/**
+	 * The x format DynamicModels should save its meshes with.
+	 */
 	int xFormat;
+	
+	/**
+	 * DynamicModels System Flags. Enable or disable the system flags to change the behaviour of DynamicModels.
+	 */
 	long flags;
 } DynamicModelSettings;
 
@@ -137,11 +175,6 @@ void dmdl_add_mesh(DynamicModel *model, LPD3DXMESH mesh, VECTOR *offset, ANGLE *
 ///
 /// Adds a new quad to the dynamic model
 ///
-///		Faces positions
-///			0 --- 1
-///			|   / |
-///			| /   |
-///			2 --- 3
 ///
 void dmdl_add_quad(DynamicModel *model, DYNAMIC_QUAD *quad);
 

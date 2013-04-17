@@ -3,6 +3,8 @@
 
 /**
  * \file webkit.h
+ * \brief Enables access to the ogre webkit
+ *
  * Provides functions to interface WebKit, a HTML rendering and javascript engine.
  */
 

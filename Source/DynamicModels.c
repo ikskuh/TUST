@@ -1,6 +1,47 @@
 #include <acknex.h>
 #include <d3d9.h>
 
+/************************************************************************************************/
+/*	DX9 API Includes																			*/
+/************************************************************************************************/
+typedef struct _D3DXWELDEPSILONS {
+  FLOAT Position;
+  FLOAT BlendWeights;
+  FLOAT Normal;
+  FLOAT PSize;
+  FLOAT Specular;
+  FLOAT Diffuse;
+  FLOAT Texcoord[8];
+  FLOAT Tangent;
+  FLOAT Binormal;
+  FLOAT TessFactor;
+} D3DXWELDEPSILONS;
+
+#define D3DXWELDEPSILONS_WELDALL				1
+#define D3DXWELDEPSILONS_WELDPARTIALMATCHES		2
+#define D3DXWELDEPSILONS_DONOTREMOVEVERTICES	4
+#define D3DXWELDEPSILONS_DONOTSPLIT				8 
+
+HRESULT WeldVertices(
+	LPD3DXMESH pMesh,
+	DWORD Flags,
+	D3DXWELDEPSILONS *pEpsilons,
+	DWORD *pAdjacencyIn,
+	DWORD *pAdjacencyOut,
+	DWORD *pFaceRemap,
+	LPD3DXBUFFER *ppVertexRemap);
+
+typedef void D3DXEFFECTINSTANCE;
+
+HRESULT SaveMeshToX(
+	char *pFilename,
+	LPD3DXMESH pMesh,
+	DWORD *pAdjacency,
+	D3DXMATERIAL *pMaterials,
+	D3DXEFFECTINSTANCE *pEffectInstances,
+	DWORD NumMaterials,
+	DWORD Format);
+
 DynamicModel* dmdl_create()
 {
 	DynamicModel *model = sys_malloc(sizeof(DynamicModel));

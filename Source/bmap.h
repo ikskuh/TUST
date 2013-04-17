@@ -1,6 +1,14 @@
 #ifndef _BMAP_H_
 #define _BMAP_H_
 
+
+/**
+ * \file bmap.h
+ * \brief Additional bitmap functions.
+ * 
+ * bmap.h provides a set of new bmap_* functions.
+ */
+
 /**
  * Interpolates two bitmaps by a factor. Bitmap size independant.
  * \param	destiny		A bitmap to contain the interpolation.

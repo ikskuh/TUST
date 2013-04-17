@@ -3,6 +3,8 @@
 
 	/**
 	* \file cct.h
+	* \brief PhysX character controller.
+	*
 	* cct.h provides helper functions related to the character controller template.
 	*/
 	

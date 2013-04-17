@@ -5,6 +5,8 @@
 
 /**
  * \file cltext.h
+ * \brief Colourful TEXT objects.
+ *
  * cltext.h provides COLOURFUL TEXT
  * 
  *  author: lemming

@@ -3,6 +3,8 @@
 
 /**
  * \file fs.h
+ * \brief File System Helpers.
+ *
  * fs.h provides helper functions related to the file system.
  */
 

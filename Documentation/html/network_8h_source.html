@@ -91,47 +91,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="network_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _NETWORK_H_</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _NETWORK_H_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="network_8h.html#aeaf61462a5de92e4c5b2c39a71b518a9">   12</a></span>&#160;<span class="preprocessor">#define NET_SKILL_POS_X     skill60</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="network_8h.html#ad4638fb8b6f0e52a6dc7477d3d1cd92b">   17</a></span>&#160;<span class="preprocessor">#define NET_SKILL_POS_Y     skill61</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="network_8h.html#a46eb167adc178b4b14487aab2670a074">   22</a></span>&#160;<span class="preprocessor">#define NET_SKILL_POS_Z     skill62</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="code" href="network_8h.html#a9a3cb58fada56eab89a085173799c5ca">   27</a></span>&#160;<span class="preprocessor">#define NET_SKILL_ANG_PAN   skill63</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="network_8h.html#a285c06caa44813b9b3f6277fc5b46e95">   32</a></span>&#160;<span class="preprocessor">#define NET_SKILL_ANG_TILT  skill64</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="network_8h.html#a72c2ad7cfc21db6ca41147856be5276c">   37</a></span>&#160;<span class="preprocessor">#define NET_SKILL_ANG_ROLL  skill65</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="network_8h.html#a102d558fcf30e1d6cfd494f03c548b40">   42</a></span>&#160;<span class="preprocessor">#define NET_SKILL_LERPSPEED skill66</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="network_8h.html#ad1c01a0f7de6cef54371b32f4e5237b2">   47</a></span>&#160;<span class="preprocessor">#define NET_ENT_UNRELIABLE  (1 &lt;&lt; 0)</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="network_8h.html#a4e6e2eb4d538f3cda701c2f2c42fe755">   55</a></span>&#160;var <a class="code" href="network_8h.html#a4e6e2eb4d538f3cda701c2f2c42fe755">net_ent_sendrate</a> = 1;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="network_8h.html#abea78c008f8b9fb7b614a9f9d77e7a1c">   61</a></span>&#160;var <a class="code" href="network_8h.html#abea78c008f8b9fb7b614a9f9d77e7a1c">net_ent_lerpfactor</a> = 0.5;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="network_8h.html#a17495815bd73ad3496bb9f2bcdd19758">   66</a></span>&#160;var <a class="code" href="network_8h.html#a17495815bd73ad3496bb9f2bcdd19758">net_ent_mindist</a> = 1;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="network_8h.html#a1eb2087a8b7d0bcfdc3cf7e1cf3ac768">   71</a></span>&#160;var <a class="code" href="network_8h.html#a1eb2087a8b7d0bcfdc3cf7e1cf3ac768">net_ent_mindiff</a> = 1;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="network_8h.html#a8e0f147c3442ac8a9d987ad4121f5100">   76</a></span>&#160;var <a class="code" href="network_8h.html#a8e0f147c3442ac8a9d987ad4121f5100">net_ent_default_lerpspeed</a> = 15;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="code" href="network_8h.html#a90bafa1c28c4948b04f50e1e1594e55b">   81</a></span>&#160;var <a class="code" href="network_8h.html#a90bafa1c28c4948b04f50e1e1594e55b">net_ent_flags</a> = 0;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keywordtype">void</span> net_entsync(ENTITY *ent);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">void</span> net_entsync_event();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#include &quot;network.c&quot;</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="network_8h.html#aeaf61462a5de92e4c5b2c39a71b518a9">   14</a></span>&#160;<span class="preprocessor">#define NET_SKILL_POS_X     skill60</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="network_8h.html#ad4638fb8b6f0e52a6dc7477d3d1cd92b">   19</a></span>&#160;<span class="preprocessor">#define NET_SKILL_POS_Y     skill61</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="code" href="network_8h.html#a46eb167adc178b4b14487aab2670a074">   24</a></span>&#160;<span class="preprocessor">#define NET_SKILL_POS_Z     skill62</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="network_8h.html#a9a3cb58fada56eab89a085173799c5ca">   29</a></span>&#160;<span class="preprocessor">#define NET_SKILL_ANG_PAN   skill63</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="code" href="network_8h.html#a285c06caa44813b9b3f6277fc5b46e95">   34</a></span>&#160;<span class="preprocessor">#define NET_SKILL_ANG_TILT  skill64</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="network_8h.html#a72c2ad7cfc21db6ca41147856be5276c">   39</a></span>&#160;<span class="preprocessor">#define NET_SKILL_ANG_ROLL  skill65</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="network_8h.html#a102d558fcf30e1d6cfd494f03c548b40">   44</a></span>&#160;<span class="preprocessor">#define NET_SKILL_LERPSPEED skill66</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="network_8h.html#ad1c01a0f7de6cef54371b32f4e5237b2">   49</a></span>&#160;<span class="preprocessor">#define NET_ENT_UNRELIABLE  (1 &lt;&lt; 0)</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="network_8h.html#a4e6e2eb4d538f3cda701c2f2c42fe755">   57</a></span>&#160;var <a class="code" href="network_8h.html#a4e6e2eb4d538f3cda701c2f2c42fe755">net_ent_sendrate</a> = 1;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="network_8h.html#abea78c008f8b9fb7b614a9f9d77e7a1c">   63</a></span>&#160;var <a class="code" href="network_8h.html#abea78c008f8b9fb7b614a9f9d77e7a1c">net_ent_lerpfactor</a> = 0.5;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="network_8h.html#a17495815bd73ad3496bb9f2bcdd19758">   68</a></span>&#160;var <a class="code" href="network_8h.html#a17495815bd73ad3496bb9f2bcdd19758">net_ent_mindist</a> = 1;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="network_8h.html#a1eb2087a8b7d0bcfdc3cf7e1cf3ac768">   73</a></span>&#160;var <a class="code" href="network_8h.html#a1eb2087a8b7d0bcfdc3cf7e1cf3ac768">net_ent_mindiff</a> = 1;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="code" href="network_8h.html#a8e0f147c3442ac8a9d987ad4121f5100">   78</a></span>&#160;var <a class="code" href="network_8h.html#a8e0f147c3442ac8a9d987ad4121f5100">net_ent_default_lerpspeed</a> = 15;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="code" href="network_8h.html#a90bafa1c28c4948b04f50e1e1594e55b">   83</a></span>&#160;var <a class="code" href="network_8h.html#a90bafa1c28c4948b04f50e1e1594e55b">net_ent_flags</a> = 0;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">void</span> net_entsync(ENTITY *ent);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keywordtype">void</span> net_entsync_event();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#include &quot;network.c&quot;</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 7 2013 15:14:15 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 17 2013 16:11:09 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

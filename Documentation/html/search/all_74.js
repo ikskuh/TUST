@@ -10,6 +10,7 @@ var searchData=
   ['trash_5fremove',['trash_remove',['../trash_8h.html#a3e34ad4cd49779a3715f5efb908e0e65',1,'trash.c']]],
   ['trashdata',['TrashData',['../trash_8h.html#a62ab731698c00862181606003d3d08c6',1,'trash.h']]],
   ['trashitem',['TrashItem',['../struct_trash_item.html',1,'TrashItem'],['../trash_8h.html#a4c70577dff6bf9e99ac623021acde3f5',1,'TrashItem():&#160;trash.h']]],
+  ['trigger',['TRIGGER',['../struct_t_r_i_g_g_e_r.html',1,'']]],
   ['tust_2eh',['tust.h',['../tust_8h.html',1,'']]],
   ['type_5fconvert',['type_convert',['../tust_8h.html#a9802bb5b6370198ec09ba350be69a812',1,'tust.h']]]
 ];

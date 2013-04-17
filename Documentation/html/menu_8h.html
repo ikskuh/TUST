@@ -85,57 +85,221 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">menu.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br/>
-<code>#include &quot;menu.c&quot;</code><br/>
+<div class="textblock"><code>#include &quot;menu.c&quot;</code><br/>
 </div>
 <p><a href="menu_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_menu_settings.html">MenuSettings</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a749f1b509b737ec6dd21cdf98c8a16a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a749f1b509b737ec6dd21cdf98c8a16a7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENUOPTION_VAR</b>&#160;&#160;&#160;1</td></tr>
-<tr class="separator:a749f1b509b737ec6dd21cdf98c8a16a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99b3b5cf13612fc399efdc6985b1f4d8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99b3b5cf13612fc399efdc6985b1f4d8"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENUOPTION_INTEGER</b>&#160;&#160;&#160;2</td></tr>
-<tr class="separator:a99b3b5cf13612fc399efdc6985b1f4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab527e8f46ee0aa9ccde6a79eddf078de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab527e8f46ee0aa9ccde6a79eddf078de"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENUOPTION_QUALITY</b>&#160;&#160;&#160;3</td></tr>
-<tr class="separator:ab527e8f46ee0aa9ccde6a79eddf078de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae92bc5d387a49258540d324f5f96792e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92bc5d387a49258540d324f5f96792e"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENUOPTION_STRING</b>&#160;&#160;&#160;4</td></tr>
-<tr class="separator:ae92bc5d387a49258540d324f5f96792e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a015c4b2c8b7a68791941756fe2339ccf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a015c4b2c8b7a68791941756fe2339ccf"></a>
-typedef struct <a class="el" href="struct_menu_settings.html">MenuSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MenuSettings</b></td></tr>
-<tr class="separator:a015c4b2c8b7a68791941756fe2339ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ea9670ae52316cc57ba6e7d6c8f907c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ea9670ae52316cc57ba6e7d6c8f907c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_BUTTON_SIZE_X</b>&#160;&#160;&#160;150</td></tr>
+<tr class="separator:a5ea9670ae52316cc57ba6e7d6c8f907c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f32288506a69f550f7561e5a358321f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f32288506a69f550f7561e5a358321f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_BUTTON_SIZE_Y</b>&#160;&#160;&#160;30</td></tr>
+<tr class="separator:a9f32288506a69f550f7561e5a358321f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38d18838286692c1fce194394c94bb25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38d18838286692c1fce194394c94bb25"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_SAVE_SLOT_SIZE_X</b>&#160;&#160;&#160;150</td></tr>
+<tr class="separator:a38d18838286692c1fce194394c94bb25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2790ed63fc4a0a40d0aa74b6f65653b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2790ed63fc4a0a40d0aa74b6f65653b5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_SAVE_SLOT_SIZE_Y</b>&#160;&#160;&#160;100</td></tr>
+<tr class="separator:a2790ed63fc4a0a40d0aa74b6f65653b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79fd36bab393f05bd01882a9d5e65d72"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79fd36bab393f05bd01882a9d5e65d72"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_BUTTON_GAP</b>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a79fd36bab393f05bd01882a9d5e65d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80669fda8b8746599b7f637330faaf2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80669fda8b8746599b7f637330faaf2a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_OPTIONS_SIZE_X</b>&#160;&#160;&#160;-1</td></tr>
+<tr class="separator:a80669fda8b8746599b7f637330faaf2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d6dc8353995a8a6105f75eed76b7a30"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d6dc8353995a8a6105f75eed76b7a30"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_OPTIONS_SIZE_Y</b>&#160;&#160;&#160;380</td></tr>
+<tr class="separator:a1d6dc8353995a8a6105f75eed76b7a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68f7ec805855485e92e3bf9e1c976435"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68f7ec805855485e92e3bf9e1c976435"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_NONE</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a68f7ec805855485e92e3bf9e1c976435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9503d50c7ccbc10ce65d46bede300bf5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9503d50c7ccbc10ce65d46bede300bf5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_START</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a9503d50c7ccbc10ce65d46bede300bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad12899372f3a47872e2c10019d36efbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad12899372f3a47872e2c10019d36efbc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_IN_GAME</b>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ad12899372f3a47872e2c10019d36efbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeab4f0e45b31d25989ce385650b423f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adeab4f0e45b31d25989ce385650b423f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_LOAD</b>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:adeab4f0e45b31d25989ce385650b423f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069b99b53070b0448a3dd042d1db7450"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a069b99b53070b0448a3dd042d1db7450"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_SAVE</b>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a069b99b53070b0448a3dd042d1db7450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b220b88f8c75a9092911e021ef737b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b220b88f8c75a9092911e021ef737b6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_OPTIONS_GAME</b>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a4b220b88f8c75a9092911e021ef737b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a420ab53669f728db0823155cff1953f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a420ab53669f728db0823155cff1953f6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_OPTIONS_GRAPHICS</b>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a420ab53669f728db0823155cff1953f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b4d20aed22eb65210356ae85cea40b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b4d20aed22eb65210356ae85cea40b5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_OPTIONS_AUDIO</b>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:a7b4d20aed22eb65210356ae85cea40b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87a4312e1521ab39834f4d2aa6c0899e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87a4312e1521ab39834f4d2aa6c0899e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_OPTIONS_INPUT</b>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a87a4312e1521ab39834f4d2aa6c0899e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a887014df198bd0c4a6ae8610d000a1f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a887014df198bd0c4a6ae8610d000a1f3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MENU_CREDITS</b>&#160;&#160;&#160;9</td></tr>
+<tr class="separator:a887014df198bd0c4a6ae8610d000a1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a179dbd25d6cf0ed00c8a27c9550c50df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a179dbd25d6cf0ed00c8a27c9550c50df"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_init</b> (Menu *menu)</td></tr>
-<tr class="separator:a179dbd25d6cf0ed00c8a27c9550c50df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a825deebad1aa530657673fb8a95a2565"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a825deebad1aa530657673fb8a95a2565"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_init</b> ()</td></tr>
+<tr class="separator:a825deebad1aa530657673fb8a95a2565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d47f533a6ca729436ebef868e4f4f1d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d47f533a6ca729436ebef868e4f4f1d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_show</b> (int _menu)</td></tr>
+<tr class="separator:a8d47f533a6ca729436ebef868e4f4f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdd7bf5a5eaeddccc4514b09aec86482"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abdd7bf5a5eaeddccc4514b09aec86482"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_hide</b> ()</td></tr>
+<tr class="separator:abdd7bf5a5eaeddccc4514b09aec86482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9845788d6c8772bcdb72ffcc3e4e874"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9845788d6c8772bcdb72ffcc3e4e874"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_is_visible</b> ()</td></tr>
+<tr class="separator:ae9845788d6c8772bcdb72ffcc3e4e874"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28ca82f1494218dc8a86ce9369303195"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28ca82f1494218dc8a86ce9369303195"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_align</b> (int _menu)</td></tr>
+<tr class="separator:a28ca82f1494218dc8a86ce9369303195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd2e8b381e88177c979eac0834731070"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd2e8b381e88177c979eac0834731070"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_center</b> ()</td></tr>
+<tr class="separator:abd2e8b381e88177c979eac0834731070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fbfe90d2411b329bf85574be0a0b86a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fbfe90d2411b329bf85574be0a0b86a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_set_pos</b> (int _x, int _y)</td></tr>
+<tr class="separator:a4fbfe90d2411b329bf85574be0a0b86a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af75ce16fb0f82272cd32d289ba33e9ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af75ce16fb0f82272cd32d289ba33e9ff"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_show_message</b> (STRING *_msg)</td></tr>
+<tr class="separator:af75ce16fb0f82272cd32d289ba33e9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc85cbd04db9dc9914ee1d9acced38fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc85cbd04db9dc9914ee1d9acced38fe"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_show_message_fullscreen</b> (STRING *_msg)</td></tr>
+<tr class="separator:abc85cbd04db9dc9914ee1d9acced38fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01c3c463733c7f14dc97127e03cbe1b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01c3c463733c7f14dc97127e03cbe1b8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_show_choice_message</b> (STRING *_msg, STRING *_button1, STRING *_button2)</td></tr>
+<tr class="separator:a01c3c463733c7f14dc97127e03cbe1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a7ccbb892971ff5e7b7c641ad306044c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ccbb892971ff5e7b7c641ad306044c2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nCurrentMenu</b> = 0</td></tr>
+<tr class="separator:a7ccbb892971ff5e7b7c641ad306044c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac857445bfd850f4004a41910c5f6adb5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac857445bfd850f4004a41910c5f6adb5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nMenuVisible</b> = 0</td></tr>
+<tr class="separator:ac857445bfd850f4004a41910c5f6adb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a152b673b0f8b5aec362b96cdb392205f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a152b673b0f8b5aec362b96cdb392205f"></a>
+BMAP *&#160;</td><td class="memItemRight" valign="bottom"><b>bmapMenuButtonOn</b> = NULL</td></tr>
+<tr class="separator:a152b673b0f8b5aec362b96cdb392205f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a348fea67e498c1efcc685c17894cad88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a348fea67e498c1efcc685c17894cad88"></a>
+BMAP *&#160;</td><td class="memItemRight" valign="bottom"><b>bmapMenuButtonOff</b> = NULL</td></tr>
+<tr class="separator:a348fea67e498c1efcc685c17894cad88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3645817db6c8c774576ee278904dd2e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3645817db6c8c774576ee278904dd2e2"></a>
+BMAP *&#160;</td><td class="memItemRight" valign="bottom"><b>bmapOptionsChoiceBg</b> = NULL</td></tr>
+<tr class="separator:a3645817db6c8c774576ee278904dd2e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa3f1583800eaddb04a7a2bb4787b617"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa3f1583800eaddb04a7a2bb4787b617"></a>
+BMAP *&#160;</td><td class="memItemRight" valign="bottom"><b>bmapOptionsBg</b> = NULL</td></tr>
+<tr class="separator:aaa3f1583800eaddb04a7a2bb4787b617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89e5f52c87d3decd4776158060be1815"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89e5f52c87d3decd4776158060be1815"></a>
+BMAP *&#160;</td><td class="memItemRight" valign="bottom"><b>bmapSaveSlotOn</b> = NULL</td></tr>
+<tr class="separator:a89e5f52c87d3decd4776158060be1815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11cc3b8547c6b3335d19bf98d7645729"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11cc3b8547c6b3335d19bf98d7645729"></a>
+BMAP *&#160;</td><td class="memItemRight" valign="bottom"><b>bmapSaveSlotOff</b> = NULL</td></tr>
+<tr class="separator:a11cc3b8547c6b3335d19bf98d7645729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b1dd102826254284849f7c41f2b4b63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b1dd102826254284849f7c41f2b4b63"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panStartMenu</b> = NULL</td></tr>
+<tr class="separator:a8b1dd102826254284849f7c41f2b4b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33182413b44958e21629b2cc96b4c5ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33182413b44958e21629b2cc96b4c5ed"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panInGameMenu</b> = NULL</td></tr>
+<tr class="separator:a33182413b44958e21629b2cc96b4c5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad071ae6c398f60b7682659bbef8afeaa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad071ae6c398f60b7682659bbef8afeaa"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panLoadMenu</b> = NULL</td></tr>
+<tr class="separator:ad071ae6c398f60b7682659bbef8afeaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeba57387e634e35e218715663e68d15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeeba57387e634e35e218715663e68d15"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panSaveMenu</b> = NULL</td></tr>
+<tr class="separator:aeeba57387e634e35e218715663e68d15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f53a7fe21b5cb2fd48b5e0b2bcdf6f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f53a7fe21b5cb2fd48b5e0b2bcdf6f5"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panOptionsMenu</b> = NULL</td></tr>
+<tr class="separator:a8f53a7fe21b5cb2fd48b5e0b2bcdf6f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338fff4f335d07832c35206e132edd20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a338fff4f335d07832c35206e132edd20"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panOptionsGame</b> = NULL</td></tr>
+<tr class="separator:a338fff4f335d07832c35206e132edd20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add684614a5048a789e1772874c245226"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add684614a5048a789e1772874c245226"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panOptionsGraphics</b> = NULL</td></tr>
+<tr class="separator:add684614a5048a789e1772874c245226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3b8793aa75613f808a4a58568c163e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3b8793aa75613f808a4a58568c163e8"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panOptionsAudio</b> = NULL</td></tr>
+<tr class="separator:ad3b8793aa75613f808a4a58568c163e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04057d29180028cbe294da24663bdf0f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04057d29180028cbe294da24663bdf0f"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panOptionsInput</b> = NULL</td></tr>
+<tr class="separator:a04057d29180028cbe294da24663bdf0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cdbd1bb8af9ccff759cd83489f9825c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4cdbd1bb8af9ccff759cd83489f9825c"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panGraphicMenu</b> = NULL</td></tr>
+<tr class="separator:a4cdbd1bb8af9ccff759cd83489f9825c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09cacff6d3ddfbd4a1feae4eccf81b9c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09cacff6d3ddfbd4a1feae4eccf81b9c"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panAudioMenu</b> = NULL</td></tr>
+<tr class="separator:a09cacff6d3ddfbd4a1feae4eccf81b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a8f66ff3dbad0d36f26ddd82d5c5d0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a8f66ff3dbad0d36f26ddd82d5c5d0b"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panInputMenu</b> = NULL</td></tr>
+<tr class="separator:a1a8f66ff3dbad0d36f26ddd82d5c5d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10795ecd80f6db63d428f814b88aa71c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10795ecd80f6db63d428f814b88aa71c"></a>
+PANEL *&#160;</td><td class="memItemRight" valign="bottom"><b>panCreditsMenu</b> = NULL</td></tr>
+<tr class="separator:a10795ecd80f6db63d428f814b88aa71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6d8496a5fdff99e92f86d1c2ec4f0a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6d8496a5fdff99e92f86d1c2ec4f0a1"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuNewGame</b> = NULL</td></tr>
+<tr class="separator:ad6d8496a5fdff99e92f86d1c2ec4f0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a413e95ea62c82b79ae64b922be38ab7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a413e95ea62c82b79ae64b922be38ab7e"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuContinueGame</b> = NULL</td></tr>
+<tr class="separator:a413e95ea62c82b79ae64b922be38ab7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f91384baf7d23f70dc847cd5197f1e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f91384baf7d23f70dc847cd5197f1e5"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuLoadGame</b> = NULL</td></tr>
+<tr class="separator:a7f91384baf7d23f70dc847cd5197f1e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f71f4105bd8bd6ba96ecc8fbe8aa6d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f71f4105bd8bd6ba96ecc8fbe8aa6d4"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuSaveGame</b> = NULL</td></tr>
+<tr class="separator:a9f71f4105bd8bd6ba96ecc8fbe8aa6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b7c22f5c6722a42dcc3b73b79042a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3b7c22f5c6722a42dcc3b73b79042a5"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuOptions</b> = NULL</td></tr>
+<tr class="separator:af3b7c22f5c6722a42dcc3b73b79042a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a13143cfef59f7106eb2f2abceb2c68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a13143cfef59f7106eb2f2abceb2c68"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuOptionsGame</b> = NULL</td></tr>
+<tr class="separator:a3a13143cfef59f7106eb2f2abceb2c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d7c2c91638bce9101bd842879bf995f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d7c2c91638bce9101bd842879bf995f"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuOptionsGraphics</b> = NULL</td></tr>
+<tr class="separator:a1d7c2c91638bce9101bd842879bf995f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe6a5c0b75b77801b9f9ac4377d6b85"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabe6a5c0b75b77801b9f9ac4377d6b85"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuOptionsAudio</b> = NULL</td></tr>
+<tr class="separator:aabe6a5c0b75b77801b9f9ac4377d6b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63f197c9b789f39e413472684c804ccc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63f197c9b789f39e413472684c804ccc"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuOptionsInput</b> = NULL</td></tr>
+<tr class="separator:a63f197c9b789f39e413472684c804ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee4770d71ed90e208092601ce98bc25d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee4770d71ed90e208092601ce98bc25d"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuOptionsApply</b> = NULL</td></tr>
+<tr class="separator:aee4770d71ed90e208092601ce98bc25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d2ba6c7a60f2aec2a09b73e2154afe9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d2ba6c7a60f2aec2a09b73e2154afe9"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuCredits</b> = NULL</td></tr>
+<tr class="separator:a5d2ba6c7a60f2aec2a09b73e2154afe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eacc618c0cf00047529f93979b10e55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0eacc618c0cf00047529f93979b10e55"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuExitGame</b> = NULL</td></tr>
+<tr class="separator:a0eacc618c0cf00047529f93979b10e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01fb51d7297f98e7f52968ef3f6a08d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01fb51d7297f98e7f52968ef3f6a08d2"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuReturnToWin</b> = NULL</td></tr>
+<tr class="separator:a01fb51d7297f98e7f52968ef3f6a08d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a123c8ab727d5a9c68187b8254859aa20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a123c8ab727d5a9c68187b8254859aa20"></a>
+TEXT *&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuBack</b> = NULL</td></tr>
+<tr class="separator:a123c8ab727d5a9c68187b8254859aa20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d7f2fb45a762a9fde64156c5a5d2432"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d7f2fb45a762a9fde64156c5a5d2432"></a>
+TEXT **&#160;</td><td class="memItemRight" valign="bottom"><b>txtMenuSaveGameTitles</b> = NULL</td></tr>
+<tr class="separator:a5d7f2fb45a762a9fde64156c5a5d2432"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="menu_8h.html">menu.h</a> provides a complete main menu API for your game. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 7 2013 15:14:16 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 17 2013 16:11:09 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

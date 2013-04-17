@@ -3,6 +3,8 @@
 
 /**
  * \file trash.h
+ * \brief Linked trash or stack implementation.
+ * 
  * trash.h provides a generic linked trash
  */
 

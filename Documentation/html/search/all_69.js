@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['indexbuffer',['indexBuffer',['../struct_dynamic_model.html#a9a6807209f8c55d649fcea83a9dbac04',1,'DynamicModel']]],
   ['ini_2eh',['ini.h',['../ini_8h.html',1,'']]],
   ['ini_5fread',['ini_read',['../ini_8h.html#a6eb461862501c5f3de5b2e17721bb46c',1,'ini.c']]],
   ['ini_5fread_5ffloat',['ini_read_float',['../ini_8h.html#a214b491fd4950ccae32568ef7237dfe1',1,'ini.c']]],
@@ -10,6 +11,8 @@ var searchData=
   ['ini_5fwrite_5ffloat',['ini_write_float',['../ini_8h.html#ae4f674535aaae9355254045d32fdfa57',1,'ini.c']]],
   ['ini_5fwrite_5fint',['ini_write_int',['../ini_8h.html#a08fccc1a93252eba80cfe93b7a7c85e0',1,'ini.c']]],
   ['ini_5fwrite_5fvar',['ini_write_var',['../ini_8h.html#a44ad10566896361bfb9c36f458032137',1,'ini.c']]],
-  ['inventory',['Inventory',['../struct_inventory.html',1,'']]],
+  ['input',['INPUT',['../struct_i_n_p_u_t.html',1,'']]],
+  ['inv_5fitem',['INV_ITEM',['../struct_i_n_v___i_t_e_m.html',1,'']]],
+  ['inventory',['Inventory',['../struct_inventory.html',1,'Inventory'],['../struct_i_n_v_e_n_t_o_r_y.html',1,'INVENTORY']]],
   ['item',['item',['../structitem.html',1,'']]]
 ];
