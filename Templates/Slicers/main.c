@@ -10,6 +10,7 @@ function fruit_event()
 		case EVENT_SHOOT:
 			// We hit the fruit, remove it.
 			wait(1);	// Don't forget to wait one frame in an entity event
+			snd_play(sndSlice, 100, 0);	// Play a sound for a sliced fruit.
 			ent_remove(me);
 			break;
 	}
