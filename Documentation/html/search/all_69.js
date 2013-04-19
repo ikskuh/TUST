@@ -11,8 +11,6 @@ var searchData=
   ['ini_5fwrite_5ffloat',['ini_write_float',['../ini_8h.html#ae4f674535aaae9355254045d32fdfa57',1,'ini.c']]],
   ['ini_5fwrite_5fint',['ini_write_int',['../ini_8h.html#a08fccc1a93252eba80cfe93b7a7c85e0',1,'ini.c']]],
   ['ini_5fwrite_5fvar',['ini_write_var',['../ini_8h.html#a44ad10566896361bfb9c36f458032137',1,'ini.c']]],
-  ['input',['INPUT',['../struct_i_n_p_u_t.html',1,'']]],
-  ['inv_5fitem',['INV_ITEM',['../struct_i_n_v___i_t_e_m.html',1,'']]],
-  ['inventory',['Inventory',['../struct_inventory.html',1,'Inventory'],['../struct_i_n_v_e_n_t_o_r_y.html',1,'INVENTORY']]],
+  ['inventory',['Inventory',['../struct_inventory.html',1,'']]],
   ['item',['item',['../structitem.html',1,'']]]
 ];

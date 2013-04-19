@@ -20,6 +20,5 @@ var searchData=
   ['noise_2eh',['noise.h',['../noise_8h.html',1,'']]],
   ['noise1d',['noise1d',['../noise_8h.html#a538f6cc115a4921e790da446b8aaae60',1,'noise.c']]],
   ['noise2d',['noise2d',['../noise_8h.html#aedcfadb36e2749eb7dafcd56c051c755',1,'noise.c']]],
-  ['noise3d',['noise3d',['../noise_8h.html#afc18c69831791c528f71d742a947eb33',1,'noise.c']]],
-  ['npc',['NPC',['../struct_n_p_c.html',1,'']]]
+  ['noise3d',['noise3d',['../noise_8h.html#afc18c69831791c528f71d742a947eb33',1,'noise.c']]]
 ];

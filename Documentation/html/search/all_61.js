@@ -4,7 +4,6 @@ var searchData=
   ['actor',['Actor',['../struct_actor.html',1,'']]],
   ['ang_5flerp',['ang_lerp',['../math_8h.html#a85fd94060f0d46d9e7ec9325a13e7832',1,'math.c']]],
   ['ang_5flerp_5fsingle',['ang_lerp_single',['../math_8h.html#a26f0647978690bd69a18b76fdfc84516',1,'math.c']]],
-  ['animation',['ANIMATION',['../struct_a_n_i_m_a_t_i_o_n.html',1,'']]],
   ['arraylist',['ArrayList',['../struct_array_list.html',1,'']]],
   ['arraylist_2eh',['arraylist.h',['../arraylist_8h.html',1,'']]],
   ['arraylist_5fadd',['arraylist_add',['../arraylist_8h.html#a4bf9ca2609e3ded717d78ef1a5eff59b',1,'arraylist.h']]],

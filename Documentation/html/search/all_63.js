@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['cam_5fcamera',['CAM_CAMERA',['../struct_c_a_m___c_a_m_e_r_a.html',1,'']]],
-  ['cam_5ftrigger',['CAM_TRIGGER',['../struct_c_a_m___t_r_i_g_g_e_r.html',1,'']]],
   ['cct_2eh',['cct.h',['../cct_8h.html',1,'']]],
   ['cct_5factor',['cct_actor',['../cct_8h.html#a9dc114e965296798b931af379ea57775',1,'cct.c']]],
   ['cct_5fget_5finput',['cct_get_input',['../cct_8h.html#aa88367a91349e88be538c199be5cdf12',1,'cct.c']]],
@@ -27,7 +25,6 @@ var searchData=
   ['cltext_5fsearch_5ftag',['cltext_search_tag',['../cltext_8h.html#aa084f0c54513223e8c79b2df46a24497',1,'cltext.c']]],
   ['cltext_5fshow',['cltext_show',['../cltext_8h.html#a2ebdb501f161dab28ec4a2b1164e916e',1,'cltext.c']]],
   ['cltext_5fvalid_5fcltag',['cltext_valid_cltag',['../cltext_8h.html#a33ceead94397cf0d15b9b728ef8002a4',1,'cltext.c']]],
-  ['collision',['COLLISION',['../struct_c_o_l_l_i_s_i_o_n.html',1,'']]],
   ['colorf',['colorf',['../tust_8h.html#a98d900db2d2606ae2dd531e78fabf767',1,'tust.c']]],
   ['colorv',['colorv',['../tust_8h.html#adcd8f4c8848cc1a908bd7457584d83ec',1,'tust.c']]]
 ];
