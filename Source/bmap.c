@@ -18,7 +18,7 @@ void bmap_lerp ( BMAP *destiny, BMAP* source1, BMAP *source2, var factor )
 	bmap_process ( destiny, source1, bmapmatLerp );
 }
 
-// By HeelX aka Christian Behrenberg
+
 void bmap_rotate ( BMAP *destiny, BMAP* source, var source_offset_x, var source_offset_y, var destiny_offset_x, var destiny_offset_y, var angle )
 {
 	if ( bmapmatRotate == NULL )
