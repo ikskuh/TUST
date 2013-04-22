@@ -73,6 +73,7 @@ o Generic Script Library
 	o Bitmap processes --> Source\bmap.h
 		x bmap_lerp (txesmi)  --> Source\bmap.h
 		x bmap_rotate (txesmi)  --> Source\bmap.h
+		x Draw line, draw rectangle, draw circle, draw border, fill (padmalcom)
 	x Logging (padmalcom)
 
 o Game Templates

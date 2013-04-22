@@ -36,6 +36,14 @@ BMAP* bmapOptionsBg				= NULL;
 BMAP* bmapSaveSlotOn				= NULL;
 BMAP* bmapSaveSlotOff			= NULL;
 
+BMAP* bmapSliderBg				= NULL;
+BMAP* bmapSliderKnob				= NULL;
+
+BMAP* bmapCheckBoxCheckedOn	= NULL;
+BMAP* bmapCheckBoxCheckedOff	= NULL;
+BMAP* bmapCheckBoxUncheckedOn	= NULL;
+BMAP* bmapCheckBoxUncheckedOff= NULL;
+
 PANEL* panStartMenu				= NULL;
 PANEL* panInGameMenu				= NULL;
 PANEL* panLoadMenu				= NULL;
@@ -55,16 +63,37 @@ TEXT* txtMenuContinueGame		= NULL;
 TEXT* txtMenuLoadGame			= NULL;
 TEXT* txtMenuSaveGame			= NULL;
 TEXT* txtMenuOptions				= NULL;
-TEXT* txtMenuOptionsGame		= NULL;
-TEXT* txtMenuOptionsGraphics	= NULL;
-TEXT* txtMenuOptionsAudio		= NULL;
-TEXT* txtMenuOptionsInput		= NULL;
+	TEXT* txtMenuOptionsGame		= NULL;
+		// Game options
+		TEXT* txtMenuDifficulty			= NULL;
+		TEXT* txtMenuViolence			= NULL;
+		TEXT* txtMenuShowDialogs		= NULL;
+		TEXT* txtMenuShowHints			= NULL;
+	TEXT* txtMenuOptionsGraphics	= NULL;
+		TEXT* txtMenuResolutions		= NULL;
+		TEXT* txtMenuAntialias			= NULL;
+		TEXT* txtMenuBrightness			= NULL;
+		TEXT* txtMenuShader				= NULL;
+		TEXT* txtMenuShadows				= NULL;
+		TEXT* txtMenuDetails				= NULL;
+	TEXT* txtMenuOptionsAudio		= NULL;
+	TEXT* txtMenuOptionsInput		= NULL;
 TEXT* txtMenuOptionsApply		= NULL;
 TEXT* txtMenuCredits				= NULL;
 TEXT* txtMenuExitGame			= NULL;
 TEXT* txtMenuReturnToWin		= NULL;
 TEXT* txtMenuBack					= NULL;
 TEXT** txtMenuSaveGameTitles	= NULL;
+
+
+
+
+// Dummy settings - to be replaced
+var vOptionsDifficulty;
+var vOptionsAntiAlias;
+var vOptionsResolution;
+var vOptionsBrightness;
+var vOptionsDetails;
 
 
 void menu_init();
