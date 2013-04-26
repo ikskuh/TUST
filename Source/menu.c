@@ -218,7 +218,43 @@ void menu_init() {
 			pixel_to_bmap(bmapCheckBoxUncheckedOff, bmap_width(bmapCheckBoxUncheckedOff)-1, i, vPixel);
 		}
 		bmap_unlock(bmapCheckBoxUncheckedOff);		
+	}
+	
+	// Combobox
+	if (bmapComboboxOn == NULL) {
+		bmapComboboxOn = bmap_createblack(200, 15, 24);
+		//bmap_fill(bmapCheckBoxUncheckedOff, vector(255,255,255), 100);
+		vFormat = bmap_lock(bmapComboboxOn, 0);
+		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+		// Draw Borders
+		for (i=0; i<bmap_width(bmapComboboxOn); i++) {
+			pixel_to_bmap(bmapComboboxOn, i, 0, vPixel);
+			pixel_to_bmap(bmapComboboxOn, i, bmap_height(bmapComboboxOn)-1, vPixel);
+		}
+		for (i=0; i<bmap_height(bmapComboboxOn); i++) {
+			pixel_to_bmap(bmapComboboxOn, 0, i, vPixel);
+			pixel_to_bmap(bmapComboboxOn, bmap_width(bmapComboboxOn)-1, i, vPixel);
+		}
+		bmap_unlock(bmapComboboxOn);		
+	}
+	
+	if (bmapComboboxOff == NULL) {
+		bmapComboboxOff = bmap_createblack(200, 15, 24);
+		bmap_fill(bmapComboboxOff, vector(0,0,128), 100);
+		vFormat = bmap_lock(bmapComboboxOff, 0);
+		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+		// Draw Borders
+		for (i=0; i<bmap_width(bmapComboboxOff); i++) {
+			pixel_to_bmap(bmapComboboxOff, i, 0, vPixel);
+			pixel_to_bmap(bmapComboboxOff, i, bmap_height(bmapComboboxOff)-1, vPixel);
+		}
+		for (i=0; i<bmap_height(bmapComboboxOff); i++) {
+			pixel_to_bmap(bmapComboboxOff, 0, i, vPixel);
+			pixel_to_bmap(bmapComboboxOff, bmap_width(bmapComboboxOff)-1, i, vPixel);
+		}
+		bmap_unlock(bmapComboboxOff);		
 	}	
+		
 		
 	// Create panels
 	// Start menu
@@ -294,46 +330,92 @@ void menu_init() {
 	vec_set(panOptionsGraphics.size_x, vector(bmap_width(bmapOptionsBg), bmap_height(bmapOptionsBg), 0));
 	pan_setbutton(panOptionsGraphics, 0, 0, bmap_width(bmapOptionsBg) - MENU_BUTTON_SIZE_X - MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, NULL, NULL, NULL); // Apply
 	pan_setbutton(panOptionsGraphics, 0, 0, MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, NULL, NULL, NULL); // Back
-	// TODO Determine max. Resolutions
-	pan_setslider(panOptionsGraphics, 0, 100, MENU_BUTTON_SIZE_Y * 1, bmapSliderBg, bmapSliderKnob, 0, 10, vOptionsResolution); // Resolution
-	pan_setslider(panOptionsGraphics, 0, 100, MENU_BUTTON_SIZE_Y * 2, bmapSliderBg, bmapSliderKnob, 0, 3, vOptionsAntiAlias); // Antialias
-	pan_setslider(panOptionsGraphics, 0, 100, MENU_BUTTON_SIZE_Y * 3, bmapSliderBg, bmapSliderKnob, 0, 20, vOptionsBrightness); // Brightness
+
+	//pan_setslider(panOptionsGraphics, 0, 100, MENU_BUTTON_SIZE_Y * 1, bmapSliderBg, bmapSliderKnob, 0, 10, vOptionsResolution); // Resolution
 	
+	// Resolution combobox
+	pan_setbutton(panOptionsGraphics, 0, 0, 100, MENU_BUTTON_SIZE_Y * 1, bmapComboboxOff, bmapComboboxOn, bmapComboboxOff, bmapComboboxOn, menu_resolution_show, NULL, NULL);
+	
+	{
+		// Create resolution dropdown
+		panOptionsGraphicsResolutionList = pan_create("", 11);
+		panOptionsGraphicsResolutionList.size_x = bmap_width(bmapComboboxOn);
+		panOptionsGraphicsResolutionList.size_y = bmap_height(bmapComboboxOn)*6;
+		pan_setbutton(panOptionsGraphicsResolutionList, 0, 4, 0, 0, bmapComboboxOff, bmapComboboxOn, bmapComboboxOff, bmapComboboxOn, menu_resolution_click, NULL, NULL); // 800x600
+		pan_setbutton(panOptionsGraphicsResolutionList, 0, 4, 0, bmap_height(bmapComboboxOn) * 1, bmapComboboxOff, bmapComboboxOn, bmapComboboxOff, bmapComboboxOn, menu_resolution_click, NULL, NULL); // 1024x768
+		pan_setbutton(panOptionsGraphicsResolutionList, 0, 4, 0, bmap_height(bmapComboboxOn) * 2, bmapComboboxOff, bmapComboboxOn, bmapComboboxOff, bmapComboboxOn, menu_resolution_click, NULL, NULL); // 1280x1024
+		pan_setbutton(panOptionsGraphicsResolutionList, 0, 4, 0, bmap_height(bmapComboboxOn) * 3, bmapComboboxOff, bmapComboboxOn, bmapComboboxOff, bmapComboboxOn, menu_resolution_click, NULL, NULL); // 1400x1050
+		pan_setbutton(panOptionsGraphicsResolutionList, 0, 4, 0, bmap_height(bmapComboboxOn) * 4, bmapComboboxOff, bmapComboboxOn, bmapComboboxOff, bmapComboboxOn, menu_resolution_click, NULL, NULL); // 1600x1200
+		pan_setbutton(panOptionsGraphicsResolutionList, 0, 4, 0, bmap_height(bmapComboboxOn) * 5, bmapComboboxOff, bmapComboboxOn, bmapComboboxOff, bmapComboboxOn, menu_resolution_click, NULL, NULL); // 1920x1200
+	}
+	
+	pan_setslider(panOptionsGraphics, 0, 100, MENU_BUTTON_SIZE_Y * 3, bmapSliderBg, bmapSliderKnob, 0, 20, vOptionsBrightness); // Brightness
 	pan_setbutton(panOptionsGraphics, 0, 2, 100, MENU_BUTTON_SIZE_Y * 4, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL); // Shader
 	pan_setbutton(panOptionsGraphics, 0, 2, 100, MENU_BUTTON_SIZE_Y * 5, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL); // Shadows
 	
-	pan_setslider(panOptionsGraphics, 0, 100, MENU_BUTTON_SIZE_Y * 6, bmapSliderBg, bmapSliderKnob, 0, 3, vOptionsDetails); // Details
+	// Details
+	panOptionsGraphicsDetails = pan_create("", 11);
+	panOptionsGraphicsDetails.size_x = 160;
+	panOptionsGraphicsDetails.size_y = 15;
+	pan_setbutton(panOptionsGraphicsDetails, 0, 4, 0, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
+	pan_setbutton(panOptionsGraphicsDetails, 0, 4, 80, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
+	pan_setbutton(panOptionsGraphicsDetails, 0, 4, 160, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
 
+	
+	// Antialiasing
+	panOptionsGraphicsAntiAliasing = pan_create("", 11);
+	panOptionsGraphicsAntiAliasing.size_x = 160;
+	panOptionsGraphicsAntiAliasing.size_y = 15;
+	pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 0, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
+	pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 50, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
+	pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 100, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
+	pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 150, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
+	
 	
 	
 /*PANEL* panOptionsAudio			= NULL;
 PANEL* panOptionsInput			= NULL;*/
 		
 	// Create texts
-	txtMenuNewGame				= txt_create(1, 11);
-	txtMenuContinueGame		= txt_create(1, 11);
-	txtMenuLoadGame			= txt_create(1, 11);
-	txtMenuSaveGame			= txt_create(1, 11);
-	txtMenuOptions				= txt_create(1, 11);
-	txtMenuOptionsGame		= txt_create(1, 11);
-	txtMenuOptionsGraphics	= txt_create(1, 11);
-	txtMenuOptionsAudio		= txt_create(1, 11);
-	txtMenuOptionsInput		= txt_create(1, 11);
-	txtMenuOptionsApply		= txt_create(1, 11);
-	txtMenuDifficulty			= txt_create(1, 11);
-	txtMenuViolence			= txt_create(1, 11);
-	txtMenuShowDialogs		= txt_create(1, 11);
-	txtMenuShowHints			= txt_create(1, 11);
-	txtMenuResolutions		= txt_create(1, 11);
-	txtMenuAntialias			= txt_create(1, 11);
-	txtMenuBrightness			= txt_create(1, 11);
-	txtMenuShader				= txt_create(1, 11);
-	txtMenuShadows				= txt_create(1, 11);
-	txtMenuDetails				= txt_create(1, 11);
-	txtMenuCredits				= txt_create(1, 11);
-	txtMenuExitGame			= txt_create(1, 11);
-	txtMenuReturnToWin		= txt_create(1, 11);
-	txtMenuBack					= txt_create(1, 11);
+	txtMenuNewGame							= txt_create(1, 11);
+	txtMenuContinueGame					= txt_create(1, 11);
+	txtMenuLoadGame						= txt_create(1, 11);
+	txtMenuSaveGame						= txt_create(1, 11);
+	txtMenuOptions							= txt_create(1, 11);
+	txtMenuOptionsGame					= txt_create(1, 11);
+	txtMenuOptionsGraphics				= txt_create(1, 11);
+	txtMenuOptionsAudio					= txt_create(1, 11);
+	txtMenuOptionsInput					= txt_create(1, 11);
+	txtMenuOptionsApply					= txt_create(1, 11);
+	txtMenuDifficulty						= txt_create(1, 11);
+	txtMenuViolence						= txt_create(1, 11);
+	txtMenuShowDialogs					= txt_create(1, 11);
+	txtMenuShowHints						= txt_create(1, 11);
+	txtMenuResolutions					= txt_create(1, 11);
+	txtMenuAntialias						= txt_create(1, 11);
+	txtMenuBrightness						= txt_create(1, 11);
+	txtMenuShader							= txt_create(1, 11);
+	txtMenuShadows							= txt_create(1, 11);
+	txtMenuDetails							= txt_create(1, 11);
+	txtMenuCredits							= txt_create(1, 11);
+	txtMenuExitGame						= txt_create(1, 11);
+	txtMenuReturnToWin					= txt_create(1, 11);
+	txtMenuBack								= txt_create(1, 11);
+	txtOptionsGraphicsDetailsLow		= txt_create(1, 11);
+	txtOptionsGraphicsDetailsMedium	= txt_create(1, 11);
+	txtOptionsGraphicsDetailsHigh		= txt_create(1, 11);
+	txtOptionsGraphicsAAOff				= txt_create(1, 11);
+	txtOptionsGraphicsAA1x				= txt_create(1, 11);
+	txtOptionsGraphicsAA4x				= txt_create(1, 11);
+	txtOptionsGraphicsAA9x				= txt_create(1, 11);	
+	
+	txtResCurrent							= txt_create(1, 11);
+	txtRes800x600							= txt_create(1, 12);	
+	txtRes1024x768							= txt_create(1, 12);	
+	txtRes1280x1024						= txt_create(1, 12);	
+	txtRes1400x1050						= txt_create(1, 12);	
+	txtRes1600x1200						= txt_create(1, 12);	
+	txtRes1920x1200						= txt_create(1, 12);	
 	
 	txtMenuSaveGameTitles = sys_malloc(sizeof(TEXT*)*6);
 	for(i=0; i<6; i++) {
@@ -347,7 +429,7 @@ PANEL* panOptionsInput			= NULL;*/
 	str_cpy((txtMenuLoadGame.pstring)[0], "Load game");
 	str_cpy((txtMenuSaveGame.pstring)[0], "Save Game");
 	str_cpy((txtMenuOptions.pstring)[0], "Options");
-	str_cpy((txtMenuOptionsGame.pstring)[0], "Game");
+	str_cpy((txtMenuOptionsGame.pstring)[0], "Game"); // Game Options
 	{
 		str_cpy((txtMenuDifficulty.pstring)[0], "Difficulty:");
 		str_cpy((txtMenuViolence.pstring)[0], "Show blood:");
@@ -356,12 +438,32 @@ PANEL* panOptionsInput			= NULL;*/
 	}
 	str_cpy((txtMenuOptionsGraphics.pstring)[0], "Graphics");
 	{
-		str_cpy((txtMenuResolutions.pstring)[0], "Resolution:");
-		str_cpy((txtMenuAntialias.pstring)[0], "Anti aliasing:");
+		str_cpy((txtMenuResolutions.pstring)[0], "Resolution:"); // Resolution
+		{
+			str_cpy((txtResCurrent.pstring)[0], "Current res");
+			str_cpy((txtRes800x600.pstring)[0], "800x600");
+			str_cpy((txtRes1024x768.pstring)[0], "1024x768");
+			str_cpy((txtRes1280x1024.pstring)[0], "1280x1024");
+			str_cpy((txtRes1400x1050.pstring)[0], "1400x1050");
+			str_cpy((txtRes1600x1200.pstring)[0], "1600x1200");
+			str_cpy((txtRes1920x1200.pstring)[0], "1920x1200");
+		}
+		str_cpy((txtMenuAntialias.pstring)[0], "Anti aliasing:"); // AntiAliasing
+		{
+			str_cpy((txtOptionsGraphicsAAOff.pstring)[0], "Off");
+			str_cpy((txtOptionsGraphicsAA1x.pstring)[0], "1x");
+			str_cpy((txtOptionsGraphicsAA4x.pstring)[0], "4x");
+			str_cpy((txtOptionsGraphicsAA9x.pstring)[0], "9x");
+		}
 		str_cpy((txtMenuBrightness.pstring)[0], "Brightness:");
 		str_cpy((txtMenuShader.pstring)[0], "Shader:");
 		str_cpy((txtMenuShadows.pstring)[0], "Shadows:");
-		str_cpy((txtMenuDetails.pstring)[0], "Details:");
+		str_cpy((txtMenuDetails.pstring)[0], "Details:"); // Details
+		{
+			str_cpy((txtOptionsGraphicsDetailsLow.pstring)[0], "Low");
+			str_cpy((txtOptionsGraphicsDetailsMedium.pstring)[0], "Medium");
+			str_cpy((txtOptionsGraphicsDetailsHigh.pstring)[0], "High");
+		}
 	}
 	str_cpy((txtMenuOptionsAudio.pstring)[0], "Audio");
 	str_cpy((txtMenuOptionsInput.pstring)[0], "Keyboard & Mouse");
@@ -388,11 +490,31 @@ PANEL* panOptionsInput			= NULL;*/
 	set(txtMenuOptionsGraphics, CENTER_X | CENTER_Y | OUTLINE);
 	{
 		set(txtMenuResolutions, OUTLINE);
+		{
+			set(txtResCurrent, CENTER_X | CENTER_Y | OUTLINE);
+			set(txtRes800x600, CENTER_X | CENTER_Y | OUTLINE);
+			set(txtRes1024x768, CENTER_X | CENTER_Y | OUTLINE);
+			set(txtRes1280x1024, CENTER_X | CENTER_Y | OUTLINE);
+			set(txtRes1400x1050, CENTER_X | CENTER_Y | OUTLINE);
+			set(txtRes1600x1200, CENTER_X | CENTER_Y | OUTLINE);
+			set(txtRes1920x1200, CENTER_X | CENTER_Y | OUTLINE);
+		}
 		set(txtMenuAntialias, OUTLINE);
+		{
+			set(txtOptionsGraphicsAAOff, OUTLINE);
+			set(txtOptionsGraphicsAA1x, OUTLINE);
+			set(txtOptionsGraphicsAA4x, OUTLINE);
+			set(txtOptionsGraphicsAA9x, OUTLINE);
+		}
 		set(txtMenuBrightness, OUTLINE);
 		set(txtMenuShader, OUTLINE);
 		set(txtMenuShadows, OUTLINE);
 		set(txtMenuDetails, OUTLINE);
+		{
+			set(txtOptionsGraphicsDetailsLow, OUTLINE);
+			set(txtOptionsGraphicsDetailsMedium, OUTLINE);
+			set(txtOptionsGraphicsDetailsHigh, OUTLINE);
+		}
 	}
 	set(txtMenuOptionsAudio, CENTER_X | CENTER_Y | OUTLINE);
 	set(txtMenuOptionsInput, CENTER_X | CENTER_Y | OUTLINE);
@@ -485,10 +607,38 @@ void menu_show(int _menu) {
 			button_state(panOptionsMenu, 2, 1);			
 			set(txtMenuResolutions, SHOW);
 			set(txtMenuAntialias, SHOW);
+			{
+				set(txtOptionsGraphicsAAOff, SHOW);
+				set(txtOptionsGraphicsAA1x, SHOW);
+				set(txtOptionsGraphicsAA4x, SHOW);
+				set(txtOptionsGraphicsAA9x, SHOW);
+				switch(d3d_antialias) {
+					case 0: button_state(panOptionsGraphicsAntiAliasing, 1, 1); break;
+					case 1: button_state(panOptionsGraphicsAntiAliasing, 2, 1); break;
+					case 4: button_state(panOptionsGraphicsAntiAliasing, 3, 1); break;
+					case 9: button_state(panOptionsGraphicsAntiAliasing, 4, 1); break;
+				}
+			}
 			set(txtMenuBrightness, SHOW);
 			set(txtMenuShader, SHOW);
 			set(txtMenuShadows, SHOW);
 			set(txtMenuDetails, SHOW);
+			{
+				set(txtOptionsGraphicsDetailsLow, SHOW);
+				set(txtOptionsGraphicsDetailsMedium, SHOW);
+				set(txtOptionsGraphicsDetailsHigh, SHOW);
+			}
+			set(panOptionsGraphicsDetails, SHOW);
+			set(panOptionsGraphicsAntiAliasing, SHOW);
+			set(txtResCurrent, SHOW);
+			switch(video_mode) {
+				case 7: str_cpy((txtResCurrent.pstring)[0], "800x600"); button_state(panOptionsGraphicsResolutionList, 1,1); break;
+				case 8: str_cpy((txtResCurrent.pstring)[0], "1024x768"); button_state(panOptionsGraphicsResolutionList, 2,1); break;
+				case 9: str_cpy((txtResCurrent.pstring)[0], "1280x1024"); button_state(panOptionsGraphicsResolutionList, 3,1); break;
+				case 10: str_cpy((txtResCurrent.pstring)[0], "1400x1050"); button_state(panOptionsGraphicsResolutionList, 4,1); break;
+				case 11: str_cpy((txtResCurrent.pstring)[0], "1600x1200"); button_state(panOptionsGraphicsResolutionList, 5,1); break;
+				case 12: str_cpy((txtResCurrent.pstring)[0], "1920x1200"); button_state(panOptionsGraphicsResolutionList, 6,1); break;
+			}
 		break;		
 	}
 	
@@ -533,6 +683,24 @@ void menu_hide() {
 	if (txtMenuExitGame != NULL) reset(txtMenuExitGame, SHOW);
 	if (txtMenuReturnToWin != NULL) reset(txtMenuReturnToWin, SHOW);	
 	if (txtMenuBack != NULL) reset(txtMenuBack, SHOW);
+	if (panOptionsGraphicsDetails != NULL) reset(panOptionsGraphicsDetails, SHOW);
+	if (panOptionsGraphicsAntiAliasing != NULL) reset(panOptionsGraphicsAntiAliasing, SHOW);
+	if (txtOptionsGraphicsAAOff != NULL) reset(txtOptionsGraphicsAAOff, SHOW);
+	if (txtOptionsGraphicsAA1x != NULL) reset(txtOptionsGraphicsAA1x, SHOW);
+	if (txtOptionsGraphicsAA4x != NULL) reset(txtOptionsGraphicsAA4x, SHOW);
+	if (txtOptionsGraphicsAA9x != NULL) reset(txtOptionsGraphicsAA9x, SHOW);
+	if (txtOptionsGraphicsDetailsLow != NULL) reset(txtOptionsGraphicsDetailsLow, SHOW);
+	if (txtOptionsGraphicsDetailsMedium != NULL) reset(txtOptionsGraphicsDetailsMedium, SHOW);
+	if (txtOptionsGraphicsDetailsHigh != NULL) reset(txtOptionsGraphicsDetailsHigh, SHOW);
+	if (panOptionsGraphicsResolutionList != NULL) reset(panOptionsGraphicsResolutionList, SHOW);
+	if (txtResCurrent != NULL) reset(txtResCurrent, SHOW);
+	if (txtRes800x600 != NULL) reset(txtRes800x600, SHOW);
+	if (txtRes1024x768 != NULL) reset(txtRes1024x768, SHOW);
+	if (txtRes1280x1024 != NULL) reset(txtRes1280x1024, SHOW);
+	if (txtRes1400x1050 != NULL) reset(txtRes1400x1050, SHOW);
+	if (txtRes1600x1200 != NULL) reset(txtRes1600x1200, SHOW);
+	if (txtRes1920x1200 != NULL) reset(txtRes1920x1200, SHOW);
+
 	int i;
 	for(i=0; i<6; i++) {
 		if (txtMenuSaveGameTitles[i] != NULL) {
@@ -679,6 +847,31 @@ void menu_align(int _menu) {
 			
 			txtMenuResolutions.pos_x = panOptionsGraphics.pos_x + 10;
 			txtMenuResolutions.pos_y = panOptionsGraphics.pos_y + MENU_BUTTON_SIZE_Y * 1.1;
+			{
+				panOptionsGraphicsResolutionList.pos_x = panOptionsGraphics.pos_x + 100;
+				panOptionsGraphicsResolutionList.pos_y = panOptionsGraphics.pos_y + MENU_BUTTON_SIZE_Y * 1 + bmap_height(bmapComboboxOn);
+				
+				txtResCurrent.pos_x = panOptionsGraphics.pos_x + 100 + bmap_width(bmapComboboxOn) / 2;
+				txtResCurrent.pos_y = panOptionsGraphics.pos_y + MENU_BUTTON_SIZE_Y * 1 + bmap_height(bmapComboboxOn) / 2; // TODO
+				
+				txtRes800x600.pos_x = panOptionsGraphicsResolutionList.pos_x + bmap_width(bmapComboboxOn) / 2;
+				txtRes800x600.pos_y = panOptionsGraphicsResolutionList.pos_y + bmap_height(bmapComboboxOn) * 0.5;
+				
+				txtRes1024x768.pos_x = panOptionsGraphicsResolutionList.pos_x + bmap_width(bmapComboboxOn) / 2;
+				txtRes1024x768.pos_y = panOptionsGraphicsResolutionList.pos_y + bmap_height(bmapComboboxOn) * 1.5;
+				
+				txtRes1280x1024.pos_x = panOptionsGraphicsResolutionList.pos_x + bmap_width(bmapComboboxOn) / 2;
+				txtRes1280x1024.pos_y = panOptionsGraphicsResolutionList.pos_y + bmap_height(bmapComboboxOn) * 2.5;
+				
+				txtRes1400x1050.pos_x = panOptionsGraphicsResolutionList.pos_x + bmap_width(bmapComboboxOn) / 2;
+				txtRes1400x1050.pos_y = panOptionsGraphicsResolutionList.pos_y + bmap_height(bmapComboboxOn) * 3.5;
+				
+				txtRes1600x1200.pos_x = panOptionsGraphicsResolutionList.pos_x + bmap_width(bmapComboboxOn) / 2;
+				txtRes1600x1200.pos_y = panOptionsGraphicsResolutionList.pos_y + bmap_height(bmapComboboxOn) * 4.5;
+				
+				txtRes1920x1200.pos_x = panOptionsGraphicsResolutionList.pos_x + bmap_width(bmapComboboxOn) / 2;
+				txtRes1920x1200.pos_y = panOptionsGraphicsResolutionList.pos_y + bmap_height(bmapComboboxOn) * 5.5;
+			}
 			
 			txtMenuAntialias.pos_x = panOptionsGraphics.pos_x + 10;
 			txtMenuAntialias.pos_y = panOptionsGraphics.pos_y + MENU_BUTTON_SIZE_Y * 2.1;
@@ -694,6 +887,35 @@ void menu_align(int _menu) {
 			
 			txtMenuDetails.pos_x = panOptionsGraphics.pos_x + 10;
 			txtMenuDetails.pos_y = panOptionsGraphics.pos_y + MENU_BUTTON_SIZE_Y * 6.1;
+			
+			panOptionsGraphicsDetails.pos_x = panOptionsGraphics.pos_x + 100;
+			panOptionsGraphicsDetails.pos_y = panOptionsGraphics.pos_y + MENU_BUTTON_SIZE_Y * 6;
+			{
+				txtOptionsGraphicsDetailsLow.pos_x = panOptionsGraphicsDetails.pos_x + 20;	
+				txtOptionsGraphicsDetailsLow.pos_y = panOptionsGraphicsDetails.pos_y;
+				
+				txtOptionsGraphicsDetailsMedium.pos_x = panOptionsGraphicsDetails.pos_x + 100;
+				txtOptionsGraphicsDetailsMedium.pos_y = panOptionsGraphicsDetails.pos_y;
+				
+				txtOptionsGraphicsDetailsHigh.pos_x = panOptionsGraphicsDetails.pos_x + 180; 
+				txtOptionsGraphicsDetailsHigh.pos_y = panOptionsGraphicsDetails.pos_y;
+			}				
+			
+			panOptionsGraphicsAntiAliasing.pos_x = panOptionsGraphics.pos_x + 100; 
+			panOptionsGraphicsAntiAliasing.pos_y = panOptionsGraphics.pos_y + MENU_BUTTON_SIZE_Y * 2;
+			{
+				txtOptionsGraphicsAAOff.pos_x = panOptionsGraphicsAntiAliasing.pos_x + 20;
+				txtOptionsGraphicsAAOff.pos_y = panOptionsGraphicsAntiAliasing.pos_y;
+				
+				txtOptionsGraphicsAA1x.pos_x = panOptionsGraphicsAntiAliasing.pos_x + 70;
+				txtOptionsGraphicsAA1x.pos_y = panOptionsGraphicsAntiAliasing.pos_y;
+				
+				txtOptionsGraphicsAA4x.pos_x = panOptionsGraphicsAntiAliasing.pos_x + 120;
+				txtOptionsGraphicsAA4x.pos_y = panOptionsGraphicsAntiAliasing.pos_y;
+				
+				txtOptionsGraphicsAA9x.pos_x = panOptionsGraphicsAntiAliasing.pos_x + 170;
+				txtOptionsGraphicsAA9x.pos_y = panOptionsGraphicsAntiAliasing.pos_y;												
+			}
 		break;
 	}
 }
@@ -740,4 +962,38 @@ void menu_show_message_fullscreen(STRING* _msg) {
 
 int menu_show_choice_message(STRING* _msg, STRING* _button1, STRING* _button2) {
 	
+}
+
+// Internal functions
+void menu_resolution_show() {
+	if(is(panOptionsGraphicsResolutionList, SHOW)) {
+		// Hide resolution list
+		reset(panOptionsGraphicsResolutionList, SHOW);
+		reset(txtRes800x600, SHOW);
+		reset(txtRes1024x768, SHOW);
+		reset(txtRes1280x1024, SHOW);
+		reset(txtRes1400x1050, SHOW);
+		reset(txtRes1600x1200, SHOW);
+		reset(txtRes1920x1200, SHOW);			
+	} else {
+		// Show resolution list
+		set(panOptionsGraphicsResolutionList, SHOW);
+		set(txtRes800x600, SHOW);
+		set(txtRes1024x768, SHOW);
+		set(txtRes1280x1024, SHOW);
+		set(txtRes1400x1050, SHOW);
+		set(txtRes1600x1200, SHOW);
+		set(txtRes1920x1200, SHOW);	
+	}
+}
+
+void menu_resolution_click(var _button_number, PANEL* _panel) {
+	// Hide resolution list
+	reset(panOptionsGraphicsResolutionList, SHOW);
+	reset(txtRes800x600, SHOW);
+	reset(txtRes1024x768, SHOW);
+	reset(txtRes1280x1024, SHOW);
+	reset(txtRes1400x1050, SHOW);
+	reset(txtRes1600x1200, SHOW);
+	reset(txtRes1920x1200, SHOW);	
 }

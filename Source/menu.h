@@ -33,6 +33,9 @@ BMAP* bmapMenuButtonOff			= NULL;
 BMAP* bmapOptionsChoiceBg		= NULL;
 BMAP* bmapOptionsBg				= NULL;
 
+BMAP* bmapComboboxOn				= NULL;
+BMAP* bmapComboboxOff			= NULL;
+
 BMAP* bmapSaveSlotOn				= NULL;
 BMAP* bmapSaveSlotOff			= NULL;
 
@@ -51,6 +54,23 @@ PANEL* panSaveMenu				= NULL;
 PANEL* panOptionsMenu			= NULL; // The top bar to switch between option panels
 PANEL* panOptionsGame			= NULL;
 PANEL* panOptionsGraphics		= NULL;
+	PANEL* panOptionsGraphicsDetails				= NULL;
+		TEXT* txtOptionsGraphicsDetailsLow		= NULL;
+		TEXT* txtOptionsGraphicsDetailsMedium	= NULL;
+		TEXT* txtOptionsGraphicsDetailsHigh		= NULL;
+	PANEL* panOptionsGraphicsAntiAliasing		= NULL;
+		TEXT* txtOptionsGraphicsAAOff				= NULL;
+		TEXT* txtOptionsGraphicsAA1x				= NULL;
+		TEXT* txtOptionsGraphicsAA4x				= NULL;
+		TEXT* txtOptionsGraphicsAA9x				= NULL;
+	PANEL* panOptionsGraphicsResolutionList	= NULL;
+		TEXT* txtResCurrent			= NULL;
+		TEXT* txtRes800x600			= NULL;
+		TEXT* txtRes1024x768			= NULL;
+		TEXT* txtRes1280x1024		= NULL;
+		TEXT* txtRes1400x1050		= NULL;
+		TEXT* txtRes1600x1200		= NULL;
+		TEXT* txtRes1920x1200		= NULL;
 PANEL* panOptionsAudio			= NULL;
 PANEL* panOptionsInput			= NULL;
 PANEL* panGraphicMenu			= NULL;
@@ -107,6 +127,11 @@ void menu_set_pos(int _x, int _y);
 void menu_show_message(STRING* _msg);
 void menu_show_message_fullscreen(STRING* _msg);
 int menu_show_choice_message(STRING* _msg, STRING* _button1, STRING* _button2);
+
+// Internal functions
+
+void menu_resolution_show();
+void menu_resolution_click(var _button_number, PANEL* _panel);
 
 
 
