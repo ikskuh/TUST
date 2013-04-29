@@ -1,5 +1,5 @@
-#ifndef INVENTORY_C
-#define INVENTORY_C
+#ifndef _INVENTORY_C_
+#define _INVENTORY_C_
 
 Inventory* inv_create(BMAP* _bg, STRING* _title) {
 	Inventory* inv = sys_malloc(sizeof(Inventory));
@@ -255,7 +255,7 @@ void inv_show_items(Inventory* _inv) {
 	}
 }
 
-void inv_item_click(int _buttonNumber, PANEL* _panel) {
+void inv_item_click(var _buttonNumber, PANEL* _panel) {
 	if (_panel != NULL) {
 		if (_panel.skill_x != NULL) {
 			Item* tempItem = (Item*)_panel.skill_x;
@@ -266,7 +266,7 @@ void inv_item_click(int _buttonNumber, PANEL* _panel) {
 	}
 }
 
-void inv_item_enter(int _buttonNumber, PANEL* _panel) {
+void inv_item_enter(var _buttonNumber, PANEL* _panel) {
 	if (_panel != NULL) {
 		if (_panel.skill_x != NULL) {
 			Item* tempItem = (Item*)_panel.skill_x;
@@ -284,7 +284,7 @@ void inv_item_enter(int _buttonNumber, PANEL* _panel) {
 	}
 }
 
-void inv_item_leave(int _buttonNumber, PANEL* _panel) {
+void inv_item_leave(var _buttonNumber, PANEL* _panel) {
 	if (_panel != NULL) {
 		if (_panel.skill_x != NULL) {
 			Item* tempItem = (Item*)_panel.skill_x;
