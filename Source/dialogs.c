@@ -1,9 +1,7 @@
-#ifndef DIALOGS_C
-#define DIALOGS_C
+#ifndef _DIALOGS_C_
+#define _DIALOGS_C_
 
-// ------------------------------------------------------------------------
 // Free the dialog system
-// ------------------------------------------------------------------------
 void dlg_free()
 {
 	if (panDialogBg != NULL) {
@@ -37,9 +35,7 @@ void dlg_free()
 	}	
 }
 
-// ------------------------------------------------------------------------
 // Hide all dialog items and stop all dialog functions
-// ------------------------------------------------------------------------
 void dlg_hide()
 {
 	proc_kill((void*)dlg_start);
@@ -51,9 +47,7 @@ void dlg_hide()
 	if (panDialogBar2 != NULL) { reset(panDialogBar2, SHOW);}
 }
 
-// ------------------------------------------------------------------------
 // Create all dialog items (No files required)
-// ------------------------------------------------------------------------
 void dlg_init()
 {
 	panDialogBg = pan_create("", 22);
@@ -87,10 +81,8 @@ void dlg_init()
 	dlg_align();
 }
 
-// ------------------------------------------------------------------------
 // Align the dialogs
 // (Has to be called after every change of the screen resolution)
-// ------------------------------------------------------------------------
 void dlg_align()
 {
 	panDialogBg.size_x = screen_size.x;
@@ -124,9 +116,7 @@ void dlg_align()
 	panDialogBar2.pos_y = screen_size.y - 100;
 }
 
-// ------------------------------------------------------------------------
 // Read an XML tag with a certain ID
-// ------------------------------------------------------------------------
 XmlTag* get_dialog_item_by_id(XmlTag* _myXML, int _id)
 {
 	XmlTag* tempItem;
@@ -154,9 +144,7 @@ XmlTag* get_dialog_item_by_id(XmlTag* _myXML, int _id)
 	return NULL;
 }
 
-// ------------------------------------------------------------------------
 // Get the ID of a tag
-// ------------------------------------------------------------------------
 int get_dialog_item_id(XmlTag* _XMLItem)
 {
 	STRING* tempStr = str_create("");
@@ -169,9 +157,7 @@ int get_dialog_item_id(XmlTag* _XMLItem)
 	}
 }
 
-// ------------------------------------------------------------------------
 // Creating a simple dialog
-// ------------------------------------------------------------------------
 void dlg_start(STRING* _speaker, STRING* _text, SOUND* _audio)
 {
 	// Cannot start a dialog if another is active
@@ -228,9 +214,7 @@ void dlg_start(STRING* _speaker, STRING* _text, SOUND* _audio)
 
 
 
-// ------------------------------------------------------------------------
 // Start a complex XML dialog
-// ------------------------------------------------------------------------
 int dlg_start(STRING* _dialogFile)
 {	
 	if (dlg_is_dialog_active()) return;
@@ -618,9 +602,7 @@ int dlg_start(STRING* _dialogFile)
 	}
 }
 
-// ------------------------------------------------------------------------
 // Evaluates which button has been clicked
-// ------------------------------------------------------------------------
 void dlg_click_dialog(var _buttonNumber, PANEL* _panel)
 {
 	switch (_buttonNumber)
@@ -632,9 +614,7 @@ void dlg_click_dialog(var _buttonNumber, PANEL* _panel)
 	}
 }
 
-// ------------------------------------------------------------------------
 // Returns if a dialog is active at the moment
-// ------------------------------------------------------------------------
 int dlg_is_dialog_active()
 {
 	return nIsDialogActive;
