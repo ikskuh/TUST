@@ -31,6 +31,16 @@ o Generic Script Library
 	o Weather Effects
 		o Rain
 		o Snow
+	o Particle effects
+		o fire
+		o smoke
+		o electricity
+		o explosion
+		o fountain
+		o waterfall
+		o leaves
+		o flies
+		o bubbles
 	o Day/Night Dynamic Sky
 	o Background Music Management
 	x INI-Access (MasterQ32)
@@ -73,7 +83,7 @@ o Generic Script Library
 	o Bitmap processes --> Source\bmap.h
 		x bmap_lerp (txesmi)  --> Source\bmap.h
 		x bmap_rotate (txesmi)  --> Source\bmap.h
-		x Draw line, draw rectangle, draw circle, draw border, fill (padmalcom)
+		- Draw line, draw rectangle, draw circle, draw border, fill (padmalcom)
 	x Logging (padmalcom)
 
 o Game Templates
