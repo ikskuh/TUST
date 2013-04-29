@@ -10,6 +10,8 @@ function main()
 	//menu_show(MENU_IN_GAME);
 	//menu_show(MENU_SAVE);
 	//menu_show(MENU_LOAD);
-	//menu_show(MENU_OPTIONS_GAME);
-	menu_show(MENU_OPTIONS_GRAPHICS);
+	menu_show(MENU_OPTIONS_GAME);
+	//menu_show(MENU_OPTIONS_GRAPHICS);
+	//menu_show(MENU_OPTIONS_AUDIO);
+	//menu_show(MENU_OPTIONS_INPUT);
 }
