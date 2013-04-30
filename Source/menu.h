@@ -10,8 +10,17 @@
 #define MENU_BUTTON_SIZE_Y 30
 #define MENU_SAVE_SLOT_SIZE_X 150		// For optimal alignment set to the same as MENU_BUTTON_SIZE_X
 #define MENU_SAVE_SLOT_SIZE_Y 100
+#define MENU_SLIDER_SIZE_X 140			// Size of the slider
+#define MENU_SLIDER_SIZE_Y 10
+#define MENU_KNOB_SIZE_X 15				// Size of the knob for the sliders
+#define MENU_KNOB_SIZE_Y 15
+#define MENU_CHECKBOX_SIZE_X 15			// Size of Checkboxes
+#define MENU_CHECKBOX_SIZE_Y 15
+#define MENU_COMBOBOX_SIZE_X 200			// Size of the combobox
+#define MENU_COMBOBOX_SIZE_Y 15
+
 #define MENU_BUTTON_GAP 5					// GAPS (X,Y) between buttons in the menues
-#define MENU_OPTIONS_SIZE_X -1			// -1 = Same size as Options choice bar
+#define MENU_OPTIONS_SIZE_X -1			// Size of the entire options menu. -1 = Same size as Options choice bar
 #define MENU_OPTIONS_SIZE_Y 380
 
 #define MENU_OPTIONS_CAPTION_POS_X 130	// x-distance between option caption and control
@@ -29,6 +38,8 @@
 #define MENU_OPTIONS_AUDIO 7
 #define MENU_OPTIONS_INPUT 8
 #define MENU_CREDITS 9
+
+FONT* fontMenu = "Arial#12b";
 
 int nCurrentMenu = 0;
 int nMenuVisible = 0;
@@ -58,6 +69,10 @@ PANEL* panLoadMenu				= NULL;
 PANEL* panSaveMenu				= NULL;
 PANEL* panOptionsMenu			= NULL; // The top bar to switch between option panels
 PANEL* panOptionsGame			= NULL;
+	PANEL* panOptionsGameDifficulty	= NULL;
+		TEXT* txtOptionsGameEasy					= NULL;
+		TEXT* txtOptionsGameMedium					= NULL;
+		TEXT* txtOptionsGameHard					= NULL;
 PANEL* panOptionsGraphics		= NULL;
 	PANEL* panOptionsGraphicsDetails				= NULL;
 		TEXT* txtOptionsGraphicsDetailsLow		= NULL;
@@ -95,16 +110,17 @@ TEXT* txtMenuOptions				= NULL;
 		TEXT* txtMenuShowDialogs		= NULL;
 		TEXT* txtMenuShowHints			= NULL;
 	TEXT* txtMenuOptionsGraphics	= NULL;
-		TEXT* txtMenuResolutions		= NULL;
-		TEXT* txtMenuAntialias			= NULL;
-		TEXT* txtMenuBrightness			= NULL;
-		TEXT* txtMenuShader				= NULL;
-		TEXT* txtMenuShadows				= NULL;
-		TEXT* txtMenuDetails				= NULL;
+		TEXT* txtMenuResolutions			= NULL;
+		TEXT* txtMenuAntialias				= NULL;
+		TEXT* txtMenuBrightness				= NULL;
+		TEXT* txtMenuCurrentBrightness	= NULL;
+		TEXT* txtMenuShader					= NULL;
+		TEXT* txtMenuShadows					= NULL;
+		TEXT* txtMenuDetails					= NULL;
 	TEXT* txtMenuOptionsAudio		= NULL;
-		TEXT* txtMenuMusicVolume		= NULL;
-		TEXT* txtMenuSpeechVolume		= NULL;
-		TEXT* txtMenuEffectsVolume		= NULL;
+		TEXT* txtMenuMusicVolume			= NULL;
+		TEXT* txtMenuSpeechVolume			= NULL;
+		TEXT* txtMenuEffectsVolume			= NULL;
 	TEXT* txtMenuOptionsInput		= NULL;
 		TEXT* txtMenuMouseSensivity	= NULL;
 TEXT* txtMenuOptionsApply		= NULL;
@@ -113,8 +129,6 @@ TEXT* txtMenuExitGame			= NULL;
 TEXT* txtMenuReturnToWin		= NULL;
 TEXT* txtMenuBack					= NULL;
 TEXT** txtMenuSaveGameTitles	= NULL;
-
-
 
 
 // Variables to hold a game state until changes are applied
@@ -222,7 +236,26 @@ void menu_resolution_click(var _button_number, PANEL* _panel);
  */
 void menu_options_choose(var _button_number, PANEL* _panel);
 
+/**
+ * Back button clicked
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_back_click(var _button_number, PANEL* _panel);
 
+/**
+ * A button on the start menu was clicked
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_start_click(var _button_number, PANEL* _panel);
+
+/**
+ * A button on the ingame menu was clicked
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_ingame_click(var _button_number, PANEL* _panel);
 
 #include "menu.c"
 #endif
