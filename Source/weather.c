@@ -3,35 +3,39 @@
 
 void set_sun_position(var _day,var _hour,var _minute,var _second,var _latitude,var _springEquinox)
 {
-	var B=(360/EARTH_ORBITAL_PERIOD) * (_day-_springEquinox);
-	
+	double B=(360.0/EARTH_ORBITAL_PERIOD) * (_day-_springEquinox);
+
 	//Equation of Time (EoT)
-	var EoT=9.87*sinv(2*B) - 7.53*cosv(B) - 1.5*sinv(B);
-	
+	double EoT=9.87*sin(2*B*DEGREE_IN_RADIANS) - 7.53*cos(B*DEGREE_IN_RADIANS) - 1.5*sin(B*DEGREE_IN_RADIANS);
+
 	//Time Correction Factor (TC)
-	var TC=EoT;
-	
+	double TC=EoT;
+
 	//Local Time (LT)
-	var LT=_hour + (_minute/60.0) + (_second/3600.0);
-	
+	double LT=_hour + (_minute/60.0) + (_second/3600.0);
+
 	//Local Solar Time (LST)
-	var LST=LT + TC/60;
-	
+	double LST=LT + TC/60.0;
+
 	//Hour Angle (HRA)
-	var HRA=15 * (LST - 12);
-	
+	double HRA=15.0 * (LST - 12.0);
+
 	//Number of days since the start of the year (d)
-	var d=_day + LT/24;
-	
+	double d=_day + LT/24.0;
+
 	//Declination (D)
-	var D=EARTH_AXIAL_TILT * sinv((360/EARTH_ORBITAL_PERIOD) * (d - _springEquinox));
-	
+	double D=EARTH_AXIAL_TILT * sin((360.0/EARTH_ORBITAL_PERIOD) * (d - _springEquinox) * DEGREE_IN_RADIANS);
+
 	//Sun Elevation (sun_angle.tilt)
-	sun_angle.tilt=asinv((cosv(HRA) * cosv(D) * cosv(_latitude)) + (sinv(D) * sinv(_latitude)));
-	
+	sun_angle.tilt=asin(cos(HRA*DEGREE_IN_RADIANS)*cos(D*DEGREE_IN_RADIANS)*cos(_latitude*DEGREE_IN_RADIANS)+sin(D*DEGREE_IN_RADIANS)*sin(_latitude*DEGREE_IN_RADIANS))/DEGREE_IN_RADIANS;
+
 	//Sun Azimuth (sun_angle.pan)
-	sun_angle.pan=acosv( (sinv(D) - sinv(sun_angle.tilt) * sinv(_latitude)) / (cosv(sun_angle.tilt) * cosv(_latitude)) );
-	if(LST>12 && HRA >0){sun_angle.pan=360-sun_angle.pan;}
+	sun_angle.pan=acos((sin(D*DEGREE_IN_RADIANS)-sin(sun_angle.tilt*DEGREE_IN_RADIANS)*sin(_latitude*DEGREE_IN_RADIANS))/(cos(sun_angle.tilt*DEGREE_IN_RADIANS)*cos(_latitude*DEGREE_IN_RADIANS)))/DEGREE_IN_RADIANS;
+	if(LST>12.0 && HRA >0.0){sun_angle.pan=360.0-sun_angle.pan;}
+}
+
+void set_sun_position(var _hour,var _minute) {
+	set_sun_position(81, _hour, _minute, 0, LOCATION_LATITUDE, LOCATION_TIME_SPRING_EQUINOX);
 }
 
 #endif
