@@ -8,7 +8,7 @@
  * Provides basic functionality for resolution, sounds, game settings, ...
  */
 
-var vGameDifficulty			= 30;
+var vGameDifficulty			= 1;
 var vGameBlood					= 1;
 var vGameShowDialogs			= 1;
 var vGameShowHints			= 1;
@@ -25,6 +25,8 @@ var vGameSpeechVolume		= 50;
 var vGameEffectsVolume		= 50;
 
 var vGameMouseSensitivity	= 3;
+
+int nInGame						= 1; // Is the game running or are we in the start menu?
 
 #include "system.c"
 
