@@ -1,11 +1,14 @@
-#ifndef DEBUG_H
-#define DEBUG_H
+#ifndef _DEBUG_H_
+#define _DEBUG_H_
 
 #include <strio.c>
 
 #define LOG_FILE "log.html"
 #define LOG_NO_FILE 0
 #define LOG_TO_FILE 1
+
+// Should be defined for active debug mode
+//#define DEBUG
 
 TEXT* txtLog = NULL;
 FONT* fontLog = "Arial#12b";

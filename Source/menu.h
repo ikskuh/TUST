@@ -110,6 +110,7 @@ TEXT* txtMenuOptions				= NULL;
 		TEXT* txtMenuShowDialogs		= NULL;
 		TEXT* txtMenuShowHints			= NULL;
 	TEXT* txtMenuOptionsGraphics	= NULL;
+		TEXT* txtMenuFullscreen				= NULL;
 		TEXT* txtMenuResolutions			= NULL;
 		TEXT* txtMenuAntialias				= NULL;
 		TEXT* txtMenuBrightness				= NULL;
@@ -142,7 +143,8 @@ var vNewGameAntiAlias			= 0;
 var vNewGameBrightness			= 80;
 var vNewGameShaders				= 0;
 var vNewGameShadows				= 0;
-var vNewGameDetails				= 0;
+var vNewGameDetails				= 1;
+var vNewGameFullscreen			= 0;
 
 var vNewGameMusicVolume			= 0;
 var vNewGameSpeechVolume		= 0;
@@ -237,6 +239,13 @@ void menu_resolution_click(var _button_number, PANEL* _panel);
 void menu_options_choose(var _button_number, PANEL* _panel);
 
 /**
+ * Apply button clicked
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_apply_click(var _button_number, PANEL* _panel);
+
+/**
  * Back button clicked
  * \param	var	Button number of clicked button
  * \param	PANEL*	Panel that contains the button
@@ -256,6 +265,27 @@ void menu_start_click(var _button_number, PANEL* _panel);
  * \param	PANEL*	Panel that contains the button
  */
 void menu_ingame_click(var _button_number, PANEL* _panel);
+
+/**
+ * A button on the difficulty panel was clicked
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_difficulty_click(var _button_number, PANEL* _panel);
+
+/**
+ * A button on the anti aliasing panel was clicked
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_anti_aliasing_click(var _button_number, PANEL* _panel);
+
+/**
+ * A button on the details panel was clicked
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_details_click(var _button_number, PANEL* _panel);
 
 #include "menu.c"
 #endif

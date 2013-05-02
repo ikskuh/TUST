@@ -7,18 +7,20 @@
  *
  * Provides basic functionality for resolution, sounds, game settings, ...
  */
+ 
+var vInitialShaderVersion	= d3d_shaderversion;
 
-var vGameDifficulty			= 1;
+var vGameDifficulty			= 1; // 1: Easy, 2: Medium, 3: Hard
 var vGameBlood					= 1;
 var vGameShowDialogs			= 1;
 var vGameShowHints			= 1;
 
 var vGameResolution			= 7;
-var vGameAntiAlias			= 0;
-var vGameBrightness			= 80;
-var vGameShaders				= 0;
-var vGameShadows				= 0;
-var vGameDetails				= 2;
+//var vGameAntiAlias			= 0;
+//var vGameBrightness			= 80;
+//var vGameShaders				= 0;
+//var vGameShadows				= 0;
+var vGameDetails				= 2; // 1: Low, 2: Medium, 3: High
 
 var vGameMusicVolume			= 50;
 var vGameSpeechVolume		= 50;

@@ -207,7 +207,6 @@ void menu_init() {
 	
 	if (bmapCheckBoxUncheckedOff == NULL) {
 		bmapCheckBoxUncheckedOff = bmap_createblack(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24);
-		//bmap_fill(bmapCheckBoxUncheckedOff, vector(255,255,255), 100);
 		vFormat = bmap_lock(bmapCheckBoxUncheckedOff, 0);
 		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
 		// Draw Borders
@@ -225,7 +224,6 @@ void menu_init() {
 	// Combobox
 	if (bmapComboboxOn == NULL) {
 		bmapComboboxOn = bmap_createblack(MENU_COMBOBOX_SIZE_X, MENU_COMBOBOX_SIZE_Y, 24);
-		//bmap_fill(bmapCheckBoxUncheckedOff, vector(255,255,255), 100);
 		vFormat = bmap_lock(bmapComboboxOn, 0);
 		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
 		// Draw Borders
@@ -319,7 +317,7 @@ void menu_init() {
 	panOptionsGame.bmap = bmapOptionsBg;
 	// TODO: Should not be necessary!
 	vec_set(panOptionsGame.size_x, vector(bmap_width(bmapOptionsBg), bmap_height(bmapOptionsBg), 0));
-	pan_setbutton(panOptionsGame, 0, 0, bmap_width(bmapOptionsBg) - MENU_BUTTON_SIZE_X - MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, NULL, NULL, NULL); // Apply
+	pan_setbutton(panOptionsGame, 0, 0, bmap_width(bmapOptionsBg) - MENU_BUTTON_SIZE_X - MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_apply_click, NULL, NULL); // Apply
 	pan_setbutton(panOptionsGame, 0, 0, MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_back_click, NULL, NULL); // Back
 	pan_setbutton(panOptionsGame, 0, 2, MENU_OPTIONS_CAPTION_POS_X, MENU_BUTTON_SIZE_Y * 2, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL); // Violence
 	pan_setbutton(panOptionsGame, 0, 2, MENU_OPTIONS_CAPTION_POS_X, MENU_BUTTON_SIZE_Y * 3, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL); // Dialogs
@@ -327,16 +325,16 @@ void menu_init() {
 	
 		// Difficulty
 		panOptionsGameDifficulty = pan_create("", 11);
-		pan_setbutton(panOptionsGameDifficulty, 0, 4, 0, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
-		pan_setbutton(panOptionsGameDifficulty, 0, 4, 80, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
-		pan_setbutton(panOptionsGameDifficulty, 0, 4, 160, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
+		pan_setbutton(panOptionsGameDifficulty, 0, 4, 0, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, menu_difficulty_click, NULL, NULL);
+		pan_setbutton(panOptionsGameDifficulty, 0, 4, 80, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, menu_difficulty_click, NULL, NULL);
+		pan_setbutton(panOptionsGameDifficulty, 0, 4, 160, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, menu_difficulty_click, NULL, NULL);
 
 	// Graphic Options
 	panOptionsGraphics = pan_create("", 10);
 	panOptionsGraphics.bmap = bmapOptionsBg;
 	// TODO: Should not be necessary!
 	vec_set(panOptionsGraphics.size_x, vector(bmap_width(bmapOptionsBg), bmap_height(bmapOptionsBg), 0));
-	pan_setbutton(panOptionsGraphics, 0, 0, bmap_width(bmapOptionsBg) - MENU_BUTTON_SIZE_X - MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, NULL, NULL, NULL); // Apply
+	pan_setbutton(panOptionsGraphics, 0, 0, bmap_width(bmapOptionsBg) - MENU_BUTTON_SIZE_X - MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_apply_click, NULL, NULL); // Apply
 	pan_setbutton(panOptionsGraphics, 0, 0, MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_back_click, NULL, NULL); // Back
 
 		// Resolution combobox
@@ -373,17 +371,19 @@ void menu_init() {
 		panOptionsGraphicsAntiAliasing = pan_create("", 11);
 		panOptionsGraphicsAntiAliasing.size_x = 160;
 		panOptionsGraphicsAntiAliasing.size_y = 15;
-		pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 0, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
-		pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 50, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
-		pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 100, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
-		pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 150, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL);
+		pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 0, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, menu_anti_aliasing_click, NULL, NULL);
+		pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 50, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, menu_anti_aliasing_click, NULL, NULL);
+		pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 100, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, menu_anti_aliasing_click, NULL, NULL);
+		pan_setbutton(panOptionsGraphicsAntiAliasing, 0, 4, 150, 0, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, menu_anti_aliasing_click, NULL, NULL);
+		
+		pan_setbutton(panOptionsGraphics, 0, 2, MENU_OPTIONS_CAPTION_POS_X, MENU_BUTTON_SIZE_Y * 7, bmapCheckBoxCheckedOff, bmapCheckBoxUncheckedOff, bmapCheckBoxCheckedOn, bmapCheckBoxUncheckedOn, NULL, NULL, NULL); // Fullscreen		
 		
 	// Audio Options
 	panOptionsAudio = pan_create("", 10);
 	panOptionsAudio.bmap = bmapOptionsBg;
 	// TODO: Should not be necessary!
 	vec_set(panOptionsAudio.size_x, vector(bmap_width(bmapOptionsBg), bmap_height(bmapOptionsBg), 0));
-	pan_setbutton(panOptionsAudio, 0, 0, bmap_width(bmapOptionsBg) - MENU_BUTTON_SIZE_X - MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, NULL, NULL, NULL); // Apply
+	pan_setbutton(panOptionsAudio, 0, 0, bmap_width(bmapOptionsBg) - MENU_BUTTON_SIZE_X - MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_apply_click, NULL, NULL); // Apply
 	pan_setbutton(panOptionsAudio, 0, 0, MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_back_click, NULL, NULL); // Back
 	pan_setslider(panOptionsAudio, 0, MENU_OPTIONS_CAPTION_POS_X, MENU_BUTTON_SIZE_Y * 1, bmapSliderBg, bmapSliderKnob, 0, 100, vNewGameMusicVolume); // Music volume
 	pan_setdigits(panOptionsAudio, 0, MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP, MENU_BUTTON_SIZE_Y * 1, "%.0f", fontMenu, 1, vNewGameMusicVolume); // Show music volume
@@ -397,7 +397,7 @@ void menu_init() {
 	panOptionsInput.bmap = bmapOptionsBg;
 	// TODO: Should not be necessary!
 	vec_set(panOptionsInput.size_x, vector(bmap_width(bmapOptionsBg), bmap_height(bmapOptionsBg), 0));
-	pan_setbutton(panOptionsInput, 0, 0, bmap_width(bmapOptionsBg) - MENU_BUTTON_SIZE_X - MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, NULL, NULL, NULL); // Apply
+	pan_setbutton(panOptionsInput, 0, 0, bmap_width(bmapOptionsBg) - MENU_BUTTON_SIZE_X - MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_apply_click, NULL, NULL); // Apply
 	pan_setbutton(panOptionsInput, 0, 0, MENU_BUTTON_GAP, bmap_height(bmapOptionsBg) - MENU_BUTTON_SIZE_Y - MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_back_click, NULL, NULL); // Back
 	pan_setslider(panOptionsInput, 0, MENU_OPTIONS_CAPTION_POS_X, MENU_BUTTON_SIZE_Y * 1, bmapSliderBg, bmapSliderKnob, 0, 10, vNewGameMouseSensitivity); // Mouse sensitivity
 	pan_setdigits(panOptionsInput, 0, MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP, MENU_BUTTON_SIZE_Y * 1, "%.0f", fontMenu, 1, vNewGameMouseSensitivity); // Show mouse sensitivity
@@ -418,6 +418,7 @@ void menu_init() {
 	txtMenuViolence						= txt_create(1, 11);
 	txtMenuShowDialogs					= txt_create(1, 11);
 	txtMenuShowHints						= txt_create(1, 11);
+	txtMenuFullscreen						= txt_create(1, 11);
 	txtMenuResolutions					= txt_create(1, 11);
 	txtMenuAntialias						= txt_create(1, 11);
 	txtMenuBrightness						= txt_create(1, 11);
@@ -508,6 +509,7 @@ void menu_init() {
 			str_cpy((txtOptionsGraphicsDetailsMedium.pstring)[0], "Medium");
 			str_cpy((txtOptionsGraphicsDetailsHigh.pstring)[0], "High");
 		}
+		str_cpy((txtMenuFullscreen.pstring)[0], "Full screen:");
 	}
 	str_cpy((txtMenuOptionsAudio.pstring)[0], "Audio");
 	{
@@ -572,6 +574,7 @@ void menu_init() {
 			set(txtOptionsGraphicsDetailsMedium, OUTLINE);
 			set(txtOptionsGraphicsDetailsHigh, OUTLINE);
 		}
+		set(txtMenuFullscreen, OUTLINE);
 	}
 	set(txtMenuOptionsAudio, CENTER_X | CENTER_Y | OUTLINE);
 	{
@@ -708,7 +711,8 @@ void menu_show(int _menu) {
 			set(txtMenuDetails, SHOW);
 			set(panOptionsGraphicsDetails, SHOW);
 			set(panOptionsGraphicsAntiAliasing, SHOW);
-			set(txtResCurrent, SHOW);			
+			set(txtResCurrent, SHOW);
+			set(txtMenuFullscreen, SHOW);
 			
 			// Restore values
 			button_state(panOptionsMenu, 2, 1);	
@@ -762,6 +766,13 @@ void menu_show(int _menu) {
 			} else {
 				button_state(panOptionsGraphics, 5, 0);
 			}	
+			
+			vNewGameFullscreen = video_screen;
+			if (vNewGameFullscreen == 1) {
+				button_state(panOptionsGraphics, 6, 1);
+			} else {
+				button_state(panOptionsGraphics, 6, 0);
+			}
 			
 		break;
 		case MENU_OPTIONS_AUDIO:
@@ -832,6 +843,7 @@ void menu_hide() {
 	if (txtMenuBrightness != NULL) reset(txtMenuBrightness, SHOW);
 	if (txtMenuAntialias != NULL) reset(txtMenuAntialias, SHOW);
 	if (txtMenuResolutions != NULL) reset(txtMenuResolutions, SHOW);
+	if (txtMenuFullscreen != NULL) reset(txtMenuFullscreen, SHOW);
 	if (txtMenuOptionsAudio != NULL) reset(txtMenuOptionsAudio, SHOW);
 	if (txtMenuOptionsInput != NULL) reset(txtMenuOptionsInput, SHOW);
 	if (txtMenuNewGame != NULL) reset(txtMenuNewGame, SHOW);
@@ -1104,6 +1116,9 @@ void menu_align(int _menu) {
 				txtOptionsGraphicsAA9x.pos_x = panOptionsGraphicsAntiAliasing.pos_x + 170;
 				txtOptionsGraphicsAA9x.pos_y = panOptionsGraphicsAntiAliasing.pos_y;												
 			}
+			
+			txtMenuFullscreen.pos_x = panOptionsGraphics.pos_x + 10;
+			txtMenuFullscreen.pos_y = panOptionsGraphics.pos_y + MENU_BUTTON_SIZE_Y * 7.1;
 		break;
 		case MENU_OPTIONS_AUDIO:
 			panOptionsAudio.pos_x = panOptionsMenu.pos_x;
@@ -1319,4 +1334,103 @@ void menu_ingame_click(var _button_number, PANEL* _panel) {
 			menu_show(MENU_START);
 		break;
 	}
+}
+
+void menu_apply_click(var _button_number, PANEL* _panel) {
+	
+	if (_panel == panOptionsGame) {
+		
+		// These if comparision serve as method to check, if the
+		// original value has changed. Can be deleted if wanted.
+		if (vNewGameDifficulty != vGameDifficulty) {
+			vGameDifficulty = vNewGameDifficulty;
+		}
+		
+		vNewGameBlood = button_state(panOptionsGame, 1, -1);
+		if (vNewGameBlood != vGameBlood) {
+			vGameBlood = vNewGameBlood;
+		}
+		
+		vNewGameShowDialogs = button_state(panOptionsGame, 2, -1);
+		if (vNewGameShowDialogs != vGameShowDialogs) {
+			vGameShowDialogs = vNewGameShowDialogs;
+		}
+		
+		vNewGameShowHints = button_state(panOptionsGame, 3, -1);
+		if (vNewGameShowHints != vGameShowHints) {
+			vGameShowHints = vNewGameShowHints;
+		}				
+	}
+	
+	if (_panel == panOptionsGraphics) {
+		
+		// Resolution and full screen
+		if (button_state(panOptionsGraphics, 6, -1) == 1) {
+			vNewGameFullscreen = 1;
+		} else {
+			vNewGameFullscreen = 2;
+		}
+		if ((vNewGameResolution != video_mode) || (vNewGameFullscreen != video_screen)) {
+			video_switch(vNewGameResolution, 0, vNewGameFullscreen);
+		}
+		
+		// Anti aliasing
+		if (vNewGameAntiAlias != d3d_antialias) {
+			d3d_antialias = vNewGameAntiAlias;
+			// ToDo: Requires game restart
+		}
+		
+		// Brightness
+		if (vNewGameBrightness != video_gamma) {
+			video_gamma = vNewGameBrightness;
+		}
+		
+		vNewGameShaders = button_state(panOptionsGraphics, 4, -1);
+		if (vNewGameShaders != d3d_shaderversion) {
+			if (vNewGameShaders == 0) {
+				d3d_shaderversion = 0;
+			} else {
+				d3d_shaderversion = vInitialShaderVersion;
+			}
+		}
+		
+		vNewGameShadows = button_state(panOptionsGraphics, 5, -1);
+		if (vNewGameShadows == 1) {
+			vNewGameShadows = 2;
+		} else {
+			vNewGameShadows = -1;
+		}
+		if (vNewGameShadows != shadow_stencil) {
+			shadow_stencil = vNewGameShadows;
+		}		
+		
+		if (vNewGameDetails != vGameDetails) {
+			vGameDetails = vNewGameDetails;
+		}
+	}
+	
+	if (_panel == panOptionsAudio) {
+		printf("audio");
+	}
+	
+	if (_panel == panOptionsInput) {
+		printf("input");
+	}
+}
+
+void menu_difficulty_click(var _button_number, PANEL* _panel) {
+	vNewGameDifficulty = _button_number;
+}
+
+void menu_anti_aliasing_click(var _button_number, PANEL* _panel) {
+	switch(_button_number) {
+		case 1: vNewGameAntiAlias = 0; break;
+		case 2: vNewGameAntiAlias = 1; break;
+		case 3: vNewGameAntiAlias = 4; break;
+		case 4: vNewGameAntiAlias = 9; break;
+	}
+}
+
+void menu_details_click(var _button_number, PANEL* _panel) {
+	vNewGameDetails = _button_number;
 }

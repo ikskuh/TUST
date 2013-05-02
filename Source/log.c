@@ -1,5 +1,5 @@
-#ifndef DEBUG_C
-#define DEBUG_C
+#ifndef _DEBUG_C_
+#define _DEBUG_C_
 
 // Creating an HTML header
 void log_write_header() {
