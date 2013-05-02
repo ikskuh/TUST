@@ -527,7 +527,7 @@ void menu_init() {
 	str_cpy((txtMenuReturnToWin.pstring)[0], "Return to windows");
 	str_cpy((txtMenuBack.pstring)[0], "Back");
 	
-	wait(1); // Needed so that center_x and center_y work
+	//wait(1); // Needed so that center_x and center_y work
 	
 	set(txtMenuNewGame, CENTER_X | CENTER_Y | OUTLINE);
 	set(txtMenuContinueGame, CENTER_X | CENTER_Y | OUTLINE);
@@ -592,7 +592,7 @@ void menu_init() {
 	set(txtMenuReturnToWin, CENTER_X | CENTER_Y | OUTLINE);
 	set(txtMenuBack, CENTER_X | CENTER_Y | OUTLINE);
 	
-	
+	menu_message_box_init();
 	menu_center();
 }
 
@@ -1211,16 +1211,126 @@ void menu_set_pos(int _x, int _y) {
 	}	
 }
 
-void menu_show_message(STRING* _msg) {
+void menu_message_box_init() {
+	// Message box background
+	panMessageBoxBg = pan_create("", 99);
+	set(panMessageBoxBg, LIGHT | TRANSLUCENT);
+	panMessageBoxBg.alpha = 70;
+	vec_set(panMessageBoxBg.blue, vector(30,30,30));
 	
+	// Message box text
+	txtMessageBoxCaption = txt_create(1, 101);
+	set(txtMessageBoxCaption, OUTLINE);
+	
+	// Buttons
+	txtMessageBoxBtn1 = txt_create(1, 101);
+	set(txtMessageBoxBtn1, OUTLINE);
+	txtMessageBoxBtn2 = txt_create(1, 101);
+	set(txtMessageBoxBtn2, OUTLINE);
 }
 
-void menu_show_message_fullscreen(STRING* _msg) {
+void menu_show_message(STRING* _msg, STRING* _button) {
 	
+	// ToDo: Debug
+	if (panMessageBoxBg == NULL) {
+		printf("Please init menu first!");
+		return;
+	}
+	
+	// Already a message box showing?
+	if (is(panMessageBoxBg, SHOW)) {
+		printf("There is already a message box!");
+		return;
+	}
+	
+	panMessageBoxBg.size_x = screen_size.x;
+	panMessageBoxBg.size_y = screen_size.y;
+	
+	// Needs to be recreated due to button count
+	if (panMessageBox != NULL) ptr_remove(panMessageBox);
+	panMessageBox = pan_create("", 100);
+	set(panMessageBox, LIGHT);
+	vec_set(panMessageBox.blue, vector(10,10,10));
+	panMessageBox.size_x = 400;
+	panMessageBox.size_y = 100;
+	//pan_setbutton(panMessageBox, 0, 1, MENU_BUTTON_GAP, 100-MENU_BUTTON_SIZE_Y-MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_message_box_click, NULL, NULL);
+	//pan_setbutton(panMessageBox, 0, 1, 400 - MENU_BUTTON_GAP - MENU_BUTTON_SIZE_X, 100-MENU_BUTTON_SIZE_Y-MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_message_box_click, NULL, NULL);
+	
+	pan_setbutton(panMessageBox, 0, 1, 200 - MENU_BUTTON_SIZE_X / 2, 100-MENU_BUTTON_SIZE_Y-MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_message_box_click, NULL, NULL);
+	pan_setcolor(panMessageBox, 3, 1, vector(255,255,255));
+	//pan_setcolor(panMessageBox, 3, 2, vector(255,255,255));
+	panMessageBox.pos_x = screen_size.x / 2 - panMessageBox.size_x / 2;
+	panMessageBox.pos_y = screen_size.y / 2 - panMessageBox.size_y / 2;
+	
+	str_cpy((txtMessageBoxBtn1.pstring)[0], _button);
+	
+	str_cpy((txtMessageBoxCaption.pstring)[0], _msg);
+	txtMessageBoxCaption.pos_x = panMessageBox.pos_x + 200;
+	txtMessageBoxCaption.pos_y = panMessageBox.pos_y + 30;
+	//vec_set(txtMessageBoxCaption.pos_x, vector(screen_size.x / 2, panMessageBox.pos_y + MENU_BUTTON_GAP, 0));
+	
+	str_cpy((txtMessageBoxBtn1.pstring)[0], "Okay");
+	txtMessageBoxBtn1.pos_x = panMessageBox.pos_x + 200;
+	txtMessageBoxBtn1.pos_y = panMessageBox.pos_y + 100 - MENU_BUTTON_SIZE_Y / 2 - MENU_BUTTON_GAP;
+	
+	// Show them all
+	set(panMessageBoxBg, SHOW);
+	set(panMessageBox, SHOW);
+	set(txtMessageBoxCaption, SHOW | CENTER_X | CENTER_Y);
+	set(txtMessageBoxBtn1, SHOW | CENTER_X | CENTER_Y);
 }
 
 int menu_show_choice_message(STRING* _msg, STRING* _button1, STRING* _button2) {
+	// ToDo: Debug
+	if (panMessageBoxBg == NULL) {
+		printf("Please init menu first!");
+		return;
+	}
 	
+	// Already a message box showing?
+	if (is(panMessageBoxBg, SHOW)) {
+		printf("There is already a message box!");
+		return;
+	}	
+	
+	panMessageBoxBg.size_x = screen_size.x;
+	panMessageBoxBg.size_y = screen_size.y;
+	
+	// Needs to be recreated due to button count
+	if (panMessageBox != NULL) ptr_remove(panMessageBox);
+	panMessageBox = pan_create("", 100);
+	set(panMessageBox, LIGHT);
+	vec_set(panMessageBox.blue, vector(10,10,10));
+	panMessageBox.size_x = 400;
+	panMessageBox.size_y = 100;
+	pan_setbutton(panMessageBox, 0, 1, MENU_BUTTON_GAP, 100-MENU_BUTTON_SIZE_Y-MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_message_box_click, NULL, NULL);
+	pan_setbutton(panMessageBox, 0, 1, 400 - MENU_BUTTON_GAP - MENU_BUTTON_SIZE_X, 100-MENU_BUTTON_SIZE_Y-MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_message_box_click, NULL, NULL);
+	pan_setcolor(panMessageBox, 3, 1, vector(255,255,255));
+	pan_setcolor(panMessageBox, 3, 2, vector(255,255,255));
+	panMessageBox.pos_x = screen_size.x / 2 - panMessageBox.size_x / 2;
+	panMessageBox.pos_y = screen_size.y / 2 - panMessageBox.size_y / 2;
+	
+	str_cpy((txtMessageBoxBtn1.pstring)[0], _button1);
+	str_cpy((txtMessageBoxBtn2.pstring)[0], _button2);
+	
+	str_cpy((txtMessageBoxCaption.pstring)[0], _msg);
+	txtMessageBoxCaption.pos_x = panMessageBox.pos_x + 200;
+	txtMessageBoxCaption.pos_y = panMessageBox.pos_y + 30;
+	
+	str_cpy((txtMessageBoxBtn1.pstring)[0], _button1);
+	txtMessageBoxBtn1.pos_x = panMessageBox.pos_x + MENU_BUTTON_GAP + MENU_BUTTON_SIZE_X / 2;
+	txtMessageBoxBtn1.pos_y = panMessageBox.pos_y + 100 - MENU_BUTTON_SIZE_Y / 2 - MENU_BUTTON_GAP;
+	
+	str_cpy((txtMessageBoxBtn2.pstring)[0], _button2);
+	txtMessageBoxBtn2.pos_x = panMessageBox.pos_x + 400 - MENU_BUTTON_GAP - MENU_BUTTON_SIZE_X / 2;
+	txtMessageBoxBtn2.pos_y = panMessageBox.pos_y + 100 - MENU_BUTTON_SIZE_Y / 2 - MENU_BUTTON_GAP;
+	
+	// Show them all
+	set(panMessageBoxBg, SHOW);
+	set(panMessageBox, SHOW);
+	set(txtMessageBoxCaption, SHOW | CENTER_X | CENTER_Y);
+	set(txtMessageBoxBtn1, SHOW | CENTER_X | CENTER_Y);
+	set(txtMessageBoxBtn2, SHOW | CENTER_X | CENTER_Y);
 }
 
 // Internal functions
@@ -1410,11 +1520,25 @@ void menu_apply_click(var _button_number, PANEL* _panel) {
 	}
 	
 	if (_panel == panOptionsAudio) {
-		printf("audio");
+		
+		if (vNewGameMusicVolume != vGameMusicVolume) {
+			vGameMusicVolume = vNewGameMusicVolume;
+		}
+		
+		if (vNewGameSpeechVolume != vGameSpeechVolume) {
+			vGameSpeechVolume = vNewGameSpeechVolume;
+		}
+		
+		if (vNewGameEffectsVolume != vGameEffectsVolume) {
+			vGameEffectsVolume = vNewGameEffectsVolume;
+		}
 	}
 	
 	if (_panel == panOptionsInput) {
-		printf("input");
+		
+		if (vNewGameMouseSensitivity != vGameMouseSensitivity) {
+			vGameMouseSensitivity = vNewGameMouseSensitivity;
+		}
 	}
 }
 
@@ -1433,4 +1557,14 @@ void menu_anti_aliasing_click(var _button_number, PANEL* _panel) {
 
 void menu_details_click(var _button_number, PANEL* _panel) {
 	vNewGameDetails = _button_number;
+}
+
+void menu_message_box_click(var _button_number, PANEL* _panel) {
+	
+	// Hide message box
+	reset(panMessageBoxBg, SHOW);
+	reset(panMessageBox, SHOW);
+	reset(txtMessageBoxCaption, SHOW | CENTER_X | CENTER_Y);
+	reset(txtMessageBoxBtn1, SHOW | CENTER_X | CENTER_Y);
+	reset(txtMessageBoxBtn2, SHOW | CENTER_X | CENTER_Y);
 }

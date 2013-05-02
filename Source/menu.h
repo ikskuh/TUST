@@ -131,6 +131,12 @@ TEXT* txtMenuReturnToWin		= NULL;
 TEXT* txtMenuBack					= NULL;
 TEXT** txtMenuSaveGameTitles	= NULL;
 
+PANEL* panMessageBoxBg			= NULL;
+PANEL* panMessageBox				= NULL;
+TEXT* txtMessageBoxCaption		= NULL;
+TEXT* txtMessageBoxBtn1			= NULL;
+TEXT* txtMessageBoxBtn2			= NULL;
+
 
 // Variables to hold a game state until changes are applied
 var vNewGameDifficulty			= 0;
@@ -194,16 +200,11 @@ void menu_center();
 void menu_set_pos(int _x, int _y);
 
 /**
- * Shows a message box with one button
- * \param	STRING*	Message to be shown
- */
-void menu_show_message(STRING* _msg);
-
-/**
  * Shows a message window that covers all other elements on screen.
  * \param	STRING*	Message to be shown
+ * \param	STRING* 	Message on the button
  */
-void menu_show_message_fullscreen(STRING* _msg);
+void menu_show_message(STRING* _msg, STRING* _button);
 
 /**
  * Shows a message box with 2 choices
@@ -286,6 +287,18 @@ void menu_anti_aliasing_click(var _button_number, PANEL* _panel);
  * \param	PANEL*	Panel that contains the button
  */
 void menu_details_click(var _button_number, PANEL* _panel);
+
+/**
+ * Initializes message boxes (is called in menu_init())
+ */
+void menu_message_box_init();
+
+/**
+ * A button on of of the message boxes was clicked
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_message_box_click(var _button_number, PANEL* _panel);
 
 #include "menu.c"
 #endif
