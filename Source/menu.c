@@ -391,6 +391,9 @@ void menu_init() {
 	pan_setdigits(panOptionsAudio, 0, MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP, MENU_BUTTON_SIZE_Y * 2, "%.0f", fontMenu, 1, vNewGameSpeechVolume); // Show speech volume
 	pan_setslider(panOptionsAudio, 0, MENU_OPTIONS_CAPTION_POS_X, MENU_BUTTON_SIZE_Y * 3, bmapSliderBg, bmapSliderKnob, 0, 100, vNewGameEffectsVolume); // Effects volume	
 	pan_setdigits(panOptionsAudio, 0, MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP, MENU_BUTTON_SIZE_Y * 3, "%.0f", fontMenu, 1, vNewGameEffectsVolume); // Show effects volume
+	pan_setbutton(panOptionsAudio, 0, 0, MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP * 6, MENU_BUTTON_SIZE_Y * 1, bmapCheckBoxUncheckedOn, bmapCheckBoxUncheckedOff, bmapCheckBoxUncheckedOn, bmapCheckBoxUncheckedOff, menu_audio_test_box_click, NULL, NULL);
+	pan_setbutton(panOptionsAudio, 0, 0, MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP * 6, MENU_BUTTON_SIZE_Y * 2, bmapCheckBoxUncheckedOn, bmapCheckBoxUncheckedOff, bmapCheckBoxUncheckedOn, bmapCheckBoxUncheckedOff, menu_audio_test_box_click, NULL, NULL);
+	pan_setbutton(panOptionsAudio, 0, 0, MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP * 6, MENU_BUTTON_SIZE_Y * 3, bmapCheckBoxUncheckedOn, bmapCheckBoxUncheckedOff, bmapCheckBoxUncheckedOn, bmapCheckBoxUncheckedOff, menu_audio_test_box_click, NULL, NULL);
 	
 	// Input Options
 	panOptionsInput = pan_create("", 10);
@@ -455,6 +458,10 @@ void menu_init() {
 	txtMenuSpeechVolume					= txt_create(1, 11);
 	txtMenuEffectsVolume					= txt_create(1, 11);
 	
+	txtMenuMusicVolumeTest				= txt_create(1, 11);
+	txtMenuSpeechVolumeTest				= txt_create(1, 11);
+	txtMenuEffectsVolumeTest			= txt_create(1, 11);
+	
 	txtMenuMouseSensivity				= txt_create(1, 11);
 	
 	txtMenuSaveGameTitles = sys_malloc(sizeof(TEXT*)*6);
@@ -516,6 +523,10 @@ void menu_init() {
 		str_cpy((txtMenuMusicVolume.pstring)[0], "Music volume:");
 		str_cpy((txtMenuSpeechVolume.pstring)[0], "Speech volume:");
 		str_cpy((txtMenuEffectsVolume.pstring)[0], "Effects volume:");
+		
+		str_cpy((txtMenuMusicVolumeTest.pstring)[0], "P");
+		str_cpy((txtMenuSpeechVolumeTest.pstring)[0], "P");
+		str_cpy((txtMenuEffectsVolumeTest.pstring)[0], "P");
 	}
 	str_cpy((txtMenuOptionsInput.pstring)[0], "Keyboard & Mouse");
 	{
@@ -581,6 +592,10 @@ void menu_init() {
 		set(txtMenuMusicVolume, OUTLINE);
 		set(txtMenuSpeechVolume, OUTLINE);
 		set(txtMenuEffectsVolume, OUTLINE);
+		
+		set(txtMenuMusicVolumeTest, OUTLINE | CENTER_X | CENTER_Y);
+		set(txtMenuSpeechVolumeTest, OUTLINE | CENTER_X | CENTER_Y);
+		set(txtMenuEffectsVolumeTest, OUTLINE | CENTER_X | CENTER_Y);
 	}
 	set(txtMenuOptionsInput, CENTER_X | CENTER_Y | OUTLINE);
 	{
@@ -788,6 +803,9 @@ void menu_show(int _menu) {
 			set(txtMenuMusicVolume, SHOW);
 			set(txtMenuSpeechVolume, SHOW);
 			set(txtMenuEffectsVolume, SHOW);
+			set(txtMenuMusicVolumeTest, SHOW);
+			set(txtMenuSpeechVolumeTest, SHOW);
+			set(txtMenuEffectsVolumeTest, SHOW);
 			
 			// Restore values
 			button_state(panOptionsMenu, 3, 1);				
@@ -877,6 +895,9 @@ void menu_hide() {
 	if (txtMenuMusicVolume != NULL) reset(txtMenuMusicVolume, SHOW);
 	if (txtMenuSpeechVolume != NULL) reset(txtMenuSpeechVolume, SHOW);
 	if (txtMenuEffectsVolume != NULL) reset(txtMenuEffectsVolume, SHOW);
+	if (txtMenuMusicVolumeTest != NULL) reset(txtMenuMusicVolumeTest, SHOW);
+	if (txtMenuSpeechVolumeTest != NULL) reset(txtMenuSpeechVolumeTest, SHOW);
+	if (txtMenuEffectsVolumeTest != NULL) reset(txtMenuEffectsVolumeTest, SHOW);
 	
 	if (txtMenuMouseSensivity != NULL) reset(txtMenuMouseSensivity, SHOW);
 	
@@ -1149,7 +1170,16 @@ void menu_align(int _menu) {
 			txtMenuSpeechVolume.pos_y = panOptionsAudio.pos_y + MENU_BUTTON_SIZE_Y * 2.1;
 			
 			txtMenuEffectsVolume.pos_x = panOptionsAudio.pos_x + 10;
-			txtMenuEffectsVolume.pos_y = panOptionsAudio.pos_y + MENU_BUTTON_SIZE_Y * 3.1;						
+			txtMenuEffectsVolume.pos_y = panOptionsAudio.pos_y + MENU_BUTTON_SIZE_Y * 3.1;
+			
+			txtMenuMusicVolumeTest.pos_x = panOptionsAudio.pos_x + MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP * 6 + MENU_CHECKBOX_SIZE_X / 2;				
+			txtMenuMusicVolumeTest.pos_y = panOptionsAudio.pos_y + MENU_BUTTON_SIZE_Y * 1 + MENU_CHECKBOX_SIZE_Y / 2;
+			
+			txtMenuSpeechVolumeTest.pos_x = panOptionsAudio.pos_x + MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP * 6 + MENU_CHECKBOX_SIZE_X / 2;
+			txtMenuSpeechVolumeTest.pos_y = panOptionsAudio.pos_y + MENU_BUTTON_SIZE_Y * 2 + MENU_CHECKBOX_SIZE_Y / 2;
+			
+			txtMenuEffectsVolumeTest.pos_x = panOptionsAudio.pos_x + MENU_OPTIONS_CAPTION_POS_X + MENU_SLIDER_SIZE_X + MENU_BUTTON_GAP * 6 + MENU_CHECKBOX_SIZE_X / 2;				
+			txtMenuEffectsVolumeTest.pos_y = panOptionsAudio.pos_y + MENU_BUTTON_SIZE_Y * 3 + MENU_CHECKBOX_SIZE_Y / 2;
 		break;
 		case MENU_OPTIONS_INPUT:
 			panOptionsInput.pos_x = panOptionsMenu.pos_x;
@@ -1567,4 +1597,18 @@ void menu_message_box_click(var _button_number, PANEL* _panel) {
 	reset(txtMessageBoxCaption, SHOW | CENTER_X | CENTER_Y);
 	reset(txtMessageBoxBtn1, SHOW | CENTER_X | CENTER_Y);
 	reset(txtMessageBoxBtn2, SHOW | CENTER_X | CENTER_Y);
+}
+
+void menu_audio_test_box_click(var _button_number, PANEL* _panel) {
+	switch(_button_number) {
+		case 3:
+			snd_play(sndMusicTest, vNewGameMusicVolume, 0);
+		break;
+		case 4:
+			snd_play(sndSpeechTest, vNewGameSpeechVolume, 0);
+		break;
+		case 5:
+			snd_play(sndEffectsTest, vNewGameEffectsVolume, 0);
+		break;
+	}
 }

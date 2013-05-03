@@ -120,8 +120,11 @@ TEXT* txtMenuOptions				= NULL;
 		TEXT* txtMenuDetails					= NULL;
 	TEXT* txtMenuOptionsAudio		= NULL;
 		TEXT* txtMenuMusicVolume			= NULL;
+		TEXT* txtMenuMusicVolumeTest		= NULL;
 		TEXT* txtMenuSpeechVolume			= NULL;
+		TEXT* txtMenuSpeechVolumeTest		= NULL;
 		TEXT* txtMenuEffectsVolume			= NULL;
+		TEXT* txtMenuEffectsVolumeTest	= NULL;
 	TEXT* txtMenuOptionsInput		= NULL;
 		TEXT* txtMenuMouseSensivity	= NULL;
 TEXT* txtMenuOptionsApply		= NULL;
@@ -136,6 +139,10 @@ PANEL* panMessageBox				= NULL;
 TEXT* txtMessageBoxCaption		= NULL;
 TEXT* txtMessageBoxBtn1			= NULL;
 TEXT* txtMessageBoxBtn2			= NULL;
+
+SOUND* sndMusicTest				= "..\\Ressources\\Audio\\Sounds\\beep1.wav";
+SOUND* sndSpeechTest				= "..\\Ressources\\Audio\\Sounds\\beep1.wav";
+SOUND* sndEffectsTest			= "..\\Ressources\\Audio\\Sounds\\beep1.wav";
 
 
 // Variables to hold a game state until changes are applied
@@ -299,6 +306,13 @@ void menu_message_box_init();
  * \param	PANEL*	Panel that contains the button
  */
 void menu_message_box_click(var _button_number, PANEL* _panel);
+
+/**
+ * A button on of of the audio test boxes was clicked
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_audio_test_box_click(var _button_number, PANEL* _panel);
 
 #include "menu.c"
 #endif
