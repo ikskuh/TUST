@@ -18,6 +18,8 @@
 #define MENU_CHECKBOX_SIZE_Y 15
 #define MENU_COMBOBOX_SIZE_X 200			// Size of the combobox
 #define MENU_COMBOBOX_SIZE_Y 15
+#define MENU_KEY_BUTTON_SIZE_X 180		// Button to change the key code
+#define MENU_KEY_BUTTON_SIZE_Y 15
 
 #define MENU_BUTTON_GAP 5					// GAPS (X,Y) between buttons in the menues
 #define MENU_OPTIONS_SIZE_X -1			// Size of the entire options menu. -1 = Same size as Options choice bar
@@ -41,8 +43,10 @@
 
 FONT* fontMenu = "Arial#12b";
 
-int nCurrentMenu = 0;
-int nMenuVisible = 0;
+int nCurrentMenu			= 0;
+int nMenuVisible			= 0;
+
+int nMessageBoxResult	= 0;
 
 BMAP* bmapMenuButtonOn			= NULL;
 BMAP* bmapMenuButtonOff			= NULL;
@@ -62,6 +66,9 @@ BMAP* bmapCheckBoxCheckedOn	= NULL;
 BMAP* bmapCheckBoxCheckedOff	= NULL;
 BMAP* bmapCheckBoxUncheckedOn	= NULL;
 BMAP* bmapCheckBoxUncheckedOff= NULL;
+
+BMAP* bmapKeyButtonOn			= NULL;
+BMAP* bmapKeyButtonOff			= NULL;
 
 PANEL* panStartMenu				= NULL;
 PANEL* panInGameMenu				= NULL;
@@ -96,6 +103,9 @@ PANEL* panOptionsInput			= NULL;
 PANEL* panGraphicMenu			= NULL;
 PANEL* panAudioMenu				= NULL;
 PANEL* panInputMenu				= NULL;
+	PANEL* panInputMenuKeys		= NULL;
+	TEXT** txtInputMenuKeyNames= NULL;
+	TEXT** txtInputMenuKeyValues= NULL;
 PANEL* panCreditsMenu			= NULL;
 
 TEXT* txtMenuNewGame				= NULL;
@@ -209,7 +219,7 @@ void menu_set_pos(int _x, int _y);
 /**
  * Shows a message window that covers all other elements on screen.
  * \param	STRING*	Message to be shown
- * \param	STRING* 	Message on the button
+ * \param	STRING* 	Message on the button (If NULL, no button is shown)
  */
 void menu_show_message(STRING* _msg, STRING* _button);
 
@@ -221,6 +231,23 @@ void menu_show_message(STRING* _msg, STRING* _button);
  * \return			0 if first button was clicked, 1 if second
  */
 int menu_show_choice_message(STRING* _msg, STRING* _button1, STRING* _button2);
+
+/**
+ * Hide the message box programatically
+ */
+void menu_hide_message();
+
+/**
+ * Is a messaage box visible?
+ * \return	0 if messagebox is not visible, 1 if it is
+ */
+int menu_message_visible();
+
+/**
+ * Get the last message box result
+ * \return	1 if first key pressed, 2 if second, 0 if message box was closed
+ */
+int menu_message_result();
 
 
 
@@ -313,6 +340,13 @@ void menu_message_box_click(var _button_number, PANEL* _panel);
  * \param	PANEL*	Panel that contains the button
  */
 void menu_audio_test_box_click(var _button_number, PANEL* _panel);
+
+/**
+ * Change an input key
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_input_key_click(var _button_number, PANEL* _panel);
 
 #include "menu.c"
 #endif
