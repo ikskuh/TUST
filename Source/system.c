@@ -12,27 +12,27 @@
 	on_close = sys_close;
 
 	// Dynamic key settings
-	nUpKey 					= key_for_str("w");
-	nDownKey 				= key_for_str("s");
-	nLeftKey 				= key_for_str("a");
-	nRightKey 				= key_for_str("d");
-	nJumpKey					= key_for_str("space");
-	nRunKey 					= key_for_str("shiftl");
-	nCrouchKey				= key_for_str("ctrl");
-	nInteractKey 			= key_for_str("e");
-	nChangeWeaponUpKey 	= key_for_str("pgup");
-	nChangeWeaponDownKey = key_for_str("pgdn");
-	nCharacterMenuKey		= key_for_str("c");
-	nESCKey					= key_for_str("esc");
-	nQuestsKey				= key_for_str("q");
-	nMapKey					= key_for_str("m");
-	nFire1Key				= key_for_str("o");
-	nFire2Key				= key_for_str("p");
+	nUpKey 					= key_for_str_ext("w");
+	nDownKey 				= key_for_str_ext("s");
+	nLeftKey 				= key_for_str_ext("a");
+	nRightKey 				= key_for_str_ext("d");
+	nJumpKey					= key_for_str_ext("space");
+	nRunKey 					= key_for_str_ext("shiftl");
+	nCrouchKey				= key_for_str_ext("ctrl");
+	nInteractKey 			= key_for_str_ext("e");
+	nChangeWeaponUpKey 	= key_for_str_ext("pgup");
+	nChangeWeaponDownKey = key_for_str_ext("pgdn");
+	nCharacterMenuKey		= key_for_str_ext("c");
+	nESCKey					= key_for_str_ext("esc");
+	nQuestsKey				= key_for_str_ext("q");
+	nMapKey					= key_for_str_ext("m");
+	nFire1Key				= key_for_str_ext("mouse_left");
+	nFire2Key				= key_for_str_ext("mouse_right");
 
-	n1Key						= key_for_str("1");
-	n2Key						= key_for_str("2");
-	n3Key						= key_for_str("3");
-	n4Key						= key_for_str("4");
+	n1Key						= key_for_str_ext("1");
+	n2Key						= key_for_str_ext("2");
+	n3Key						= key_for_str_ext("3");
+	n4Key						= key_for_str_ext("4");
 }
 
 void sys_close() {
@@ -54,13 +54,55 @@ void sys_keys_check() {
 	nESC					= key_pressed(nESCKey);
 	nQuests				= key_pressed(nQuestsKey);
 	nMap					= key_pressed(nMapKey);
-	nFire1				= key_pressed(nFire1Key) || mouse_left;
-	nFire2				= key_pressed(nFire2Key) || mouse_right;
+	nFire1				= key_pressed(nFire1Key);
+	nFire2				= key_pressed(nFire2Key);
 
 	n1						= key_pressed(n1Key);
 	n2						= key_pressed(n2Key);
 	n3						= key_pressed(n3Key);
 	n4						= key_pressed(n4Key);
+}
+
+void sys_change_resolution(var _res, var _fullscreen) {
+	video_switch(_res, 0, _fullscreen);
+	menu_center();
+}
+
+STRING* str_for_key_ext(STRING* _target, var _key) {
+	
+	STRING* strNewKey = str_create("");
+	switch(_key) {
+		case 280: str_cpy(strNewKey, "mouse_left"); break;
+		case 281: str_cpy(strNewKey, "mouse_right"); break;
+		case 282: str_cpy(strNewKey, "mouse_middle"); break;
+		default: str_for_key(strNewKey, _key); break;
+	}
+	
+	if (_target == NULL) {
+		return strNewKey;
+	} else {
+		str_cpy(_target, strNewKey);
+		return NULL;
+	}
+}
+
+var key_for_str_ext(STRING* _code) {
+	if (_code == NULL) return -1;
+	if (str_cmp(_code, "mouse_left")) return 280;
+	if (str_cmp(_code, "mouse_right")) return 281;
+	if (str_cmp(_code, "mouse_middle")) return 282;
+	return key_for_str(_code);
+}
+
+var sys_key_used(var _key) {
+	
+	if ((nUpKey == _key) || (nDownKey == _key) || (nLeftKey == _key) || (nRightKey == _key) || (nRunKey == _key) || (nCrouchKey == _key) ||
+		(nInteractKey == _key) || (nChangeWeaponUpKey == _key) || (nChangeWeaponDownKey == _key) || (nCharacterMenuKey == _key) ||
+		(nQuestsKey == _key) || (nMapKey == _key) || (nFire1Key == _key) || (nFire2Key == _key) || (nJumpKey == _key)) {
+			return 1;
+		} else {
+			return 0;
+		}
 }
 
 #endif

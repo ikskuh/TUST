@@ -137,6 +137,7 @@ TEXT* txtMenuOptions				= NULL;
 		TEXT* txtMenuEffectsVolumeTest	= NULL;
 	TEXT* txtMenuOptionsInput		= NULL;
 		TEXT* txtMenuMouseSensivity	= NULL;
+		TEXT* txtMenuInputDefaults		= NULL;
 TEXT* txtMenuOptionsApply		= NULL;
 TEXT* txtMenuCredits				= NULL;
 TEXT* txtMenuExitGame			= NULL;
@@ -347,6 +348,13 @@ void menu_audio_test_box_click(var _button_number, PANEL* _panel);
  * \param	PANEL*	Panel that contains the button
  */
 void menu_input_key_click(var _button_number, PANEL* _panel);
+
+/**
+ * Reset input keys to default
+ * \param	var	Button number of clicked button
+ * \param	PANEL*	Panel that contains the button
+ */
+void menu_input_key_defaults_click(var _button_number, PANEL* _panel);
 
 #include "menu.c"
 #endif

@@ -450,6 +450,8 @@ void menu_init() {
 		pan_setbutton(panInputMenuKeys, 0, 0, 0, txtInputMenuKeyNames[i].font.dy * (i*1.7+2), bmapKeyButtonOn, bmapKeyButtonOff, bmapKeyButtonOn, bmapKeyButtonOff, menu_input_key_click, NULL, NULL);
 	}
 	
+	pan_setbutton(panInputMenuKeys, 0, 0, 0, txtInputMenuKeyNames[0].font.dy * (16*1.7+2), bmapKeyButtonOn, bmapKeyButtonOff, bmapKeyButtonOn, bmapKeyButtonOff, menu_input_key_defaults_click, NULL, NULL);
+	
 	
 	// Create texts
 	txtMenuNewGame							= txt_create(1, 11);
@@ -508,6 +510,7 @@ void menu_init() {
 	txtMenuEffectsVolumeTest			= txt_create(1, 11);
 	
 	txtMenuMouseSensivity				= txt_create(1, 11);
+	txtMenuInputDefaults					= txt_create(1, 12);
 	
 	str_cpy((txtInputMenuKeyNames[0].pstring)[0], "Forward");
 	str_cpy((txtInputMenuKeyNames[1].pstring)[0], "Backward");
@@ -592,6 +595,7 @@ void menu_init() {
 	str_cpy((txtMenuOptionsInput.pstring)[0], "Keyboard & Mouse");
 	{
 		str_cpy((txtMenuMouseSensivity.pstring)[0], "Mouse sensitivity");
+		str_cpy((txtMenuInputDefaults.pstring)[0], "Reset to defaults");
 	}
 	str_cpy((txtMenuOptionsApply.pstring)[0], "Apply");
 	str_cpy((txtMenuCredits.pstring)[0], "Credits");
@@ -661,6 +665,7 @@ void menu_init() {
 	set(txtMenuOptionsInput, CENTER_X | CENTER_Y | OUTLINE);
 	{
 		set(txtMenuMouseSensivity, OUTLINE);
+		set(txtMenuInputDefaults, OUTLINE | CENTER_X);
 	}
 	set(txtMenuOptionsApply, CENTER_X | CENTER_Y | OUTLINE);
 	set(txtMenuCredits, CENTER_X | CENTER_Y | OUTLINE);
@@ -886,6 +891,7 @@ void menu_show(int _menu) {
 			set(txtMenuBack, SHOW);	
 			set(txtMenuMouseSensivity, SHOW);
 			set(panInputMenuKeys, SHOW);
+			set(txtMenuInputDefaults, SHOW);
 
 			// Set input button to be checked
 			button_state(panOptionsMenu, 4, 1);				
@@ -897,24 +903,22 @@ void menu_show(int _menu) {
 			}
 				
 			// Set keys to current layout
-			str_cpy((txtInputMenuKeyValues[0].pstring)[0], str_for_key(NULL, nUpKey));
-			str_cpy((txtInputMenuKeyValues[1].pstring)[0], str_for_key(NULL, nDownKey));
-			str_cpy((txtInputMenuKeyValues[2].pstring)[0], str_for_key(NULL, nLeftKey));
-			str_cpy((txtInputMenuKeyValues[3].pstring)[0], str_for_key(NULL, nRightKey));
-			str_cpy((txtInputMenuKeyValues[4].pstring)[0], str_for_key(NULL, nRunKey));
-			str_cpy((txtInputMenuKeyValues[5].pstring)[0], str_for_key(NULL, nJumpKey));
-			str_cpy((txtInputMenuKeyValues[6].pstring)[0], str_for_key(NULL, nCrouchKey));
-			str_cpy((txtInputMenuKeyValues[7].pstring)[0], str_for_key(NULL, nInteractKey));
-			str_cpy((txtInputMenuKeyValues[8].pstring)[0], str_for_key(NULL, nQuestsKey));
-			str_cpy((txtInputMenuKeyValues[9].pstring)[0], str_for_key(NULL, nMapKey));
-			str_cpy((txtInputMenuKeyValues[10].pstring)[0], str_for_key(NULL, nCharacterMenuKey));
-			str_cpy((txtInputMenuKeyValues[11].pstring)[0], str_for_key(NULL, nFire1Key));
-			str_cat((txtInputMenuKeyValues[11].pstring)[0], " and mouse_left");
-			str_cpy((txtInputMenuKeyValues[12].pstring)[0], str_for_key(NULL, nFire2Key));
-			str_cat((txtInputMenuKeyValues[12].pstring)[0], " and mouse_right");
-			str_cpy((txtInputMenuKeyValues[13].pstring)[0], str_for_key(NULL, nChangeWeaponUpKey));
+			str_cpy((txtInputMenuKeyValues[0].pstring)[0], str_for_key_ext(NULL, nUpKey));
+			str_cpy((txtInputMenuKeyValues[1].pstring)[0], str_for_key_ext(NULL, nDownKey));
+			str_cpy((txtInputMenuKeyValues[2].pstring)[0], str_for_key_ext(NULL, nLeftKey));
+			str_cpy((txtInputMenuKeyValues[3].pstring)[0], str_for_key_ext(NULL, nRightKey));
+			str_cpy((txtInputMenuKeyValues[4].pstring)[0], str_for_key_ext(NULL, nRunKey));
+			str_cpy((txtInputMenuKeyValues[5].pstring)[0], str_for_key_ext(NULL, nJumpKey));
+			str_cpy((txtInputMenuKeyValues[6].pstring)[0], str_for_key_ext(NULL, nCrouchKey));
+			str_cpy((txtInputMenuKeyValues[7].pstring)[0], str_for_key_ext(NULL, nInteractKey));
+			str_cpy((txtInputMenuKeyValues[8].pstring)[0], str_for_key_ext(NULL, nQuestsKey));
+			str_cpy((txtInputMenuKeyValues[9].pstring)[0], str_for_key_ext(NULL, nMapKey));
+			str_cpy((txtInputMenuKeyValues[10].pstring)[0], str_for_key_ext(NULL, nCharacterMenuKey));
+			str_cpy((txtInputMenuKeyValues[11].pstring)[0], str_for_key_ext(NULL, nFire1Key));
+			str_cpy((txtInputMenuKeyValues[12].pstring)[0], str_for_key_ext(NULL, nFire2Key));
+			str_cpy((txtInputMenuKeyValues[13].pstring)[0], str_for_key_ext(NULL, nChangeWeaponUpKey));
 			str_cat((txtInputMenuKeyValues[13].pstring)[0], " and mouse_wheel_up");
-			str_cpy((txtInputMenuKeyValues[14].pstring)[0], str_for_key(NULL, nChangeWeaponDownKey));
+			str_cpy((txtInputMenuKeyValues[14].pstring)[0], str_for_key_ext(NULL, nChangeWeaponDownKey));
 			str_cat((txtInputMenuKeyValues[14].pstring)[0], " and mouse_wheel_down");
 		break;	
 	}
@@ -988,6 +992,7 @@ void menu_hide() {
 	if (txtMenuEffectsVolumeTest != NULL) reset(txtMenuEffectsVolumeTest, SHOW);
 	
 	if (txtMenuMouseSensivity != NULL) reset(txtMenuMouseSensivity, SHOW);
+	if (txtMenuInputDefaults != NULL) reset(txtMenuInputDefaults, SHOW);
 	
 	if (panOptionsGameDifficulty != NULL) reset(panOptionsGameDifficulty, SHOW);
 	if (txtOptionsGameEasy != NULL) reset(txtOptionsGameEasy, SHOW);
@@ -1305,6 +1310,9 @@ void menu_align(int _menu) {
 			txtMenuMouseSensivity.pos_x = panOptionsInput.pos_x + 10;
 			txtMenuMouseSensivity.pos_y = panOptionsInput.pos_y + MENU_BUTTON_SIZE_Y * 1.1;
 			
+			txtMenuInputDefaults.pos_x = panOptionsInput.pos_x + MENU_OPTIONS_CAPTION_POS_X*2 + MENU_KEY_BUTTON_SIZE_X / 2; // Center
+			txtMenuInputDefaults.pos_y = panOptionsInput.pos_y + MENU_BUTTON_SIZE_Y*2 + txtMenuInputDefaults.font.dy * (16*1.7+2);
+			
 			panInputMenuKeys.pos_x = panOptionsInput.pos_x + MENU_OPTIONS_CAPTION_POS_X*2 - MENU_BUTTON_GAP;
 			panInputMenuKeys.pos_y = panOptionsInput.pos_y + MENU_BUTTON_SIZE_Y*2 - MENU_BUTTON_GAP;
 			
@@ -1396,6 +1404,9 @@ void menu_show_message(STRING* _msg, STRING* _button) {
 	panMessageBox.size_x = 400;
 	panMessageBox.size_y = 100;
 	
+	panMessageBox.pos_x = screen_size.x / 2 - panMessageBox.size_x / 2;
+	panMessageBox.pos_y = screen_size.y / 2 - panMessageBox.size_y / 2;
+	
 	if (_button != NULL) {
 		pan_setbutton(panMessageBox, 0, 1, 200 - MENU_BUTTON_SIZE_X / 2, 100-MENU_BUTTON_SIZE_Y-MENU_BUTTON_GAP, bmapMenuButtonOn, bmapMenuButtonOff, bmapMenuButtonOn, bmapMenuButtonOff, menu_message_box_click, NULL, NULL);
 		pan_setcolor(panMessageBox, 3, 1, vector(255,255,255));
@@ -1404,9 +1415,6 @@ void menu_show_message(STRING* _msg, STRING* _button) {
 		txtMessageBoxBtn1.pos_y = panMessageBox.pos_y + 100 - MENU_BUTTON_SIZE_Y / 2 - MENU_BUTTON_GAP;
 		set(txtMessageBoxBtn1, SHOW | CENTER_X | CENTER_Y);	
 	}
-	
-	panMessageBox.pos_x = screen_size.x / 2 - panMessageBox.size_x / 2;
-	panMessageBox.pos_y = screen_size.y / 2 - panMessageBox.size_y / 2;
 	
 	str_cpy((txtMessageBoxCaption.pstring)[0], _msg);
 	txtMessageBoxCaption.pos_x = panMessageBox.pos_x + 200;
@@ -1622,7 +1630,8 @@ void menu_apply_click(var _button_number, PANEL* _panel) {
 			vNewGameFullscreen = 2;
 		}
 		if ((vNewGameResolution != video_mode) || (vNewGameFullscreen != video_screen)) {
-			video_switch(vNewGameResolution, 0, vNewGameFullscreen);
+			//video_switch(vNewGameResolution, 0, vNewGameFullscreen);
+			sys_change_resolution(vNewGameResolution, vNewGameFullscreen);
 		}
 		
 		// Anti aliasing
@@ -1701,7 +1710,6 @@ void menu_details_click(var _button_number, PANEL* _panel) {
 }
 
 void menu_message_box_click(var _button_number, PANEL* _panel) {
-	printf("Button clicked %n", (long)_button_number);
 	nMessageBoxResult = (long)_button_number;
 	menu_hide_message();
 }
@@ -1741,85 +1749,57 @@ void menu_input_key_click(var _button_number, PANEL* _panel) {
 		wait(1);
 	}
 	
+	// If a mouse button is assigned, wait until button is released to avoid
+	// triggering the button below a second time.	
+	while(mouse_left || mouse_right) wait(1);
+	
 	menu_hide_message();
+	
+	// Key already in use?
+	if (sys_key_used(key_lastpressed)) {
+		STRING* strNewMsg = str_create("The key '");
+		str_cat(strNewMsg, str_for_key_ext(NULL, key_lastpressed));
+		str_cat(strNewMsg, "' is already in use!");
+		menu_show_message(strNewMsg, "Okay");
+		while(menu_message_visible() == 1) {
+			wait(1);
+		}
+		return;
+	}
 	
 	// ESC was pressed -> cancel
 	if (key_lastpressed != 1) {
+		
+		STRING* strNewKey = str_create("");
+		str_for_key_ext(strNewKey, key_lastpressed);
+		
+		str_cpy((txtInputMenuKeyValues[_button_number - 1].pstring)[0], strNewKey);
+		
+		// Weapon change can also be done using the mouse wheel
+		if (_button_number-1 == 13) {
+			str_cat((txtInputMenuKeyValues[13].pstring)[0], " and mouse_wheel_up");
+		}
+		if (_button_number-1 == 14) {
+			str_cat((txtInputMenuKeyValues[14].pstring)[0], " and mouse_wheel_down");
+		}		
+		
+		// Finally assign the key	
 		switch(_button_number) {
-			case 1:
-				// up	
-				nUpKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[0].pstring)[0], str_for_key(NULL, nUpKey));
-			break;
-			case 2:
-				// down
-				nDownKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[1].pstring)[0], str_for_key(NULL, nDownKey));			
-			case 3:
-				// left
-				nLeftKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[2].pstring)[0], str_for_key(NULL, nLeftKey));			
-			break;
-			case 4:
-				// right
-				nRightKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[3].pstring)[0], str_for_key(NULL, nRightKey));			
-			break;
-			case 5:
-				// run
-				nRunKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[4].pstring)[0], str_for_key(NULL, nRunKey));		
-			break;
-			case 6:
-				// jump
-				nJumpKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[5].pstring)[0], str_for_key(NULL, nJumpKey));
-			break;
-			case 7:
-				// crouch
-				nCrouchKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[6].pstring)[0], str_for_key(NULL, nCrouchKey));
-			break;
-			case 8:
-				// interact
-				nInteractKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[7].pstring)[0], str_for_key(NULL, nInteractKey));
-			break;
-			case 9:
-				// quests
-				nQuestsKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[8].pstring)[0], str_for_key(NULL, nQuestsKey));
-			break;
-			case 10:
-				// map
-				nMapKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[9].pstring)[0], str_for_key(NULL, nMapKey));
-			break;
-			case 11:
-				// character menu
-				nCharacterMenuKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[10].pstring)[0], str_for_key(NULL, nCharacterMenuKey));			
-			break;
-			case 12:
-				// fire 1
-				nFire1Key = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[11].pstring)[0], str_for_key(NULL, nFire1Key));
-			break;
-			case 13:
-				// fire 2
-				nFire2Key = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[12].pstring)[0], str_for_key(NULL, nFire2Key));
-			break;
-			case 14:
-				// weapon up
-				nChangeWeaponUpKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[13].pstring)[0], str_for_key(NULL, nChangeWeaponUpKey));
-			break;
-			case 15:
-				// weapon down
-				nChangeWeaponDownKey = key_lastpressed;
-				str_cpy((txtInputMenuKeyValues[14].pstring)[0], str_for_key(NULL, nChangeWeaponUpKey));
-			break;
+			case 1: nUpKey = key_lastpressed; break;
+			case 2: nDownKey = key_lastpressed; break;
+			case 3: nLeftKey = key_lastpressed; break;
+			case 4: nRightKey = key_lastpressed; break;
+			case 5: nRunKey = key_lastpressed; break;
+			case 6: nJumpKey = key_lastpressed; break;
+			case 7: nCrouchKey = key_lastpressed; break;
+			case 8: nInteractKey = key_lastpressed; break;
+			case 9: nQuestsKey = key_lastpressed; break;
+			case 10: nMapKey = key_lastpressed; break;
+			case 11: nCharacterMenuKey = key_lastpressed; break;
+			case 12: nFire1Key = key_lastpressed; break;
+			case 13: nFire2Key = key_lastpressed; break;
+			case 14: nChangeWeaponUpKey = key_lastpressed; break;
+			case 15: nChangeWeaponDownKey = key_lastpressed; break;
 		}
 	}
 }
@@ -1838,4 +1818,35 @@ int menu_message_visible() {
 
 int menu_message_result() {
 	return nMessageBoxResult;
+}
+
+void menu_input_key_defaults_click(var _button_number, PANEL* _panel) {
+	
+	menu_show_choice_message("Really reset all buttons to default?", "Yes", "No");
+	
+	while(menu_message_visible() == 1) {
+		wait(1);
+	}
+	
+	if (menu_message_result() == 1) {
+		sys_keys_init();
+		// Set keys to current layout
+		str_cpy((txtInputMenuKeyValues[0].pstring)[0], str_for_key_ext(NULL, nUpKey));
+		str_cpy((txtInputMenuKeyValues[1].pstring)[0], str_for_key_ext(NULL, nDownKey));
+		str_cpy((txtInputMenuKeyValues[2].pstring)[0], str_for_key_ext(NULL, nLeftKey));
+		str_cpy((txtInputMenuKeyValues[3].pstring)[0], str_for_key_ext(NULL, nRightKey));
+		str_cpy((txtInputMenuKeyValues[4].pstring)[0], str_for_key_ext(NULL, nRunKey));
+		str_cpy((txtInputMenuKeyValues[5].pstring)[0], str_for_key_ext(NULL, nJumpKey));
+		str_cpy((txtInputMenuKeyValues[6].pstring)[0], str_for_key_ext(NULL, nCrouchKey));
+		str_cpy((txtInputMenuKeyValues[7].pstring)[0], str_for_key_ext(NULL, nInteractKey));
+		str_cpy((txtInputMenuKeyValues[8].pstring)[0], str_for_key_ext(NULL, nQuestsKey));
+		str_cpy((txtInputMenuKeyValues[9].pstring)[0], str_for_key_ext(NULL, nMapKey));
+		str_cpy((txtInputMenuKeyValues[10].pstring)[0], str_for_key_ext(NULL, nCharacterMenuKey));
+		str_cpy((txtInputMenuKeyValues[11].pstring)[0], str_for_key_ext(NULL, nFire1Key));
+		str_cpy((txtInputMenuKeyValues[12].pstring)[0], str_for_key_ext(NULL, nFire2Key));
+		str_cpy((txtInputMenuKeyValues[13].pstring)[0], str_for_key_ext(NULL, nChangeWeaponUpKey));
+		str_cat((txtInputMenuKeyValues[13].pstring)[0], " and mouse_wheel_up");
+		str_cpy((txtInputMenuKeyValues[14].pstring)[0], str_for_key_ext(NULL, nChangeWeaponDownKey));
+		str_cat((txtInputMenuKeyValues[14].pstring)[0], " and mouse_wheel_down");
+	}
 }

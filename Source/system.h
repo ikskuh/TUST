@@ -47,7 +47,33 @@ void sys_close();
  */
 void sys_keys_check();
 
+/**
+ * Changes resolution
+ * \param	var	New resolution
+ */
+ void sys_change_resolution(var _res, var _fullscreen);
 
+/**
+ * Determines key AND mouse inputs to return the corresponding string
+ * \param	STRING*	Result is copied into this String. if NULL, a temp String is returned
+ * \param	var	The key or mouse button
+ * \return	STRING*	A temporary string is returned
+ */
+STRING* str_for_key_ext(STRING* _target, var _key);
+
+/**
+ * Returns a key for a certain key OR mouse button string
+ * \param	STRING*	The key or mouse button name
+ * \return	var	The scancode
+ */
+var key_for_str_ext(STRING* _code);
+
+/**
+ * Checks if a key code is already used for another key
+ * \param	var	New key ASCII
+ * \return	var	1=true, 0=false
+ */
+var sys_key_used(var _key);
 #include "system.c"
 
 #endif
