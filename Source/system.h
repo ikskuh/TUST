@@ -31,6 +31,8 @@ int nESCKey, n1Key, n2Key, n3Key, n4Key;
 
 int nInGame						= 1; // Is the game running or are we in the start menu?
 
+// Dummy string for key functions
+STRING* strNewKey = "#60";
 
 /**
  * Initializes all keys

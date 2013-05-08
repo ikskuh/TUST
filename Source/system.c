@@ -70,7 +70,6 @@ void sys_change_resolution(var _res, var _fullscreen) {
 
 STRING* str_for_key_ext(STRING* _target, var _key) {
 	
-	STRING* strNewKey = str_create("");
 	switch(_key) {
 		case 280: str_cpy(strNewKey, "mouse_left"); break;
 		case 281: str_cpy(strNewKey, "mouse_right"); break;
