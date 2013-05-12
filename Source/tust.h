@@ -68,6 +68,7 @@ void *memmove(BYTE *destination, BYTE *source, unsigned int num);
 #include "noise.h"
 #include "arraylist.h"
 #include "bmap.h"
+#include "camera.h"
 
 #ifdef _TEMPLATE_H_
 	#error Template include guard still exists!

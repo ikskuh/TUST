@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,87 +92,239 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="menu_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _MENU_H_</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _MENU_H_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define MENU_BUTTON_SIZE_X 150</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define MENU_BUTTON_SIZE_X 150          // Size for auto generated button images</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_BUTTON_SIZE_Y 30</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_SAVE_SLOT_SIZE_X 150 // For optimal alignment set to the same as MENU_BUTTON_SIZE_X</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_SAVE_SLOT_SIZE_X 150       // For optimal alignment set to the same as MENU_BUTTON_SIZE_X</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_SAVE_SLOT_SIZE_Y 100</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_BUTTON_GAP 5</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_SIZE_X -1 // -1 = Same size as Options choice bar</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_SIZE_Y 380</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span>  </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define MENU_NONE 0</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_START 1</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_IN_GAME 2</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_LOAD 3</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_SAVE 4</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_GAME 5</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_GRAPHICS 6</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_AUDIO 7</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_INPUT 8</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_CREDITS 9</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_SLIDER_SIZE_X 140          // Size of the slider</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_SLIDER_SIZE_Y 10</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_KNOB_SIZE_X 15             // Size of the knob for the sliders</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_KNOB_SIZE_Y 15</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_CHECKBOX_SIZE_X 15         // Size of Checkboxes</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_CHECKBOX_SIZE_Y 15</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_COMBOBOX_SIZE_X 200            // Size of the combobox</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_COMBOBOX_SIZE_Y 15</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_KEY_BUTTON_SIZE_X 180      // Button to change the key code</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_KEY_BUTTON_SIZE_Y 15</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define MENU_BUTTON_GAP 5                   // GAPS (X,Y) between buttons in the menues</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_SIZE_X -1          // Size of the entire options menu. -1 = Same size as Options choice bar</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_SIZE_Y 380</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">int</span> nCurrentMenu = 0;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">int</span> nMenuVisible = 0;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;BMAP* bmapMenuButtonOn          = NULL;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;BMAP* bmapMenuButtonOff         = NULL;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;BMAP* bmapOptionsChoiceBg       = NULL;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;BMAP* bmapOptionsBg             = NULL;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;BMAP* bmapSaveSlotOn                = NULL;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;BMAP* bmapSaveSlotOff           = NULL;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;PANEL* panStartMenu             = NULL;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;PANEL* panInGameMenu                = NULL;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;PANEL* panLoadMenu              = NULL;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;PANEL* panSaveMenu              = NULL;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;PANEL* panOptionsMenu           = NULL; <span class="comment">// The top bar to switch between option panels</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;PANEL* panOptionsGame           = NULL;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;PANEL* panOptionsGraphics       = NULL;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;PANEL* panOptionsAudio          = NULL;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;PANEL* panOptionsInput          = NULL;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;PANEL* panGraphicMenu           = NULL;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;PANEL* panAudioMenu             = NULL;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;PANEL* panInputMenu             = NULL;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;PANEL* panCreditsMenu           = NULL;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;TEXT* txtMenuNewGame                = NULL;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;TEXT* txtMenuContinueGame       = NULL;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;TEXT* txtMenuLoadGame           = NULL;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;TEXT* txtMenuSaveGame           = NULL;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;TEXT* txtMenuOptions                = NULL;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;TEXT* txtMenuOptionsGame        = NULL;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;TEXT* txtMenuOptionsGraphics    = NULL;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;TEXT* txtMenuOptionsAudio       = NULL;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;TEXT* txtMenuOptionsInput       = NULL;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;TEXT* txtMenuOptionsApply       = NULL;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;TEXT* txtMenuCredits                = NULL;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;TEXT* txtMenuExitGame           = NULL;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;TEXT* txtMenuReturnToWin        = NULL;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;TEXT* txtMenuBack                   = NULL;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;TEXT** txtMenuSaveGameTitles    = NULL;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#define MENU_OPTIONS_CAPTION_POS_X 130  // x-distance between option caption and control</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="menu_8h.html#a68f7ec805855485e92e3bf9e1c976435">   33</a></span>&#160;<span class="preprocessor">#define MENU_NONE 0</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_START 1</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_IN_GAME 2</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_LOAD 3</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_SAVE 4</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_GAME 5</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_GRAPHICS 6</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_AUDIO 7</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_INPUT 8</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_CREDITS 9</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;FONT* fontMenu = <span class="stringliteral">&quot;Arial#12b&quot;</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">int</span> nCurrentMenu            = 0;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> nMenuVisible            = 0;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">int</span> nMessageBoxResult   = 0;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;BMAP* bmapMenuButtonOn          = NULL;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;BMAP* bmapMenuButtonOff         = NULL;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;BMAP* bmapOptionsChoiceBg       = NULL;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;BMAP* bmapOptionsBg             = NULL;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;BMAP* bmapComboboxOn                = NULL;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;BMAP* bmapComboboxOff           = NULL;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;BMAP* bmapSaveSlotOn                = NULL;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;BMAP* bmapSaveSlotOff           = NULL;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;BMAP* bmapSliderBg              = NULL;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;BMAP* bmapSliderKnob                = NULL;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;BMAP* bmapCheckBoxCheckedOn = NULL;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;BMAP* bmapCheckBoxCheckedOff    = NULL;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;BMAP* bmapCheckBoxUncheckedOn   = NULL;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;BMAP* bmapCheckBoxUncheckedOff= NULL;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> menu_init();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">void</span> menu_show(<span class="keywordtype">int</span> _menu);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">void</span> menu_hide();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">int</span> menu_is_visible();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">void</span> menu_align(<span class="keywordtype">int</span> _menu);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> menu_center();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> menu_set_pos(<span class="keywordtype">int</span> _x, <span class="keywordtype">int</span> _y);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> menu_show_message(STRING* _msg);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">void</span> menu_show_message_fullscreen(STRING* _msg);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">int</span> menu_show_choice_message(STRING* _msg, STRING* _button1, STRING* _button2);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#include &quot;menu.c&quot;</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;BMAP* bmapKeyButtonOn           = NULL;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;BMAP* bmapKeyButtonOff          = NULL;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;PANEL* panStartMenu             = NULL;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;PANEL* panInGameMenu                = NULL;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;PANEL* panLoadMenu              = NULL;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;PANEL* panSaveMenu              = NULL;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;PANEL* panOptionsMenu           = NULL; <span class="comment">// The top bar to switch between option panels</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;PANEL* panOptionsGame           = NULL;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    PANEL* panOptionsGameDifficulty = NULL;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        TEXT* txtOptionsGameEasy                    = NULL;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        TEXT* txtOptionsGameMedium                  = NULL;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        TEXT* txtOptionsGameHard                    = NULL;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;PANEL* panOptionsGraphics       = NULL;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    PANEL* panOptionsGraphicsDetails                = NULL;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        TEXT* txtOptionsGraphicsDetailsLow      = NULL;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        TEXT* txtOptionsGraphicsDetailsMedium   = NULL;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        TEXT* txtOptionsGraphicsDetailsHigh     = NULL;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    PANEL* panOptionsGraphicsAntiAliasing       = NULL;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        TEXT* txtOptionsGraphicsAAOff               = NULL;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        TEXT* txtOptionsGraphicsAA1x                = NULL;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        TEXT* txtOptionsGraphicsAA4x                = NULL;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        TEXT* txtOptionsGraphicsAA9x                = NULL;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    PANEL* panOptionsGraphicsResolutionList = NULL;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        TEXT* txtResCurrent         = NULL;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        TEXT* txtRes800x600         = NULL;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        TEXT* txtRes1024x768            = NULL;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        TEXT* txtRes1280x1024       = NULL;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        TEXT* txtRes1400x1050       = NULL;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        TEXT* txtRes1600x1200       = NULL;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        TEXT* txtRes1920x1200       = NULL;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;PANEL* panOptionsAudio          = NULL;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;PANEL* panOptionsInput          = NULL;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;PANEL* panGraphicMenu           = NULL;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;PANEL* panAudioMenu             = NULL;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;PANEL* panInputMenu             = NULL;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    PANEL* panInputMenuKeys     = NULL;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    TEXT** txtInputMenuKeyNames= NULL;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    TEXT** txtInputMenuKeyValues= NULL;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;PANEL* panCreditsMenu           = NULL;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;TEXT* txtMenuNewGame                = NULL;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;TEXT* txtMenuContinueGame       = NULL;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;TEXT* txtMenuLoadGame           = NULL;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;TEXT* txtMenuSaveGame           = NULL;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;TEXT* txtMenuOptions                = NULL;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    TEXT* txtMenuOptionsGame        = NULL;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">// Game options</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        TEXT* txtMenuDifficulty         = NULL;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        TEXT* txtMenuViolence           = NULL;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        TEXT* txtMenuShowDialogs        = NULL;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        TEXT* txtMenuShowHints          = NULL;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    TEXT* txtMenuOptionsGraphics    = NULL;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        TEXT* txtMenuFullscreen             = NULL;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        TEXT* txtMenuResolutions            = NULL;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        TEXT* txtMenuAntialias              = NULL;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        TEXT* txtMenuBrightness             = NULL;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        TEXT* txtMenuCurrentBrightness  = NULL;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        TEXT* txtMenuShader                 = NULL;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        TEXT* txtMenuShadows                    = NULL;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        TEXT* txtMenuDetails                    = NULL;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    TEXT* txtMenuOptionsAudio       = NULL;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        TEXT* txtMenuMusicVolume            = NULL;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        TEXT* txtMenuMusicVolumeTest        = NULL;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        TEXT* txtMenuSpeechVolume           = NULL;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        TEXT* txtMenuSpeechVolumeTest       = NULL;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        TEXT* txtMenuEffectsVolume          = NULL;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        TEXT* txtMenuEffectsVolumeTest  = NULL;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    TEXT* txtMenuOptionsInput       = NULL;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        TEXT* txtMenuMouseSensivity = NULL;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        TEXT* txtMenuInputDefaults      = NULL;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;TEXT* txtMenuOptionsApply       = NULL;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;TEXT* txtMenuCredits                = NULL;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;TEXT* txtMenuExitGame           = NULL;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;TEXT* txtMenuReturnToWin        = NULL;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;TEXT* txtMenuBack                   = NULL;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;TEXT** txtMenuSaveGameTitles    = NULL;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;PANEL* panMessageBoxBg          = NULL;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;PANEL* panMessageBox                = NULL;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;TEXT* txtMessageBoxCaption      = NULL;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;TEXT* txtMessageBoxBtn1         = NULL;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;TEXT* txtMessageBoxBtn2         = NULL;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;SOUND* sndMusicTest             = <span class="stringliteral">&quot;..\\Ressources\\Audio\\Sounds\\beep1.wav&quot;</span>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;SOUND* sndSpeechTest                = <span class="stringliteral">&quot;..\\Ressources\\Audio\\Sounds\\beep1.wav&quot;</span>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;SOUND* sndEffectsTest           = <span class="stringliteral">&quot;..\\Ressources\\Audio\\Sounds\\beep1.wav&quot;</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">// Variables to hold a game state until changes are applied</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;var vNewGameDifficulty          = 0;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;var vNewGameBlood                   = 0;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;var vNewGameShowDialogs         = 0;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;var vNewGameShowHints           = 0;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;var vNewGameResolution          = 7;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;var vNewGameAntiAlias           = 0;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;var vNewGameBrightness          = 80;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;var vNewGameShaders             = 0;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;var vNewGameShadows             = 0;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;var vNewGameDetails             = 1;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;var vNewGameFullscreen          = 0;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;var vNewGameMusicVolume         = 0;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;var vNewGameSpeechVolume        = 0;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;var vNewGameEffectsVolume       = 0;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;var vNewGameMouseSensitivity    = 0;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="keywordtype">void</span> menu_init();</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="keywordtype">void</span> menu_show(<span class="keywordtype">int</span> _menu);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="keywordtype">void</span> menu_hide();</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="keywordtype">int</span> menu_is_visible();</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="keywordtype">void</span> menu_align(<span class="keywordtype">int</span> _menu);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="keywordtype">void</span> menu_center();</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="keywordtype">void</span> menu_set_pos(<span class="keywordtype">int</span> _x, <span class="keywordtype">int</span> _y);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="keywordtype">void</span> menu_show_message(STRING* _msg, STRING* _button);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="keywordtype">int</span> menu_show_choice_message(STRING* _msg, STRING* _button1, STRING* _button2);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="keywordtype">void</span> menu_hide_message();</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="keywordtype">int</span> menu_message_visible();</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="keywordtype">int</span> menu_message_result();</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">// Internal functions</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="keywordtype">void</span> menu_resolution_show();</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="keywordtype">void</span> menu_resolution_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="keywordtype">void</span> menu_options_choose(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="keywordtype">void</span> menu_apply_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="keywordtype">void</span> menu_back_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="keywordtype">void</span> menu_start_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="keywordtype">void</span> menu_ingame_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="keywordtype">void</span> menu_difficulty_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="keywordtype">void</span> menu_anti_aliasing_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="keywordtype">void</span> menu_details_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="keywordtype">void</span> menu_message_box_init();</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="keywordtype">void</span> menu_message_box_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="keywordtype">void</span> menu_audio_test_box_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="keywordtype">void</span> menu_input_key_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="keywordtype">void</span> menu_input_key_defaults_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="preprocessor">#include &quot;menu.c&quot;</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 19 2013 13:46:25 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun May 12 2013 20:22:05 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

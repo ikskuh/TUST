@@ -2,6 +2,7 @@ This list contains a set of features we want to bring into this project.
 Features marked with "o" are not started yet
 Features marked with "-" are work in progress
 Features marked with "x" are finished so far.
+Features marked with "!" are removed.
 
 If you want to work on a feature, please but your name behind the feature so we can
 see who is actually working on a feature.
@@ -77,15 +78,20 @@ o Generic Script Library
 	o Quests
 	o Procedural Library
 		x Simplex Noise (MasterQ32) --> Source/noise.h
-		- DynamicModels (MasterQ32) --> Source/DynamicModels.h
+		x DynamicModels (MasterQ32) --> Source/DynamicModels.h
 	o Lua Scripting Support
-	o Generic Array Lists (MasterQ32)
+	! Generic Array Lists (MasterQ32)
 	o Bitmap processes --> Source\bmap.h
 		x bmap_lerp (txesmi)  --> Source\bmap.h
 		x bmap_rotate (txesmi)  --> Source\bmap.h
 		- Draw line, draw rectangle, draw circle, draw border, fill (padmalcom)
 	x Logging (padmalcom)
-
+	o Camera Controller
+		o Flythrough
+		o First Person
+		o Third Person
+		o "Adventure Camera"
+		o ...
 o Game Templates
 	o Shooter
 		o First/Third Person
