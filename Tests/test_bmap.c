@@ -12,10 +12,10 @@ int main ()
 	
 	while(1) {
 		
-		if (key_a) { while(key_a) wait(1); b = bmp_blur(b, 10); }	
-		if (key_b) { while(key_b) wait(1); b = bmp_resize(b, 50, 50);}
-		if (key_c) { while(key_c) wait(1); b = bmp_mirror(b, BMP_MIRROR_X); }	
-		if (key_d) { while(key_d) wait(1); b = bmp_mirror(b, BMP_MIRROR_Y); }
+		if (key_a) { while(key_a) wait(1); b = bmap_blur(b, 10); }	
+		if (key_b) { while(key_b) wait(1); b = bmap_resize(b, 50, 50);}
+		if (key_c) { while(key_c) wait(1); b = bmap_mirror(b, BMP_MIRROR_X); }	
+		if (key_d) { while(key_d) wait(1); b = bmap_mirror(b, BMP_MIRROR_Y); }
 		if (key_1) { while(key_1) wait(1); b = bmap_crop(b, 5, 5, 100, 100); }
 		if (key_2) { while(key_2) wait(1); b = bmap_erode(b, 10); }
 		if (key_3) { while(key_3) wait(1); b = bmap_dilate(b, 10); }

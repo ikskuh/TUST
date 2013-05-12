@@ -48,7 +48,7 @@ BOOL bmap_savetga (BMAP* b, char* filename);
  * \param	int					Bit per pixel
  * \param	COLOR*				Initial color
  */
-BMAP* bmp_create_ext(int _width, int _height, int _bpp, COLOR* _color);
+BMAP* bmap_create_ext(int _width, int _height, int _bpp, COLOR* _color);
 
 /**
  * Blurs a bitmap (Needs DLL "BmapGS.dll")
@@ -56,14 +56,14 @@ BMAP* bmp_create_ext(int _width, int _height, int _bpp, COLOR* _color);
  * \param	float					Blur factor					
  * \return	Finished bitmap
  */
-BMAP* bmp_blur(BMAP* _target, float _factor);
+BMAP* bmap_blur(BMAP* _target, float _factor);
 
 /**
  * Inverts a bitmap (Needs DLL "BmapGS.dll")
  * \param	BMAP*					Bmap to blur				
  * \return	Finished bitmap
  */
-BMAP* bmp_invert(BMAP* _target);
+BMAP* bmap_invert(BMAP* _target);
 
 /**
  * Adds noise to bitmap (Needs DLL "BmapGS.dll")
@@ -71,7 +71,7 @@ BMAP* bmp_invert(BMAP* _target);
  * \param	float					Noise factor				
  * \return	Finished bitmap
  */
-BMAP* bmp_noise(BMAP* _target, float _factor);
+BMAP* bmap_noise(BMAP* _target, float _factor);
 
 /**
  * Rotates a bitmap (Needs DLL "BmapGS.dll")
@@ -82,7 +82,7 @@ BMAP* bmp_noise(BMAP* _target, float _factor);
  * \param	float					Zoom factor				
  * \return	Finished bitmap
  */
-BMAP* bmp_rotate(BMAP* _target, float _angle, float _cx, float _cy, float _zoom);
+BMAP* bmap_rotate(BMAP* _target, float _angle, float _cx, float _cy, float _zoom);
 
 /**
  * Resizes a bitmap (Needs DLL "BmapGS.dll")
@@ -91,7 +91,7 @@ BMAP* bmp_rotate(BMAP* _target, float _angle, float _cx, float _cy, float _zoom)
  * \param	int					New size (y value)			
  * \return	Finished bitmap
  */
-BMAP* bmp_resize(BMAP* _target, int _sizeX, int _sizeY);
+BMAP* bmap_resize(BMAP* _target, int _sizeX, int _sizeY);
 
 /**
  * Mirrors a bitmap (Needs DLL "BmapGS.dll")
@@ -99,7 +99,7 @@ BMAP* bmp_resize(BMAP* _target, int _sizeX, int _sizeY);
  * \param	int					Mirror axis (x=1, y=2)			
  * \return	Finished bitmap
  */
-BMAP* bmp_mirror(BMAP* _target, int _axis);
+BMAP* bmap_mirror(BMAP* _target, int _axis);
 
 /**
  * Crops an image (Get a specific part of the bmap) (Needs DLL "BmapGS.dll")

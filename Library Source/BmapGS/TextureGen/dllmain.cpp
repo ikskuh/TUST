@@ -10,14 +10,6 @@ using namespace cimg_library;
 // HEADER
 // ----------------------------------------------------------------------------------------
 
-// External
-/*DLLFUNC BMAP* bmp_create(int _width, int _height, int _bpp, COLOR* _color);
-DLLFUNC BMAP* bmp_blur(BMAP* _target, var _factor);
-DLLFUNC BMAP* bmp_invert(BMAP* _target);
-DLLFUNC BMAP* bmp_noise(BMAP* _target, float _factor);
-DLLFUNC BMAP* bmp_rotate(BMAP* _target, float _angle, float _cx, float _cy, float _zoom);
-DLLFUNC BMAP* bmp_resize(BMAP* _target, int _sizeX, int _sizeY);*/
-
 // Internal
 BMAP* cImg2LiteC(CImg<unsigned char> _img);
 CImg<unsigned char> LiteC2cImg(BMAP* _img);
@@ -36,14 +28,14 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 // ----------------------------------------------------------------------------------------
 // External
 // ----------------------------------------------------------------------------------------
-DLLFUNC BMAP* bmp_create_ext(int _width, int _height, int _bpp, COLOR* _color)
+DLLFUNC BMAP* bmap_create_ext(int _width, int _height, int _bpp, COLOR* _color)
 {
 	BMAP* bmpNew = bmap_createblack(_VAR(_width),_VAR(_height),_VAR(_bpp));
 	bmap_fill(bmpNew, _color, _VAR(100));
 	return bmpNew;
 }
 
-DLLFUNC BMAP* bmp_blur(BMAP* _target, float _factor)
+DLLFUNC BMAP* bmap_blur(BMAP* _target, float _factor)
 {
 	CImg<unsigned char> tempImg(LiteC2cImg(_target));
 	tempImg.blur(_factor);
@@ -51,7 +43,7 @@ DLLFUNC BMAP* bmp_blur(BMAP* _target, float _factor)
 	return _target;
 }
 
-DLLFUNC BMAP* bmp_invert(BMAP* _target)
+DLLFUNC BMAP* bmap_invert(BMAP* _target)
 {
 	CImg<unsigned char> tempImg(LiteC2cImg(_target));
 	tempImg.invert(false);
@@ -59,7 +51,7 @@ DLLFUNC BMAP* bmp_invert(BMAP* _target)
 	return _target;
 }
 
-DLLFUNC BMAP* bmp_noise(BMAP* _target, float _factor)
+DLLFUNC BMAP* bmap_noise(BMAP* _target, float _factor)
 {
 	CImg<unsigned char> tempImg(LiteC2cImg(_target));
 	tempImg.noise(_factor);
@@ -67,7 +59,7 @@ DLLFUNC BMAP* bmp_noise(BMAP* _target, float _factor)
 	return _target;
 }
 
-DLLFUNC BMAP* bmp_rotate(BMAP* _target, float _angle, float _cx, float _cy, float _zoom)
+DLLFUNC BMAP* bmap_rotate(BMAP* _target, float _angle, float _cx, float _cy, float _zoom)
 {
 	CImg<unsigned char> tempImg(LiteC2cImg(_target));
 	tempImg.rotate(_angle, _cx, _cy, _zoom, 0, 0);
@@ -75,7 +67,7 @@ DLLFUNC BMAP* bmp_rotate(BMAP* _target, float _angle, float _cx, float _cy, floa
 	return _target;
 }
 
-DLLFUNC BMAP* bmp_resize(BMAP* _target, int _sizeX, int _sizeY)
+DLLFUNC BMAP* bmap_resize(BMAP* _target, int _sizeX, int _sizeY)
 {
 	CImg<unsigned char> tempImg(LiteC2cImg(_target));
 	tempImg.resize(_sizeX, _sizeY);
@@ -83,7 +75,7 @@ DLLFUNC BMAP* bmp_resize(BMAP* _target, int _sizeX, int _sizeY)
 	return _target;
 }
 
-DLLFUNC BMAP* bmp_mirror(BMAP* _target, int _axis)
+DLLFUNC BMAP* bmap_mirror(BMAP* _target, int _axis)
 {
 	CImg<unsigned char> tempImg(LiteC2cImg(_target));
 	if (_axis == 1) {
