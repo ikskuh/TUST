@@ -25,7 +25,6 @@ void menu_init_buttons() {
 			bmapSaveSlotOff = bmap_draw_border(bmapSaveSlotOff, 0, 0, vector(255,255,255), 1);
 		}
 		
-		
 		if (bmapSaveSlotOn == NULL) {
 			bmapSaveSlotOn = bmap_create_ext(MENU_SAVE_SLOT_SIZE_X, MENU_SAVE_SLOT_SIZE_Y, 24, vector(0,0,128));
 			bmapSaveSlotOn = bmap_draw_border(bmapSaveSlotOn, 0, 0, vector(255,255,255), 1);
