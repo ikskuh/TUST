@@ -52,7 +52,7 @@ BMAP* bmap_create_ext(int _width, int _height, int _bpp, COLOR* _color);
 
 /**
  * Blurs a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to blur
+ * \param	BMAP*					Source bitmap
  * \param	float					Blur factor					
  * \return	Finished bitmap
  */
@@ -60,14 +60,14 @@ BMAP* bmap_blur(BMAP* _target, float _factor);
 
 /**
  * Inverts a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to blur				
+ * \param	BMAP*					Source bitmap				
  * \return	Finished bitmap
  */
 BMAP* bmap_invert(BMAP* _target);
 
 /**
  * Adds noise to bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to add noise to
+ * \param	BMAP*					Source bitmap
  * \param	float					Noise factor				
  * \return	Finished bitmap
  */
@@ -75,7 +75,7 @@ BMAP* bmap_noise(BMAP* _target, float _factor);
 
 /**
  * Rotates a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to rotate
+ * \param	BMAP*					Source bitmap
  * \param	float					Rotation angle
  * \param	float					Rotation point (x value)
  * \param	float					Rotation point (y value)
@@ -86,7 +86,7 @@ BMAP* bmap_rotate(BMAP* _target, float _angle, float _cx, float _cy, float _zoom
 
 /**
  * Resizes a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to resize	
+ * \param	BMAP*					Source bitmap
  * \param	int					New size (x value)
  * \param	int					New size (y value)			
  * \return	Finished bitmap
@@ -95,7 +95,7 @@ BMAP* bmap_resize(BMAP* _target, int _sizeX, int _sizeY);
 
 /**
  * Mirrors a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to mirror
+ * \param	BMAP*					Source bitmap
  * \param	int					Mirror axis (x=1, y=2)			
  * \return	Finished bitmap
  */
@@ -103,7 +103,7 @@ BMAP* bmap_mirror(BMAP* _target, int _axis);
 
 /**
  * Crops an image (Get a specific part of the bmap) (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to crop
+ * \param	BMAP*					Source bitmap
  * \param	int					New top left (x value)
  * \param	int					New top left (y value)
  * \param	int					New bottom right (x value)
@@ -114,7 +114,7 @@ BMAP* bmap_crop(BMAP* _target, int _x1, int _y1, int _x2, int _y2);
 
 /**
  * Erodes a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to add erode filter to
+ * \param	BMAP*					Source bitmap
  * \param	int					Erode factor		
  * \return	Finished bitmap
  */
@@ -122,7 +122,7 @@ BMAP* bmap_erode(BMAP* _target, int _factor);
 
 /**
  * Add dilate filter (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to add dilate filter to
+ * \param	BMAP*					Source bitmap
  * \param	int					Dilate factor		
  * \return	Finished bitmap
  */
@@ -130,7 +130,7 @@ BMAP* bmap_dilate(BMAP* _target, int _factor);
 
 /**
  * Sharpens a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to sharpen
+ * \param	BMAP*					Source bitmap
  * \param	int					Amplitude			
  * \return	Finished bitmap
  */
@@ -138,21 +138,21 @@ BMAP* bmap_sharpen(BMAP* _target, int _amplitude);
 
 /**
  * Add laplace filter (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to mirror			
+ * \param	BMAP*					Source bitmap		
  * \return	Finished bitmap
  */
 BMAP* bmap_laplace(BMAP* _target);
 
 /**
  * Transform to grayscale (Broken) (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to mirror
+ * \param	BMAP*					Source bitmap
  * \return	Finished bitmap
  */
 BMAP* bmap_grayscale(BMAP* _target);
 
 /**
  * Draws a point to a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					x value
  * \param	int					y value
  * \param	COLOR*				Color to draw the point
@@ -163,7 +163,7 @@ BMAP* bmap_draw_point(BMAP* _target, int _x, int _y, COLOR* _color, float _alpha
 
 /**
  * Draws a line to a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Start point (x value)
  * \param	int					Start point (y value)
  * \param	int					End point (x value)
@@ -176,7 +176,7 @@ BMAP* bmap_draw_line(BMAP* _target, int _x1, int _y1, int _x2, int _y2, COLOR* _
 
 /**
  * Draws borders to a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Distance to borders (x value)
  * \param	int					Distance to borders (y value)
  * \param	COLOR*				Color to draw the point
@@ -187,7 +187,7 @@ BMAP* bmap_draw_border(BMAP* _target, int _distX, int _distY, COLOR* _color, flo
 
 /**
  * Draws a line to a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Start point (x value)
  * \param	int					Start point (y value)
  * \param	int					End point (x value)
@@ -201,7 +201,7 @@ BMAP* bmap_draw_arrow(BMAP* _target, int _x1, int _y1, int _x2, int _y2, COLOR* 
 
 /**
  * Draws a spline to a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Start point (x value)
  * \param	int					Start point (y value)
  * \param	int					Start velocity (x value)
@@ -218,7 +218,7 @@ BMAP* bmap_draw_spline(BMAP* _target, int _x1, int _y1, int _u1, int _v1, int _x
 
 /**
  * Draws a triangle (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Point 1 (x value)
  * \param	int					Point 1 (y value)
  * \param	int					Point 2 (x value)
@@ -233,7 +233,7 @@ BMAP* bmap_draw_triangle(BMAP* _target, int _x1, int _y1, int _x2, int _y2, int 
 
 /**
  * Draws a filled triangle (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Point 1 (x value)
  * \param	int					Point 1 (y value)
  * \param	int					Point 2 (x value)
@@ -248,7 +248,7 @@ BMAP* bmap_draw_triangle_filled(BMAP* _target, int _x1, int _y1, int _x2, int _y
 
 /**
  * Draws a rectangle (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Point top left (x value)
  * \param	int					Point top left (y value)
  * \param	int					Point bottom right (x value)
@@ -261,7 +261,7 @@ BMAP* bmap_draw_rectangle(BMAP* _target, int _x1, int _y1, int _x2, int _y2, COL
 
 /**
  * Draws a filled rectangle (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Point top left (x value)
  * \param	int					Point top left (y value)
  * \param	int					Point bottom right (x value)
@@ -274,7 +274,7 @@ BMAP* bmap_draw_rectangle_filled(BMAP* _target, int _x1, int _y1, int _x2, int _
 
 /**
  * Draws an ellipse (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Middle of the ellipse (x value)
  * \param	int					Middle of the ellipse (y value)
  * \param	int					Radius 1
@@ -288,7 +288,7 @@ BMAP* bmap_draw_ellipse(BMAP* _target, int _x1, int _y1, int _radius1, int _radi
 
 /**
  * Draws a filled ellipse (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Middle of the ellipse (x value)
  * \param	int					Middle of the ellipse (y value)
  * \param	int					Radius 1
@@ -302,7 +302,7 @@ BMAP* bmap_draw_ellipse_filled(BMAP* _target, int _x1, int _y1, int _radius1, in
 
 /**
  * Draws a circle (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Middle of the circle (x value)
  * \param	int					Middle of the circle (y value)
  * \param	int					Radius
@@ -314,7 +314,7 @@ BMAP* bmap_draw_circle(BMAP* _target, int _x1, int _y1, int _radius, COLOR* _col
 
 /**
  * Draws a filled circle (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Middle of the circle (x value)
  * \param	int					Middle of the circle (y value)
  * \param	int					Radius
@@ -326,7 +326,7 @@ BMAP* bmap_draw_circle_filled(BMAP* _target, int _x1, int _y1, int _radius, COLO
 
 /**
  * Draws a BMAP* onto another (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	BMAP*					Bmap that is put onto the other
  * \param	int					Target position (x value)
  * \param	int					Target position (y value)
@@ -337,7 +337,7 @@ BMAP* bmap_draw_bmap(BMAP* _target, BMAP* _source, int _x1, int _y1, float _alph
 
 /**
  * Draws a text (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	int					Draw position (x value)
  * \param	int					Draw position (y value)
  * \param	char*					Text to write
@@ -351,7 +351,7 @@ BMAP* bmap_draw_text(BMAP* _target, int _x1, int _y1, char* _text, COLOR* _foreg
 
 /**
  * Fills a specific region of a bitmap (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to fill
+ * \param	BMAP*					Source bitmap
  * \param	int					Start position (x value)
  * \param	int					Start position (y value)
  * \param	COLOR*				Color to draw the point
@@ -362,7 +362,7 @@ BMAP* bmap_fill_ext(BMAP* _target, int _x1, int _y1, COLOR* _color, float _alpha
 
 /**
  * Draws a random plasma figure (Needs DLL "BmapGS.dll")
- * \param	BMAP*					Bmap to draw on
+ * \param	BMAP*					Source bitmap
  * \param	float					Alpha value (0.0-1.0)		
  * \return	Finished bitmap
  */
