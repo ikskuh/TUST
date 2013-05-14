@@ -19,6 +19,9 @@ var fruitTimer = 1.0;
 var minuteTimer = 1;
 var secondTimer = 30;
 
+var mouse_x = 0;
+var mouse_y = 0;
+
 STRING *strTimerValue = "#6";
 
 PANEL *panelFruitCounter = 
@@ -86,6 +89,19 @@ action fruit_drop()
 	}
 }
 
+action fruit_splatter()
+{
+	my.tilt = -90;
+	set(me, TRANSLUCENT);
+	set(me, BRIGHT);
+	set(me, LIGHT);
+	my.alpha = 100;
+	vec_fill(my.scale_x, 0.25);
+	wait(-1.0);
+	for(my.alpha = 100; my.alpha > 0; my.alpha -= time_step) wait(1);
+	ent_remove(me);
+}
+
 function fruit_event()
 {
 	switch(event_type)
@@ -113,6 +129,8 @@ function fruit_event()
 					you.SPEED_X += dir.x;
 					you.SPEED_Y += dir.y;
 				}
+				you = ent_create("explosion.png", vector(my.x + mouse_x, my.y + mouse_y, -34), fruit_splatter);
+				reset(you, BRIGHT);
 			}
 			else
 			{
@@ -144,8 +162,21 @@ function fruit_event()
 					you.SPEED_X += sliceSpeed.x;
 					you.SPEED_Y += sliceSpeed.y;
 				}
+				int splatter = integer(random(2));
+				switch(splatter)
+				{
+					case 0:
+						you = ent_create("splatter1.png", vector(my.x + mouse_x, my.y + mouse_y, -34), fruit_splatter);
+						break;
+					case 1:
+						you = ent_create("splatter2.png", vector(my.x + mouse_x, my.y + mouse_y, -34), fruit_splatter);
+						break;
+				}
+				vec_set(you.blue, my.blue);
+				vec_to_angle(you.pan, vector(mouse_x, mouse_y, 0));
+				you.tilt = -90;
+				you.roll = 0;
 			}
-			
 			ent_remove(me);
 			break;
 	}
@@ -222,16 +253,19 @@ function throw_fruits()
 		{
 			case 0:
 				you = ent_create(CUBE_MDL, vector(pos_x, camera.bottom, 0), fruit);
+				vec_set(you.blue, vector(255, 255, 255));
 				break;
 			case 1:
 				you = ent_create("nectarine.mdl", vector(pos_x, camera.bottom, 0), fruit);
 				you.string1 = "nectarine_right.mdl";
 				you.string2 = "nectarine_left.mdl";
+				vec_set(you.blue, vector(0, 96, 255));
 				break;
 			case 2:
 				you = ent_create("banana.mdl", vector(pos_x, camera.bottom, 0), fruit);
 				you.string1 = "banana_right.mdl";
 				you.string2 = "banana_left.mdl";
+				vec_set(you.blue, vector(21, 198, 255));
 				break;
 			case 3:
 				// Create a bomb
@@ -278,6 +312,9 @@ function create_sword()
 				entSwordTrail.z = 32;
 				entSwordTrail.scale_x = 0.125;							// Make the sprite smaller
 				entSwordTrail.scale_y = vec_dist(pos, start) / 30.0;	// But scale it so that we have a continuous trail
+				
+				mouse_x = pos.x - start.x;
+				mouse_y = pos.y - start.y;
 				
 				VECTOR dir;
 				ANGLE angle;
@@ -343,7 +380,7 @@ function main()
 	create_sword();
 	game_timer();
 	
-	ENTITY *background = ent_create("Background.jpg", vector(0, 0, -32), NULL);
+	ENTITY *background = ent_create("Background.jpg", vector(0, 0, -35), NULL);
 	background.tilt = -90;
 	background.pan = 90;
 	set(background, LIGHT);	// Brighten it up
