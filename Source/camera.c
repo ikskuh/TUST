@@ -1,6 +1,8 @@
 #include <acknex.h>
 #include "camera.h"
 
+List *observationCameras = NULL;
+
 ENTITY *camTarget = NULL;
 int camMode = CAMERA_FREE;
 var camMouseSpeed = 10;
@@ -15,6 +17,8 @@ ANGLE cam3PersonAngle;
 var cam3PersonLimitMin;
 var cam3PersonLimitMax;
 VECTOR cam3PersonOffset;
+
+VECTOR camObservationPos;
 
 void cam_init()
 {
@@ -32,6 +36,7 @@ void cam_init()
 void cam_update(void)
 {
 	VECTOR cPos;
+	int i;
 	vec_set(&cPos, &camOffset);
 	if(camTarget != NULL)
 	{
@@ -66,7 +71,32 @@ void cam_update(void)
 			
 			break;
 		case CAMERA_OBSERVATION:
+					
+			// Any obersation cameras defined?
+			if (observationCameras != NULL) {
+				
+				// Is there any camera that is nearer to the player than the current one?
+				for (i=0; i<observationCameras.count; i++) {
+					
+					// Can the player be seen from any cam?
+					if (c_trace(((VECTOR*)list_item_at(observationCameras, i))->x,&cPos,IGNORE_ME|IGNORE_PASSENTS|IGNORE_PASSABLE|IGNORE_SPRITES|USE_BOX) == 0) {
+					
+						// Is the distance from the player to the new cam smaller than the distance
+						// from the current cam to the player?
+						if (vec_dist(&camera->x,&cPos) > vec_dist(((VECTOR*)list_item_at(observationCameras, i))->x, &cPos)) {
+							
+							// If yes, change camera position
+							vec_set(&camera->x,	((VECTOR*)list_item_at(observationCameras, i))->x);
+						}
+					}
+				}
+			}
 			
+			// Camera always looks at player
+			vec_set(&camObservationPos, &cPos.x);
+			vec_sub(&camObservationPos, &camera->x);
+			vec_to_angle(&camera->pan, &camObservationPos);
+		
 			break;
 	}
 }
