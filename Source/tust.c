@@ -56,3 +56,12 @@ void *memmove(BYTE *destination, BYTE *source, unsigned int num)
 	
 	return destination;
 } 
+
+VECTOR *vec_create(var x, var y, var z)
+{
+	VECTOR *vec = sys_malloc(sizeof(VECTOR));
+	vec->x = x;
+	vec->y = y;
+	vec->z = z;
+	return vec;
+}

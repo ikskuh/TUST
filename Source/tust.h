@@ -56,6 +56,16 @@ COLOR *colorf(float r, float g, float b);
  */
 void *memmove(BYTE *destination, BYTE *source, unsigned int num);
 
+/**
+ * Creates a new vector and allocates memory for it.
+ * Needs to be freed.
+ * \param	x				X Value.
+ * \param	y				Y Value.
+ * \param	z				Z Value.
+ * \return					Newly allocated VECTOR.
+ */
+VECTOR *vec_create(var x, var y, var z);
+
 #include "fs.h"
 #include "ini.h"
 #include "list.h"
