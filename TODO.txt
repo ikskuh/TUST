@@ -67,13 +67,14 @@ o Generic Script Library
 	x Dialog API (padmalcom)
 		x Loading from XML
 	x Basic Inventory (padmalcom)
-	x Game Main Menu (MasterQ32, padmalcom) --> Source/menu.h
+	- Game Main Menu (MasterQ32, padmalcom) --> Source/menu.h
 		x Options Dialog
 			x Graphic Options
 			x Sound Options
 			x Key Options
 		x Save Game (Only menu, no logic)
 		x Load Game (Only menu, no logic)
+		- Small messages e.g. for quests (with queuing) (padmalcom)
 	o Enemies
 	o Quests
 	o Procedural Library
@@ -103,8 +104,8 @@ o Game Templates
 	- RTS (MasterQ32)
 		o Simple AI example
 		o Gridbased movement of units
-	o RPG
-		o Minimap
+	- RPG (padmalcom)
+		- Minimap
 
 o Models
 	o Vegetation
