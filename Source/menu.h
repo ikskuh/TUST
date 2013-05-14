@@ -178,7 +178,12 @@ var vNewGameMouseSensitivity	= 0;
 
 
 /**
- * Initializes all menues (GUI creation, BMAP creation, STRING loading, ...)
+ * Creates all buttons for the menu
+ */
+void menu_init_buttons();
+
+/**
+ * Initializes all menues (PANEL creation, STRING loading, ...)
  */
 void menu_init();
 

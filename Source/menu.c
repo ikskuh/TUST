@@ -3,292 +3,397 @@
 
 #include "system.h"
 
+#include "bmap.h"
+
+void menu_init_buttons() {
+	
+	// If the bitmap dll can be used
+	#ifdef _BMAP_H_
+		if (bmapMenuButtonOff == NULL) {
+			bmapMenuButtonOff = bmap_create_ext(MENU_BUTTON_SIZE_X,MENU_BUTTON_SIZE_Y,24, vector(0,0,0));
+			bmapMenuButtonOff = bmap_draw_border(bmapMenuButtonOff, 0, 0, vector(255,255,255), 1);
+		}
+		
+		if (bmapMenuButtonOn == NULL) {
+			bmapMenuButtonOn = bmap_create_ext(MENU_BUTTON_SIZE_X,MENU_BUTTON_SIZE_Y,24, vector(0,0,128));
+			bmapMenuButtonOn = bmap_draw_border(bmapMenuButtonOn, 0, 0, vector(255,255,255), 1);
+		}
+		
+			// Create save/load slot bitmaps
+		if (bmapSaveSlotOff == NULL) {
+			bmapSaveSlotOff = bmap_create_ext(MENU_SAVE_SLOT_SIZE_X, MENU_SAVE_SLOT_SIZE_Y, 24, vector(0,0,0));
+			bmapSaveSlotOff = bmap_draw_border(bmapSaveSlotOff, 0, 0, vector(255,255,255), 1);
+		}
+		
+		if (bmapSaveSlotOn == NULL) {
+			bmapSaveSlotOn = bmap_create_ext(MENU_SAVE_SLOT_SIZE_X, MENU_SAVE_SLOT_SIZE_Y, 24, vector(0,0,128));
+			bmapSaveSlotOn = bmap_draw_border(bmapSaveSlotOn, 0, 0, vector(255,255,255), 1);
+		}
+	
+		// Create options elements
+		if (bmapOptionsChoiceBg == NULL)	 {
+			bmapOptionsChoiceBg = bmap_create_ext(MENU_BUTTON_SIZE_X * 4 + MENU_BUTTON_GAP * 5, MENU_BUTTON_SIZE_Y + MENU_BUTTON_GAP * 2, 24, vector(0,0,0));
+			bmapOptionsChoiceBg = bmap_draw_border(bmapOptionsChoiceBg, 0, 0, vector(255,255,255), 1);
+		}
+	
+		// Create the background for the options menues
+		if (bmapOptionsBg == NULL) {
+			// If the define is set to -1, the size of the options choice bar
+			// is used to determine the width of the options window.
+			if (MENU_OPTIONS_SIZE_X == -1) {
+				bmapOptionsBg = bmap_create_ext(bmap_width(bmapOptionsChoiceBg), MENU_OPTIONS_SIZE_Y, 24, vector(0,0,0));
+			} else {
+				bmapOptionsBg = bmap_create_ext(MENU_OPTIONS_SIZE_X, MENU_OPTIONS_SIZE_Y, 24, vector(0,0,0));
+			}
+			bmapOptionsBg = bmap_draw_border(bmapOptionsBg, 0, 0, vector(255,255,255), 1);
+		}
+	
+		// Create Knob and Slider bitmaps
+		if (bmapSliderKnob == NULL) {
+			bmapSliderKnob = bmap_create_ext(MENU_KNOB_SIZE_X, MENU_KNOB_SIZE_Y, 24, vector(0,0,128));
+			bmapSliderKnob = bmap_draw_border(bmapSliderKnob, 0, 0, vector(255,255,255), 1);
+		}
+	
+		if (bmapSliderBg == NULL) {
+			bmapSliderBg = bmap_create_ext(MENU_SLIDER_SIZE_X, MENU_SLIDER_SIZE_Y, 24, vector(0,0,0));
+			bmapSliderBg = bmap_draw_border(bmapSliderBg, 0, 0, vector(255,255,255), 1);
+		}
+	
+		if (bmapCheckBoxCheckedOn == NULL) {
+			bmapCheckBoxCheckedOn = bmap_create_ext(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24, vector(0,0,128));
+			bmapCheckBoxCheckedOn = bmap_draw_border(bmapCheckBoxCheckedOn, 0, 0, vector(255,255,255), 1);
+		}
+	
+		if (bmapCheckBoxCheckedOff == NULL) {
+			bmapCheckBoxCheckedOff = bmap_create_ext(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24, vector(0,0,128));
+			bmapCheckBoxCheckedOff = bmap_draw_border(bmapCheckBoxCheckedOff, 0, 0, vector(255,255,255), 1);
+		}
+	
+		if (bmapCheckBoxUncheckedOn == NULL) {
+			bmapCheckBoxUncheckedOn = bmap_create_ext(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24, vector(0,0,128));
+			bmapCheckBoxUncheckedOn = bmap_draw_border(bmapCheckBoxUncheckedOn, 0, 0, vector(255,255,255), 1);
+		}
+	
+		if (bmapCheckBoxUncheckedOff == NULL) {
+			bmapCheckBoxUncheckedOff = bmap_create_ext(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24, vector(0,0,0));
+			bmapCheckBoxUncheckedOff = bmap_draw_border(bmapCheckBoxUncheckedOff, 0, 0, vector(255,255,255), 1);
+		}
+	
+		// Combobox
+		if (bmapComboboxOn == NULL) {
+			bmapComboboxOn = bmap_create_ext(MENU_COMBOBOX_SIZE_X, MENU_COMBOBOX_SIZE_Y, 24, vector(0,0,0));
+			bmapComboboxOn = bmap_draw_border(bmapComboboxOn, 0, 0, vector(255,255,255), 1);
+		}
+	
+		if (bmapComboboxOff == NULL) {
+			bmapComboboxOff = bmap_create_ext(MENU_COMBOBOX_SIZE_X, MENU_COMBOBOX_SIZE_Y, 24, vector(0,0,128));
+			bmapComboboxOff = bmap_draw_border(bmapComboboxOff, 0, 0, vector(0,0,128), 1);
+		}
+		
+	
+		// Button for key change
+		if (bmapKeyButtonOn == NULL) {
+			bmapKeyButtonOn = bmap_create_ext(MENU_KEY_BUTTON_SIZE_X, MENU_KEY_BUTTON_SIZE_Y, 24, vector(0,0,128));
+			bmapKeyButtonOn = bmap_draw_border(bmapKeyButtonOn, 0, 0, vector(0,0,128), 1);
+		}
+	
+		if (bmapKeyButtonOff == NULL) {
+			bmapKeyButtonOff = bmap_create_ext(MENU_KEY_BUTTON_SIZE_X, MENU_KEY_BUTTON_SIZE_Y, 24, vector(0,0,0));
+			bmapKeyButtonOff = bmap_draw_border(bmapKeyButtonOff, 0, 0, vector(255,255,255), 1);
+		}				
+	#else
+	
+		var vFormat;
+		var vPixel;
+		int i;
+		
+		// Create all images manually
+		if (bmapMenuButtonOff == NULL) {
+			bmapMenuButtonOff = bmap_createblack(MENU_BUTTON_SIZE_X,MENU_BUTTON_SIZE_Y,24);
+			var vFormat = bmap_lock(bmapMenuButtonOff, 0);
+			var vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			int i;
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapMenuButtonOff); i++) {
+				pixel_to_bmap(bmapMenuButtonOff, i, 0, vPixel);
+				pixel_to_bmap(bmapMenuButtonOff, i, bmap_height(bmapMenuButtonOff)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapMenuButtonOff); i++) {
+				pixel_to_bmap(bmapMenuButtonOff, 0, i, vPixel);
+				pixel_to_bmap(bmapMenuButtonOff, bmap_width(bmapMenuButtonOff)-1, i, vPixel);
+			}
+			bmap_unlock(bmapMenuButtonOff);
+		}
+		
+		if (bmapMenuButtonOn == NULL) {
+			bmapMenuButtonOn = bmap_createblack(MENU_BUTTON_SIZE_X,MENU_BUTTON_SIZE_Y,24);
+			bmap_fill(bmapMenuButtonOn, vector(0,0,128), 100);
+			vFormat = bmap_lock(bmapMenuButtonOn, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapMenuButtonOn); i++) {
+				pixel_to_bmap(bmapMenuButtonOn, i, 0, vPixel);
+				pixel_to_bmap(bmapMenuButtonOn, i, bmap_height(bmapMenuButtonOn)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapMenuButtonOn); i++) {
+				pixel_to_bmap(bmapMenuButtonOn, 0, i, vPixel);
+				pixel_to_bmap(bmapMenuButtonOn, bmap_width(bmapMenuButtonOn)-1, i, vPixel);
+			}
+			bmap_unlock(bmapMenuButtonOn);
+		}
+		
+		// Create save/load slot bitmaps
+		if (bmapSaveSlotOff == NULL) {
+			bmapSaveSlotOff = bmap_createblack(MENU_SAVE_SLOT_SIZE_X, MENU_SAVE_SLOT_SIZE_Y, 24);
+			vFormat = bmap_lock(bmapSaveSlotOff, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapSaveSlotOff); i++) {
+				pixel_to_bmap(bmapSaveSlotOff, i, 0, vPixel);
+				pixel_to_bmap(bmapSaveSlotOff, i, bmap_height(bmapSaveSlotOff)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapSaveSlotOff); i++) {
+				pixel_to_bmap(bmapSaveSlotOff, 0, i, vPixel);
+				pixel_to_bmap(bmapSaveSlotOff, bmap_width(bmapSaveSlotOff)-1, i, vPixel);
+			}
+			bmap_unlock(bmapSaveSlotOff);
+		}
+		if (bmapSaveSlotOn == NULL) {
+			bmapSaveSlotOn = bmap_createblack(MENU_SAVE_SLOT_SIZE_X, MENU_SAVE_SLOT_SIZE_Y, 24);
+			bmap_fill(bmapSaveSlotOn, vector(0,0,128), 100);
+			vFormat = bmap_lock(bmapSaveSlotOn, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapSaveSlotOn); i++) {
+				pixel_to_bmap(bmapSaveSlotOn, i, 0, vPixel);
+				pixel_to_bmap(bmapSaveSlotOn, i, bmap_height(bmapSaveSlotOn)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapSaveSlotOn); i++) {
+				pixel_to_bmap(bmapSaveSlotOn, 0, i, vPixel);
+				pixel_to_bmap(bmapSaveSlotOn, bmap_width(bmapSaveSlotOn)-1, i, vPixel);
+			}
+			bmap_unlock(bmapSaveSlotOn);
+		}
+		
+		// Create options elements
+		if (bmapOptionsChoiceBg == NULL)	 {
+			bmapOptionsChoiceBg = bmap_createblack(MENU_BUTTON_SIZE_X * 4 + MENU_BUTTON_GAP * 5, MENU_BUTTON_SIZE_Y + MENU_BUTTON_GAP * 2, 24);
+			vFormat = bmap_lock(bmapOptionsChoiceBg, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapOptionsChoiceBg); i++) {
+				pixel_to_bmap(bmapOptionsChoiceBg, i, 0, vPixel);
+				pixel_to_bmap(bmapOptionsChoiceBg, i, bmap_height(bmapOptionsChoiceBg)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapOptionsChoiceBg); i++) {
+				pixel_to_bmap(bmapOptionsChoiceBg, 0, i, vPixel);
+				pixel_to_bmap(bmapOptionsChoiceBg, bmap_width(bmapOptionsChoiceBg)-1, i, vPixel);
+			}
+			bmap_unlock(bmapOptionsChoiceBg);
+		}
+		
+		// Create the background for the options menues
+		if (bmapOptionsBg == NULL) {
+			// If the define is set to -1, the size of the options choice bar
+			// is used to determine the width of the options window.
+			if (MENU_OPTIONS_SIZE_X == -1) {
+				bmapOptionsBg = bmap_createblack(bmap_width(bmapOptionsChoiceBg), MENU_OPTIONS_SIZE_Y, 24);
+			} else {
+				bmapOptionsBg = bmap_createblack(MENU_OPTIONS_SIZE_X, MENU_OPTIONS_SIZE_Y, 24);
+			}
+			vFormat = bmap_lock(bmapOptionsBg, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapOptionsBg); i++) {
+				pixel_to_bmap(bmapOptionsBg, i, 0, vPixel);
+				pixel_to_bmap(bmapOptionsBg, i, bmap_height(bmapOptionsBg)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapOptionsBg); i++) {
+				pixel_to_bmap(bmapOptionsBg, 0, i, vPixel);
+				pixel_to_bmap(bmapOptionsBg, bmap_width(bmapOptionsBg)-1, i, vPixel);
+			}
+			bmap_unlock(bmapOptionsBg);		
+		}
+		
+		// Create Knob and Slider bitmaps
+		if (bmapSliderKnob == NULL) {
+			bmapSliderKnob = bmap_createblack(MENU_KNOB_SIZE_X, MENU_KNOB_SIZE_Y, 24);
+			bmap_fill(bmapSliderKnob, vector(0,0,128), 100);
+			vFormat = bmap_lock(bmapSliderKnob, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapSliderKnob); i++) {
+				pixel_to_bmap(bmapSliderKnob, i, 0, vPixel);
+				pixel_to_bmap(bmapSliderKnob, i, bmap_height(bmapSliderKnob)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapSliderKnob); i++) {
+				pixel_to_bmap(bmapSliderKnob, 0, i, vPixel);
+				pixel_to_bmap(bmapSliderKnob, bmap_width(bmapSliderKnob)-1, i, vPixel);
+			}
+			bmap_unlock(bmapSliderKnob);		
+		}
+		
+		if (bmapSliderBg == NULL) {
+			bmapSliderBg = bmap_createblack(MENU_SLIDER_SIZE_X, MENU_SLIDER_SIZE_Y, 24);
+			vFormat = bmap_lock(bmapSliderBg, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapSliderBg); i++) {
+				pixel_to_bmap(bmapSliderBg, i, 0, vPixel);
+				pixel_to_bmap(bmapSliderBg, i, bmap_height(bmapSliderBg)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapSliderBg); i++) {
+				pixel_to_bmap(bmapSliderBg, 0, i, vPixel);
+				pixel_to_bmap(bmapSliderBg, bmap_width(bmapSliderBg)-1, i, vPixel);
+			}
+			bmap_unlock(bmapSliderBg);		
+		}
+		
+		// Checkbox: TODO draw cross instead of other fill color
+		if (bmapCheckBoxCheckedOn == NULL) {
+			bmapCheckBoxCheckedOn = bmap_createblack(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24);
+			bmap_fill(bmapCheckBoxCheckedOn, vector(0,0,128), 100);
+			vFormat = bmap_lock(bmapCheckBoxCheckedOn, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapCheckBoxCheckedOn); i++) {
+				pixel_to_bmap(bmapCheckBoxCheckedOn, i, 0, vPixel);
+				pixel_to_bmap(bmapCheckBoxCheckedOn, i, bmap_height(bmapCheckBoxCheckedOn)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapCheckBoxCheckedOn); i++) {
+				pixel_to_bmap(bmapCheckBoxCheckedOn, 0, i, vPixel);
+				pixel_to_bmap(bmapCheckBoxCheckedOn, bmap_width(bmapCheckBoxCheckedOn)-1, i, vPixel);
+			}
+			bmap_unlock(bmapCheckBoxCheckedOn);		
+		}
+		
+		if (bmapCheckBoxCheckedOff == NULL) {
+			bmapCheckBoxCheckedOff = bmap_createblack(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24);
+			bmap_fill(bmapCheckBoxCheckedOff, vector(0,0,128), 100);		
+			vFormat = bmap_lock(bmapCheckBoxCheckedOff, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapCheckBoxCheckedOff); i++) {
+				pixel_to_bmap(bmapCheckBoxCheckedOff, i, 0, vPixel);
+				pixel_to_bmap(bmapCheckBoxCheckedOff, i, bmap_height(bmapCheckBoxCheckedOff)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapCheckBoxCheckedOff); i++) {
+				pixel_to_bmap(bmapCheckBoxCheckedOff, 0, i, vPixel);
+				pixel_to_bmap(bmapCheckBoxCheckedOff, bmap_width(bmapCheckBoxCheckedOff)-1, i, vPixel);
+			}
+			bmap_unlock(bmapCheckBoxCheckedOff);		
+		}
+		
+		if (bmapCheckBoxUncheckedOn == NULL) {
+			bmapCheckBoxUncheckedOn = bmap_createblack(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24);
+			bmap_fill(bmapCheckBoxUncheckedOn, vector(0,0,128), 100);
+			vFormat = bmap_lock(bmapCheckBoxUncheckedOn, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapCheckBoxUncheckedOn); i++) {
+				pixel_to_bmap(bmapCheckBoxUncheckedOn, i, 0, vPixel);
+				pixel_to_bmap(bmapCheckBoxUncheckedOn, i, bmap_height(bmapCheckBoxUncheckedOn)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapCheckBoxUncheckedOn); i++) {
+				pixel_to_bmap(bmapCheckBoxUncheckedOn, 0, i, vPixel);
+				pixel_to_bmap(bmapCheckBoxUncheckedOn, bmap_width(bmapCheckBoxUncheckedOn)-1, i, vPixel);
+			}
+			bmap_unlock(bmapCheckBoxUncheckedOn);		
+		}	
+		
+		if (bmapCheckBoxUncheckedOff == NULL) {
+			bmapCheckBoxUncheckedOff = bmap_createblack(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24);
+			vFormat = bmap_lock(bmapCheckBoxUncheckedOff, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapCheckBoxUncheckedOff); i++) {
+				pixel_to_bmap(bmapCheckBoxUncheckedOff, i, 0, vPixel);
+				pixel_to_bmap(bmapCheckBoxUncheckedOff, i, bmap_height(bmapCheckBoxUncheckedOff)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapCheckBoxUncheckedOff); i++) {
+				pixel_to_bmap(bmapCheckBoxUncheckedOff, 0, i, vPixel);
+				pixel_to_bmap(bmapCheckBoxUncheckedOff, bmap_width(bmapCheckBoxUncheckedOff)-1, i, vPixel);
+			}
+			bmap_unlock(bmapCheckBoxUncheckedOff);		
+		}
+		
+		// Combobox
+		if (bmapComboboxOn == NULL) {
+			bmapComboboxOn = bmap_createblack(MENU_COMBOBOX_SIZE_X, MENU_COMBOBOX_SIZE_Y, 24);
+			vFormat = bmap_lock(bmapComboboxOn, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapComboboxOn); i++) {
+				pixel_to_bmap(bmapComboboxOn, i, 0, vPixel);
+				pixel_to_bmap(bmapComboboxOn, i, bmap_height(bmapComboboxOn)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapComboboxOn); i++) {
+				pixel_to_bmap(bmapComboboxOn, 0, i, vPixel);
+				pixel_to_bmap(bmapComboboxOn, bmap_width(bmapComboboxOn)-1, i, vPixel);
+			}
+			bmap_unlock(bmapComboboxOn);		
+		}
+		
+		if (bmapComboboxOff == NULL) {
+			bmapComboboxOff = bmap_createblack(MENU_COMBOBOX_SIZE_X, MENU_COMBOBOX_SIZE_Y, 24);
+			bmap_fill(bmapComboboxOff, vector(0,0,128), 100);
+			vFormat = bmap_lock(bmapComboboxOff, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapComboboxOff); i++) {
+				pixel_to_bmap(bmapComboboxOff, i, 0, vPixel);
+				pixel_to_bmap(bmapComboboxOff, i, bmap_height(bmapComboboxOff)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapComboboxOff); i++) {
+				pixel_to_bmap(bmapComboboxOff, 0, i, vPixel);
+				pixel_to_bmap(bmapComboboxOff, bmap_width(bmapComboboxOff)-1, i, vPixel);
+			}
+			bmap_unlock(bmapComboboxOff);		
+		}
+		
+		// Button for key change
+		if (bmapKeyButtonOn == NULL) {
+			bmapKeyButtonOn = bmap_createblack(MENU_KEY_BUTTON_SIZE_X, MENU_KEY_BUTTON_SIZE_Y, 24);
+			bmap_fill(bmapKeyButtonOn, vector(0,0,128), 100);
+			vFormat = bmap_lock(bmapKeyButtonOn, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapKeyButtonOn); i++) {
+				pixel_to_bmap(bmapKeyButtonOn, i, 0, vPixel);
+				pixel_to_bmap(bmapKeyButtonOn, i, bmap_height(bmapKeyButtonOn)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapKeyButtonOn); i++) {
+				pixel_to_bmap(bmapKeyButtonOn, 0, i, vPixel);
+				pixel_to_bmap(bmapKeyButtonOn, bmap_width(bmapKeyButtonOn)-1, i, vPixel);
+			}
+			bmap_unlock(bmapKeyButtonOn);			
+		}
+		
+		if (bmapKeyButtonOff == NULL) {
+			bmapKeyButtonOff = bmap_createblack(MENU_KEY_BUTTON_SIZE_X, MENU_KEY_BUTTON_SIZE_Y, 24);
+			vFormat = bmap_lock(bmapKeyButtonOff, 0);
+			vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
+			// Draw Borders
+			for (i=0; i<bmap_width(bmapKeyButtonOff); i++) {
+				pixel_to_bmap(bmapKeyButtonOff, i, 0, vPixel);
+				pixel_to_bmap(bmapKeyButtonOff, i, bmap_height(bmapKeyButtonOff)-1, vPixel);
+			}
+			for (i=0; i<bmap_height(bmapKeyButtonOff); i++) {
+				pixel_to_bmap(bmapKeyButtonOff, 0, i, vPixel);
+				pixel_to_bmap(bmapKeyButtonOff, bmap_width(bmapKeyButtonOff)-1, i, vPixel);
+			}
+			bmap_unlock(bmapKeyButtonOff);		
+		}				
+	#endif	
+}
+
 void menu_init() {
 
-	var vFormat;
-	var vPixel;
 	int i;
 	
-	// TODO: Has to be done with generic TUST BITMAP FUNCTIONS
-	// Create buttons - if not defined, generate bitmaps
-	if (bmapMenuButtonOff == NULL) {
-		bmapMenuButtonOff = bmap_createblack(MENU_BUTTON_SIZE_X,MENU_BUTTON_SIZE_Y,24);
-		var vFormat = bmap_lock(bmapMenuButtonOff, 0);
-		var vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		int i;
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapMenuButtonOff); i++) {
-			pixel_to_bmap(bmapMenuButtonOff, i, 0, vPixel);
-			pixel_to_bmap(bmapMenuButtonOff, i, bmap_height(bmapMenuButtonOff)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapMenuButtonOff); i++) {
-			pixel_to_bmap(bmapMenuButtonOff, 0, i, vPixel);
-			pixel_to_bmap(bmapMenuButtonOff, bmap_width(bmapMenuButtonOff)-1, i, vPixel);
-		}
-		bmap_unlock(bmapMenuButtonOff);
-	}
-	if (bmapMenuButtonOn == NULL) {
-		bmapMenuButtonOn = bmap_createblack(MENU_BUTTON_SIZE_X,MENU_BUTTON_SIZE_Y,24);
-		bmap_fill(bmapMenuButtonOn, vector(0,0,128), 100);
-		vFormat = bmap_lock(bmapMenuButtonOn, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapMenuButtonOn); i++) {
-			pixel_to_bmap(bmapMenuButtonOn, i, 0, vPixel);
-			pixel_to_bmap(bmapMenuButtonOn, i, bmap_height(bmapMenuButtonOn)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapMenuButtonOn); i++) {
-			pixel_to_bmap(bmapMenuButtonOn, 0, i, vPixel);
-			pixel_to_bmap(bmapMenuButtonOn, bmap_width(bmapMenuButtonOn)-1, i, vPixel);
-		}
-		bmap_unlock(bmapMenuButtonOn);
-	}
-	
-	// TODO: Has to be done with generic TUST BITMAP FUNCTIONS
-	// Create save/load slot bitmaps
-	if (bmapSaveSlotOff == NULL) {
-		bmapSaveSlotOff = bmap_createblack(MENU_SAVE_SLOT_SIZE_X, MENU_SAVE_SLOT_SIZE_Y, 24);
-		vFormat = bmap_lock(bmapSaveSlotOff, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapSaveSlotOff); i++) {
-			pixel_to_bmap(bmapSaveSlotOff, i, 0, vPixel);
-			pixel_to_bmap(bmapSaveSlotOff, i, bmap_height(bmapSaveSlotOff)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapSaveSlotOff); i++) {
-			pixel_to_bmap(bmapSaveSlotOff, 0, i, vPixel);
-			pixel_to_bmap(bmapSaveSlotOff, bmap_width(bmapSaveSlotOff)-1, i, vPixel);
-		}
-		bmap_unlock(bmapSaveSlotOff);
-	}
-	if (bmapSaveSlotOn == NULL) {
-		bmapSaveSlotOn = bmap_createblack(MENU_SAVE_SLOT_SIZE_X, MENU_SAVE_SLOT_SIZE_Y, 24);
-		bmap_fill(bmapSaveSlotOn, vector(0,0,128), 100);
-		vFormat = bmap_lock(bmapSaveSlotOn, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapSaveSlotOn); i++) {
-			pixel_to_bmap(bmapSaveSlotOn, i, 0, vPixel);
-			pixel_to_bmap(bmapSaveSlotOn, i, bmap_height(bmapSaveSlotOn)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapSaveSlotOn); i++) {
-			pixel_to_bmap(bmapSaveSlotOn, 0, i, vPixel);
-			pixel_to_bmap(bmapSaveSlotOn, bmap_width(bmapSaveSlotOn)-1, i, vPixel);
-		}
-		bmap_unlock(bmapSaveSlotOn);
-	}
-	
-	// Create options elements
-	if (bmapOptionsChoiceBg == NULL)	 {
-		bmapOptionsChoiceBg = bmap_createblack(MENU_BUTTON_SIZE_X * 4 + MENU_BUTTON_GAP * 5, MENU_BUTTON_SIZE_Y + MENU_BUTTON_GAP * 2, 24);
-		vFormat = bmap_lock(bmapOptionsChoiceBg, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapOptionsChoiceBg); i++) {
-			pixel_to_bmap(bmapOptionsChoiceBg, i, 0, vPixel);
-			pixel_to_bmap(bmapOptionsChoiceBg, i, bmap_height(bmapOptionsChoiceBg)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapOptionsChoiceBg); i++) {
-			pixel_to_bmap(bmapOptionsChoiceBg, 0, i, vPixel);
-			pixel_to_bmap(bmapOptionsChoiceBg, bmap_width(bmapOptionsChoiceBg)-1, i, vPixel);
-		}
-		bmap_unlock(bmapOptionsChoiceBg);
-	}
-	
-	// Create the background for the options menues
-	if (bmapOptionsBg == NULL) {
-		// If the define is set to -1, the size of the options choice bar
-		// is used to determine the width of the options window.
-		if (MENU_OPTIONS_SIZE_X == -1) {
-			bmapOptionsBg = bmap_createblack(bmap_width(bmapOptionsChoiceBg), MENU_OPTIONS_SIZE_Y, 24);
-		} else {
-			bmapOptionsBg = bmap_createblack(MENU_OPTIONS_SIZE_X, MENU_OPTIONS_SIZE_Y, 24);
-		}
-		vFormat = bmap_lock(bmapOptionsBg, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapOptionsBg); i++) {
-			pixel_to_bmap(bmapOptionsBg, i, 0, vPixel);
-			pixel_to_bmap(bmapOptionsBg, i, bmap_height(bmapOptionsBg)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapOptionsBg); i++) {
-			pixel_to_bmap(bmapOptionsBg, 0, i, vPixel);
-			pixel_to_bmap(bmapOptionsBg, bmap_width(bmapOptionsBg)-1, i, vPixel);
-		}
-		bmap_unlock(bmapOptionsBg);		
-	}
-	
-	// Create Knob and Slider bitmaps
-	if (bmapSliderKnob == NULL) {
-		bmapSliderKnob = bmap_createblack(MENU_KNOB_SIZE_X, MENU_KNOB_SIZE_Y, 24);
-		bmap_fill(bmapSliderKnob, vector(0,0,128), 100);
-		vFormat = bmap_lock(bmapSliderKnob, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapSliderKnob); i++) {
-			pixel_to_bmap(bmapSliderKnob, i, 0, vPixel);
-			pixel_to_bmap(bmapSliderKnob, i, bmap_height(bmapSliderKnob)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapSliderKnob); i++) {
-			pixel_to_bmap(bmapSliderKnob, 0, i, vPixel);
-			pixel_to_bmap(bmapSliderKnob, bmap_width(bmapSliderKnob)-1, i, vPixel);
-		}
-		bmap_unlock(bmapSliderKnob);		
-	}
-	
-	if (bmapSliderBg == NULL) {
-		bmapSliderBg = bmap_createblack(MENU_SLIDER_SIZE_X, MENU_SLIDER_SIZE_Y, 24);
-		vFormat = bmap_lock(bmapSliderBg, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapSliderBg); i++) {
-			pixel_to_bmap(bmapSliderBg, i, 0, vPixel);
-			pixel_to_bmap(bmapSliderBg, i, bmap_height(bmapSliderBg)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapSliderBg); i++) {
-			pixel_to_bmap(bmapSliderBg, 0, i, vPixel);
-			pixel_to_bmap(bmapSliderBg, bmap_width(bmapSliderBg)-1, i, vPixel);
-		}
-		bmap_unlock(bmapSliderBg);		
-	}
-	
-	// Checkbox: TODO draw cross instead of other fill color
-	if (bmapCheckBoxCheckedOn == NULL) {
-		bmapCheckBoxCheckedOn = bmap_createblack(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24);
-		bmap_fill(bmapCheckBoxCheckedOn, vector(0,0,128), 100);
-		vFormat = bmap_lock(bmapCheckBoxCheckedOn, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapCheckBoxCheckedOn); i++) {
-			pixel_to_bmap(bmapCheckBoxCheckedOn, i, 0, vPixel);
-			pixel_to_bmap(bmapCheckBoxCheckedOn, i, bmap_height(bmapCheckBoxCheckedOn)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapCheckBoxCheckedOn); i++) {
-			pixel_to_bmap(bmapCheckBoxCheckedOn, 0, i, vPixel);
-			pixel_to_bmap(bmapCheckBoxCheckedOn, bmap_width(bmapCheckBoxCheckedOn)-1, i, vPixel);
-		}
-		bmap_unlock(bmapCheckBoxCheckedOn);		
-	}
-	
-	if (bmapCheckBoxCheckedOff == NULL) {
-		bmapCheckBoxCheckedOff = bmap_createblack(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24);
-		bmap_fill(bmapCheckBoxCheckedOff, vector(0,0,128), 100);		
-		vFormat = bmap_lock(bmapCheckBoxCheckedOff, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapCheckBoxCheckedOff); i++) {
-			pixel_to_bmap(bmapCheckBoxCheckedOff, i, 0, vPixel);
-			pixel_to_bmap(bmapCheckBoxCheckedOff, i, bmap_height(bmapCheckBoxCheckedOff)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapCheckBoxCheckedOff); i++) {
-			pixel_to_bmap(bmapCheckBoxCheckedOff, 0, i, vPixel);
-			pixel_to_bmap(bmapCheckBoxCheckedOff, bmap_width(bmapCheckBoxCheckedOff)-1, i, vPixel);
-		}
-		bmap_unlock(bmapCheckBoxCheckedOff);		
-	}
-	
-	if (bmapCheckBoxUncheckedOn == NULL) {
-		bmapCheckBoxUncheckedOn = bmap_createblack(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24);
-		bmap_fill(bmapCheckBoxUncheckedOn, vector(0,0,128), 100);
-		vFormat = bmap_lock(bmapCheckBoxUncheckedOn, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapCheckBoxUncheckedOn); i++) {
-			pixel_to_bmap(bmapCheckBoxUncheckedOn, i, 0, vPixel);
-			pixel_to_bmap(bmapCheckBoxUncheckedOn, i, bmap_height(bmapCheckBoxUncheckedOn)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapCheckBoxUncheckedOn); i++) {
-			pixel_to_bmap(bmapCheckBoxUncheckedOn, 0, i, vPixel);
-			pixel_to_bmap(bmapCheckBoxUncheckedOn, bmap_width(bmapCheckBoxUncheckedOn)-1, i, vPixel);
-		}
-		bmap_unlock(bmapCheckBoxUncheckedOn);		
-	}	
-	
-	if (bmapCheckBoxUncheckedOff == NULL) {
-		bmapCheckBoxUncheckedOff = bmap_createblack(MENU_CHECKBOX_SIZE_X, MENU_CHECKBOX_SIZE_Y, 24);
-		vFormat = bmap_lock(bmapCheckBoxUncheckedOff, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapCheckBoxUncheckedOff); i++) {
-			pixel_to_bmap(bmapCheckBoxUncheckedOff, i, 0, vPixel);
-			pixel_to_bmap(bmapCheckBoxUncheckedOff, i, bmap_height(bmapCheckBoxUncheckedOff)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapCheckBoxUncheckedOff); i++) {
-			pixel_to_bmap(bmapCheckBoxUncheckedOff, 0, i, vPixel);
-			pixel_to_bmap(bmapCheckBoxUncheckedOff, bmap_width(bmapCheckBoxUncheckedOff)-1, i, vPixel);
-		}
-		bmap_unlock(bmapCheckBoxUncheckedOff);		
-	}
-	
-	// Combobox
-	if (bmapComboboxOn == NULL) {
-		bmapComboboxOn = bmap_createblack(MENU_COMBOBOX_SIZE_X, MENU_COMBOBOX_SIZE_Y, 24);
-		vFormat = bmap_lock(bmapComboboxOn, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapComboboxOn); i++) {
-			pixel_to_bmap(bmapComboboxOn, i, 0, vPixel);
-			pixel_to_bmap(bmapComboboxOn, i, bmap_height(bmapComboboxOn)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapComboboxOn); i++) {
-			pixel_to_bmap(bmapComboboxOn, 0, i, vPixel);
-			pixel_to_bmap(bmapComboboxOn, bmap_width(bmapComboboxOn)-1, i, vPixel);
-		}
-		bmap_unlock(bmapComboboxOn);		
-	}
-	
-	if (bmapComboboxOff == NULL) {
-		bmapComboboxOff = bmap_createblack(MENU_COMBOBOX_SIZE_X, MENU_COMBOBOX_SIZE_Y, 24);
-		bmap_fill(bmapComboboxOff, vector(0,0,128), 100);
-		vFormat = bmap_lock(bmapComboboxOff, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapComboboxOff); i++) {
-			pixel_to_bmap(bmapComboboxOff, i, 0, vPixel);
-			pixel_to_bmap(bmapComboboxOff, i, bmap_height(bmapComboboxOff)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapComboboxOff); i++) {
-			pixel_to_bmap(bmapComboboxOff, 0, i, vPixel);
-			pixel_to_bmap(bmapComboboxOff, bmap_width(bmapComboboxOff)-1, i, vPixel);
-		}
-		bmap_unlock(bmapComboboxOff);		
-	}
-	
-	// Button for key change
-	if (bmapKeyButtonOn == NULL) {
-		bmapKeyButtonOn = bmap_createblack(MENU_KEY_BUTTON_SIZE_X, MENU_KEY_BUTTON_SIZE_Y, 24);
-		bmap_fill(bmapKeyButtonOn, vector(0,0,128), 100);
-		vFormat = bmap_lock(bmapKeyButtonOn, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapKeyButtonOn); i++) {
-			pixel_to_bmap(bmapKeyButtonOn, i, 0, vPixel);
-			pixel_to_bmap(bmapKeyButtonOn, i, bmap_height(bmapKeyButtonOn)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapKeyButtonOn); i++) {
-			pixel_to_bmap(bmapKeyButtonOn, 0, i, vPixel);
-			pixel_to_bmap(bmapKeyButtonOn, bmap_width(bmapKeyButtonOn)-1, i, vPixel);
-		}
-		bmap_unlock(bmapKeyButtonOn);			
-	}
-	
-	if (bmapKeyButtonOff == NULL) {
-		bmapKeyButtonOff = bmap_createblack(MENU_KEY_BUTTON_SIZE_X, MENU_KEY_BUTTON_SIZE_Y, 24);
-		vFormat = bmap_lock(bmapKeyButtonOff, 0);
-		vPixel = pixel_for_vec(vector(255,255,255), 100, vFormat);
-		// Draw Borders
-		for (i=0; i<bmap_width(bmapKeyButtonOff); i++) {
-			pixel_to_bmap(bmapKeyButtonOff, i, 0, vPixel);
-			pixel_to_bmap(bmapKeyButtonOff, i, bmap_height(bmapKeyButtonOff)-1, vPixel);
-		}
-		for (i=0; i<bmap_height(bmapKeyButtonOff); i++) {
-			pixel_to_bmap(bmapKeyButtonOff, 0, i, vPixel);
-			pixel_to_bmap(bmapKeyButtonOff, bmap_width(bmapKeyButtonOff)-1, i, vPixel);
-		}
-		bmap_unlock(bmapKeyButtonOff);		
-	}	
-	
+	menu_init_buttons();
+
 	// Create panels
 	// Start menu
 	panStartMenu = pan_create("", 10);
