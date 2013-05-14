@@ -29,10 +29,10 @@ o Shader Pack
 	o ...
 
 o Generic Script Library
-	o Weather Effects
+	- Weather Effects (padmalcom)
 		o Rain
 		o Snow
-	o Particle effects
+	- Particle effects (padmalcom)
 		o fire
 		o smoke
 		o electricity
@@ -67,13 +67,13 @@ o Generic Script Library
 	x Dialog API (padmalcom)
 		x Loading from XML
 	x Basic Inventory (padmalcom)
-	- Game Main Menu (MasterQ32, padmalcom) --> Source/menu.h
-		o Options Dialog
-			o Graphic Options
-			o Sound Options
-			o Key Options
-		o Save Game
-		o Load Game
+	x Game Main Menu (MasterQ32, padmalcom) --> Source/menu.h
+		x Options Dialog
+			x Graphic Options
+			x Sound Options
+			x Key Options
+		x Save Game (Only menu, no logic)
+		x Load Game (Only menu, no logic)
 	o Enemies
 	o Quests
 	o Procedural Library
@@ -81,10 +81,10 @@ o Generic Script Library
 		x DynamicModels (MasterQ32) --> Source/DynamicModels.h
 	o Lua Scripting Support
 	! Generic Array Lists (MasterQ32)
-	o Bitmap processes --> Source\bmap.h
+	x Bitmap processes --> Source\bmap.h
 		x bmap_lerp (txesmi)  --> Source\bmap.h
 		x bmap_rotate (txesmi)  --> Source\bmap.h
-		- Draw line, draw rectangle, draw circle, draw border, fill (padmalcom)
+		x Draw line, draw rectangle, draw circle, draw border, fill (padmalcom)
 	x Logging (padmalcom)
 	o Camera Controller
 		o Flythrough
