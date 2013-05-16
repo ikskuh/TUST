@@ -26,10 +26,10 @@ function main()
 action character()
 {
 	cam_init();
-	//cam_mode(CAMERA_FREE);
+	cam_mode(CAMERA_FREE);
 	//cam_mode(CAMERA_FIRST_PERSON);
 	//cam_mode(CAMERA_THIRD_PERSON);
-	cam_mode(CAMERA_OBSERVATION);
+	//cam_mode(CAMERA_OBSERVATION);
 	
 	
 	cam_target(me);

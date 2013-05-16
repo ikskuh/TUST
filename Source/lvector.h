@@ -7,7 +7,7 @@
  */
 
 /**
- * Returns a temporary vector.
+ * Returns a temporary vector that is valid at least one frame.
  * \param	x	X component
  * \param	y	Y component
  * \param	z	Z component
