@@ -30,6 +30,8 @@ VECTOR *lvector(var x, var y, var z)
 		lvectorStorageSize += 1024;
 		lvectorStorage = sys_malloc(lvectorStorageSize * sizeof(VECTOR));
 		memcpy(lvectorStorage, oldLvectorStorage, sizeof(VECTOR) * oldLvectorStorageSize);
+		
+		sys_free(oldLvectorStorage);
 	}
 	
 	lvectorStorage[currentPos].x = x;
