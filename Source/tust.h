@@ -79,6 +79,7 @@ VECTOR *vec_create(var x, var y, var z);
 #include "bmap.h"
 #include "camera.h"
 #include "lvector.h"
+#include "state_machine.h"
 
 #ifdef _TEMPLATE_H_
 	#error Template include guard still exists!
