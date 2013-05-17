@@ -61,9 +61,8 @@ o Generic Script Library
 		o Nodebased
 			x ModeMesh based pathfinder (txesmi) --> Source/nodemesh.h
 	x Generic Linked Lists (MasterQ32) --> Source/list.h
-	- Generic Spatial Node Management (txesmi) --> Source/node.h
-	- Generic Node based Mesh Management (txesmi) --> Source/nodemesh.h
 	x Generic Trash Management (txesmi) --> Source/trash.h
+	x Generic State Machines Collection Manager (txesmi) --> Source/state_machine.h
 	x Dialog API (padmalcom)
 		x Loading from XML
 	x Basic Inventory (padmalcom)
