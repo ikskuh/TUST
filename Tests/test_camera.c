@@ -26,7 +26,7 @@ function main()
 action character()
 {
 	cam_init();
-	cam_mode(CAMERA_FREE);
+	cam_set_mode(CAMERA_FREE);
 	//cam_mode(CAMERA_FIRST_PERSON);
 	//cam_mode(CAMERA_THIRD_PERSON);
 	//cam_mode(CAMERA_OBSERVATION);
@@ -41,12 +41,11 @@ action character()
 		
 		cam_update();
 		
-		if(key_w | key_a | key_s | key_d)
+		if((key_w | key_a | key_s | key_d) && cam_get_mode() != CAMERA_FREE)
 		{
-			switch (camMode) {
+			switch (cam_get_mode()) {
 				case CAMERA_THIRD_PERSON:
 				case CAMERA_FIRST_PERSON:
-				case CAMERA_FREE:
 					my.pan = camera.pan;
 				break;
 				case CAMERA_OBSERVATION:

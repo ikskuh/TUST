@@ -5,6 +5,7 @@ List *observationCameras = NULL;
 
 ENTITY *camTarget = NULL;
 int camMode = CAMERA_FREE;
+var camSpeed = 10;
 var camMouseSpeed = 10;
 VECTOR camOffset;
 VECTOR camFreePos;
@@ -40,6 +41,15 @@ void cam_update(void)
 	vec_set(&cPos, &camOffset);
 	if(camTarget != NULL)
 	{
+		camFreeAngle.pan -= mouse_force.x * camMouseSpeed * time_step;
+		camFreeAngle.tilt += mouse_force.y * camMouseSpeed * time_step;
+		
+		VECTOR dir;
+		vec_set(&dir, vector(key_w - key_s, key_a - key_d, key_q - key_r));
+		vec_scale(&dir, camSpeed * time_step);
+		vec_rotate(&dir, &camFreeAngle);
+		vec_add(camFreePos, &dir);
+		
 		vec_rotate(&cPos, &camTarget->pan);
 		vec_add(&cPos, &camTarget->x);
 	}
@@ -47,6 +57,9 @@ void cam_update(void)
 	switch(camMode)
 	{
 		case CAMERA_FREE:
+			
+			vec_set(&camera->x, &camFreePos);
+			vec_set(&camera->pan, &camFreeAngle);
 			
 			break;
 		case CAMERA_FIRST_PERSON:
@@ -101,11 +114,14 @@ void cam_update(void)
 	}
 }
 
-void cam_mode(int mode) { camMode = mode; }
+void cam_set_mode(int mode) { camMode = mode; }
+int cam_get_mode() { return camMode; }
 
 void cam_target(ENTITY *ent) { camTarget = ent; }
 
 void cam_basic_offset(VECTOR *vec) { vec_set(&camOffset, vec); }
+
+void cam_speed(var speed) { camSpeed = speed; }
 
 void cam_mouse_speed(var speed) { camMouseSpeed = speed; }
 

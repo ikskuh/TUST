@@ -40,7 +40,12 @@ void cam_update(void);
 /**
  * Sets the camera mode.
  */
-void cam_mode(int mode);
+void cam_set_mode(int mode);
+
+/**
+ * Gets the camera mode.
+ */
+int cam_get_mode(void);
 
 /**
  * Sets the current camera target.
@@ -51,6 +56,11 @@ void cam_target(ENTITY *ent);
  * Sets the basic camera offset. This offset is used for every camera mode as the target position.
  */
 void cam_basic_offset(VECTOR *vec);
+
+/**
+ * Sets the camera flight speed.
+ */
+void cam_speed(var speed);
 
 /**
  * Sets the camera mouse speed.
