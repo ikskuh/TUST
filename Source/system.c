@@ -65,7 +65,9 @@ void sys_keys_check() {
 
 void sys_change_resolution(var _res, var _fullscreen) {
 	video_switch(_res, 0, _fullscreen);
-	menu_center();
+	#ifdef _MENU_C_
+		menu_center();
+	#endif
 }
 
 STRING* str_for_key_ext(STRING* _target, var _key) {
