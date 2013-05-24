@@ -1,76 +1,84 @@
 #ifndef _WEATHER_H_
 #define _WEATHER_H_
 
-//#include "system.h"
-
-/**
- * \file weather.h
- * Some easy to use weather functions.
- */
- 
- VECTOR vecWindDirection;
-
-#define DEGREE_IN_RADIANS 0.0174532925
-#define EARTH_AXIAL_TILT 23.5			//earth axial tilt in degrees
-#define EARTH_ORBITAL_PERIOD 365.25		//earth orbital period in days (length of a year)
-#define EARTH_ROTATION_PERIOD 24.0		//earth rotation period in hours (length of a day)
-#define LOCATION_TIME_SPRING_EQUINOX 81.0	//day number of the year when day and night cycle is exactly 12/12 hours
-#define LOCATION_LATITUDE 48.0			//latitude of current location
-
-/**
- * Sets the sun position to a geologically correct position. Thanks to oliver2s for this fantastic code.
- * \param	var	Day of the year
- * \param	var	Hour of day
- * \param	var	Minute of day
- * \param	var	Second of day
- * \param	var	Current position in latitude
- * \param	var	Day of the year regarding relation of night to day
- */
-void set_sun_position(var _day,var _hour,var _minute,var _second,var _latitude,var _springEquinox);
-
-/**
- * Simple version for setting day time
- * \param	var	Hour of day
- * \param	var	Minute of day
- */
-void set_sun_position(var _hour,var _minute);
+void weather_night();
+void weather_day();
+void weather_evening();
+void weather_morning();
+void weather_daynight_dynamic();
+void weather_daynight_static();
+void weather_sun();
+void weather_rain();
+void weather_thunder();
+void weather_snow();
 
 
+// ----------------------------------------------------------------------
+// TWEAK HERE!
+// ----------------------------------------------------------------------
+
+int nDynamicDayNight						=	1;
+var vSunAzimuth							=	190;	// Fixed position when no dynamic day night
+var vSunElevation							=	20;	// Fixed position when no dynamic day night
+var vDayTransitionTime					=	30;
+var vNightTransitionTime				=	50;
+int nAmbientSounds						=	1;
+int nUnderwaterSounds					=	1;
+
+int nRandomWeather						=	0;
+int nRandomWeatherChangeFrequency	=	100;	// Higher value -> Longer states
+int nRandomWeatherStateDuration		=	40;	// Higher values -> Lower change probability
+
+int nWeatherState							=	0;		// 0 sun, 1 rain, 2 snow
+
+int nWaterLevel							=	-10;		// z position of water
 
 
-// Internal
+// Use to tweak frame rates
+#define LAND_FOG_NEAR		200
+#define LAND_FOG_FAR			4000
 
-// Lensflare
+#define AQUA_FOG_NEAR		-300
+#define AQUA_FOG_FAR			600
 
-#define LENS_DISTANCE skill1
+#define WEATHER_FOG_NEAR	100
+#define WEATHER_FOG_FAR		1000
 
-//void lensflareInitPosition();
-void lensflare_init_flare(ENTITY* _entFlare);
-void lensflare_place_flare(ENTITY* _entFlare);
-void lensflare_create_lenses();
-void lensflare_start();
-void lensflare_stop();
-void lensflare_toggle();
-//void weatherChangeDayNight(int _dayTime);
+// Weather particle box around the camera
+#define WEATHER_BOX_X		1000
+#define WEATHER_BOX_Y		1000
+#define WEATHER_BOX_Z		600
 
-// -1=Not initialized, 0=Not active, 1=active
-var vLensFlareState = 0;
-var vLensFlareAlpha = 70;
-var vLensFlareFadeSpeed = 25;
-var vLensFlareVisibility = 0;
-var vCameraPan = 0;
+// Effect density
+#define RAIN_DENSITY 10
+#define SNOW_DENSITY 20
+
+
+
+
+// ----------------------------------------------------------------------
+// LENSFLARE
+// ----------------------------------------------------------------------
+
+#define PIVOT_DIST skill99
 
 VECTOR vecTemp1;
 VECTOR vecTemp2;
+VECTOR ctemp;
 
-ENTITY* entFlare1 =  NULL;
-ENTITY* entFlare2 =  NULL;
-ENTITY* entFlare4 =  NULL;
-ENTITY* entFlare5 =  NULL;
-ENTITY* entFlare6 =  NULL;
-ENTITY* entFlare7 =  NULL;
-ENTITY* entFlare8 =  NULL;
-ENTITY* entFlare9 =  NULL;
+int nLensFlare = -1;	// -1 not created, 0 off, 1 on
+int nLensFlareFadeSpeed = 25;
+int nLensFlareAlpha = 70;
+var vCameraPan = 0;
+
+ENTITY* entFlare01 = NULL;
+ENTITY* entFlare02 = NULL;
+ENTITY* entFlare04 = NULL;
+ENTITY* entFlare05 = NULL;
+ENTITY* entFlare06 = NULL;
+ENTITY* entFlare07 = NULL;
+ENTITY* entFlare08 = NULL;
+ENTITY* entFlare09 = NULL;
 ENTITY* entFlare10 = NULL;
 ENTITY* entFlare11 = NULL;
 ENTITY* entFlare12 = NULL;
@@ -83,57 +91,96 @@ ENTITY* entFlare18 = NULL;
 ENTITY* entFlare19 = NULL;
 ENTITY* entFlare20 = NULL;
 
-// Weather
-
-#define NIGHT 1
-#define DAY 2
-#define CHANGING 3
-
-#define WEATHER_NONE 0
-#define WEATHER_SNOW 1
-#define WEATHER_RAIN 2
 
 
-void pSnow(PARTICLE* p);
-void pRain(PARTICLE* p);
+// ----------------------------------------------------------------------
+// WEATHER
+// ----------------------------------------------------------------------
 
-void snow_start();
-void snow_stop();
-void snow_toggle();
+BMAP* bmapWeatherParticle	= NULL;
+BMAP* bmapRain					= NULL;
+BMAP* bmapSnow					= NULL;
+BMAP* bmapLightning			= NULL;
+var vParticleVelocityX		=	0;
+var vParticleVelocityY		=	0;
+var vParticleVelocityZ		=	0;
+var vParticleSize				=	0;
+var vParticleAlpha			=	0;
+var vParticleNumber			=	0;
+VECTOR* vecRainDirection	= { x = 2; y = 1; z = 25; }
+VECTOR* vecSnowDirection	= { x = 4; y = 1; z = 25; }
+var vRainRandomMove			= 1;
+var vSnowRandomMove			= 8;
+var vDisableThunder			= 0;
+int nLightning					= 1;
 
-void rain_start();
-void rain_stop();
-void rain_togle();
 
-void clouds_start();
-void clouds_stop();
-void clouds_toggle();
+// Skills and flags for triggers
+#define TRIGGER_RAIN					FLAG1
+#define TRIGGER_SNOW					FLAG2
+#define TRIGGER_DISABLE_THUNDER	FLAG3
+#define T_FOG_CHANGE					FLAG4
 
-void stop_fog();
-void start_fog();
+#define TRIGGER_RANGE				skill1
+#define TRIGGER_RAIN_WIND_X		skill2
+#define TRIGGER_RAIN_WIND_Y		skill3
+#define TRIGGER_RAIN_FALLSPEED	skill4
+#define TRIGGER_SNOW_WIND_X		skill5
+#define TRIGGER_SNOW_WIND_Y		skill6
+#define TRIGGER_SNOW_FALL_SPEED	skill7
+#define T_RAIN_RANDOM_MOVE			skill8
+#define T_SNOW_RANDOM_MOVE			skill9
+#define T_FOG_NEAR					skill10
+#define T_FOG_FAR						skill11
+#define T_FOG_RED						skill12
+#define T_FOG_GREEN					skill13
+#define T_FOG_BLUE					skill14
+#define TRIGGER_ID					skill100
 
-void set_sky_color(VECTOR* _color);
+int nTriggerCount		= 0;
+var nActiveTriggerId	= -1;
+var vWeatherFader		= 1;
 
-void init_weather();
-void free_weather();
+VECTOR vecTempColor;
+var vFogDistanceNearTemp;
+var vFogDistanceFarTemp;
 
-int get_day_time();
-void day_night_change(int _dayTime);
+var vLightningTemp;
+var vLightningSegmentLength;
+VECTOR vecLightningSegmentStart;
+VECTOR vecLightningSegmentEnd;
+var vLightningStrokeLength;
+VECTOR vecLightningStrokeStart;
+VECTOR vecLightningStrokeEnd;
 
-void set_wind_direction(VECTOR* _dir);
+VECTOR vecParticleSeedBox;
+VECTOR vecCurrentColor;
 
-BMAP* bmapRainDrop			= NULL;
-SOUND* sndRain					= NULL;
-SOUND* sndWind					= NULL;
-SOUND* sndWolfHowling		= NULL;
-SOUND* sndRoosterCrowing	= NULL;
+int nIsUnderWater;
+int nLightningIsOn;
 
-var vWeatherSoundHandle;
-int nWeatherType = -1;
-ENTITY* entClouds = NULL;
-ENTITY* entSkyDay = NULL;
-ENTITY* entSkyNight = NULL;
-int nWeatherDayTime = DAY;
+SOUND* sndRain				= NULL;
+SOUND* sndWind				= NULL;
+SOUND* sndDay				= NULL;
+SOUND* sndNight			= NULL;
+SOUND* sndThunder1		= NULL;
+SOUND* sndThunder2		= NULL;
+SOUND* sndThunder3		= NULL;
+SOUND* sndThunder4		= NULL;
+SOUND* sndThunder5		= NULL;
+SOUND* sndUnderwater		= NULL;
+
+ENTITY* entHorizon		= NULL;
+ENTITY* entCloud1 		= NULL;
+ENTITY* entCloud2			= NULL;
+ENTITY* entCloud3			= NULL;
+ENTITY* entSkyDay			= NULL;
+ENTITY* entSkySun			= NULL;
+ENTITY* entSkySunCorona	= NULL;
+ENTITY* entSkySunshine	= NULL;
+ENTITY* entSkyNight		= NULL;
+ENTITY* entSkyMoon		= NULL;
+
 
 #include "weather.c"
 
