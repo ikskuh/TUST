@@ -86,12 +86,11 @@ o Generic Script Library
 		x bmap_rotate (txesmi)  --> Source\bmap.h
 		x Draw line, draw rectangle, draw circle, draw border, fill (padmalcom)
 	x Logging (padmalcom)
-	o Camera Controller
-		o Flythrough
-		o First Person
-		o Third Person
-		o "Adventure Camera"
-		o ...
+	x Camera Controller
+		x Flythrough
+		x First Person
+		x Third Person
+		x "Observation Camera"
 o Game Templates
 	o Shooter
 		o First/Third Person

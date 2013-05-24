@@ -65,3 +65,25 @@ VECTOR *vec_create(var x, var y, var z)
 	vec->z = z;
 	return vec;
 }
+
+void draw_font(STRING* text, var x, var y, COLOR* color, FONT *font, int flags, var alpha)
+{
+	static TEXT *txt = NULL;
+	if(txt == NULL)
+		txt = txt_create(1, -1);
+	
+	flags = flags & (CENTER_X | CENTER_Y | FILTER | ARIGHT | CONDENSED | SHADOW | OUTLINE);
+	
+	txt->pos_x = x;
+	txt->pos_y = y;
+	txt->flags = flags | LIGHT | TRANSLUCENT;
+	txt->alpha = alpha;
+	txt->font = font;
+	(txt->pstring)[0] = text;
+	if(color != NULL)
+		vec_set(&txt->blue, color);
+	
+	draw_obj(txt);
+}
+
+

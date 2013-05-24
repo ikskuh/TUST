@@ -66,6 +66,18 @@ void *memmove(BYTE *destination, BYTE *source, unsigned int num);
  */
 VECTOR *vec_create(var x, var y, var z);
 
+/**
+ * Writes a string at the given XY screen position in the current frame, using a Gamestudio FONT.
+ * \param text  The string to be written
+ * \param x     The screen position in pixels from the left border
+ * \param y     The screen position in pixels from the top border
+ * \param color A BGR color vector that determines the text color
+ * \param font  A FONT object that determines the font.
+ * \param flags Flags to change the behaviour of draw_font: CENTER_X, CENTER_Y, FILTER, ARIGHT, CONDENSED, SHADOW, OUTLINE
+ * \param alpha The alpha value of the text.
+ */
+void draw_font(STRING* text, var x, var y, COLOR* color, FONT *font, int flags, var alpha);
+
 #include "fs.h"
 #include "ini.h"
 #include "list.h"
