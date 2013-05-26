@@ -1,15 +1,54 @@
 #ifndef _WEATHER_H_
 #define _WEATHER_H_
 
+/**
+ * Sets the daytime to night
+ */
 void weather_night();
+
+/**
+ * Sets the daytime to day
+ */
 void weather_day();
+
+/**
+ * Sets the daytime to evening
+ */
 void weather_evening();
+
+/**
+ * Sets the daytime to morning
+ */
 void weather_morning();
+
+/**
+ * Change time of day dynamically
+ */
 void weather_daynight_dynamic();
+
+/**
+ * Sets a static time of day
+ */
 void weather_daynight_static();
+
+/**
+ * Let the sun shine
+ */
 void weather_sun();
+
+/**
+ * Sets it rain
+ */
 void weather_rain();
+
+/**
+ * Start rain with thunder
+ */
 void weather_thunder();
+
+/**
+ * Let it snow
+ */
 void weather_snow();
 
 
