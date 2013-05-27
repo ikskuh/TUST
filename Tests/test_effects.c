@@ -10,7 +10,8 @@ TEXT* txtHeadline = {
 		"1 - Fountain",
 		"2 - Dense Smoke",
 		"3 - Star rain",
-		"4 - Fire place"
+		"4 - Fire place",
+		"5 - Explosion"
 	);
 	flags = SHOW | OUTLINE;
 	font = "Arial#24";
@@ -18,6 +19,7 @@ TEXT* txtHeadline = {
 
 void main() {
 	level_load("..\\Ressources\\Terrains\\small.hmp");
+	vec_set(sky_color.blue, vector(0,0,0));
 	random_seed(0);
 	vec_set(camera.x, vector(-150, 0, 50));
 	while(1) {
@@ -46,15 +48,13 @@ void main() {
 			effect(pFlame,maxv(1,20*time_frame),vector(200,-100,0),vector(0,0,3));
 			effect(pSmokeFlames,maxv(1,20*time_frame),vector(200,-100,5),vector(0,0,3));
 		}
-		
-		// Press 5 for rain
+			
+		// Press 5 for explosion
 		if (key_5) {
-			effect(pRain,maxv(30,10*time_step),vector(camera.x, camera.y, camera.z + 200),nullvector);
-		}
-		
-		// Press 6 for snow
-		if (key_6) {
-			effect(pSnow,maxv(30,10*time_step),vector(camera.x, camera.y, camera.z + 200),nullvector);
+			while(key_5) wait(1);
+			vec_set(camera.x, vector(-150, -100, 50));
+			wait(10);
+			eff_explosion(vector(200,-100,5));
 		}
 
 		wait(1);
