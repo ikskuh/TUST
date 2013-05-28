@@ -29,20 +29,21 @@ o Shader Pack
 	o ...
 
 o Generic Script Library
-	- Weather Effects (padmalcom)
-		o Rain
-		o Snow
+	x Weather Effects (padmalcom)
+		x Rain
+		x Snow
+		x Thunder
 	- Particle effects (padmalcom)
-		o fire
-		o smoke
+		x fire
+		x smoke
 		o electricity
-		o explosion
-		o fountain
+		x explosion
+		x fountain
 		o waterfall
 		o leaves
 		o flies
 		o bubbles
-	o Day/Night Dynamic Sky
+	x Day/Night Dynamic Sky (padmalcom)
 	o Background Music Management
 	x INI-Access (MasterQ32)
 	x XML-Access (padmalcom)
