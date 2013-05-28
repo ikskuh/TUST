@@ -436,7 +436,7 @@ void weather_change() {
 		
 		if(nWeatherState>0) {
 			
-			reset(entCloud3,VISIBLE);
+			entCloud3.flags2 &=~SHOW;
 			if (entCloud3.alpha < 90){
 				entCloud3.alpha += 0.2*time_step;
 			}
@@ -508,12 +508,12 @@ void weather_change() {
 		
 		if(nWeatherState == 0) {
 			
+			
 			if(entCloud3.alpha > 1) {
-				entCloud3.alpha -= 10/60*time_step;
+				entCloud3.alpha -= 0.6*time_step;
 			}
 			if(entCloud3.alpha<1) {
-				reset(entCloud3,VISIBLE);
-				
+				entCloud3.flags2 &=~SHOW;
 			}
 			
 			if(entCloud3.alpha > 40) {

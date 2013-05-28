@@ -21,6 +21,7 @@ TEXT* txtDescription = {
 }
 
 void main() {
+	video_mode = 10;
 	level_load("..\\Ressources\\Terrains\\small.hmp");
 	
 	sky_init();
