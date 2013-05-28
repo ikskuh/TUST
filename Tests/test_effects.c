@@ -57,7 +57,7 @@ void main() {
 			while(key_5) wait(1);
 			vec_set(camera.x, vector(-150, -100, 50));
 			wait(10);
-			eff_explosion(vector(200,-100,5));
+			eff_explosion(vector(50+random(400),-200+random(300),5));
 		}
 			
 		// Press 6 for complex smoke
