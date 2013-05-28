@@ -2,6 +2,7 @@
 #include <default.c>
 
 #include "..\\Source\\effects.h"
+#define PRAGMA_PATH "..\\Ressources\\Graphics\\"
 
 TEXT* txtHeadline = {
 	pos_x = 10;
@@ -11,7 +12,8 @@ TEXT* txtHeadline = {
 		"2 - Dense Smoke",
 		"3 - Star rain",
 		"4 - Fire place",
-		"5 - Explosion"
+		"5 - Explosion",
+		"6 - Complex Smoke"
 	);
 	flags = SHOW | OUTLINE;
 	font = "Arial#24";
@@ -22,6 +24,7 @@ void main() {
 	vec_set(sky_color.blue, vector(0,0,0));
 	random_seed(0);
 	vec_set(camera.x, vector(-150, 0, 50));
+	
 	while(1) {
 	
 		// Press 1 for fountain
@@ -55,6 +58,13 @@ void main() {
 			vec_set(camera.x, vector(-150, -100, 50));
 			wait(10);
 			eff_explosion(vector(200,-100,5));
+		}
+			
+		// Press 6 for complex smoke
+		if (key_6) {
+			// Create a dense (50%) smoke cloud for 64 ticks (4 seconds)
+			while(key_6) wait(1);
+			eff_complexSmoke("smoke.tga", vector(200,-100,5), vector(200, 200, 100), 50, -1);
 		}
 
 		wait(1);

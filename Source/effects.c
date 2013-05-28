@@ -277,6 +277,57 @@ void pSmokeFlames(PARTICLE *p) {
 	p.event = pAlphaFade;
 }
 
+void eff_complexSmokeSprite()
+{
+	my->flags = TRANSLUCENT;
+	my->skill1 = 50;
+	wait(1);
+	while(my->alpha < my->skill1)
+	{
+		vec_diff(&my->pan, &my->x, &camera->x);
+		vec_to_angle(&my->pan, &my->pan);
+		my->roll = total_ticks;
+		my->alpha += 0.2 * time_step;
+		wait(1);
+	}
+	while(my->skill2 >= total_ticks || my->skill2 < 0)
+	{
+		vec_diff(&my->pan, &my->x, &camera->x);
+		vec_to_angle(&my->pan, &my->pan);
+		my->roll = total_ticks;
+		wait(1);
+	}
+	while(my->alpha > 0)
+	{
+		vec_diff(&my->pan, &my->x, &camera->x);
+		vec_to_angle(&my->pan, &my->pan);
+		my->roll = total_ticks;
+		my->alpha -= time_step;
+		wait(1);
+	}
+}
+
+void eff_complexSmoke(STRING *smoke, VECTOR* pos, VECTOR* size, var density, var time)
+{
+	int i;
+	var volume = abs(size.x * size.y * size.z);
+	for(i = 0; i < 3 * density * (volume / 200000); i++)
+	{
+		VECTOR spawn;
+		spawn.x = random(size.x) - 0.5 * size.x;
+		spawn.y = random(size.y) - 0.5 * size.y;
+		spawn.z = random(size.z) - 0.5 * size.z;
+		vec_add(&spawn, pos);
+		
+		you = ent_create(smoke, &spawn, eff_complexSmokeSprite);
+		you->skill1 = density;
+		if(time >= 0)
+			you->skill2 = total_ticks + time;
+		else
+			you->skill2 = -1;
+	}
+}
+
 void pElectro(PARTICLE *p);
 void pLeaves(PARTICLE *p);
 void pFlies(PARTICLE *p);

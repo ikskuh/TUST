@@ -22,6 +22,8 @@ BMAP* bmapExplSharpnel = "..\\Ressources\\Graphics\\explShrapnel.tga";
  */
 void eff_explosion(VECTOR* _pos);
 
+void eff_complexSmoke(STRING *smoke, VECTOR* _pos, VECTOR* _size, var density, var time);
+
 void pFountain(PARTICLE *p);
 void pDenseSmoke(PARTICLE *p);
 void pStars(PARTICLE *p);
