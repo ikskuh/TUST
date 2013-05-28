@@ -213,6 +213,25 @@ Item* inv_create_item(int _id, STRING* _name, STRING* _descr, int _value, int _t
 	return item;
 }
 
+Item* inv_create_item(int _id, STRING* _name, STRING* _descr, int _value, int _type, BMAP* _bitmap) {
+	Item* item = sys_malloc(sizeof(Item));
+	item.id = _id;
+	item.name = str_create("");
+	if (_name != NULL) str_cpy(item.name, _name);
+	item.description = str_create("");
+	if (_descr != NULL) str_cpy(item.description, _descr);
+	item.value = _value;
+	item.itemType = _type;
+	item.image = _bitmap;
+	item.panel = pan_create("", INV_PANEL_LAYER + 1);
+	item.panel.size_x = INV_ITEM_SIZE;
+	item.panel.size_y = INV_ITEM_SIZE;
+	pan_setbutton(item.panel, 0, 0, 0, 0, item.image, item.image, item.image, item.image, inv_item_click, inv_item_leave, inv_item_enter);
+	// Assert item to panel so that the item can be referenced from the panel (click events)
+	item.panel.skill_x = item;
+	return item;
+}
+
 
 
 

@@ -135,6 +135,18 @@ void inv_remove_item(Inventory* _inv, Item* _item);
  */
 Item* inv_create_item(int _id, STRING* _name, STRING* _descr, int _value, int _type);
 
+/**
+ * Creates an item with a bitmap
+ * \param	int	A fixed ID for the item
+ * \param	STRING*	The name of the item
+ * \param	STRING*	A description
+ * \param	int	A value (i.e. in gold)
+ * \param	int	An item type (see defines above)
+ * \param	BMAP*	Bitmap to illustrate the item
+ * \return			The item
+ */
+Item* inv_create_item(int _id, STRING* _name, STRING* _descr, int _value, int _type, BMAP* _bitmap);
+
 
 
 

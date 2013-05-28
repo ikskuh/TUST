@@ -64,7 +64,7 @@ void main() {
 		if (key_6) {
 			// Create a dense (50%) smoke cloud for 64 ticks (4 seconds)
 			while(key_6) wait(1);
-			eff_complexSmoke("smoke.tga", vector(200,-100,5), vector(200, 200, 100), 50, -1);
+			eff_complexSmoke("smoke.tga", vector(0,0,0), vector(600, 600, 100), 20, -1);
 		}
 
 		wait(1);
