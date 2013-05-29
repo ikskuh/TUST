@@ -31,7 +31,21 @@ BMAP* bmapExplSharpnel = "..\\Ressources\\Graphics\\explShrapnel.tga";
  */
 void eff_explosion(VECTOR* _pos);
 
+/**
+ * Starts a complex smoke effect on a certain area
+ * \param	STRING*	File to create smoke entities
+ * \param	VECTOR*	Position to place the smoke
+ * \param	VECTOR*	Size of the smoke
+ * \param	var		Smoke density
+ * \param	var		Effect's time to live
+ */
 void eff_complexSmoke(STRING *smoke, VECTOR* _pos, VECTOR* _size, var density, var time);
+
+/**
+ * Generate fog or dust that is always placed around the camera
+ * \param	int	Fog density
+ */
+void eff_generate_fog(int _density);
 
 void pFountain(PARTICLE *p);
 void pDenseSmoke(PARTICLE *p);
