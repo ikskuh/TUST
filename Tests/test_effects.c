@@ -13,7 +13,9 @@ TEXT* txtHeadline = {
 		"3 - Star rain",
 		"4 - Fire place",
 		"5 - Explosion",
-		"6 - Complex Smoke"
+		"6 - Complex Smoke",
+		"7 - Fog everywhere",
+		"8 - Remove fog"
 	);
 	flags = SHOW | OUTLINE;
 	font = "Arial#24";
@@ -65,6 +67,18 @@ void main() {
 			// Create a dense (50%) smoke cloud for 64 ticks (4 seconds)
 			while(key_6) wait(1);
 			eff_complexSmoke("smoke.tga", vector(0,0,0), vector(600, 600, 100), 20, -1);
+		}
+		
+		// Press 7 for fog everywhere
+		if (key_7) {
+			while(key_7) wait(1);
+			eff_generate_fog(150);
+		}
+		
+		// Press 8 to remove fog
+		if (key_8) {
+			while(key_8) wait(1);
+			eff_fog_remove();
 		}
 
 		wait(1);

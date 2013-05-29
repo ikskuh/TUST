@@ -1,8 +1,9 @@
 #ifndef _EFFECTS_C_
 #define _EFFECTS_C_
 
+// ---------------------------------------------------------------------------
 // Explosion
-
+// ---------------------------------------------------------------------------
 void p_eff_expl_shrapnel_fade(PARTICLE *p) {
     p.alpha += 6 *time_step;
     if(p.alpha > 30) p.lifespan = 0;
@@ -185,7 +186,9 @@ void eff_explosion(VECTOR* _pos) {
 
 
 
+// ---------------------------------------------------------------------------
 // General functions
+// ---------------------------------------------------------------------------
 
 void vec_randomize (VECTOR* _vector, var _range) {
    vec_set(_vector,vector(random(1)-0.5,random(1)-0.5,random(1)-0.5));
@@ -211,9 +214,9 @@ void pAlphaFadeFlame(PARTICLE *p) {
 
 
 
-
-
+// ---------------------------------------------------------------------------
 // Further effects
+// ---------------------------------------------------------------------------
 
 void pFountain(PARTICLE *p) {
 	VECTOR vecTemp;
@@ -277,6 +280,19 @@ void pSmokeFlames(PARTICLE *p) {
 	p.event = pAlphaFade;
 }
 
+void pElectro(PARTICLE *p);
+void pLeaves(PARTICLE *p);
+void pFlies(PARTICLE *p);
+void pBubbles(PARTICLE *p);
+void pWaterfall(PARTICLE *p);
+void pExplosionFire(PARTICLE *p);
+void pExplosionDust(PARTICLE *p);
+void pExplosionScatter(PARTICLE *p);
+
+
+// ---------------------------------------------------------------------------
+// Area smoke
+// ---------------------------------------------------------------------------
 void eff_complexSmokeSprite()
 {
 	my->flags = TRANSLUCENT;
@@ -328,13 +344,126 @@ void eff_complexSmoke(STRING *smoke, VECTOR* pos, VECTOR* size, var density, var
 	}
 }
 
-void pElectro(PARTICLE *p);
-void pLeaves(PARTICLE *p);
-void pFlies(PARTICLE *p);
-void pBubbles(PARTICLE *p);
-void pWaterfall(PARTICLE *p);
-void pExplosionFire(PARTICLE *p);
-void pExplosionDust(PARTICLE *p);
-void pExplosionScatter(PARTICLE *p);
+
+
+// ---------------------------------------------------------------------------
+// Constant fog
+// ---------------------------------------------------------------------------
+
+VECTOR vecFogDir;
+
+void eff_fog_set_alpha()  {
+	
+	var fade_speed = 0.5;
+	
+	// fade model in
+	my.alpha=0;
+	my.FOG_MAX_ALPHA = 20 + integer(random(20));
+	if(my.FOG_MAX_ALPHA < 10){ my.FOG_MAX_ALPHA = 15; }
+	
+	while(my.alpha < my.FOG_MAX_ALPHA) {
+		my.alpha += fade_speed*time_step;
+		wait(1);
+	}
+	my.alpha = my.FOG_MAX_ALPHA;
+}
+
+void eff_fog_change_dir() {
+	while(1) {
+		// new wind direction...
+		vec_set(vecFogDir.x, vector((random(1) - .5)*1.5, (random(1) - .5)*1.5, random(1)*.4));
+		wait(-5 + random(3));
+	}
+}
+
+void eff_fog_move() {
+	var roll_speed;
+	var fade_distance = FOG_CAMERA_DISTANCE+(FOG_CAMERA_DISTANCE/6);
+	
+	roll_speed = random(2)-1; 
+	
+	while(me) {
+		my.roll += roll_speed*time_step; //roll this sprite
+		
+		// update position globally
+		c_move(my, nullvector, vector(random(FOG_SPEED)*vecFogDir.x*time_step, random(FOG_SPEED)*vecFogDir.y*time_step, 0), IGNORE_PASSABLE);
+		
+		// fade sprite when close to camera
+		if(vec_dist(my.x, camera.x) < fade_distance)  {
+			my.alpha = minv(my.FOG_MAX_ALPHA, vec_dist(camera.x, my.x) * my.FOG_MAX_ALPHA / fade_distance);
+		}
+		
+		wait(1);
+	}
+}
+
+void eff_fog_control() {
+	VECTOR vecCamPos;
+	var randint;
+	
+	vec_scale(my.scale_x, 0.8);
+	set(my, PASSABLE | TRANSLUCENT); // can add BRIGHT, but slows FPS down
+	
+	//fade in slowly
+	eff_fog_set_alpha();
+	eff_fog_move();
+	
+	while(me)
+	{
+		if(my.alpha < my.FOG_MAX_ALPHA) { my.alpha += time_step; }
+		
+		vec_set(vecCamPos, camera.x);
+		vecCamPos.z = my.z;
+		
+		if(vec_dist(my.x, vecCamPos) >= FOG_CAMERA_DISTANCE) {
+			
+			// fade the fog out
+			while(my.alpha > 0) { my.alpha -= time_step; wait(1); }
+			
+			// set on new position at edge of fog distance
+			vec_set(my.x, vector(cycle(my.x, camera.x - FOG_CAMERA_DISTANCE, camera.x + FOG_CAMERA_DISTANCE), cycle(my.y, camera.y - FOG_CAMERA_DISTANCE, camera.y + FOG_CAMERA_DISTANCE), camera.z - random(100) + random (200)));
+		}
+		
+		wait(5);
+	}
+}
+
+void eff_fog_remove() {
+	if (fogEntities != NULL) {
+		int j;
+		int i = list_get_count(fogEntities);
+		for(j=0; j<i; j++) {
+			ENTITY* entFog = list_item_at(fogEntities, j);
+			if (entFog != NULL) ent_remove(entFog);
+		}
+		list_clear(fogEntities);
+	}
+}
+
+void eff_generate_fog(int _density) {
+	int nRandint, nFogcount;
+	
+	VECTOR vecFogPlace;
+	
+	eff_fog_change_dir();
+	
+	// Create a new list to manage fog
+	if (fogEntities == NULL) fogEntities = list_create();
+	
+	ENTITY* entFog = NULL;
+	
+	for(nFogcount=0; nFogcount<_density; nFogcount++) {
+		vec_set(vecFogPlace.x, vector(((camera.x - random(FOG_CAMERA_DISTANCE)) + (camera.x + random(FOG_CAMERA_DISTANCE))), ((camera.y - random(FOG_CAMERA_DISTANCE)) + (camera.y + random(FOG_CAMERA_DISTANCE))), ((camera.z - random(FOG_CAMERA_DISTANCE/4)) + random(FOG_CAMERA_DISTANCE/2))));
+		nRandint = integer(random(2));
+		if(nRandint == 0){ entFog = ent_create("..\\Ressources\\Graphics\\fogDust01.tga", vecFogPlace, eff_fog_control); }
+		if(nRandint == 1){ entFog = ent_create("..\\Ressources\\Graphics\\fogDust02.tga", vecFogPlace, eff_fog_control); }
+		
+		if (entFog != NULL) list_add(fogEntities, entFog);
+	}
+}
+
+
+
+
 
 #endif

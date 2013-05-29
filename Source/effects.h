@@ -6,6 +6,15 @@
  * \Some simple particle effects like smoke, flames or explosions.
  *
  */
+ 
+ 
+ #include "list.h" // Needed to manage fog entities
+ 
+#define FOG_MAX_ALPHA skill1
+#define FOG_CAMERA_DISTANCE 300
+#define FOG_SPEED 10
+
+List* fogEntities = NULL;
 
 VECTOR vecEffectsTemp;
 

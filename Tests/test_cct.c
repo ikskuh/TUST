@@ -3,9 +3,10 @@
 #include <default.c>
 
 // include physX:
-#include "..\\..\\Source\\physX3\\ackphysX3.h"
+#include "..\\Source\\physX3\\ackphysX3.h"
+
 // include cct template:
-#include "..\\..\\Source\\cct.h"
+#include "..\\Source\\cct.h"
 
 // player's action:
 action actHero(){
