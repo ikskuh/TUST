@@ -23,7 +23,7 @@ TEXT* txtDescription = {
 void main() {
 	video_mode = 10;
 	level_load("..\\Ressources\\Terrains\\small.hmp");
-	
+	random_seed(0);
 	sky_init();
 	
 	on_1 = weather_rain;

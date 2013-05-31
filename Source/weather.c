@@ -275,6 +275,7 @@ void weather_lightning_effect() {
 }
 
 void weather_increase_brightness() {
+	
 	nLightningIsOn = 1;
 	nLightning = 255;
 	wait(2+random(3));
@@ -655,6 +656,8 @@ void sky_init() {
    
    VECTOR vecTemp;
 	wait(10);
+	
+	vec_set(mtl_sky.ambient_blue, vector(1,1,1));
 	
 	sky_create_resources();
 

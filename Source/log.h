@@ -3,12 +3,10 @@
 
 #include <strio.c>
 
-#define LOG_FILE "log.html"
-#define LOG_NO_FILE 0
-#define LOG_TO_FILE 1
-
 // Should be defined for active debug mode
 //#define DEBUG
+
+#define LOG_LINES 50
 
 TEXT* txtLog = NULL;
 FONT* fontLog = "Arial#12b";
@@ -17,8 +15,10 @@ int nLogToFile = 0;
 int nLogHeaderWritten = 0;
 var vLogFileHandle;
 STRING* strLogTemp = "#128";
+STRING* strLogFile = "#128";
 
-void log_init(int _logToFile);
+void log_init();
+void log_init(STRING* _file);
 void log_free();
 void log_hide();
 void log_show();

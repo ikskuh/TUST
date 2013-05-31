@@ -4,7 +4,7 @@
 // Creating an HTML header
 void log_write_header() {
 	// Open "LOG_FILE" (see log.h) to write
-	vLogFileHandle = file_open_write(LOG_FILE);
+	vLogFileHandle = file_open_write(strLogFile);
 	file_str_write(vLogFileHandle, "<html>\n\t<head>\n\t\t<title>Log file</title>\n\t</head>\n\t<body>\n\t\t<h1>Log file</h1>\n\t\t");
 
 	char cbuffer[128];
@@ -19,9 +19,13 @@ void log_write_header() {
 	nLogHeaderWritten = 1;
 }
 
+void log_init() {
+	log_init(NULL);
+}
+
 // Initialize log
-void log_init(int _logToFile) {
-	txtLog = txt_create(30,999);
+void log_init(STRING* _logFile) {
+	txtLog = txt_create(LOG_LINES,999);
 	txtLog.font = fontLog;
 	txtLog.size_x = screen_size.x;
 	txtLog.size_y = 100;
@@ -35,7 +39,10 @@ void log_init(int _logToFile) {
 	vec_set(cLogColor, vector(255,255,255));
 
 	// Log to file, too?
-	nLogToFile = _logToFile;
+	if (_logFile != NULL) {
+		nLogToFile = 1;
+		str_cpy(strLogFile, _logFile);
+	}
 	
 	// If logging to file, initialize file IO
 	if (nLogToFile == 1) {
@@ -45,13 +52,14 @@ void log_init(int _logToFile) {
 
 // Close HTML file
 void log_write_footer() {
-	vLogFileHandle = file_open_append(LOG_FILE);
+	vLogFileHandle = file_open_append(strLogFile);
 	file_str_write(vLogFileHandle, "\n\t\t</table>\n\t</body>\n</html>");
 	file_close(vLogFileHandle);
 }
 
 // Close logging lib
 void log_free() {
+	if (nLogToFile == 1) log_write_footer();
 	ptr_remove(txtLog);
 	txtLog = NULL;
 	nLogHeaderWritten = 0;
@@ -94,7 +102,7 @@ void log_print(char* _info, char* _in) {
 
 	// Move lines on step down
 	int i;
-	for (i=txtLog.strings-1; i > 0; i--) {
+	for (i=LOG_LINES-1; i > 0; i--) {
 		str_cpy((txtLog.pstring)[i], (txtLog.pstring)[i-1]);
 	}
 
@@ -104,7 +112,7 @@ void log_print(char* _info, char* _in) {
 
 	// Print to file?
 	if (nLogToFile == 1) {
-		vLogFileHandle = file_open_append(LOG_FILE);
+		vLogFileHandle = file_open_append(strLogFile);
 		char cbuffer2[10];
 
 		// Change color to hex for HTML coding
