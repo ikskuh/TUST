@@ -81,6 +81,15 @@ var point_to_line2D_escalar ( var px, var py, var l1x, var l1y, var l2x, var l2y
  */
 List* calculate_spline(List* _points,  int _detail);
 
+/**
+ * Calculates a spline
+ * \param	points      Input points
+ * \param	pointcount  Number of points in points.
+ * \param	pos         Interpolation position between 0 and 1.
+ * \return	            Vector at pos.
+ * 
+ */
+VECTOR* math_get_spline(VECTOR* points, int pointcount, float pos);
 
 #include "math.c"
 

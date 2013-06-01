@@ -116,9 +116,12 @@ List* calculate_spline(List* _points,  int _detail) {
 	for (j = 0; j <= m; j++) {
 		u = ((double)j / m)*(n-t+2-.00000001);
 		VECTOR* vecCurveTemp = sys_malloc(sizeof(VECTOR));
-		vecCurveTemp->x = 0; vecCurveTemp->y = 0; vecCurveTemp.z = 0;
+		vecCurveTemp->x = 0;
+		vecCurveTemp->y = 0;
+		vecCurveTemp->z = 0;
 		
-		for (k = 0; k <= n; k++) {
+		for (k = 0; k <= n; k++)
+		{
 			temp = _spline_calc(k, t, u);
 			
 			VECTOR* vecPointTemp = list_item_at(_points, k);
@@ -135,3 +138,47 @@ List* calculate_spline(List* _points,  int _detail) {
 	return results;
 }
 
+VECTOR* math_get_spline(VECTOR* _points, int pointcount, float pos)
+{
+	if (_points == NULL) return NULL;
+	if (pointcount < 2) return NULL;
+	
+	int t = 4;
+	int j, k;
+	
+	double temp, u;
+
+	for (j = 0; j < pointcount + t; j++)
+	{
+		if (j < t)
+		{
+			U[j] = 0.0;
+		}
+		else
+		{
+			if (t <= j && j < pointcount)
+			{
+				U[j] = j - t + 1;
+			}
+			else
+			{
+				U[j] = pointcount - t + 1;
+			}
+		}
+	}
+	
+	u = (pos)*(pointcount - t + 1 - 0.00000001);
+	VECTOR vecCurveTemp;
+	vecCurveTemp.x = 0; vecCurveTemp.y = 0; vecCurveTemp.z = 0;
+	
+	for (k = 0; k < pointcount; k++)
+	{
+		temp = _spline_calc(k, t, u);
+		
+		vecCurveTemp.x += _points[k].x * temp;
+		vecCurveTemp.y += _points[k].y * temp;
+		vecCurveTemp.z += _points[k].z * temp;
+	}
+	
+	return vector(vecCurveTemp.x, vecCurveTemp.y, vecCurveTemp.z);
+}
