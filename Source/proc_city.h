@@ -8,6 +8,7 @@
  
 #include <d3d9.h>
 #include "DynamicModels.h"
+#include "List.h"
 
 
 
@@ -84,8 +85,7 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 
 typedef struct Street
 {
-	VECTOR **points;
-	int numPoints;
+	List *points;
 	int segmentLength;
 	var width;
 	var height;
@@ -96,14 +96,11 @@ typedef struct Street
 } Street;
 
 
-Street *street_create(int maxPoints, int _streetWidth, int _streetHeight);
+Street *street_create(int _streetWidth, int _streetHeight);
 void street_remove(Street *street);
-void street_setpos(Street *street, int i, VECTOR *pos);
-int street_getpos(Street *street, int i, VECTOR *pos);
-void street_clearpos(Street *street, int i);
+void street_addpos(Street *street, VECTOR *pos);
 var street_getground(Street *street, VECTOR *pos, VECTOR *offset, int mirror);
 ENTITY *street_build(Street *street, ENTITY* _terrain, BMAP* _streetTexture);
-void street_debug(Street *street);
 
 
 #include "proc_city.c"

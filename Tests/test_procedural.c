@@ -53,7 +53,8 @@ void draw_voronoi() {
 	vo_free();	
 }
 
-void create_random_streets() {
+void create_random_streets()
+{
 	level_load("");
 	vec_set(camera.x, vector(15, 1014, 698));
 	vec_set(camera.pan, vector(270, -35, 0));
@@ -62,40 +63,25 @@ void create_random_streets() {
 	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
 	
 	
-	Street *editorStreet = street_create(9, 100, 2);
+	Street *editorStreet = street_create(100, 2);
 	editorStreet->segmentLength = 15;
 	editorStreet->groundDist = 5;
 	editorStreet->width = 25;
-	int streetPoints = 0;
 
 	// Add street positions	
-	street_setpos(editorStreet, streetPoints, vector(100,200,0));
-	streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(200,200,0));
-	streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(300,100,0));
-	streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(300,0,0));
-	streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(300,-100,0));
-	streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(100,-100,0));
-	streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(-100,-100,0));
-	streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(-200,-200,0));
-	streetPoints++;
-	
-	// Adjust street length!
-	//street_setpos(editorStreet, streetPoints, vector(-100,200,0));
-	//streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(-350,200,0));
-	streetPoints++;
+	street_addpos(editorStreet, vector(100,200,0));
+	street_addpos(editorStreet, vector(200,200,0));
+	street_addpos(editorStreet, vector(300,100,0));
+	street_addpos(editorStreet, vector(300,0,0));
+	street_addpos(editorStreet, vector(300,-100,0));
+	street_addpos(editorStreet, vector(100,-100,0));
+	street_addpos(editorStreet, vector(-100,-100,0));
+	street_addpos(editorStreet, vector(-200,-200,0));
+	//street_addpos(editorStreet, vector(-100,200,0));
+	street_addpos(editorStreet, vector(-350,200,0));
 
 	// "Draw" streets
-	if(streetPoints > 1) {
-		street_build(editorStreet, entTerrain, bmapStreetTexture);
-	}
+	ENTITY *street = street_build(editorStreet, entTerrain, bmapStreetTexture);
 }
 
 void main() {

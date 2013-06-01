@@ -5,14 +5,12 @@
 // Street tool
 // ----------------------------------------------------------------------------------------
 
-Street *street_create(int maxPoints, int _streetWidth, int _streetHeight)
+Street *street_create(int _streetWidth, int _streetHeight)
 {
 	Street *street = sys_malloc(sizeof(Street));
 	
-	street->points = sys_malloc(sizeof(VECTOR*) * maxPoints);
-	memset(street->points, 0, sizeof(VECTOR*) * maxPoints);
+	street->points = list_create();
 	
-	street->numPoints = maxPoints;
 	street->width = _streetWidth; // 320
 	street->groundDist = 16;
 	street->height = _streetHeight; // 48
@@ -24,50 +22,18 @@ Street *street_create(int maxPoints, int _streetWidth, int _streetHeight)
 
 void street_remove(Street *street)
 {
-	int i;
-	for(i = 0; i < street->numPoints; i++)
-	{
-		if((street->points)[i] != NULL)
-			sys_free((street->points)[i]);
-	}
-	sys_free(street->points);
+	list_clear_content (street->points, sys_free );
+	list_delete(street->points);
 	if(street->ent != NULL)
 		ent_remove(street->ent);
 	sys_free(street);
 }
 
-void street_setpos(Street *street, int i, VECTOR *pos)
+void street_addpos(Street *street, VECTOR *pos)
 {
-	if(street->numPoints < 0)
-		return;
-	if(i >= street->numPoints)
-		return;
-	if((street->points)[i] == NULL)
-		(street->points)[i] = sys_malloc(sizeof(VECTOR));
-	vec_set((street->points)[i], pos);
-}
-
-int street_getpos(Street *street, int i, VECTOR *pos)
-{
-	if(street->numPoints < 0)
-		return 0;
-	if(street->numPoints >= i)
-		return 0;
-	if((street->points)[i] == NULL)
-		return 0;
-	vec_set(pos, (street->points)[i]);
-	return 1;
-}
-
-void street_clearpos(Street *street, int i)
-{
-	if(street->numPoints < 0)
-		return;
-	if(street->numPoints >= i)
-		return;
-	if((street->points)[i] != NULL)
-		sys_free((street->points)[i]);
-	(street->points)[i] = NULL;
+	VECTOR *vec = sys_malloc(sizeof(VECTOR));
+	vec_set(vec, pos);
+	list_add(street->points, vec);
 }
 
 var street_getground(Street *street, VECTOR *pos, VECTOR *offset, int mirror)
@@ -151,35 +117,22 @@ ENTITY *street_build(Street *street, ENTITY* _terrain, BMAP* _streetTexture)
 	int i, j, iPointCount;
 	VECTOR center;
 	
-	vec_set(&center, vector(0, 0, 0));
-	iPointCount = 0;
+	iPointCount = list_get_count(street->points);
 	
 	ENTITY *entSpline = ent_create("", vector(0, 0, 0), NULL);
-
-	for(i = 0; i < street->numPoints; i++)
-	{
-		if((street->points)[i] != NULL)
-		{
-			vec_add(&center, (street->points)[i]);
-			iPointCount++;
-		}
-	}
-	// Calculate street center
-	vec_scale(&center, 1.0 / iPointCount);
 	
 	path_create(entSpline, iPointCount, iPointCount);
 	
-	VECTOR *spline = sys_malloc(sizeof(VECTOR) * iPointCount);
-	int pos = 0;
-	for(i = 0; i < street->numPoints; i++)
+	VECTOR **spline = sys_malloc(sizeof(VECTOR*) * iPointCount);
+	list_copy_to(street->points, spline, iPointCount);
+	
+	vec_set(&center, vector(0, 0, 0));
+	for(i = 0; i < iPointCount; i++)
 	{
-		if((street->points)[i] != NULL)
-		{
-			vec_set(&spline[pos], (street->points)[i]);
-			path_setnode(entSpline, pos + 1, &spline[pos], NULL);
-			pos++;
-		}
+		vec_add(&center, spline[i]);
+		path_setnode(entSpline, i + 1, spline[i], NULL);
 	}
+	vec_scale(&center, 1.0 / iPointCount);
 	
 	DynamicModel *model = dmdl_create();
 	model->skin[0] = _streetTexture;
@@ -189,9 +142,7 @@ ENTITY *street_build(Street *street, ENTITY* _terrain, BMAP* _streetTexture)
 	D3DVERTEX left;
 	D3DVERTEX right;
 	
-	var isLooped = vec_dist(&spline[0], &spline[iPointCount-1]) < 0.5;
-	if(isLooped)
-		vec_set(&spline[iPointCount-1], &spline[0]);
+	var isLooped = vec_dist(&spline[0], &spline[iPointCount-1]) < 0.1;
 	
 	var length = 10 * path_length(entSpline);
 	var distance = 0;
@@ -285,34 +236,9 @@ ENTITY *street_build(Street *street, ENTITY* _terrain, BMAP* _streetTexture)
 	ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
 	
 	dmdl_delete(model);
+	sys_free(spline);
 	
 	return ent;
-}
-
-void street_debug(Street *street)
-{
-	int i;
-	while(1)
-	{
-		int found = 0;
-		for(i = 0; i < street->numPoints; i++)
-		{
-			if((street->points)[i] != NULL)
-			{
-				if(found == 0)
-				{
-					draw_line3d((street->points)[i], NULL, 100);
-					draw_line3d((street->points)[i], COLOR_RED, 100);
-				}
-				else
-				{
-					draw_line3d((street->points)[i], COLOR_RED, 100);
-				}
-				found = 1;
-			}
-		}
-		wait(1);
-	}
 }
 
 #endif
