@@ -657,8 +657,6 @@ void sky_init() {
    VECTOR vecTemp;
 	wait(10);
 	
-	vec_set(mtl_sky.ambient_blue, vector(1,1,1));
-	
 	sky_create_resources();
 
 	// If no lensflare desired --> comment out!
