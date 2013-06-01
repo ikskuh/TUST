@@ -86,7 +86,7 @@ typedef struct Street
 {
 	VECTOR **points;
 	int numPoints;
-	int segments;
+	int segmentLength;
 	var width;
 	var height;
 	var slopewidth;

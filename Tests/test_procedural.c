@@ -1,7 +1,6 @@
 #include <acknex.h>
 #include <default.c>
 #include <d3d9.h>
-#include <ackphysx.h>
 
 #include "..\\Source\\proc_city.h"
 #include "..\\Source\\DynamicModels.h"
@@ -55,8 +54,6 @@ void draw_voronoi() {
 }
 
 void create_random_streets() {
-	
-	physX_open();
 	level_load("");
 	vec_set(camera.x, vector(15, 1014, 698));
 	vec_set(camera.pan, vector(270, -35, 0));
@@ -65,7 +62,10 @@ void create_random_streets() {
 	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
 	
 	
-	Street *editorStreet = street_create(16, 100, 2);
+	Street *editorStreet = street_create(9, 100, 2);
+	editorStreet->segmentLength = 15;
+	editorStreet->groundDist = 5;
+	editorStreet->width = 25;
 	int streetPoints = 0;
 
 	// Add street positions	
@@ -85,9 +85,11 @@ void create_random_streets() {
 	streetPoints++;
 	street_setpos(editorStreet, streetPoints, vector(-200,-200,0));
 	streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(-100,200,0));
-	streetPoints++;
-	street_setpos(editorStreet, streetPoints, vector(100,200,0));
+	
+	// Adjust street length!
+	//street_setpos(editorStreet, streetPoints, vector(-100,200,0));
+	//streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(-350,200,0));
 	streetPoints++;
 
 	// "Draw" streets
