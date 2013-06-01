@@ -6,6 +6,9 @@
  * \brief Math helpers and other function
  * Provides math helpers and useful functions.
  */
+ 
+ #include "list.h"
+ #include "log.h"
 
 /**
  * Interpolates a single angle.
@@ -68,5 +71,17 @@ var point_to_line2D_dist ( var px, var py, var l1x, var l1y, var l2x, var l2y );
  */
 var point_to_line2D_escalar ( var px, var py, var l1x, var l1y, var l2x, var l2y );
 
+
+/**
+ * Calculates a spline
+ * \param	List*(VECTOR*)	Input points
+ * \param	int				Details. Set how many VECTOR*s are returned
+ * \return						List*(VECTOR*) of Points that make the spline more detailed
+ * 
+ */
+List* calculate_spline(List* _points,  int _detail);
+
+
 #include "math.c"
+
 #endif
