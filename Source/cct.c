@@ -16,17 +16,17 @@ VECTOR absdist;
 	// create cct and setup it's size/bounding ellipsoid:
 	function cct_setup(ENTITY* actor, VECTOR* bbox_size, var groupId){
 		// standing and crouching size's of cct:
-		actor.standingSize = bbox_size.z;
-		actor.crouchingSize = bbox_size.z * 0.6;
+		actor.STANDING_SIZE = bbox_size.z;
+		actor.CROUCING_SIZE = bbox_size.z * 0.6;
 		// radius and half-size of the cct:
-		actor.halfStandingSize = actor.standingSize * 0.5;
-		actor.halfCrouchingSize = actor.crouchingSize * 0.5;
-		actor.cctRadius = bbox_size.x;
+		actor.HALF_STANDING_SIZE = actor.STANDING_SIZE * 0.5;
+		actor.HALF_CROUCHING_SIZE = actor.CROUCING_SIZE * 0.5;
+		actor.CCT_RADIUS = bbox_size.x;
 		// setup scale vectors:
-		vec_set(actor.standSize_x, vector(actor.cctRadius / actor.max_x, actor.cctRadius / actor.max_x, actor.halfStandingSize / actor.max_z));
-		vec_set(actor.crawlSize_x, vector(actor.cctRadius / actor.max_x, actor.cctRadius / actor.max_x, actor.halfCrouchingSize / actor.max_z));
+		vec_set(actor.STAND_SIZE_X, vector(actor.CCT_RADIUS / actor.max_x, actor.CCT_RADIUS / actor.max_x, actor.HALF_STANDING_SIZE / actor.max_z));
+		vec_set(actor.CRAWL_SIZE_X, vector(actor.CCT_RADIUS / actor.max_x, actor.CCT_RADIUS / actor.max_x, actor.HALF_CROUCHING_SIZE / actor.max_z));
 		// scale the bbox:
-		vec_set(actor.scale_x, actor.standSize_x);
+		vec_set(actor.scale_x, actor.STAND_SIZE_X);
 		// wait one frame:
 		wait(1);
 		// set both collusion flags:
@@ -100,7 +100,7 @@ var crawlOn = 0;
 // fps-camera code:
 void attachCamera(){
 	// rotate camera:
-	if(my.allowRotate == 1){
+	if(my.ALLOW_ROTATE == 1){
 		// get input:
 		camInput.pan -= mouseSpeed * mickey.x;
 		camInput.tilt -= mouseSpeed * mickey.y;	
@@ -140,9 +140,9 @@ void goCrawl(){
 		}
 		else{
 			// if we need to change the size:
-			if(my.scale_z > my.crawlSize_z){
+			if(my.scale_z > my.CRAWL_SIZE_Z){
 				// change the visual capsule size:
-				vec_set(my.scale_x, my.crawlSize_x);
+				vec_set(my.scale_x, my.CRAWL_SIZE_X);
 				// change the size of the cct to crawl:
 				pX3ent_resizechar(my, 0);
 				// update bbox:
@@ -170,9 +170,9 @@ void goCrawl(){
 		}
 		else{
 			// if we need to change the size:
-			if(my.scale_z < my.standSize_z){
+			if(my.scale_z < my.STAND_SIZE_Z){
 				// change the visual capsule size:
-				vec_set(my.scale_x, my.standSize_x);
+				vec_set(my.scale_x, my.STAND_SIZE_X);
 				// change the size of the cct to crawl:
 				pX3ent_resizechar(my, 40);
 				// update bbox:
@@ -189,10 +189,10 @@ action actHero() {
 	// flags:
 	set(my, INVISIBLE);
 	// skills:
-	my.health = 100;
+	my.HEALT = 100;
 	// movement:
-	my.allowMove = 1;
-	my.allowRotate = 1;
+	my.ALLOW_MOVE = 1;
+	my.ALLOW_ROTATE = 1;
 	// setup cct parameters:
 	cct_setup(my, vector(20, 20, 80), PLAYER_GROUP);
 	// reset movement vectors:
@@ -202,11 +202,11 @@ action actHero() {
 	// camera startup:
 	camera.arc = 90;
 	// loop:
-	while(my.health > 1){
+	while(my.HEALT > 1){
 		// handle crawling:
 		goCrawl();	
 		// if we are allowed to move:
-		if(my.allowMove == 1){
+		if(my.ALLOW_MOVE == 1){
 			// get input:
 			force.x = strength.x * (key_w - key_s);
 			force.y = strength.y * (key_a - key_d);

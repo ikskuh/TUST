@@ -5,7 +5,15 @@
  * \file proc_city.h
  * Contains functions for procedural generation of cities and other content
  */
+ 
+#include <d3d9.h>
+#include "DynamicModels.h"
 
+
+
+// ----------------------------------------------------------------------------------------
+// Voronoi
+// ----------------------------------------------------------------------------------------
 
 // To be found in "ProceduralGS.dll"
 
@@ -65,6 +73,38 @@ int vo_get_result_count();
  * \param	float	y value of end point
  */
 void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
+
+
+
+
+
+// ----------------------------------------------------------------------------------------
+// Street tool
+// ----------------------------------------------------------------------------------------
+
+typedef struct Street
+{
+	VECTOR **points;
+	int numPoints;
+	int segments;
+	var width;
+	var height;
+	var slopewidth;
+	var groundDist;
+	ENTITY *ent;
+	LPD3DXMESH mesh;
+} Street;
+
+
+Street *street_create(int maxPoints, int _streetWidth, int _streetHeight);
+void street_remove(Street *street);
+void street_setpos(Street *street, int i, VECTOR *pos);
+int street_getpos(Street *street, int i, VECTOR *pos);
+void street_clearpos(Street *street, int i);
+var street_getground(Street *street, VECTOR *pos, VECTOR *offset, int mirror);
+ENTITY *street_build(Street *street, ENTITY* _terrain, BMAP* _streetTexture);
+void street_debug(Street *street);
+
 
 #include "proc_city.c"
 

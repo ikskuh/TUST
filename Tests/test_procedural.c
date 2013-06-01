@@ -1,7 +1,10 @@
 #include <acknex.h>
 #include <default.c>
+#include <d3d9.h>
+#include <ackphysx.h>
 
 #include "..\\Source\\proc_city.h"
+#include "..\\Source\\DynamicModels.h"
 
 
 void draw_point(int _x, int _y) {
@@ -13,8 +16,7 @@ void draw_point(int _x, int _y) {
 	draw_line(vector(_x+1, _y+1, 0), COLOR_BLUE, 100);
 }
 
-void main() {
-	
+void draw_voronoi() {
 	int i=0;
 		
 	level_load("");
@@ -32,7 +34,7 @@ void main() {
 	int nPoints = vo_get_point_count();
 	
 	float x1, y1, x2, y2;
-	while(1) {
+	while(!key_esc) {
 		
 		// Draw diagram
 		for(i=0; i<nResults; i++) {
@@ -49,5 +51,52 @@ void main() {
 		}
 		wait(1);
 	}
-	vo_free();
+	vo_free();	
+}
+
+void create_random_streets() {
+	
+	physX_open();
+	level_load("");
+	vec_set(camera.x, vector(15, 1014, 698));
+	vec_set(camera.pan, vector(270, -35, 0));
+	
+	ENTITY* entTerrain = ent_create("..\\Ressources\\Terrains\\helymap1.hmp", vector(0,0,0), NULL);
+	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
+	
+	
+	Street *editorStreet = street_create(16, 100, 2);
+	int streetPoints = 0;
+
+	// Add street positions	
+	street_setpos(editorStreet, streetPoints, vector(100,200,0));
+	streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(200,200,0));
+	streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(300,100,0));
+	streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(300,0,0));
+	streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(300,-100,0));
+	streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(100,-100,0));
+	streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(-100,-100,0));
+	streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(-200,-200,0));
+	streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(-100,200,0));
+	streetPoints++;
+	street_setpos(editorStreet, streetPoints, vector(100,200,0));
+	streetPoints++;
+
+	// "Draw" streets
+	if(streetPoints > 1) {
+		street_build(editorStreet, entTerrain, bmapStreetTexture);
+	}
+}
+
+void main() {
+	//draw_voronoi();
+	create_random_streets();
 }
