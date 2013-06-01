@@ -75,6 +75,7 @@ o Generic Script Library
 		x Save Game (Only menu, no logic)
 		x Load Game (Only menu, no logic)
 		- Small messages e.g. for quests (with queuing) (padmalcom)
+	- Compact Menu (txesmi) --> Source/compact_menu.h
 	o Enemies
 	o Quests
 	o Procedural Library
