@@ -6,11 +6,6 @@
 #ifndef __ACKPHYSX3_H__
 #define __ACKPHYSX3_H__
 
-/**
- * \file ackphysX3.h
- * ackphysX3 provides a conversion of the PhysX 3 API for Gamestudio.
- */
-
 /////////////////////////////////////////////////////////
 // PhysX3 Consts
 
@@ -105,6 +100,12 @@
 #define PX_SQ_TOUCHING_HIT (1<<6)         // specified the hit object as a touching hit.
 #define PX_SQ_BLOCKING_HIT (1<<7)         // specified the hit object as a blocking hit.
 #define PX_SQ_DEFAULT (PX_SQ_IMPACT|PX_SQ_NORMAL|PX_SQ_DISTANCE|PX_SQ_UV)  // Default flag for sceneQuery
+
+// Scene query ignore flag
+#define PX_IGNORE_ME       (1 << 0)       // Ignores the me entity. 
+#define PX_IGNORE_YOU      (1 << 1)       // Ignores the you entity.
+#define PX_IGNORE_FLAG2    (1 << 2)       // Ignores all entities with flag2 set.
+#define PX_IGNORE_PASSABLE (1 << 3)       // Ignores all passable blocks and entities.
 
 // Joints
 #define PX_JF_BROKEN (1<<0)               // Read Only. Set if joint is broken
@@ -260,7 +261,6 @@
 #define PX_VEHICLE_TANK_WHEEL_9TH_FROM_FRONT_LEFT     18
 #define PX_VEHICLE_TANK_WHEEL_9TH_FROM_FRONT_RIGHT    19
 
-
 /////////////////////////////////////////////////////////
 
 /// \brief Run physx simulation
@@ -331,6 +331,12 @@ var pX3_setgroupcollision(var group1, var group2, var flag);
 /// Affects: pXent_addcentralforce, pXent_addforceglobal, pXent_addforcelocal,...
 /// @param force The force mode
 void pX3_setforcemode(var force);
+
+/// \brief Get GPU Support
+///
+/// Return if GPU is supported or not
+/// @return 1 if GPU is supported or 0
+var pX3_gpusupport();
 
 /// \brief Set or disable a trigger flag
 ///
@@ -513,13 +519,13 @@ var pX3ent_addexplosion(ENTITY *entity, VECTOR *vPos, var force, var radius);
 ///
 // Set Flag on all entitie's shape
 /// @param entity A registered physX actor
-/// @param enable The enable flag. 1 to enable raycast for the entity 0 to disable
-/// @return 1 if successfull 0 otherwise
+/// @param enable The enbla flag 1 to enable raycast for entity 0 to disable
+/// @return 1 if successful 0 otherwise
 var pX3ent_raycastenable(ENTITY *entity, var enable);
 
-/// \brief Perform a raycast against all shapes. Modifies the you pointer
+/// \brief Perform a raycast against all shapes. This function is to be used for simple collision detection.
 ///
-/// A pointer to the found entity is saved to the last parameter if set
+/// A pointer to the found entity is saved to the last parameter if set. The you pointer is also modified if an actor intersects the ray.
 /// If a shape intersects the ray, the physX entity is saved in the you pointer
 /// @param vPos The starting point of the ray
 /// @param vDir The direction vector
@@ -529,6 +535,24 @@ var pX3ent_raycastenable(ENTITY *entity, var enable);
 /// @param hitEntity[out] A pointer to store the found entity or NULL. The entity can be foud on the you pointer
 /// @return 1 if a shape is hit 0 otherwise
 var pX3_raycastany(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var groups, ENTITY **hitEntity);
+
+/// \brief Perform a raycast against all shapes. This function is to be used for simple collision detection.
+///
+/// A pointer to the found entity is saved to the last parameter if set. The you pointer is also modified if an actor intersects the ray.
+/// If a shape intersects the ray, the physX entity is saved in the you pointer
+/// @param vPos The starting point of the ray
+/// @param vDir The direction vector
+/// @param distance The distance to be tested, max distance is used if 0 is provided
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param hitEntity[out] A pointer to store the found entity or NULL. The entity can be foud on the you pointer
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return 1 if a shape is hit 0 otherwise
+var pX3_raycastany_ignore(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var groups, ENTITY **hitEntity, var ignoreFlags);
+var pX3_raycastany(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var groups, ENTITY **hitEntity, var ignoreFlags)
+{
+   return pX3_raycastany_ignore(vPos, vDir, distance, flags, groups, hitEntity, ignoreFlags);
+}
 
 /// \brief Perform a raycast against all shapes. Modifies the you pointer, the hit and target structure if an actor has been found
 ///
@@ -542,9 +566,26 @@ var pX3_raycastany(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var grou
 /// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
 var pX3_raycastsingle(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var groups, var outFlags);
 
+/// \brief Perform a raycast against all shapes. Modifies the you pointer, the hit and target structure if an actor has been found
+///
+/// If a shape intersects the ray, the physX entity is saved in the you pointer
+/// @param vPos The starting point of the ray
+/// @param vDir The direction vector
+/// @param distance The distance to be tested, max distance is used if 0 is provided
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param outFlags Specifies which properties would be written to the hit information
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
+var pX3_raycastsingle_ignore(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var groups, var outFlags, var ignoreFlags);
+var pX3_raycastsingle(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var groups, var outFlags, var ignoreFlags)
+{
+   return pX3_raycastsingle_ignore(vPos, vDir, distance, flags, groups, outFlags, ignoreFlags);
+}
+
 /// \brief Perform a raycast against all shapes.
 ///
-/// The ray does not stop on the first actor found. Engine pointers (target, you, hit, normal) values are set to the last values of the last element in the hit structure.
+/// The ray does not stop on the first actor. Engine pointers values are set to the last value of the last element in the hit structure.
 /// @param vPos The starting point of the ray
 /// @param vDir The direction vector
 /// @param distance The distance to be tested, max distance is used if 0 is provided
@@ -557,6 +598,26 @@ var pX3_raycastsingle(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var g
 /// @return Number of hits in the buffer or -1 if the buffer overflowed
 var pX3_raycastmultiple(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var groups, var outFlags, CONTACT *contactBuffer, var bufferSize, var *blocking);
 
+/// \brief Perform a raycast against all shapes.
+///
+/// The ray does not stop on the first actor. Engine pointers values are set to the last value of the last element in the hit structure.
+/// @param vPos The starting point of the ray
+/// @param vDir The direction vector
+/// @param distance The distance to be tested, max distance is used if 0 is provided
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param outFlags Specifies which properties would be written to the hit information
+/// @param contactBuffer RayCast hit information buffer
+/// @param bufferSize The size of the hit buffer
+/// @param blocking[out] Nonzero if a blocking hit was found. If found, it is the last in the buffer, preceded by any touching hits which are closer. Otherwise the touching hits are listed. 
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return Number of hits in the buffer or -1 if the buffer overflowed
+var pX3_raycastmultiple_ignore(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var groups, var outFlags, CONTACT *contactBuffer, var bufferSize, var *blocking, var ignoreFlags);
+var pX3_raycastmultiple(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var groups, var outFlags, CONTACT *contactBuffer, var bufferSize, var *blocking, var ignoreFlags)
+{
+   return pX3_raycastmultiple_ignore(vPos, vDir, distance, flags, groups, outFlags, contactBuffer, bufferSize, blocking, ignoreFlags);
+}
+
 /// \brief Perform a sphere sweep against all shapes in the scene. Returns any blocking hit, not necessarily the closest
 ///
 /// A pointer to the found entity is saved to the last parameter if set. The you pointer is also modified if an actor intersects the sweep test.
@@ -568,8 +629,27 @@ var pX3_raycastmultiple(VECTOR *vPos, VECTOR *vDir, var distance, var flags, var
 /// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
 /// @param outFlags Specifies which properties would be written to the hit information
 /// @param hitEntity[out] A pointer to store the found entity or NULL. The entity can be foud on the you pointer
-/// @return 1 if a shape is hit 0 otherwise
+/// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
 var pX3_spherecastany(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, ENTITY **hitEntity);
+
+/// \brief Perform a sphere sweep against all shapes in the scene. Returns any blocking hit, not necessarily the closest
+///
+/// A pointer to the found entity is saved to the last parameter if set. The you pointer is also modified if an actor intersects the sweep test.
+/// @param vOrigin The origin of the sphere
+/// @param radius The radius of the sphere
+/// @param vDir The direction of the sweep
+/// @param distance The distance to be tested, max distance is used if 0 is provided
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param outFlags Specifies which properties would be written to the hit information
+/// @param hitEntity[out] A pointer to store the found entity or NULL. The entity can be foud on the you pointer
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
+var pX3_spherecastany_ignore(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, ENTITY **hitEntity, var ignoreFlags);
+var pX3_spherecastany(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, ENTITY **hitEntity, var ignoreFlags)
+{
+   return pX3_spherecastany_ignore(vOrigin, radius, vDir, distance, flags, groups, outFlags, hitEntity, ignoreFlags);
+}
 
 /// \brief Perform a capsule sweep against all shapes in the scene. Returns any blocking hit, not necessarily the closest
 ///
@@ -582,8 +662,27 @@ var pX3_spherecastany(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, v
 /// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
 /// @param outFlags Specifies which properties would be written to the hit information
 /// @param hitEntity[out] A pointer to store the found entity or NULL. The entity can be foud on the you pointer
-/// @return 1 if a shape is hit 0 otherwise
+/// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
 var pX3_capsulecastany(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, ENTITY **hitEntity);
+
+/// \brief Perform a capsule sweep against all shapes in the scene. Returns any blocking hit, not necessarily the closest
+///
+/// A pointer to the found entity is saved to the last parameter if set. The you pointer is also modified if an actor intersects the sweep test.
+/// @param vOrigin The origin of the sphere
+/// @param radius The radius of the sphere
+/// @param vDir The direction of the sweep
+/// @param distance The distance to be tested, max distance is used if 0 is provided
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param outFlags Specifies which properties would be written to the hit information
+/// @param hitEntity[out] A pointer to store the found entity or NULL. The entity can be foud on the you pointer
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
+var pX3_capsulecastany_ignore(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, ENTITY **hitEntity, var ignoreFlags);
+var pX3_capsulecastany(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, ENTITY **hitEntity, var ignoreFlags)
+{
+   return pX3_capsulecastany_ignore(vStart, vEnd, radius, vDir, distance, flags, groups, outFlags, hitEntity, ignoreFlags);
+}
 
 /// \brief Perform a sphere sweep against all shapes in the scene. Returns the first blocking hit.
 ///
@@ -595,8 +694,26 @@ var pX3_capsulecastany(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, v
 /// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
 /// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
 /// @param outFlags Specifies which properties would be written to the hit information
-/// @return 1 if a shape is hit 0 otherwise
+/// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
 var pX3_spherecastsingle(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags);
+
+/// \brief Perform a sphere sweep against all shapes in the scene. Returns the first blocking hit.
+///
+/// The you pointer is modified if an actor intersects the sweep test.
+/// @param vOrigin The origin of the sphere
+/// @param radius The radius of the sphere
+/// @param vDir The direction of the sweep
+/// @param distance The distance to be tested, max distance is used if 0 is provided
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param outFlags Specifies which properties would be written to the hit information
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
+var pX3_spherecastsingle_ignore(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, var ignoreFlags);
+var pX3_spherecastsingle(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, var ignoreFlags)
+{
+   return pX3_spherecastsingle_ignore(vOrigin, radius, vDir, distance, flags, groups, outFlags, ignoreFlags);
+}
 
 /// \brief Perform a capsule sweep against all shapes in the scene. Returns the first blocking hit.
 ///
@@ -608,8 +725,26 @@ var pX3_spherecastsingle(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance
 /// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
 /// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
 /// @param outFlags Specifies which properties would be written to the hit information
-/// @return 1 if a shape is hit 0 otherwise
+/// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
 var pX3_capsulecastsingle(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags);
+
+/// \brief Perform a capsule sweep against all shapes in the scene. Returns the first blocking hit.
+///
+/// The you pointer is modified if an actor intersects the sweep test.
+/// @param vOrigin The origin of the sphere
+/// @param radius The radius of the sphere
+/// @param vDir The direction of the sweep
+/// @param distance The distance to be tested, max distance is used if 0 is provided
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param outFlags Specifies which properties would be written to the hit information
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return If DISTANCE is queried, returns the distance of the hit target (you pointer ot hit.entity can be used to test if an actor has been hit), otherwise returns the result of the raycast (Nonzero if an actor is hit, 0 otherwise)
+var pX3_capsulecastsingle_ignore(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, var ignoreFlags);
+var pX3_capsulecastsingle(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags, var ignoreFlags)
+{
+   return pX3_capsulecastsingle_ignore(vStart, vEnd, radius, vDir, distance, flags, groups, outFlags, ignoreFlags);
+}
 
 /// \brief Perform a sweep test against all shapes.
 ///
@@ -625,8 +760,30 @@ var pX3_capsulecastsingle(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir
 /// @param contactBuffer RayCast hit information buffer
 /// @param bufferSize The size of the hit buffer
 /// @param blocking[out] Nonzero if a blocking hit was found. If found, it is the last in the buffer, preceded by any touching hits which are closer. Otherwise the touching hits are listed. 
-/// @return 1 if a shape is hit 0 otherwise
+/// @return Number of hits in the buffer or -1 if the buffer overflowed
 var pX3_spherecastmultiple(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags,  CONTACT *contactBuffer, var bufferSize, var *blocking);
+
+/// \brief Perform a sweep test against all shapes.
+///
+/// The ray does not stop on the first actor. Engine pointers values are set to the last value of the last element in the hit structure.
+/// The you pointer is modified if an actor intersects the sweep test.
+/// @param vOrigin The origin of the sphere
+/// @param radius The radius of the sphere
+/// @param vDir The direction of the sweep
+/// @param distance The distance to be tested, max distance is used if 0 is provided
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param outFlags Specifies which properties would be written to the hit information
+/// @param contactBuffer RayCast hit information buffer
+/// @param bufferSize The size of the hit buffer
+/// @param blocking[out] Nonzero if a blocking hit was found. If found, it is the last in the buffer, preceded by any touching hits which are closer. Otherwise the touching hits are listed. 
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return Number of hits in the buffer or -1 if the buffer overflowed
+var pX3_spherecastmultiple_ignore(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags,  CONTACT *contactBuffer, var bufferSize, var *blocking, var ignoreFlags);
+var pX3_spherecastmultiple(VECTOR *vOrigin, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags,  CONTACT *contactBuffer, var bufferSize, var *blocking, var ignoreFlags)
+{
+   return pX3_spherecastmultiple_ignore(vOrigin, radius, vDir, distance, flags, groups, outFlags, contactBuffer, bufferSize, blocking, ignoreFlags);
+}
 
 /// \brief Perform a capsule sweep test against all shapes.
 ///
@@ -643,8 +800,31 @@ var pX3_spherecastmultiple(VECTOR *vOrigin, var radius, VECTOR *vDir, var distan
 /// @param contactBuffer RayCast hit information buffer
 /// @param bufferSize The size of the hit buffer
 /// @param blocking[out] Nonzero if a blocking hit was found. If found, it is the last in the buffer, preceded by any touching hits which are closer. Otherwise the touching hits are listed. 
-/// @return 1 if a shape is hit 0 otherwise
+/// @return Number of hits in the buffer or -1 if the buffer overflowed
 var pX3_capsulecastmultiple(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags,  CONTACT *contactBuffer, var bufferSize, var *blocking);
+
+/// \brief Perform a capsule sweep test against all shapes.
+///
+/// The ray does not stop on the first actor. Engine pointers values are set to the last value of the last element in the hit structure.
+/// The you pointer is modified if an actor intersects the sweep test.
+/// @param vStart The start of the capsule
+/// @param vEnd The end point of the capsule
+/// @param radius The radius of the capsule
+/// @param vDir The direction of the sweep
+/// @param distance The distance to be tested, max distance is used if 0 is provided
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param outFlags Specifies which properties would be written to the hit information
+/// @param contactBuffer RayCast hit information buffer
+/// @param bufferSize The size of the hit buffer
+/// @param blocking[out] Nonzero if a blocking hit was found. If found, it is the last in the buffer, preceded by any touching hits which are closer. Otherwise the touching hits are listed. 
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return Number of hits in the buffer or -1 if the buffer overflowed
+var pX3_capsulecastmultiple_ignore(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags,  CONTACT *contactBuffer, var bufferSize, var *blocking, var ignoreFlags);
+var pX3_capsulecastmultiple(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vDir, var distance, var flags, var groups, var outFlags,  CONTACT *contactBuffer, var bufferSize, var *blocking, var ignoreFlags)
+{
+   return pX3_capsulecastmultiple_ignore(vStart, vEnd, radius, vDir, distance, flags, groups, outFlags, contactBuffer, bufferSize, blocking, ignoreFlags);
+}
 
 /// \brief Overlap test using a sphere.
 ///
@@ -657,6 +837,23 @@ var pX3_capsulecastmultiple(VECTOR *vStart, VECTOR *vEnd, var radius, VECTOR *vD
 /// @param overlapEntity[out] A pointer to store the found entity or NULL. The entity can be foud on the you pointer
 /// @return Nonzero if there are shapes touching the sphere 0 otherwise
 var pX3_spherecheckany(VECTOR *vOrigin, var radius, var flags, var groups, ENTITY **hitEntity);
+
+/// \brief Overlap test using a sphere.
+///
+/// Can be used to check if a space is free or occupied.
+/// Modify you, target, hit.
+/// @param vOrigin The origin of the sphere in world coordinate
+/// @param radius The radisu of the sphere
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param overlapEntity[out] A pointer to store the found entity or NULL. The entity can be foud on the you pointer
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return Nonzero if there are shapes touching the sphere 0 otherwise
+var pX3_spherecheckany_ignore(VECTOR *vOrigin, var radius, var flags, var groups, ENTITY **hitEntity, var ignoreFlags);
+var pX3_spherecheckany(VECTOR *vOrigin, var radius, var flags, var groups, ENTITY **hitEntity, var ignoreFlags)
+{
+   return pX3_spherecheckany_ignore(vOrigin, radius, flags, groups, hitEntity, ignoreFlags);
+}
 
 /// \brief Overlap test using a capsule.
 ///
@@ -671,6 +868,24 @@ var pX3_spherecheckany(VECTOR *vOrigin, var radius, var flags, var groups, ENTIT
 /// @return Nonzero if there are shapes touching the capsule 0 otherwise
 var pX3_capsulecheckany(VECTOR *vStart, VECTOR *vEnd, var radius, var flags, var groups, ENTITY **hitEntity);
 
+/// \brief Overlap test using a capsule.
+///
+/// Can be used to check if a space is free or occupied.
+/// Modify you, target, hit.
+/// @param vStart The start point of the capsule
+/// @param vEnd The end point of the capsule
+/// @param radius The radisu of the sphere
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param overlapEntity[out] A pointer to store the found entity or NULL. The entity can be foud on the you pointer
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return Nonzero if there are shapes touching the capsule 0 otherwise
+var pX3_capsulecheckany_ignore(VECTOR *vStart, VECTOR *vEnd, var radius, var flags, var groups, ENTITY **hitEntity, var ignoreFlags);
+var pX3_capsulecheckany(VECTOR *vStart, VECTOR *vEnd, var radius, var flags, var groups, ENTITY **hitEntity, var ignoreFlags)
+{
+   return pX3_capsulecheckany_ignore(vStart, vEnd, radius, flags, groups, hitEntity, ignoreFlags);
+}
+
 /// \brief Overlap test using a sphere.
 ///
 /// Can be used to check if a space is free or occupied.
@@ -684,6 +899,24 @@ var pX3_capsulecheckany(VECTOR *vStart, VECTOR *vEnd, var radius, var flags, var
 /// @return Nonzero if there are shapes touching the geometry 0 otherwise
 var pX3_spherecheckmultiple(VECTOR *vOrigin, var radius, var flags, var groups, CONTACT *contactBuffer, var bufferSize);
 
+/// \brief Overlap test using a sphere.
+///
+/// Can be used to check if a space is free or occupied.
+/// Modify you, target, hit.
+/// @param geometry The input geometry
+/// @param transform The geometry transform
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param contactBuffer overlap hit information buffer
+/// @param bufferSize The size of the hit buffer
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return Nonzero if there are shapes touching the geometry 0 otherwise
+var pX3_spherecheckmultiple_ignore(VECTOR *vOrigin, var radius, var flags, var groups, CONTACT *contactBuffer, var bufferSize, var ignoreFlags);
+var pX3_spherecheckmultiple(VECTOR *vOrigin, var radius, var flags, var groups, CONTACT *contactBuffer, var bufferSize, var ignoreFlags)
+{
+   return pX3_spherecheckmultiple_ignore(vOrigin, radius, flags, groups, contactBuffer, bufferSize, ignoreFlags);
+}
+
 /// \brief Overlap test using a geometry.
 ///
 /// Can be used to check if a space is free or occupied.
@@ -696,6 +929,24 @@ var pX3_spherecheckmultiple(VECTOR *vOrigin, var radius, var flags, var groups, 
 /// @param bufferSize The size of the hit buffer
 /// @return Nonzero if there are shapes touching the geometry 0 otherwise
 var pX3_capsulecheckmultiple(VECTOR *vStart, VECTOR *vEnd, var radius, var flags, var groups, CONTACT *contactBuffer, var bufferSize);
+
+/// \brief Overlap test using a geometry.
+///
+/// Can be used to check if a space is free or occupied.
+/// Modify you, target, hit.
+/// @param vStart The start point of the capsule
+/// @param vEnd The end point of the capsule
+/// @param flags The flag to be used for filtering (DYNAMIC|STATIC Shapes) 0 to use all shapes
+/// @param groups The groups bitmask to be used for filtering, 0 to use all groups. groupMask = (1 << (group - 1))
+/// @param contactBuffer overlap hit information buffer
+/// @param bufferSize The size of the hit buffer
+/// @param ignoreFlags The flag to be used for filtering entities (PX_IGNORE_ME | PX_IGNORE_ME | PX_IGNORE_FLAG2 | PX_IGNORE_PASSABLE)
+/// @return Nonzero if there are shapes touching the geometry 0 otherwise
+var pX3_capsulecheckmultiple_ignore(VECTOR *vStart, VECTOR *vEnd, var radius, var flags, var groups, CONTACT *contactBuffer, var bufferSize, var ignoreFlags);
+var pX3_capsulecheckmultiple(VECTOR *vStart, VECTOR *vEnd, var radius, var flags, var groups, CONTACT *contactBuffer, var bufferSize, var ignoreFlags)
+{
+   return pX3_capsulecheckmultiple_ignore(vStart, vEnd, radius, flags, groups, contactBuffer, bufferSize, ignoreFlags);
+}
 
 /// \brief Set simulation gravity
 ///
@@ -2229,6 +2480,12 @@ var pX3ent_vehicle_getdrivemodel(ENTITY *entity);
 /// @param params New volume bounding box parameters
 /// @return Nonzero if successfull, 0 otherwise
 var pX3ent_setcctextents(ENTITY *entity, VECTOR *params);
+
+/// \brief Update CCT extents to entity's current BBOX size
+///
+/// @param entity A registerer Character controller
+///
+var pX3ent_updatecctextents(ENTITY *entity);
 
 /// \brief Get character volume
 ///
