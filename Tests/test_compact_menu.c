@@ -7,8 +7,6 @@
 
 
 /* ---------------------------------------------------------------------------------------------------- */
-FONT *fntArial16 = "Arial#16";
-
 TEXT *txtMain = 
 {
 	string = 
@@ -19,12 +17,11 @@ TEXT *txtMain =
 	 	"global lighting.submenu=txtGlobalLighting",
 	 	"sky.submenu=txtSky",
 		".space=3",
-	 	"system.submenu=txtSystem",
+	 	"system.submenu=txtSystem"
 		".space=1",
 		".line=1",
 		".title=0"
 	);
-	font = fntArial16;
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -174,11 +171,13 @@ void main ()
 	camera->bg = pixel_for_vec ( &colCameraBG, 100, 8888 );
 	
 	ENTITY *ent = ent_create ( CUBE_MDL, nullvector, NULL );
+	FONT *fntArial = font_create ( "Arial#14" );
+
 	
 	// Create a compact menu panel
 	// PANEL *cmenu_create ( var pos_x, var pos_y, var size_x, var layer, var flags, TEXT* txtMembers );
-	PANEL *myMenu01 = cmenu_create ( 120, 20, 400, 1, SHOW, txtMain );
-	PANEL *myMenu02 = cmenu_create ( 520, 20, 400, 1, SHOW, txtMain );
+	PANEL *myMenu01 = cmenu_create ( "myMenu01", 120, 20, 400, 1, SHOW, "txtMain", fntArial );
+	PANEL *myMenu02 = cmenu_create ( "myMenu02", 520, 20, 400, 1, SHOW, "txtMain", fntArial );
 	
 	cmenu_resize ( myMenu01, 200 );
 	
