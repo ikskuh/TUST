@@ -100,7 +100,7 @@ o Game Templates
 		o Simple Shooter AI
 	o Shoot'Em'Up
 	o 2D Platformer
-	- 3D Platformer (txesmi)
+	o 3D Platformer
 	- RTS (MasterQ32)
 		o Simple AI example
 		o Gridbased movement of units
