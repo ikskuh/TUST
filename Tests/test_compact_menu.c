@@ -43,7 +43,7 @@ TEXT *txtCamera =
 		".space=1",
 		"distance.slider=10,200,1,%.0f,nCameraDistance,evnCameraLocate",
 		"arc.slider=1,179,1,%.0f,camera->arc",
-		"ambient.slider=0,100,1,%.0f,camera->ambient",
+		"ambient.slider=-100,100,1,%.0f,camera->ambient",
 		".space=1",
 		"background color.submenu=txtBackgroundColor",
 		".line=2"
@@ -171,15 +171,21 @@ void main ()
 	camera->bg = pixel_for_vec ( &colCameraBG, 100, 8888 );
 	
 	ENTITY *ent = ent_create ( CUBE_MDL, nullvector, NULL );
-	FONT *fntArial = font_create ( "Arial#14" );
 
+	// Create style for the menues
+	// CMMEMBER *myMenuStyle = cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver );
+	FONT *fntTrueType = font_create ( "Arial#14" );
+	FONT *fntBitmap = font_create ( "ackfont.pcx" );
+	COLOR colCMenuText, colCMenuBack, colCMenuOver;
+	CMSTYLE *myMenuStyle01 = cmstyle_create ( fntTrueType, vector(40,40,40), vector(250,250,250), vector(210,210,210) );
+	CMSTYLE *myMenuStyle02 = cmstyle_create ( fntBitmap, vector(230,230,230), vector(30,20,0), vector(155,70,0) );
 	
 	// Create a compact menu panel
 	// PANEL *cmenu_create ( var pos_x, var pos_y, var size_x, var layer, var flags, TEXT* txtMembers );
-	PANEL *myMenu01 = cmenu_create ( "myMenu01", 120, 20, 400, 1, SHOW, "txtMain", fntArial );
-	PANEL *myMenu02 = cmenu_create ( "myMenu02", 520, 20, 400, 1, SHOW, "txtMain", fntArial );
+	PANEL *myMenu01 = cmenu_create ( "myMenu01", 120, 20, 200, 1, SHOW, "txtMain", myMenuStyle01 );
+	PANEL *myMenu02 = cmenu_create ( "myMenu02", 520, 20, 200, 1, SHOW, "txtMain", myMenuStyle01 );
 	
-	cmenu_resize ( myMenu01, 200 );
+	cmenu_modify ( myMenu01, 500, myMenuStyle02 );
 	
 	bmpSky = bmap_create ( "sky_fu_256+6.tga" );
 	
