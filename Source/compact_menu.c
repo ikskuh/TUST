@@ -174,7 +174,7 @@ void fncCMMembersRemove ()
 	}
 }
 
-void cmcmmember_draw_name ()
+void cmmember_draw_name ()
 {
 	if ( cmenuMe->strings == cmenuMe->text->strings )
 		txt_addstring ( cmenuMe->text, NULL );
@@ -276,7 +276,7 @@ void drwCMSubmenu ()
 		draw_line ( &vecPos, cmenuMe->style->colText, 0 );
 	}
 	
-	cmcmmember_draw_name ();
+	cmmember_draw_name ();
 }
 
 CMMEMBER *cmmemberCMTextParse ( TEXT *txtMembers )

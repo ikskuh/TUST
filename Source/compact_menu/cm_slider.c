@@ -64,7 +64,7 @@ void drwCMSlider ()
 		pan_setdigits ( cmenuMe->panel, 0, cmenuMe->panel->size_x - CM_TAB_DIGIT, cmmemberMe->pos_y, slider->format, cmenuMe->style->font, 1, slider->value );
 	}
 	cmenuMe->digits += 1;
-	cmcmmember_draw_name ();
+	cmmember_draw_name ();
 }
 
 void drwCMSliderUpdate ()

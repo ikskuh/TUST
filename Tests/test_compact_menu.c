@@ -2,6 +2,7 @@
 #include "..\\Source\\tust.h"
 
 #define PRAGMA_POINTER
+
 #define PRAGMA_PATH "%EXE_DIR%\\templates\\sounds"
 #define PRAGMA_PATH "%EXE_DIR%\\templates\\images"
 
@@ -173,15 +174,12 @@ void main ()
 	ENTITY *ent = ent_create ( CUBE_MDL, nullvector, NULL );
 
 	// Create style for the menues
-	// CMMEMBER *myMenuStyle = cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver );
-	FONT *fntTrueType = font_create ( "Arial#14" );
-	FONT *fntBitmap = font_create ( "ackfont.pcx" );
-	COLOR colCMenuText, colCMenuBack, colCMenuOver;
-	CMSTYLE *myMenuStyle01 = cmstyle_create ( fntTrueType, vector(40,40,40), vector(250,250,250), vector(210,210,210) );
-	CMSTYLE *myMenuStyle02 = cmstyle_create ( fntBitmap, vector(230,230,230), vector(30,20,0), vector(155,70,0) );
+	// CMMEMBER *myMenuStyle = cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver )
+	CMSTYLE *myMenuStyle01 = cmstyle_create ( font_create("Arial#14"), vector(40,40,40), vector(250,250,250), vector(210,210,210) );
+	CMSTYLE *myMenuStyle02 = cmstyle_create ( font_create("ackfont.pcx"), vector(230,230,230), vector(30,20,0), vector(155,70,0) );
 	
 	// Create a compact menu panel
-	// PANEL *cmenu_create ( var pos_x, var pos_y, var size_x, var layer, var flags, TEXT* txtMembers );
+	// PANEL *cmenu_create ( char *chrName, var pos_x, var pos_y, var size_x, var layer, var flags, char *chrMembers, CMSTYLE *style )
 	PANEL *myMenu01 = cmenu_create ( "myMenu01", 120, 20, 200, 1, SHOW, "txtMain", myMenuStyle01 );
 	PANEL *myMenu02 = cmenu_create ( "myMenu02", 520, 20, 200, 1, SHOW, "txtMain", myMenuStyle01 );
 	

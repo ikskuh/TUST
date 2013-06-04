@@ -50,7 +50,7 @@ void drwCMTitle ()
 	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
 	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
 	
-	cmcmmember_draw_name ();
+	cmmember_draw_name ();
 //	VECTOR vecOffset;
 //	vec_set ( &vecOffset, vector ( 0, cmmemberMe->index * cmenuMe->style->font->dy, 0 ) );
 //	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y + cmmemberMe->count, 0 ) );
