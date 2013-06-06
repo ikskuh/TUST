@@ -86,22 +86,40 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 typedef struct Street
 {
 	List *points;
-	int segmentLength;
 	var width;
-	var height;
-	var slopewidth;
 	var groundDist;
 	ENTITY *ent;
 	LPD3DXMESH mesh;
 } Street;
 
+/**
+ * Creates a new street without mesh.
+ * \param   _streetWidth    The width of the street in quants
+ * \param   groundDistance  The distance of the street to the ground.
+ * \return                  The newly created street.
+ */
+Street *street_create(int _streetWidth, int groundDistance);
 
-Street *street_create(int _streetWidth, int _streetHeight);
+/**
+ * Removes a street object. Could be done after building the mesh of the street.
+ * \param   street          The street to delete.
+ */
 void street_remove(Street *street);
-void street_addpos(Street *street, VECTOR *pos);
-var street_getground(Street *street, VECTOR *pos, VECTOR *offset, int mirror);
-ENTITY *street_build(Street *street, ENTITY* _terrain, BMAP* _streetTexture);
 
+/**
+ * Add a position to the street object. It will be added to the end of the street.
+ * \param   street          The street where the position should be added.
+ * \param   pos             The position to add.
+ */
+void street_addpos(Street *street, VECTOR *pos);
+
+/**
+ * Builds a mesh and ENTITY* from a given street object.
+ * \param   street          The street to be built.
+ * \param   _streetTexture  The texture of the street. Should be tilable in y direction.
+ * \return                  The ENTITY* build from the street.
+ */
+ENTITY *street_build(Street *street, BMAP* _streetTexture);
 
 #include "proc_city.c"
 

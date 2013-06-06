@@ -1,27 +1,28 @@
 #ifndef _PROC_CITY_C_
 #define _PROC_CITY_C_
 
+#include "math.h"
+
 // ----------------------------------------------------------------------------------------
 // Street tool
 // ----------------------------------------------------------------------------------------
 
-Street *street_create(int _streetWidth, int _streetHeight)
+Street *street_create(int _streetWidth, int groundDistance)
 {
+	// Sets up a new street object
 	Street *street = sys_malloc(sizeof(Street));
 	
 	street->points = list_create();
 	
 	street->width = _streetWidth; // 320
-	street->groundDist = 16;
-	street->height = _streetHeight; // 48
-	street->slopewidth = 3;
-	street->segmentLength = 64;
+	street->groundDist = groundDistance;
 	
 	return street;
 }
 
 void street_remove(Street *street)
 {
+	// Removes all points from the street and frees the street itself.
 	list_clear_content (street->points, sys_free );
 	list_delete(street->points);
 	if(street->ent != NULL)
@@ -31,51 +32,31 @@ void street_remove(Street *street)
 
 void street_addpos(Street *street, VECTOR *pos)
 {
+	// Create a new VECTOR and copy the source position into it.
 	VECTOR *vec = sys_malloc(sizeof(VECTOR));
 	vec_set(vec, pos);
+	
+	// Add vec to the street
 	list_add(street->points, vec);
 }
 
-var street_getground(Street *street, VECTOR *pos, VECTOR *offset, int mirror)
+var street_getground(Street *street, VECTOR *pos)
 {
-	var zStart = 0;
-	var valset = 0;
-	
-	VECTOR left, right;
-	vec_set(&left, pos);
-	vec_add(&left, offset);
-	vec_set(&right, pos);
-	vec_sub(&right, offset);
-	
-	if(mirror < 0)
-		vec_set(&left, &right);
-	
-	if(c_trace(	vector(left.x, left.y, left.z + 1024),
-				vector(left.x, left.y, left.z - 1024),
+	if(c_trace(	vector(pos.x, pos.y, pos.z + 1024),
+				vector(pos.x, pos.y, pos.z - 1024),
 				IGNORE_MODELS | IGNORE_SPRITES | IGNORE_PASSABLE | IGNORE_PASSENTS | USE_POLYGON))
 	{
-		zStart = target.z;
-		valset = 1;
+		return target.z;
 	}
-	if(mirror > 0)
-	{
-		if(c_trace(	vector(right.x, right.y, right.z + 1024),
-					vector(right.x, right.y, right.z - 1024),
-					IGNORE_MODELS | IGNORE_SPRITES | IGNORE_PASSABLE | IGNORE_PASSENTS | USE_POLYGON))
-		{
-			if(valset)
-				zStart = maxv(zStart, target.z);
-			else
-				zStart = target.z;
-		}
-	}
-	return zStart;
+	return 0;
 }
 
+// Creates a new separator. A separator is a pair of two vertices, the left and the right side of the street.
 int street_create_separator(DynamicModel *model, D3DVERTEX *left, D3DVERTEX *right)
 {
 	int index = model->vertexCount;
 	
+	// Copy vertices into model
 	memcpy(&model->vertexBuffer[index + 0], left, sizeof(D3DVERTEX));
 	memcpy(&model->vertexBuffer[index + 1], right, sizeof(D3DVERTEX));
 	
@@ -83,8 +64,11 @@ int street_create_separator(DynamicModel *model, D3DVERTEX *left, D3DVERTEX *rig
 	return index;
 }
 
+// Creates a new street segment.
+// The segment will be built between to separators.
 void street_create_segment(DynamicModel *model, int sep1, int sep2)
 {
+	// Calculate indicies and setup index and vertex buffer
 	int index = 3 * model->faceCount;
 	
 	model->indexBuffer[index + 0] = sep1 + 0;
@@ -98,41 +82,24 @@ void street_create_segment(DynamicModel *model, int sep1, int sep2)
 	model->faceCount += 2;
 }
 
-void street_build_median(D3DVERTEX *a, D3DVERTEX *b)
+ENTITY *street_build(Street *street, BMAP* _streetTexture)
 {
-	b->x = 0.5 * (a->x + b->x); a->x = b->x;
-	b->y = 0.5 * (a->y + b->y); a->y = b->y;
-	b->z = 0.5 * (a->z + b->z); a->z = b->z;
+	int iPointCount = list_get_count(street->points);
 	
-	b->nx = 0.5 * (a->nx + b->nx); a->nx = b->nx;
-	b->ny = 0.5 * (a->ny + b->ny); a->ny = b->ny;
-	b->nz = 0.5 * (a->nz + b->nz); a->nz = b->nz;
+	// Create array with space for all spline points
+	VECTOR *splineData = sys_malloc(sizeof(VECTOR) * iPointCount);
 	
-	b->u1 = 0.5 * (a->u1 + b->u1); a->u1 = b->u1;
-	b->u2 = 0.5 * (a->u2 + b->u2); a->u2 = b->u2;
-}
-
-ENTITY *street_build(Street *street, ENTITY* _terrain, BMAP* _streetTexture)
-{
-	int i, j, iPointCount;
-	VECTOR center;
+	VECTOR *value;
 	
-	iPointCount = list_get_count(street->points);
-	
-	ENTITY *entSpline = ent_create("", vector(0, 0, 0), NULL);
-	
-	path_create(entSpline, iPointCount, iPointCount);
-	
-	VECTOR **spline = sys_malloc(sizeof(VECTOR*) * iPointCount);
-	list_copy_to(street->points, spline, iPointCount);
-	
-	vec_set(&center, vector(0, 0, 0));
-	for(i = 0; i < iPointCount; i++)
+	// Copy the list into the splineData array.
+	ListIterator *it = list_begin_iterate(street->points);
+	int i;
+	for(value = list_iterate(it), i = 0; it->hasNext; value = list_iterate(it))
 	{
-		vec_add(&center, spline[i]);
-		path_setnode(entSpline, i + 1, spline[i], NULL);
-	}
-	vec_scale(&center, 1.0 / iPointCount);
+		vec_set(splineData[i], value);
+		i++;
+	} 
+	list_end_iterate(it);
 	
 	DynamicModel *model = dmdl_create();
 	model->skin[0] = _streetTexture;
@@ -142,101 +109,85 @@ ENTITY *street_build(Street *street, ENTITY* _terrain, BMAP* _streetTexture)
 	D3DVERTEX left;
 	D3DVERTEX right;
 	
-	var isLooped = vec_dist(&spline[0], &spline[iPointCount-1]) < 0.1;
+	var isLooped = vec_dist(&splineData[0], &splineData[iPointCount-1]) < 0.1;
 	
-	var length = 10 * path_length(entSpline);
-	var distance = 0;
 	int previousSeparator = 0;
 	
-	for (distance = 0; distance < length; distance += street->segmentLength)
+	var dist = 0;
+	for(dist = 0; dist <= 1; dist += 0.01)
 	{
-		VECTOR startSegment, endSegment, dir;
-		//vec_set(&startSegment, &spline[i]);
-		path_spline(entSpline, &startSegment, distance);
+		VECTOR startSegment, endSegment, dir;		
+
+		// Get starting position
+		vec_set(&startSegment, math_get_spline(splineData, iPointCount, dist));
 		
-		if(i < (iPointCount - 1) || 1)
+		// Get a next segment on the street (to calculate the distance)
+		if(dist >= 1)
 		{
-			path_spline(entSpline, &endSegment, distance + 10);
+			// Special case: Last segment
+			vec_set(&endSegment, math_get_spline(splineData, iPointCount, dist - 0.01));
+			vec_diff(&dir, &startSegment, &endSegment);
 		}
 		else
 		{
-			// For loop, just break out and connect first and last
-			if(isLooped)
-				break;
-			else
-			{
-				// Take the last distance and reverse it
-				vec_set(&endSegment, &spline[i - 1]);
-				vec_diff(&dir, &endSegment, &startSegment);
-				vec_inverse(&dir);
-				vec_set(&endSegment, &startSegment);
-				vec_add(&endSegment, &dir);
-			}
+			vec_set(&endSegment, math_get_spline(splineData, iPointCount, dist + 0.01));
+			vec_diff(&dir, &endSegment, &startSegment);
 		}
 	
-		vec_diff(&dir, &endSegment, &startSegment);
+		// Calculate direction
 		dir.z = 0;
 		vec_to_angle(&dir, &dir);
 		
+		// Create offset for left/right street side
 		VECTOR offset;
 		vec_set(&offset, vector(0, 0.5 * street->width, 0));
 		vec_rotate(&offset, &dir);
 
-		var zStart = street_getground(street, &startSegment, &offset, 1);
-		var zStartLeft = street_getground(street, vector(startSegment.x + offset.x, startSegment.y + offset.y, startSegment.z), vector(0, 0, 0), 0);
-		var zStartRight = street_getground(street, vector(startSegment.x - offset.x, startSegment.y - offset.y, startSegment.z), vector(0, 0, 0), 0);
-		zStart += street->groundDist;
+		// Get left and right street height
+		var zStartLeft = street_getground(street, vector(startSegment.x + offset.x, startSegment.y + offset.y, startSegment.z));
+		var zStartRight = street_getground(street, vector(startSegment.x - offset.x, startSegment.y - offset.y, startSegment.z));
 		zStartLeft += street->groundDist;
 		zStartRight += street->groundDist;
-
-		// Lower start of street and end of street
-		if(!isLooped)
-		{
-			if(i == 0 && j == 0)
-			{
-				zStart -= 1.5 * street->height;
-			}
-		}
 		
 		/************************************************************************************************/
 		/*	Build Street Surface																		*/
 		/************************************************************************************************/
 		
+		// Setup left vertex
 		left.x = startSegment.x + offset.x;
 		left.y = zStartLeft;
 		left.z = startSegment.y + offset.y;
 		left.nx = 0; left.ny = 1; left.nz = 0;
 		left.u1 = 0;
-		left.v1 = 0.001 * (distance);
+		left.v1 = 15 * dist;
 		
+		// Setup right vertex
 		right.x = startSegment.x - offset.x;
 		right.y = zStartRight;
 		right.z = startSegment.y - offset.y;
 		right.nx = 0; right.ny = 1; right.nz = 0;
 		right.u1 = 1;
-		right.v1 = 0.001 * (distance);
+		right.v1 = 15 * dist;
 		
-		// We got a start element AND not the first element
-		if(j == 0 && i > 0)
-		{
-			//street_build_median(&left, &model->vertexBuffer[previousSeparator + 0]);
-			//street_build_median(&right, &model->vertexBuffer[previousSeparator + 1]);
-		}	
-		
+		// Create separator for this part
 		int separator = street_create_separator(model, &left, &right);
-		if(i > 0 && j > 0)
+		if(dist > 0)
+			// Connect the current and the last separator to a segment (surface)
 			street_create_segment(model, previousSeparator, separator);
 		previousSeparator = separator;
 	}
 	
 	// Connect to loop
 	if(isLooped)
+		// Link the last to the first segment
 		street_create_segment(model, previousSeparator, 0);
 	
+	// Create the entity
 	ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
 	
+	// Free data
 	dmdl_delete(model);
-	sys_free(spline);
+	sys_free(splineData);
 	
 	return ent;
 }

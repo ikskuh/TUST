@@ -63,10 +63,7 @@ void create_random_streets()
 	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
 	
 	
-	Street *editorStreet = street_create(100, 2);
-	editorStreet->segmentLength = 15;
-	editorStreet->groundDist = 5;
-	editorStreet->width = 25;
+	Street *editorStreet = street_create(25, 5);
 
 	// Add street positions	
 	street_addpos(editorStreet, vector(100,200,0));
@@ -77,11 +74,12 @@ void create_random_streets()
 	street_addpos(editorStreet, vector(100,-100,0));
 	street_addpos(editorStreet, vector(-100,-100,0));
 	street_addpos(editorStreet, vector(-200,-200,0));
-	//street_addpos(editorStreet, vector(-100,200,0));
+	street_addpos(editorStreet, vector(-100,200,0));
 	street_addpos(editorStreet, vector(-350,200,0));
+	street_addpos(editorStreet, vector(100,200,0));
 
 	// "Draw" streets
-	ENTITY *street = street_build(editorStreet, entTerrain, bmapStreetTexture);
+	ENTITY *street = street_build(editorStreet, bmapStreetTexture);
 }
 
 void main() {
