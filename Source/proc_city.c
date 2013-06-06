@@ -82,6 +82,8 @@ void street_create_segment(DynamicModel *model, int sep1, int sep2)
 	model->faceCount += 2;
 }
 
+
+
 ENTITY *street_build(Street *street, BMAP* _streetTexture)
 {
 	int iPointCount = list_get_count(street->points);
@@ -184,6 +186,7 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture)
 	
 	// Create the entity
 	ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
+	dmdl_save(model, "C:\\Users\\padmalcom\\test.x");
 	
 	// Free data
 	dmdl_delete(model);
