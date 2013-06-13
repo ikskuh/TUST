@@ -50,6 +50,7 @@ void bmapCMTypeCreate ( STRING *strData )
 	cmmemberMe->event = NULL;
 	cmmemberMe->draw = drwCMBitmap;
 	cmmemberMe->resize = fncCMBitmapResize;
+	cmmemberMe->remove = NULL;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = bmapPtr;
 	str_cpy ( (cmmemberMe->text->pstring)[cmmemberMe->index], "NULL" );

@@ -30,5 +30,6 @@ void cmenu_remove_all ();
 #include "cm_bitmap.c"
 #include "cm_button.c"
 #include "cm_slider.c"
+#include "cm_digit.c"
 
 #endif

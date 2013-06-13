@@ -10,6 +10,13 @@ typedef struct CMSLIDER
 	void event ();
 } CMSLIDER;
 
+void fncCMSliderRemove ()
+{
+	CMSLIDER *slider = cmmemberMe->child;
+	str_remove ( slider->format );
+	sys_free ( slider );
+}
+
 void fncCMSliderResize ()
 {
 	CMSLIDER *slider = cmmemberMe->child;
@@ -29,6 +36,7 @@ void drwCMSlider ()
 	slide_x -= slider->min;
 	slide_x /= slider->range;
 	slide_x *= slider->size_x;
+	slide_x = maxv ( slide_x, 1 );
 	if ( cmmemberMe == cmenuMe->cmmemberActual )
 	{
 		vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->pos_y+1, 0 ) );
@@ -59,11 +67,7 @@ void drwCMSlider ()
 		draw_line ( &vecPos, cmenuMe->style->colBack, 0 );
 	}
 	
-	if ( !pan_setdigits ( cmenuMe->panel, cmenuMe->digits, cmenuMe->panel->size_x - CM_TAB_DIGIT, cmmemberMe->pos_y, slider->format, cmenuMe->style->font, 1, slider->value ) )
-	{
-		pan_setdigits ( cmenuMe->panel, 0, cmenuMe->panel->size_x - CM_TAB_DIGIT, cmmemberMe->pos_y, slider->format, cmenuMe->style->font, 1, slider->value );
-	}
-	cmenuMe->digits += 1;
+	cmmember_draw_var ( slider->value, slider->format );
 	cmmember_draw_name ();
 }
 
@@ -162,7 +166,7 @@ void sliderCMTypeCreate ( STRING *strData )
 		}
 	#endif
 	str_clip ( strData, commaPos );
-	str_cpy ( strCMType, strData );
+	int iSliderFormat = clamp ( str_to_int ( strData ), 0, 3 );
 	commaPos = str_stri ( strData, "," );
 	#ifdef CM_SAFE_MODE
 		if ( !commaPos )
@@ -173,7 +177,6 @@ void sliderCMTypeCreate ( STRING *strData )
 		}
 	#endif
 	str_clip ( strData, commaPos );
-	str_trunc ( strCMType, str_len(strCMType)-commaPos+1 );
 	
 	str_cpy ( strCMEvent, strData );
 	commaPos = str_stri ( strData, "," );
@@ -210,13 +213,14 @@ void sliderCMTypeCreate ( STRING *strData )
 	slider->range = nMax - nMin;
 	slider->step = nStep;
 	slider->value = pointer;
-	slider->format = str_create ( strCMType );
+	slider->format = (txtCMFormats->pstring)[iSliderFormat];
 	slider->event = fncCMPrototype;
 	
-	cmmemberMe->flags = CM_ACTIVE | CM_FREE;
+	cmmemberMe->flags = CM_ACTIVE;
 	cmmemberMe->event = evnCMSlider;
 	cmmemberMe->resize = fncCMSliderResize;
 	cmmemberMe->draw = drwCMSlider;
+	cmmemberMe->remove = fncCMSliderRemove;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = slider;
 	fncCMSliderResize ();

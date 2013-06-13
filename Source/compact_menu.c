@@ -12,7 +12,11 @@
 #define CM_SUBMENU             (1<<1)
 #define CM_OPENED              (1<<2)
 #define CM_INVISIBLE           (1<<3)
-#define CM_FREE                (1<<4)
+
+TEXT *txtCMFormats =
+{
+	string = ( "%.0f", "%.1f", "%.2f", "%.3f" );
+}
 
 // GENERAL
 /* ---------------------------------------------------------------------------------------------------- */
@@ -31,6 +35,7 @@ typedef struct CMMEMBER
 	void event ();
 	void draw ();
 	void resize ();
+	void remove ();
 } CMMEMBER;
 
 typedef struct COMPACT_MENU
@@ -42,7 +47,7 @@ typedef struct COMPACT_MENU
 	COLOR *colOver;
 	CMMEMBER cmmember;
 	CMMEMBER *cmmemberActual;
-	FONT *font;
+//	FONT *font;
 	PANEL *panel;
 	int digits;
 	int strings;
@@ -114,7 +119,7 @@ void drwCMComplete ( COMPACT_MENU *cmenu )
 {
 	int i = 0;
 	for ( ; i<cmenu->digits; i++ )
-		pan_setdigits ( cmenu->panel, i+1, 0, -100000, "", cmenu->font, 1, &0 );
+		pan_setdigits ( cmenu->panel, i+1, 0, -100000, "", cmenu->style->font, 1, &0 );
 	for ( i=0; i<cmenu->text->strings; i++ )
 		str_cpy ( (cmenu->text->pstring)[i], "" );
 	cmenu->digits = 1;
@@ -160,17 +165,16 @@ void fncCMMembersResize ()
 
 void fncCMMembersRemove ()
 {
-	bmap_remove ( cmmemberMe->text->target_map );
 	txt_remove ( cmmemberMe->text );
 	CMMEMBER **cmmemberTemp = cmmemberMe->child;
 	CMMEMBER **cmmemberTempLast = cmmemberTemp + cmmemberMe->count;
 	for ( ; cmmemberTemp<cmmemberTempLast; cmmemberTemp++ )
 	{
 		cmmemberMe = *cmmemberTemp;
-		if ( (*cmmemberTemp)->flags & CM_SUBMENU )
-			fncCMMembersRemove ();
-		if ( (*cmmemberTemp)->flags & CM_FREE )
-			sys_free ( (*cmmemberTemp)->child );
+//		if ( (*cmmemberTemp)->flags & CM_SUBMENU )
+//			fncCMMembersRemove ();
+		if ( (*cmmemberTemp)->remove )
+			(*cmmemberTemp)->remove ();
 	}
 }
 
@@ -186,6 +190,18 @@ void cmmember_draw_name ()
 	cmenuMe->strings ++;
 	cmenuMe->digits ++;
 }
+
+void cmmember_draw_var ( var *pointer, STRING *format )
+{
+	var posX = cmenuMe->panel->size_x - CM_TAB_DIGIT;
+	if ( !pan_setdigits ( cmenuMe->panel, cmenuMe->digits, posX, cmmemberMe->pos_y, format, cmenuMe->style->font, 1, pointer ) )
+	{
+		pan_setdigits ( cmenuMe->panel, 0, posX, cmmemberMe->pos_y, format, cmenuMe->style->font, 1, pointer );
+	}
+	cmenuMe->digits += 1;
+
+}
+
 
 void fncCMSubmenuResize ()
 {
@@ -360,10 +376,11 @@ void submenuCMTypeCreate ( STRING *strData )
 			sys_exit ( NULL );
 		}
 	#endif
-	cmmemberMe->flags = CM_ACTIVE | CM_SUBMENU | CM_FREE;
+	cmmemberMe->flags = CM_ACTIVE | CM_SUBMENU;
 	cmmemberMe->event = evnCMSubmenu;
 	cmmemberMe->draw = drwCMSubmenu;
 	cmmemberMe->resize = fncCMSubmenuResize;
+	cmmemberMe->remove = fncCMMembersRemove;
 	cmmemberMe->count = txtSub->strings;
 	fncCMSubmenuResize ();
 	CMMEMBER *cmmemberTemp = cmmemberMe;

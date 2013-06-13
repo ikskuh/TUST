@@ -65,6 +65,7 @@ void titleCMTypeCreate( STRING *strData )
 	cmmemberMe->event = evnCMTitle;
 	cmmemberMe->draw = drwCMTitle;
 	cmmemberMe->resize = fncCMTitleResize;
+	cmmemberMe->remove = NULL;
 	cmmemberMe->count = size_y;
 	cmmemberMe->child = NULL;
 	

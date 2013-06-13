@@ -23,6 +23,7 @@ void spaceCMTypeCreate ( STRING *strData )
 	cmmemberMe->draw = drwCMSpace;
 	cmmemberMe->count = size_y;
 	cmmemberMe->resize = NULL;
+	cmmemberMe->remove = NULL;
 	cmmemberMe->size_y = size_y+1;
 	cmmemberMe->child = NULL;
 }

@@ -53,6 +53,7 @@ void buttonCMTypeCreate ( STRING *strData )
 	cmmemberMe->event = fncCMPrototype;
 	cmmemberMe->draw = drwCMButton;
 	cmmemberMe->resize = fncCMButtonResize;
+	cmmemberMe->remove = NULL;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = NULL;
 	

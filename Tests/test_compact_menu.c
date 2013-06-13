@@ -8,12 +8,17 @@
 
 
 /* ---------------------------------------------------------------------------------------------------- */
+var nSlider = 0;
+var nDigit = 0;
 TEXT *txtMain = 
 {
 	string = 
 	(
+		"editable members.title=0",
+		"slider.slider=-180,180,1,0,nSlider",
+		"digit.digit=3,nDigit",
+		".space=3",
 		"main menu.title=0",
-		".space=1",
 	 	"camera.submenu=txtCamera",
 	 	"global lighting.submenu=txtGlobalLighting",
 	 	"sky.submenu=txtSky",
@@ -38,13 +43,17 @@ TEXT *txtCamera =
 	string =
 	(
 		".line=0",
-		"pan.slider=-180,180,1,%.0f,camera->pan,evnCameraLocate",
-		"tilt.slider=-90,90,1,%.0f,camera->tilt,evnCameraLocate",
-		"roll.slider=-180,180,1,%.0f,camera->roll,evnCameraLocate",
+		"x.digit=3,camera->x,evnCameraLocate",
+		"y.digit=3,camera->y,evnCameraLocate",
+		"z.digit=3,camera->z,evnCameraLocate",
 		".space=1",
-		"distance.slider=10,200,1,%.0f,nCameraDistance,evnCameraLocate",
-		"arc.slider=1,179,1,%.0f,camera->arc",
-		"ambient.slider=-100,100,1,%.0f,camera->ambient",
+		"pan.slider=-180,180,1,0,camera->pan,evnCameraLocate",
+		"tilt.slider=-90,90,1,0,camera->tilt,evnCameraLocate",
+		"roll.slider=-180,180,1,0,camera->roll,evnCameraLocate",
+		".space=1",
+		"distance.digit=3,nCameraDistance,evnCameraLocate",
+		"arc.slider=1,179,1,0,camera->arc",
+		"ambient.slider=-100,100,1,0,camera->ambient",
 		".space=1",
 		"background color.submenu=txtBackgroundColor",
 		".line=2"
@@ -64,9 +73,9 @@ TEXT *txtBackgroundColor =
 	string =
 	(
 		".line=0",
-		"blue.slider=0,255,1,%.0f,colCameraBG.blue,evnCameraBGSet",
-		"green.slider=0,255,1,%.0f,colCameraBG.green,evnCameraBGSet",
-		"red.slider=0,255,1,%.0f,colCameraBG.red,evnCameraBGSet",
+		"blue.slider=0,255,1,0,colCameraBG.blue,evnCameraBGSet",
+		"green.slider=0,255,1,0,colCameraBG.green,evnCameraBGSet",
+		"red.slider=0,255,1,0,colCameraBG.red,evnCameraBGSet",
 		".line=2"
 	);
 }
@@ -89,14 +98,14 @@ TEXT *txtSun =
 	string =
 	(
 		".line=0",
-		"pan.slider=-180,180,1,%.0f,sun_angle.pan",
-		"tilt.slider=-90,90,1,%.0f,sun_angle.tilt",
+		"pan.slider=-180,180,1,0,sun_angle.pan",
+		"tilt.slider=-90,90,1,0,sun_angle.tilt",
 		".space=1",
-		"distance (roll).slider=1,100000,1,%.0f,sun_angle.roll",
+		"distance (roll).digit=0,sun_angle.roll",
 		".space=1",
-		"blue.slider=0,255,1,%.0f,sun_color.blue",
-		"green.slider=0,255,1,%.0f,sun_color.green",
-		"red.slider=0,255,1,%.0f,sun_color.red",
+		"blue.slider=0,255,1,0,sun_color.blue",
+		"green.slider=0,255,1,0,sun_color.green",
+		"red.slider=0,255,1,0,sun_color.red",
 		".line=2"
 	);
 }
@@ -107,9 +116,9 @@ TEXT *txtAmbient =
 	string =
 	(
 		".line=0",
-		"blue.slider=0,255,1,%.0f,ambient_color.blue",
-		"green.slider=0,255,1,%.0f,ambient_color.green",
-		"red.slider=0,255,1,%.0f,ambient_color.red",
+		"blue.slider=0,255,1,0,ambient_color.blue",
+		"green.slider=0,255,1,0,ambient_color.green",
+		"red.slider=0,255,1,0,ambient_color.red",
 		".line=2"
 	);
 }
@@ -175,7 +184,7 @@ void main ()
 
 	// Create style for the menues
 	// CMMEMBER *myMenuStyle = cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver )
-	CMSTYLE *myMenuStyle01 = cmstyle_create ( font_create("Arial#14"), vector(40,40,40), vector(250,250,250), vector(210,210,210) );
+	CMSTYLE *myMenuStyle01 = cmstyle_create ( font_create("Arial#16"), vector(40,40,40), vector(250,250,250), vector(210,210,210) );
 	CMSTYLE *myMenuStyle02 = cmstyle_create ( font_create("ackfont.pcx"), vector(230,230,230), vector(30,20,0), vector(155,70,0) );
 	
 	// Create a compact menu panel
@@ -183,7 +192,7 @@ void main ()
 	PANEL *myMenu01 = cmenu_create ( "myMenu01", 120, 20, 200, 1, SHOW, "txtMain", myMenuStyle01 );
 	PANEL *myMenu02 = cmenu_create ( "myMenu02", 520, 20, 200, 1, SHOW, "txtMain", myMenuStyle01 );
 	
-	cmenu_modify ( myMenu01, 500, myMenuStyle02 );
+	cmenu_modify ( myMenu02, 500, myMenuStyle02 );
 	
 	bmpSky = bmap_create ( "sky_fu_256+6.tga" );
 	
