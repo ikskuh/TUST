@@ -92,6 +92,16 @@ void evnCMDigit ()
 	}
 }
 
+CMCLASS cmclassDigit;
+
+void fncCMDigit_startup ()
+{
+	cmclassDigit.event = evnCMDigit;
+	cmclassDigit.draw = drwCMDigit;
+	cmclassDigit.resize = fncCMDigitResize;
+	cmclassDigit.remove = fncCMDigitRemove;
+}
+
 void digitCMTypeCreate ( STRING *strData )
 {
 	int iDigitFormat = clamp ( str_to_int ( strData ), 0, 3 );
@@ -141,10 +151,7 @@ void digitCMTypeCreate ( STRING *strData )
 	digit->event = fncCMPrototype;
 	
 	cmmemberMe->flags = CM_ACTIVE;
-	cmmemberMe->event = evnCMDigit;
-	cmmemberMe->resize = fncCMDigitResize;
-	cmmemberMe->remove = fncCMDigitRemove;
-	cmmemberMe->draw = drwCMDigit;
+	cmmemberMe->class = &cmclassDigit;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = digit;
 	

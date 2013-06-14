@@ -15,15 +15,23 @@ void drwCMSpace ()
 	draw_line ( &vecPos, cmenuMe->style->colBack, 0 );
 }
 
+CMCLASS cmclassSpace;
+
+void fncCMSpace_startup ()
+{
+	cmclassSpace.event = NULL;
+	cmclassSpace.draw = drwCMSpace;
+	cmclassSpace.resize = NULL;
+	cmclassSpace.remove = NULL;
+}
+
+
 void spaceCMTypeCreate ( STRING *strData )
 {
 	int size_y = str_to_int ( strCMData );
-	cmmemberMe->flags = 0;
-	cmmemberMe->event = NULL;
-	cmmemberMe->draw = drwCMSpace;
+	cmmemberMe->flags = NULL;
+	cmmemberMe->class = &cmclassSpace;
 	cmmemberMe->count = size_y;
-	cmmemberMe->resize = NULL;
-	cmmemberMe->remove = NULL;
 	cmmemberMe->size_y = size_y+1;
 	cmmemberMe->child = NULL;
 }

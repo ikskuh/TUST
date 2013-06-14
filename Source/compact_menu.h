@@ -15,7 +15,7 @@ typedef struct CMSTYLE
 
 CMSTYLE *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBackground, COLOR *colOver );
 
-PANEL *cmenu_create ( char *chrName, var pos_x, var pos_y, var size_x, var layer, var flags, char *chrMembers, CMSTYLE *style );
+PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style );
 
 void cmenu_modify ( PANEL *panel, var size_x, CMSTYLE *style );
 
@@ -23,7 +23,13 @@ void cmenu_remove ( PANEL *panel );
 
 void cmenu_remove_all ();
 
+void cmmember_draw_name ();
+
+void cmmember_draw_var ( var *pointer, STRING *format );
+
+
 #include "compact_menu.c"
+#include "cm_submenu.c"
 #include "cm_title.c"
 #include "cm_line.c"
 #include "cm_space.c"

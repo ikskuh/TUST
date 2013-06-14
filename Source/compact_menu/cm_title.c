@@ -2,7 +2,7 @@
 void fncCMTitleResize ()
 {
 	cmmemberMe->size_y = cmmemberMe->count + 2;
-	if ( str_len ( (cmmemberMe->text->pstring)[cmmemberMe->index] ) > 0 )
+	if ( str_len ( cmmemberMe->name ) > 0 )
 		cmmemberMe->size_y += cmenuMe->style->font->dy;
 }
 
@@ -51,21 +51,23 @@ void drwCMTitle ()
 	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
 	
 	cmmember_draw_name ();
-//	VECTOR vecOffset;
-//	vec_set ( &vecOffset, vector ( 0, cmmemberMe->index * cmenuMe->style->font->dy, 0 ) );
-//	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y + cmmemberMe->count, 0 ) );
-//	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-//	draw_quad ( cmmemberMe->text->target_map, &vecPos, &vecOffset, &vecSize, NULL, NULL, 100, 0 );
+}
+
+CMCLASS cmclassTitle;
+
+void fncCMTitle_startup ()
+{
+	cmclassTitle.event = evnCMTitle;
+	cmclassTitle.draw = drwCMTitle;
+	cmclassTitle.resize = fncCMTitleResize;
+	cmclassTitle.remove = NULL;
 }
 
 void titleCMTypeCreate( STRING *strData )
 {
 	int size_y = str_to_int ( strCMData );
 	cmmemberMe->flags = CM_ACTIVE;
-	cmmemberMe->event = evnCMTitle;
-	cmmemberMe->draw = drwCMTitle;
-	cmmemberMe->resize = fncCMTitleResize;
-	cmmemberMe->remove = NULL;
+	cmmemberMe->class = &cmclassTitle;
 	cmmemberMe->count = size_y;
 	cmmemberMe->child = NULL;
 	

@@ -30,11 +30,24 @@ void drwCMButton ()
 		draw_line ( &vecPos, cmenuMe->style->colText, 0 );
 	}
 	cmmember_draw_name ();
-//	VECTOR vecOffset;
-//	vec_set ( &vecOffset, vector ( 0, cmmemberMe->index * cmenuMe->style->font->dy, 0 ) );
-//	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y, 0 ) );
-//	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x-CM_TAB_SRIGHT, cmenuMe->style->font->dy, 0 ) );
-//	draw_quad ( cmmemberMe->text->target_map, &vecPos, &vecOffset, &vecSize, NULL, NULL, 100, 0 );
+}
+
+void fncCMButtonPrototype ();
+
+void evnCMButton ()
+{
+	fncCMButtonPrototype = cmmemberMe->child;
+	fncCMButtonPrototype ();
+}
+
+CMCLASS cmclassButton;
+
+void fncCMButton_startup ()
+{
+	cmclassButton.event = evnCMButton;
+	cmclassButton.draw = drwCMButton;
+	cmclassButton.resize = fncCMButtonResize;
+	cmclassButton.remove = NULL;
 }
 
 void buttonCMTypeCreate ( STRING *strData )
@@ -50,12 +63,9 @@ void buttonCMTypeCreate ( STRING *strData )
 		}
 	#endif
 	cmmemberMe->flags = CM_ACTIVE;
-	cmmemberMe->event = fncCMPrototype;
-	cmmemberMe->draw = drwCMButton;
-	cmmemberMe->resize = fncCMButtonResize;
-	cmmemberMe->remove = NULL;
+	cmmemberMe->class = &cmclassButton;
 	cmmemberMe->count = 0;
-	cmmemberMe->child = NULL;
+	cmmemberMe->child = fncCMPrototype;
 	
 	fncCMButtonResize ();
 }

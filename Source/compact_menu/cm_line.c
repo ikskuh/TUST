@@ -15,15 +15,22 @@ void drwCMLine ()
 	draw_line ( &vecPos, cmenuMe->style->colBack, 0 );
 }
 
+CMCLASS cmclassLine;
+
+void fncCMLine_startup ()
+{
+	cmclassLine.event = NULL;
+	cmclassLine.draw = drwCMLine;
+	cmclassLine.resize = NULL;
+	cmclassLine.remove = NULL;
+}
+
 void lineCMTypeCreate ( STRING *strData )
 {
 	int size_y = str_to_int ( strCMData );
 	cmmemberMe->flags = 0;
-	cmmemberMe->event = NULL;
-	cmmemberMe->draw = drwCMLine;
+	cmmemberMe->class = &cmclassLine;
 	cmmemberMe->count = size_y;
-	cmmemberMe->resize = NULL;
-	cmmemberMe->remove = NULL;
 	cmmemberMe->size_y = size_y+1;
 	cmmemberMe->child = NULL;
 }

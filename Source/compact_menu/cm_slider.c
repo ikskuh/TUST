@@ -13,7 +13,6 @@ typedef struct CMSLIDER
 void fncCMSliderRemove ()
 {
 	CMSLIDER *slider = cmmemberMe->child;
-	str_remove ( slider->format );
 	sys_free ( slider );
 }
 
@@ -131,6 +130,16 @@ void evnCMSlider ()
 	}
 }
 
+CMCLASS cmclassSlider;
+
+void fncCMSlider_startup ()
+{
+	cmclassSlider.event = evnCMSlider;
+	cmclassSlider.draw = drwCMSlider;
+	cmclassSlider.resize = fncCMSliderResize;
+	cmclassSlider.remove = fncCMSliderRemove;
+}
+
 void sliderCMTypeCreate ( STRING *strData )
 {
 	var nMin = str_to_num ( strData );
@@ -217,10 +226,7 @@ void sliderCMTypeCreate ( STRING *strData )
 	slider->event = fncCMPrototype;
 	
 	cmmemberMe->flags = CM_ACTIVE;
-	cmmemberMe->event = evnCMSlider;
-	cmmemberMe->resize = fncCMSliderResize;
-	cmmemberMe->draw = drwCMSlider;
-	cmmemberMe->remove = fncCMSliderRemove;
+	cmmemberMe->class = &cmclassSlider;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = slider;
 	fncCMSliderResize ();

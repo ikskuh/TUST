@@ -29,10 +29,17 @@ void drwCMBitmap ()
 	else
 	{
 		cmmember_draw_name ();
-//		VECTOR vecOffset;
-//		vec_set ( &vecOffset, vector ( 0, cmmemberMe->index * cmenuMe->style->font->dy, 0 ) );
-//		draw_quad ( cmmemberMe->text->target_map, &vecPos, &vecOffset, vector(vecSize.x-CM_TAB_RIGHT,cmenuMe->style->font->dy,0), NULL, NULL, 100, 0 );
 	}
+}
+
+CMCLASS cmclassBitmap;
+
+void fncCMBitmap_startup ()
+{
+	cmclassBitmap.event = NULL;
+	cmclassBitmap.draw = drwCMBitmap;
+	cmclassBitmap.resize = fncCMBitmapResize;
+	cmclassBitmap.remove = NULL;
 }
 
 void bmapCMTypeCreate ( STRING *strData )
@@ -47,13 +54,10 @@ void bmapCMTypeCreate ( STRING *strData )
 		}
 	#endif
 	cmmemberMe->flags = 0;
-	cmmemberMe->event = NULL;
-	cmmemberMe->draw = drwCMBitmap;
-	cmmemberMe->resize = fncCMBitmapResize;
-	cmmemberMe->remove = NULL;
+	cmmemberMe->class = &cmclassBitmap;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = bmapPtr;
-	str_cpy ( (cmmemberMe->text->pstring)[cmmemberMe->index], "NULL" );
+	str_cpy ( cmmemberMe->name, "NULL" );
 	
 	fncCMBitmapResize ();
 }

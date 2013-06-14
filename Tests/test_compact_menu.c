@@ -1,5 +1,5 @@
 #include <acknex.h>
-#include "..\\Source\\tust.h"
+#include "..\\Source\\compact_menu.h"
 
 #define PRAGMA_POINTER
 
@@ -14,19 +14,16 @@ TEXT *txtMain =
 {
 	string = 
 	(
-		"editable members.title=0",
+		".line=0",
 		"slider.slider=-180,180,1,0,nSlider",
 		"digit.digit=3,nDigit",
-		".space=3",
-		"main menu.title=0",
+		".line=1",
 	 	"camera.submenu=txtCamera",
 	 	"global lighting.submenu=txtGlobalLighting",
 	 	"sky.submenu=txtSky",
 		".space=3",
 	 	"system.submenu=txtSystem"
-		".space=1",
-		".line=1",
-		".title=0"
+		".line=2",
 	);
 }
 
@@ -144,11 +141,10 @@ void fncBeep ( void *object )
 	snd_play ( sndBeep, 50, 0 );
 }
 
+var nExit = 0;
 void fncExit ( void *object )
 {
-	cmenu_remove_all ();
-	
-	sys_exit ( NULL );
+	nExit = 1;
 }
 
 TEXT *txtSystem =
@@ -185,27 +181,28 @@ void main ()
 	// Create style for the menues
 	// CMMEMBER *myMenuStyle = cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver )
 	CMSTYLE *myMenuStyle01 = cmstyle_create ( font_create("Arial#16"), vector(40,40,40), vector(250,250,250), vector(210,210,210) );
-	CMSTYLE *myMenuStyle02 = cmstyle_create ( font_create("ackfont.pcx"), vector(230,230,230), vector(30,20,0), vector(155,70,0) );
+	CMSTYLE *myMenuStyle02 = cmstyle_create ( font_create("ackfont.pcx"), vector(170,170,255), vector(30,20,0), vector(0,0,185) );
 	
 	// Create a compact menu panel
-	// PANEL *cmenu_create ( char *chrName, var pos_x, var pos_y, var size_x, var layer, var flags, char *chrMembers, CMSTYLE *style )
-	PANEL *myMenu01 = cmenu_create ( "myMenu01", 120, 20, 200, 1, SHOW, "txtMain", myMenuStyle01 );
-	PANEL *myMenu02 = cmenu_create ( "myMenu02", 520, 20, 200, 1, SHOW, "txtMain", myMenuStyle01 );
+	// PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style )
+	PANEL *myMenu01 = cmenu_create ( "main menu 1.submenu=txtMain", 100, 20, 200, 1, SHOW, myMenuStyle01 );
+	PANEL *myMenu02 = cmenu_create ( "main menu 2.submenu=txtMain", 500, 20, 200, 1, SHOW, myMenuStyle01 );
 	
-	cmenu_modify ( myMenu02, 500, myMenuStyle02 );
+	cmenu_modify ( myMenu02, 150, myMenuStyle02 );
 	
 	bmpSky = bmap_create ( "sky_fu_256+6.tga" );
 	
-	while ( !key_esc )
+	while ( !key_esc && !nExit )
 		wait(1);
 	
 	bmap_remove ( bmpSky );
 	bmap_remove ( mouse_map );
 	mouse_map = NULL;
 	bmpSky = NULL;
-	
 	cmenu_remove ( myMenu01 );
 	cmenu_remove ( myMenu02 );
+	sys_free ( myMenuStyle01 ); 
+	sys_free ( myMenuStyle02 ); 
 	
 	sys_exit ( NULL );
 
