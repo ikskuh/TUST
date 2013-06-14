@@ -70,3 +70,23 @@ void buttonCMTypeCreate ( STRING *strData )
 	fncCMButtonResize ();
 }
 
+void rbuttonCMTypeCreate ( STRING *strData )
+{
+	fncCMPrototype = engine_getscript ( strData->chars );
+	
+	#ifdef CM_SAFE_MODE
+		if ( fncCMPrototype == NULL )
+		{
+			str_cat ( strData, "\nfunction not found" );
+			error ( strData );
+			sys_exit ( NULL );
+		}
+	#endif
+	cmmemberMe->flags = CM_ACTIVE | CM_ARIGHT;
+	cmmemberMe->class = &cmclassButton;
+	cmmemberMe->count = 0;
+	cmmemberMe->child = fncCMPrototype;
+	
+	fncCMButtonResize ();
+}
+

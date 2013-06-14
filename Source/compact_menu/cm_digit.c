@@ -24,7 +24,7 @@ void drwCMDigit ()
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
 	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
-	if ( cmmemberMe == cmenuMe->cmmemberActual )
+	if ( ( cmmemberMe == cmenuMe->cmmemberActual ) && ( cmmemberMe->flags & CM_ACTIVE ) )
 	{
 		vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->pos_y+cmmemberMe->size_y-3, 0 ) );
 		vec_set ( &vecSize, vector ( cmenuMe->panel->size_x-cmmemberMe->tab-CM_TAB_RIGHT, 3, 0 ) );
@@ -103,6 +103,62 @@ void fncCMDigit_startup ()
 }
 
 void digitCMTypeCreate ( STRING *strData )
+{
+	int iDigitFormat = clamp ( str_to_int ( strData ), 0, 3 );
+	var commaPos = str_stri ( strData, "," );
+	#ifdef CM_SAFE_MODE
+		if ( !commaPos )
+		{
+			str_cat ( strData, "\ncomma expected" );
+			error ( strData );
+			sys_exit ( NULL );
+		}
+	#endif
+	str_clip ( strData, commaPos );
+	
+	str_cpy ( strCMEvent, strData );
+	commaPos = str_stri ( strData, "," );
+	fncCMPrototype = NULL;
+	if ( commaPos )
+	{
+		str_clip ( strCMEvent, commaPos );
+		str_trunc ( strData, str_len(strData)-commaPos+1 );
+		
+		fncCMPrototype = engine_getscript ( strCMEvent->chars );
+		#ifdef CM_SAFE_MODE
+			if ( fncCMPrototype == NULL )
+			{
+				str_cat ( strCMEvent, "\nfunction not found" );
+				error ( strCMEvent );
+				sys_exit ( NULL );
+			}
+		#endif
+	}
+	
+	var *pointer = engine_getvar ( strData->chars, NULL );
+	#ifdef CM_SAFE_MODE
+		if ( pointer == NULL )
+		{
+			str_cat ( strData, "\nvariable not found" );
+			error ( strData );
+			sys_exit ( NULL );
+		}
+	#endif
+	
+	CMDIGIT *digit = sys_malloc ( sizeof(CMDIGIT) );
+	digit->value = pointer;
+	digit->format = (txtCMFormats->pstring)[iDigitFormat];
+	digit->event = fncCMPrototype;
+	
+	cmmemberMe->flags = NULL;
+	cmmemberMe->class = &cmclassDigit;
+	cmmemberMe->count = 0;
+	cmmemberMe->child = digit;
+	
+	fncCMDigitResize ();
+}
+
+void digeditCMTypeCreate ( STRING *strData )
 {
 	int iDigitFormat = clamp ( str_to_int ( strData ), 0, 3 );
 	var commaPos = str_stri ( strData, "," );

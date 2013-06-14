@@ -12,6 +12,7 @@
 #define CM_ACTIVE              (1<<0)
 #define CM_OPENED              (1<<1)
 #define CM_INVISIBLE           (1<<2)
+#define CM_ARIGHT              (1<<3)
 
 TEXT *txtCMFormats =
 {
@@ -304,7 +305,11 @@ void cmmember_draw_name ()
 		txt_addstring ( cmenuMe->text, NULL );
 	STRING *strTemp = (cmenuMe->text->pstring)[cmenuMe->strings];
 	str_cpy ( strTemp, cmmemberMe->name );
-	var posX = cmmemberMe->tab + str_width(strTemp,cmenuMe->style->font) + CM_TAB_TEXT;
+	var posX;
+	if ( cmmemberMe->flags & CM_ARIGHT )
+		posX = cmenuMe->panel->size_x - CM_TAB_SRIGHT;
+	else
+		posX = cmmemberMe->tab + str_width(strTemp,cmenuMe->style->font) + CM_TAB_TEXT;
 	if ( !pan_setstring ( cmenuMe->panel, cmenuMe->digits, posX, cmmemberMe->pos_y, cmenuMe->style->font, strTemp ) )
 		pan_setstring ( cmenuMe->panel, 0, posX, cmmemberMe->pos_y, cmenuMe->style->font, strTemp );
 	cmenuMe->strings ++;

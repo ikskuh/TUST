@@ -42,7 +42,7 @@ void fncCMBitmap_startup ()
 	cmclassBitmap.remove = NULL;
 }
 
-void bmapCMTypeCreate ( STRING *strData )
+void bitmapCMTypeCreate ( STRING *strData )
 {
 	BMAP **bmapPtr = engine_getvar ( strData->chars, NULL );
 	#ifdef CM_SAFE_MODE

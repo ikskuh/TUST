@@ -21,12 +21,17 @@ TEXT *txtMain =
 {
 	string = 
 	(
+		".line=2",
+	 	".bitmap=bmpSky",
+		".line=2",
 		"title.title=0",
-		"submenu.submenu=txtGlobals",
-		"slider.slider=-180,180,1,0,nSlider",
 		"digit.digit=3,nDigit",
 	 	"button.button=fncBeep"
-	 	"bitmap.submenu=txtSky"
+	 	"rbutton.rbutton=fncBeep"
+		"slider.slider=-180,180,1,0,nSlider",
+		"digedit.digedit=3,nDigit",
+		"submenu.submenu=txtGlobals",
+		".space=2"
 	);
 }
 
@@ -37,7 +42,7 @@ TEXT *txtGlobals =
 	(
 		".line=0"
 	 	"camera.submenu=txtCamera",
-	 	"global lighting.submenu=txtGlobalLighting",
+	 	"lighting.submenu=txtGlobalLighting",
 	 	"sky.submenu=txtSky",
 		".space=3",
 	 	"system.submenu=txtSystem"
@@ -66,7 +71,7 @@ TEXT *txtCamera =
 		"tilt.slider=-90,90,1,0,camera->tilt,evnCameraLocate",
 		"roll.slider=-180,180,1,0,camera->roll,evnCameraLocate",
 		".space=1",
-		"distance.digit=3,nCameraDistance,evnCameraLocate",
+		"distance.digedit=3,nCameraDistance,evnCameraLocate",
 		"arc.slider=1,179,1,0,camera->arc",
 		"ambient.slider=-100,100,1,0,camera->ambient",
 		".space=1",
@@ -117,7 +122,7 @@ TEXT *txtSun =
 		"pan.slider=-180,180,1,0,sun_angle.pan",
 		"tilt.slider=-90,90,1,0,sun_angle.tilt",
 		".space=1",
-		"distance (roll).digit=0,sun_angle.roll",
+		"distance (roll).digedit=0,sun_angle.roll",
 		"color.title=0",
 		"blue.slider=0,255,1,0,sun_color.blue",
 		"green.slider=0,255,1,0,sun_color.green",
@@ -147,7 +152,7 @@ TEXT *txtSky =
 	string =
 	(
 		".line=0",
-		".bmap=bmpSky",
+		".bitmap=bmpSky",
 		".line=2"
 	);
 }
