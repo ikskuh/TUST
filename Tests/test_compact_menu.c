@@ -10,20 +10,38 @@
 /* ---------------------------------------------------------------------------------------------------- */
 var nSlider = 0;
 var nDigit = 0;
+SOUND *sndBeep = "beep.wav";
+
+void fncBeep ( void *object )
+{
+	snd_play ( sndBeep, 50, 0 );
+}
+
 TEXT *txtMain = 
 {
 	string = 
 	(
-		".line=0",
+		"title.title=0",
+		"submenu.submenu=txtGlobals",
 		"slider.slider=-180,180,1,0,nSlider",
 		"digit.digit=3,nDigit",
-		".line=1",
+	 	"button.button=fncBeep"
+	 	"bitmap.submenu=txtSky"
+	);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+TEXT *txtGlobals = 
+{
+	string = 
+	(
+		".line=0"
 	 	"camera.submenu=txtCamera",
 	 	"global lighting.submenu=txtGlobalLighting",
 	 	"sky.submenu=txtSky",
 		".space=3",
 	 	"system.submenu=txtSystem"
-		".line=2",
+		".line=2"
 	);
 }
 
@@ -95,11 +113,12 @@ TEXT *txtSun =
 	string =
 	(
 		".line=0",
+		"angles.title=0",
 		"pan.slider=-180,180,1,0,sun_angle.pan",
 		"tilt.slider=-90,90,1,0,sun_angle.tilt",
 		".space=1",
 		"distance (roll).digit=0,sun_angle.roll",
-		".space=1",
+		"color.title=0",
 		"blue.slider=0,255,1,0,sun_color.blue",
 		"green.slider=0,255,1,0,sun_color.green",
 		"red.slider=0,255,1,0,sun_color.red",
@@ -134,13 +153,6 @@ TEXT *txtSky =
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-SOUND *sndBeep = "beep.wav";
-
-void fncBeep ( void *object )
-{
-	snd_play ( sndBeep, 50, 0 );
-}
-
 var nExit = 0;
 void fncExit ( void *object )
 {
@@ -152,7 +164,6 @@ TEXT *txtSystem =
 	string =
 	(
 		".line=0",
-	 	"beep.button=fncBeep",
 	 	"exit.button=fncExit",
 		".line=2"
 	);
@@ -177,16 +188,18 @@ void main ()
 	camera->bg = pixel_for_vec ( &colCameraBG, 100, 8888 );
 	
 	ENTITY *ent = ent_create ( CUBE_MDL, nullvector, NULL );
-
+	
+	FONT *fntTTF = font_create("Arial#16");
+	FONT *fntBitmap = font_create("ackfont.pcx");
 	// Create style for the menues
 	// CMMEMBER *myMenuStyle = cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver )
-	CMSTYLE *myMenuStyle01 = cmstyle_create ( font_create("Arial#16"), vector(40,40,40), vector(250,250,250), vector(210,210,210) );
-	CMSTYLE *myMenuStyle02 = cmstyle_create ( font_create("ackfont.pcx"), vector(170,170,255), vector(30,20,0), vector(0,0,185) );
+	CMSTYLE *myMenuStyle01 = cmstyle_create ( fntTTF, vector(40,40,40), vector(250,250,250), vector(210,210,210) );
+	CMSTYLE *myMenuStyle02 = cmstyle_create ( fntBitmap, vector(170,170,255), vector(30,20,0), vector(0,0,185) );
 	
 	// Create a compact menu panel
 	// PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style )
-	PANEL *myMenu01 = cmenu_create ( "main menu 1.submenu=txtMain", 100, 20, 200, 1, SHOW, myMenuStyle01 );
-	PANEL *myMenu02 = cmenu_create ( "main menu 2.submenu=txtMain", 500, 20, 200, 1, SHOW, myMenuStyle01 );
+	PANEL *myMenu01 = cmenu_create ( "menu members.submenu=txtMain", 100, 20, 200, 1, SHOW, myMenuStyle01 );
+	PANEL *myMenu02 = cmenu_create ( "global variables.submenu=txtGlobals", 500, 20, 200, 1, SHOW, myMenuStyle01 );
 	
 	cmenu_modify ( myMenu02, 150, myMenuStyle02 );
 	
@@ -202,7 +215,9 @@ void main ()
 	cmenu_remove ( myMenu01 );
 	cmenu_remove ( myMenu02 );
 	sys_free ( myMenuStyle01 ); 
-	sys_free ( myMenuStyle02 ); 
+	sys_free ( myMenuStyle02 );
+	font_remove ( fntTTF ); 
+	font_remove ( fntBitmap ); 
 	
 	sys_exit ( NULL );
 

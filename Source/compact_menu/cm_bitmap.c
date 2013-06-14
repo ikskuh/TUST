@@ -16,7 +16,7 @@ void drwCMBitmap ()
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
 	VECTOR vecPos;
 	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, cmenuMe->style->colBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
 	BMAP **bmpTemp = cmmemberMe->child;
 	if ( *bmpTemp != NULL )
 	{

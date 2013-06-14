@@ -29,7 +29,7 @@ void drwCMSlider ()
 	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y, 0 ) );
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, cmenuMe->style->colBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
 	CMSLIDER *slider = cmmemberMe->child;
 	var slide_x = *slider->value;
 	slide_x -= slider->min;
@@ -40,30 +40,30 @@ void drwCMSlider ()
 	{
 		vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->pos_y+1, 0 ) );
 		vec_set ( &vecSize, vector ( slide_x, cmmemberMe->size_y-2, 0 ) );
-		draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, cmenuMe->style->colOver, 100, 0 );
+		draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
 		vecPos.x += slider->size_x;
 		vecPos.y += cmmemberMe->size_y - 2;
-		draw_line ( &vecPos, cmenuMe->style->colOver, 0 );
-		draw_line ( &vecPos, cmenuMe->style->colOver, 100 );
+		draw_line ( &vecPos, colCMOver, 0 );
+		draw_line ( &vecPos, colCMOver, 100 );
 		vecPos.x -= slider->size_x;
-		draw_line ( &vecPos, cmenuMe->style->colOver, 100 );
-		draw_line ( &vecPos, cmenuMe->style->colOver, 0 );
+		draw_line ( &vecPos, colCMOver, 100 );
+		draw_line ( &vecPos, colCMOver, 0 );
 		
 		vec_set ( &vecPos, vector ( cmmemberMe->tab+slide_x, cmmemberMe->pos_y+1, 0 ) );
-		draw_line ( &vecPos, cmenuMe->style->colText, 0 );
-		draw_line ( &vecPos, cmenuMe->style->colText, 100 );
+		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, colCMText, 100 );
 		vecPos.y += cmmemberMe->size_y-2;
-		draw_line ( &vecPos, cmenuMe->style->colText, 100 );
-		draw_line ( &vecPos, cmenuMe->style->colText, 0 );
+		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, colCMText, 0 );
 	}
 	else
 	{
 		vec_set ( &vecPos, vector ( cmmemberMe->tab+slider->size_x, cmmemberMe->pos_y+cmmemberMe->size_y-1, 0 ) );
-		draw_line ( &vecPos, cmenuMe->style->colOver, 0 );
-		draw_line ( &vecPos, cmenuMe->style->colOver, 100 );
+		draw_line ( &vecPos, colCMOver, 0 );
+		draw_line ( &vecPos, colCMOver, 100 );
 		vecPos.x -= slider->size_x * CM_TAB_LINE;
-		draw_line ( &vecPos, cmenuMe->style->colBack, 100 );
-		draw_line ( &vecPos, cmenuMe->style->colBack, 0 );
+		draw_line ( &vecPos, colCMBack, 100 );
+		draw_line ( &vecPos, colCMBack, 0 );
 	}
 	
 	cmmember_draw_var ( slider->value, slider->format );
@@ -83,24 +83,24 @@ void drwCMSliderUpdate ()
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x-cmmemberMe->tab-1, cmmemberMe->size_y, 0 ) );
 	bmap_rendertarget ( cmenuMe->panel->bmap, 0, 1 );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, cmenuMe->style->colBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
 	vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->pos_y+1, 0 ) );
 	vec_set ( &vecSize, vector ( slide_x, cmmemberMe->size_y-2, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, cmenuMe->style->colOver, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
 	vecPos.x += slider->size_x;
 	vecPos.y += cmmemberMe->size_y - 2;
-	draw_line ( &vecPos, cmenuMe->style->colOver, 0 );
-	draw_line ( &vecPos, cmenuMe->style->colOver, 100 );
+	draw_line ( &vecPos, colCMOver, 0 );
+	draw_line ( &vecPos, colCMOver, 100 );
 	vecPos.x -= slider->size_x;
-	draw_line ( &vecPos, cmenuMe->style->colOver, 100 );
-	draw_line ( &vecPos, cmenuMe->style->colOver, 0 );
+	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, colCMOver, 0 );
 	
 	vec_set ( &vecPos, vector ( cmmemberMe->tab+slide_x, cmmemberMe->pos_y+1, 0 ) );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
+	draw_line ( &vecPos, colCMText, 0 );
+	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.y += cmmemberMe->size_y-2;
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
+	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, colCMText, 0 );
 	
 	bmap_rendertarget ( NULL, 0, 0 );
 }

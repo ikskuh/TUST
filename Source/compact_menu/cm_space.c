@@ -5,14 +5,14 @@ void drwCMSpace ()
 	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y, 0 ) );
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, cmenuMe->style->colBack, 100, 0 );	
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );	
 	vecPos.x += cmmemberMe->tab - CM_TAB_STEP;
 	vecPos.y += cmmemberMe->count;
-	draw_line ( &vecPos, cmenuMe->style->colOver, 0 );
-	draw_line ( &vecPos, cmenuMe->style->colOver, 100 );
+	draw_line ( &vecPos, colCMOver, 0 );
+	draw_line ( &vecPos, colCMOver, 100 );
 	vecPos.x = cmenuMe->panel->size_x * CM_TAB_LINE;
-	draw_line ( &vecPos, cmenuMe->style->colBack, 100 );
-	draw_line ( &vecPos, cmenuMe->style->colBack, 0 );
+	draw_line ( &vecPos, colCMBack, 100 );
+	draw_line ( &vecPos, colCMBack, 0 );
 }
 
 CMCLASS cmclassSpace;

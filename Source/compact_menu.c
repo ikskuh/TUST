@@ -44,9 +44,6 @@ typedef struct COMPACT_MENU
 {
 	STRING *name;
 	CMSTYLE *style;
-	COLOR *colText;
-	COLOR *colBack;
-	COLOR *colOver;
 	CMMEMBER *cmmember;
 	CMMEMBER *cmmemberActual;
 	PANEL *panel;
@@ -64,53 +61,55 @@ STRING *strCMTemp = "";
 STRING *strCMData = "";
 STRING *strCMType = "";
 STRING *strCMEvent = "";
+COLOR colCMText;
+COLOR colCMBack;
+COLOR colCMOver;
 
 void fncCMPrototype ( void *object );
 void fncCMConstructor ( STRING *strData );
 
-void fncCMUpdate ( COMPACT_MENU *cmenu )
+void fncCMUpdate ()
 {
 	int i = 0;
-	for ( ; i<cmenu->digits; i++ )
-		pan_setdigits ( cmenu->panel, i+1, 0, -100000, "", cmenu->style->font, 1, &0 );
-	for ( i=0; i<cmenu->text->strings; i++ )
-		str_cpy ( (cmenu->text->pstring)[i], "" );
-	cmenu->digits = 1;
-	cmenu->strings = 1;
-	cmenu->cmmemberActual = NULL;
+	for ( ; i<cmenuMe->digits; i++ )
+		pan_setdigits ( cmenuMe->panel, i+1, 0, -100000, "", cmenuMe->style->font, 1, &0 );
+	for ( i=0; i<cmenuMe->text->strings; i++ )
+		str_cpy ( (cmenuMe->text->pstring)[i], "" );
+	cmenuMe->digits = 1;
+	cmenuMe->strings = 1;
+	cmenuMe->cmmemberActual = NULL;
 	
-	cmenuMe = cmenu;
-	cmmemberMe = cmenu->cmmember;
+	cmmemberMe = cmenuMe->cmmember;
+	vec_set ( &colCMText, cmenuMe->style->colText );
+	vec_set ( &colCMBack, cmenuMe->style->colBack );
+	vec_set ( &colCMOver, cmenuMe->style->colOver );
 	
-	
-	bmap_rendertarget ( cmenu->panel->bmap, 0, 0 );
+	bmap_rendertarget ( cmenuMe->panel->bmap, 0, 0 );
 	draw_line ( nullvector, nullvector, 0 );
 	
 	VECTOR vecPos;
 	vec_set ( &vecPos, vector ( 0, 0, 0 ) );
-	VECTOR vecSize;
-	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, CM_HEADER_HEIGHT, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, cmenuMe->style->colOver, 100, 0 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
+	draw_line ( &vecPos, colCMText, 0 );
+	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.x = cmenuMe->panel->size_x;
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
+	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.y += 1;
-	draw_line ( &vecPos, cmenuMe->style->colBack, 100 );
-	vecPos.x = -1;
-	draw_line ( &vecPos, cmenuMe->style->colOver, 100 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
-	
-	vec_set ( &vecPos, vector ( 0, CM_HEADER_HEIGHT-1, 0 ) );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
+	draw_line ( &vecPos, colCMBack, 100 );
+	vecPos.x = 0;
+	draw_line ( &vecPos, colCMOver, 100 );
+	vecPos.y += 1;
+	VECTOR vecSize;
+	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, CM_HEADER_HEIGHT-4, 0 ) );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
+	vecPos.y = CM_HEADER_HEIGHT-1;
+	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.x = cmenuMe->panel->size_x;
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
+	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.y -= 1;
-	draw_line ( &vecPos, cmenuMe->style->colBack, 100 );
-	vecPos.x = -1;
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
+	draw_line ( &vecPos, colCMBack, 100 );
+	vecPos.x = 0;
+	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, colCMText, 0 );
 	
 	
 	cmenuMe->panel->size_y = cmmemberMe->size_y + CM_HEADER_HEIGHT;
@@ -124,40 +123,32 @@ void fncCMUpdate ( COMPACT_MENU *cmenu )
 	cmmemberMe->class->draw ();
 	
 	vec_set ( &vecPos, vector ( 0, cmenuMe->panel->size_y, 0 ) );
-	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, CM_FOOTER_HEIGHT, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, cmenuMe->style->colOver, 100, 0 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
+	draw_line ( &vecPos, colCMText, 0 );
+	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.x = cmenuMe->panel->size_x;
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
+	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.y += 1;
-	draw_line ( &vecPos, cmenuMe->style->colBack, 100 );
-	vecPos.x = -1;
-	draw_line ( &vecPos, cmenuMe->style->colOver, 100 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
+	draw_line ( &vecPos, colCMBack, 100 );
+	vecPos.x = 0;
+	draw_line ( &vecPos, colCMOver, 100 );
+	vecPos.y += 1;
+	draw_line ( &vecPos, colCMText, 100 );
+	vecPos.x = cmenuMe->panel->size_x;
+	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, colCMOver, 0 );
 	
 	cmenuMe->panel->size_y += CM_FOOTER_HEIGHT;
 	
-	vec_set ( &vecPos, vector ( 0, cmenu->panel->size_y-1, 0 ) );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
-	vecPos.x = cmenuMe->panel->size_x;
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
-	vecPos.y -= 1;
-	draw_line ( &vecPos, cmenuMe->style->colBack, 100 );
-	vecPos.x = -1;
-	draw_line ( &vecPos, cmenuMe->style->colText, 100 );
-	draw_line ( &vecPos, cmenuMe->style->colText, 0 );
-	
-	
-	draw_line ( nullvector, cmenuMe->style->colText, 0 );
-	draw_line ( nullvector, cmenuMe->style->colText, 100 );
-	draw_line ( vector(0,cmenuMe->panel->size_y,0), cmenuMe->style->colText, 100 );
-	draw_line ( vector(0,cmenuMe->panel->size_y,0), cmenuMe->style->colText, 0 );
-	draw_line ( vector(cmenuMe->panel->size_x-1,cmenu->panel->size_y,0), cmenuMe->style->colText, 0 );
-	draw_line ( vector(cmenuMe->panel->size_x-1,cmenu->panel->size_y,0), cmenuMe->style->colText, 100 );
-	draw_line ( vector(cmenuMe->panel->size_x-1,0,0), cmenuMe->style->colText, 100 );
-	draw_line ( vector(cmenuMe->panel->size_x-1,0,0), cmenuMe->style->colText, 0 );
+	vec_set ( &vecPos, nullvector );
+	draw_line ( &vecPos, colCMText, 0 );
+	draw_line ( &vecPos, colCMText, 100 );
+	vecPos.y = cmenuMe->panel->size_y - 1;
+	draw_line ( &vecPos, colCMText, 100 );
+	vecPos.x = cmenuMe->panel->size_x - 1;
+	draw_line ( &vecPos, colCMText, 100 );
+	vecPos.y = 0;
+	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, colCMText, 0 );
 	
 	bmap_rendertarget ( NULL, 0, 0 );
 }
@@ -225,7 +216,7 @@ void evnCMMove ()
 }
 
 void fncCMRun ()
- {
+{
 	var old_mouse_left = 0;
 	PANEL *panMouseLast = NULL;
 	
@@ -248,21 +239,26 @@ void fncCMRun ()
 				}
 				else if ( ( nMouseY > CM_HEADER_HEIGHT ) && ( cmenuMouseLast->panel->size_y - nMouseY > CM_FOOTER_HEIGHT ) )
 				{
-					fncCMUpdate ( cmenuMouseLast );
+					cmenuMe = cmenuMouseLast;
+					fncCMUpdate ();
 				}
 			}
 			else
 			{
 				if ( ( nMouseY <= cmmemberTemp->pos_y ) || ( nMouseY > cmmemberTemp->pos_y + cmmemberTemp->size_y ) )
 				{
-					fncCMUpdate ( cmenuMouseLast );
+					cmenuMe = cmenuMouseLast;
+					fncCMUpdate ();
 				}
 				else if ( mouse_left && !old_mouse_left && ( cmmemberTemp->flags & CM_ACTIVE ) )
 				{
 					cmmemberMe = cmmemberTemp;
 					cmmemberMe->class->event ();
 					if ( cmenuMouseLast != NULL )
-						fncCMUpdate ( cmenuMouseLast );
+					{
+						cmenuMe = cmenuMouseLast;
+						fncCMUpdate ();
+					}
 					while ( mouse_left )
 						wait(1);
 				}
@@ -275,7 +271,10 @@ void fncCMRun ()
 		old_mouse_left = mouse_left;
 		panMouseLast = mouse_panel;
 		if ( cmenuMouseLast != NULL )
-			fncCMUpdate ( cmenuMouseLast );
+		{
+			cmenuMe = cmenuMouseLast;
+			fncCMUpdate ();
+		}
 		cmenuMouseLast = NULL;
 		if ( panMouseLast == NULL )
 			continue;
@@ -291,7 +290,8 @@ void fncCMRun ()
 		if ( cmenuTemp == NULL )
 			continue;
 		
-		fncCMUpdate ( cmenuTemp );
+		cmenuMe = cmenuTemp;
+		fncCMUpdate ();
 		cmenuMouseLast = cmenuTemp;
 	}
 }
@@ -361,7 +361,7 @@ PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var lay
 	cmmemberMe->name = cmenuMe->name;
 	cmmemberCMStringParse ();
 	
-	fncCMUpdate ( cmenuMe );
+	fncCMUpdate ();
 	
 	if ( !proc_status ( fncCMRun ) )
 		fncCMRun ();
@@ -391,7 +391,7 @@ void cmenu_modify ( PANEL *panel, var size_x, CMSTYLE *style )
 			cmmemberMe = cmenuTemp->cmmember;
 			if ( cmmemberMe->class->resize != NULL )
 				cmmemberMe->class->resize ();
-			fncCMUpdate ( cmenuTemp );
+			fncCMUpdate ();
 			break;
 		}
 		cmenuTemp = cmenuTemp->next;
