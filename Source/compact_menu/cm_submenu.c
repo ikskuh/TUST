@@ -1,4 +1,5 @@
 
+CMCLASS cmclassSubmenu;
 
 void fncCMSubmenuRemove ()
 {
@@ -48,6 +49,7 @@ void evnCMSubmenu ()
 			(*cmmemberTemp)->flags &= ~CM_OPENED;
 		}
 	}
+	cmmemberMe->flags |= CM_RESIZE;
 }
 
 void drwCMSubmenu ()
@@ -63,42 +65,9 @@ void drwCMSubmenu ()
 		vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->pos_y+cmmemberMe->size_y-3, 0 ) );
 		vec_set ( &vecSize, vector(cmenuMe->panel->size_x-vecPos.x,3,0) );
 		draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
-		if ( ( cmmemberMe == cmenuMe->cmmemberActual ) && ( cmmemberMe->flags & CM_ACTIVE ) )
-		{
-			vec_set ( &vecPos, vector ( cmenuMe->panel->size_x+1-CM_TAB_SRIGHT, cmmemberMe->pos_y+cmmemberMe->size_y-4, 0 ) );
-			draw_line ( &vecPos, colCMText, 0 );
-			draw_line ( &vecPos, colCMText, 100 );
-			vecPos.x += 3;
-			vecPos.y -= 7;
-			draw_line ( &vecPos, colCMText, 100 );
-			vecPos.x += 3;
-			vecPos.y += 7;
-			draw_line ( &vecPos, colCMText, 100 );
-			vecPos.x -= 6;
-			draw_line ( &vecPos, colCMText, 100 );
-			draw_line ( &vecPos, colCMText, 0 );
-		}
 	}
 	else
 	{
-		if ( cmmemberMe == cmenuMe->cmmemberActual )
-		{
-			vec_set ( &vecPos, vector ( cmmemberMe->tab-1, cmmemberMe->pos_y+cmmemberMe->size_y-3, 0 ) );
-			vec_set ( &vecSize, vector(cmenuMe->panel->size_x-vecPos.x,3,0) );
-			draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
-			vec_set ( &vecPos, vector ( cmenuMe->panel->size_x+1-CM_TAB_SRIGHT, cmmemberMe->pos_y+cmmemberMe->size_y-11, 0 ) );
-			draw_line ( &vecPos, colCMText, 0 );
-			draw_line ( &vecPos, colCMText, 100 );
-			vecPos.x += 3;
-			vecPos.y += 7;
-			draw_line ( &vecPos, colCMText, 100 );
-			vecPos.x += 3;
-			vecPos.y -= 7;
-			draw_line ( &vecPos, colCMText, 100 );
-			vecPos.x -= 6;
-			draw_line ( &vecPos, colCMText, 100 );
-			draw_line ( &vecPos, colCMText, 0 );
-		}
 		vec_set ( &vecPos, vector ( cmmemberMe->tab+2, cmmemberMe->pos_y+(cmmemberMe->size_y/2)-2, 0 ) );
 		draw_line ( &vecPos, colCMText, 0 );
 		draw_line ( &vecPos, colCMText, 100 );
@@ -113,7 +82,7 @@ void drwCMSubmenu ()
 		draw_line ( &vecPos, colCMText, 0 );
 	}
 	
-	cmmember_draw_name ();
+	cmmember_name ();
 	
 	if ( cmmemberMe->flags & CM_OPENED )
 	{
@@ -130,15 +99,15 @@ void drwCMSubmenu ()
 			if ( cmmemberMe->flags & CM_INVISIBLE )
 				continue;
 			
+			if ( cmmemberMe->flags & CM_RESIZE )
+				cmmemberMe->class->resize ();
+			
 			cmenuMe->panel->size_y += cmmemberMe->size_y;
-			if ( mouse_panel == cmenuMe->panel )
-			{
-				if ( cmenuMe->cmmemberActual == NULL )
-				{
-					if ( ( nMouseY <= mouse_panel->size_y ) && ( mouse_panel->size_y - nMouseY <= cmmemberMe->size_y ) )
-						cmenuMe->cmmemberActual = cmmemberMe;
-				}
-			}
+			
+			cmmemberMe->next = NULL;
+			cmmemberPrev->next = cmmemberMe;
+			cmmemberMe->prev = cmmemberPrev;
+			cmmemberPrev = cmmemberMe;
 			
 			cmmemberMe->class->draw ();
 			
@@ -152,7 +121,61 @@ void drwCMSubmenu ()
 	}
 }
 
-CMCLASS cmclassSubmenu;
+
+void drwCMSubmenuSelect ()
+{
+	VECTOR vecPos;
+	vec_set ( &vecPos, nullvector );
+	VECTOR vecSize;
+	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->size_y-3, 0 ) );
+	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x - vecPos.x, 3, 0 ) );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
+	if ( cmmemberMe->flags & CM_OPENED )
+	{
+		vec_set ( &vecPos, vector ( cmenuMe->panel->size_x-1-CM_TAB_RIGHT, cmmemberMe->size_y-4, 0 ) );
+		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, colCMText, 100 );
+		vecPos.x -= 3;
+		vecPos.y -= 6;
+		draw_line ( &vecPos, colCMText, 100 );
+		vecPos.x -= 3;
+		vecPos.y += 6;
+		draw_line ( &vecPos, colCMText, 100 );
+		vecPos.x += 6;
+		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, colCMText, 0 );
+	}
+	else
+	{
+		vec_set ( &vecPos, vector ( cmmemberMe->tab+2, (cmmemberMe->size_y/2)-2, 0 ) );
+		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, colCMText, 100 );
+		vecPos.y += 5;
+		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, colCMText, 0 );
+		vec_set ( &vecPos, vector ( cmmemberMe->tab+1, (cmmemberMe->size_y/2), 0 ) );
+		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, colCMText, 100 );
+		vecPos.x += 3;
+		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, colCMText, 0 );
+		
+		vec_set ( &vecPos, vector ( cmenuMe->panel->size_x-1-CM_TAB_RIGHT, cmmemberMe->size_y-9, 0 ) );
+		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, colCMText, 100 );
+		vecPos.x -= 3;
+		vecPos.y += 6;
+		draw_line ( &vecPos, colCMText, 100 );
+		vecPos.x -= 3;
+		vecPos.y -= 6;
+		draw_line ( &vecPos, colCMText, 100 );
+		vecPos.x += 6;
+		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, colCMText, 0 );
+	}
+}
 
 void fncCMSubmenu_startup ()
 {
@@ -160,6 +183,7 @@ void fncCMSubmenu_startup ()
 	cmclassSubmenu.draw = drwCMSubmenu;
 	cmclassSubmenu.resize = fncCMSubmenuResize;
 	cmclassSubmenu.remove = fncCMSubmenuRemove;
+	cmclassSubmenu.select = drwCMSubmenuSelect;
 }
 
 void submenuCMTypeCreate ( STRING *strData )
@@ -173,11 +197,11 @@ void submenuCMTypeCreate ( STRING *strData )
 			sys_exit ( NULL );
 		}
 	#endif
+	
 	if ( cmmemberMe->parent != NULL )
 		cmmemberMe->flags = CM_ACTIVE;
 	else
 		cmmemberMe->flags = CM_OPENED;
-	
 	
 	CMMEMBER *parent = cmmemberMe;
 	int iMembersCount = txtSub->strings;

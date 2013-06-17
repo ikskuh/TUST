@@ -6,22 +6,6 @@ void fncCMTitleResize ()
 		cmmemberMe->size_y += cmenuMe->style->font->dy;
 }
 
-//	void evnCMTitle ()
-//	{
-//		VECTOR oldMousePos, oldPanelPos, vecTemp;
-//		PANEL *panel = cmenuMe->panel;
-//		vec_set ( &oldMousePos, &mouse_pos );
-//		vec_set ( &oldPanelPos, &panel->pos_x );
-//		while ( mouse_left )
-//		{
-//			vec_diff ( &vecTemp, &mouse_pos, &oldMousePos );
-//			vec_add ( &vecTemp, &oldPanelPos );
-//			panel->pos_x = vecTemp.x;
-//			panel->pos_y = vecTemp.y;
-//			wait(1);
-//		}
-//	}
-
 void drwCMTitle ()
 {
 	VECTOR vecPos;
@@ -41,7 +25,7 @@ void drwCMTitle ()
 	draw_line ( &vecPos, colCMOver, 100 );
 	draw_line ( &vecPos, colCMOver, 0 );
 	
-	cmmember_draw_name ();
+	cmmember_name ();
 }
 
 CMCLASS cmclassTitle;
@@ -52,6 +36,7 @@ void fncCMTitle_startup ()
 	cmclassTitle.draw = drwCMTitle;
 	cmclassTitle.resize = fncCMTitleResize;
 	cmclassTitle.remove = NULL;
+	cmclassTitle.select = NULL;
 }
 
 void titleCMTypeCreate( STRING *strData )

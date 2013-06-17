@@ -13,11 +13,9 @@
 #define CM_OPENED              (1<<1)
 #define CM_INVISIBLE           (1<<2)
 #define CM_ARIGHT              (1<<3)
-
-TEXT *txtCMFormats =
-{
-	string = ( "%.0f", "%.1f", "%.2f", "%.3f" );
-}
+#define CM_RESIZE              (1<<4)
+#define CM_POINTER             (1<<5)
+#define CM_COMPUTE             (1<<6)
 
 typedef struct CMCLASS
 {
@@ -25,6 +23,7 @@ typedef struct CMCLASS
 	void draw ();
 	void resize ();
 	void remove ();
+	void select ();
 } CMCLASS;
 
 typedef struct CMMEMBER
@@ -39,6 +38,8 @@ typedef struct CMMEMBER
 	void *child;
 	int count;
 	CMCLASS *class;
+	struct CMMEMBER *next;
+	struct CMMEMBER *prev;
 } CMMEMBER;
 
 typedef struct COMPACT_MENU
@@ -47,10 +48,12 @@ typedef struct COMPACT_MENU
 	CMSTYLE *style;
 	CMMEMBER *cmmember;
 	CMMEMBER *cmmemberActual;
+	BMAP *select;
 	PANEL *panel;
 	int digits;
 	int strings;
 	TEXT *text;
+	long lastDraw;
 	struct COMPACT_MENU *next;
 } COMPACT_MENU;
 
@@ -58,6 +61,7 @@ COMPACT_MENU *cmenuFirst = NULL;
 COMPACT_MENU *cmenuMouseLast = NULL;
 COMPACT_MENU *cmenuMe = NULL;
 CMMEMBER *cmmemberMe = NULL;
+CMMEMBER *cmmemberPrev = NULL;
 STRING *strCMTemp = "";
 STRING *strCMData = "";
 STRING *strCMType = "";
@@ -65,34 +69,84 @@ STRING *strCMEvent = "";
 COLOR colCMText;
 COLOR colCMBack;
 COLOR colCMOver;
+TEXT *txtCMFormats =
+{
+	string = ( "%.0f", "%.1f", "%.2f", "%.3f" );
+}
 
 void fncCMPrototype ( void *object );
 void fncCMConstructor ( STRING *strData );
 
+void drwCMSelection ()
+{
+	if ( cmenuMe->cmmemberActual != NULL )
+	{
+		cmmemberMe = cmenuMe->cmmemberActual;
+		if ( cmmemberMe->flags & CM_ACTIVE )
+		{
+			vec_set ( &colCMText, &cmenuMe->style->colText );
+			vec_set ( &colCMBack, &cmenuMe->style->colBack );
+			vec_set ( &colCMOver, &cmenuMe->style->colOver );
+			bmap_rendertarget ( cmenuMe->select, 0, 0 );
+			cmmemberMe->class->select ();
+			bmap_rendertarget ( NULL, 0, 0 );
+			pan_setwindow ( cmenuMe->panel, 1, cmmemberMe->tab, cmmemberMe->pos_y, cmenuMe->panel->size_x - cmmemberMe->tab - 1, cmmemberMe->size_y, cmenuMe->select, &cmmemberMe->tab, &0 );
+		}
+		else
+		{
+			pan_setwindow ( cmenuMe->panel, 1, 0, 0, 0, 0, cmenuMe->select, &0, &0 );
+		}
+	}
+	else
+	{
+		pan_setwindow ( cmenuMe->panel, 1, 0, 0, 0, 0, cmenuMe->select, &0, &0 );
+	}
+}
+
+void fncCMSelect ()
+{
+	cmmemberMe = cmenuMe->cmmember;
+	var nMouseY = mouse_pos.y - cmenuMe->panel->pos_y;
+	while ( cmmemberMe )
+	{
+		if ( nMouseY <= cmmemberMe->pos_y + cmmemberMe->size_y )
+			break;
+		cmmemberMe = cmmemberMe->next;
+	}
+	cmenuMe->cmmemberActual = cmmemberMe;
+	
+	drwCMSelection ();
+}
+
+
+
+
 void fncCMUpdate ()
 {
 	int i = 0;
+	PANEL *panel = cmenuMe->panel;
 	for ( ; i<cmenuMe->digits; i++ )
-		pan_setdigits ( cmenuMe->panel, i+1, 0, -100000, "", cmenuMe->style->font, 1, &0 );
+		pan_setdigits ( panel, i+1, 0, -100000, "", cmenuMe->style->font, 1, &0 );
 	for ( i=0; i<cmenuMe->text->strings; i++ )
 		str_cpy ( (cmenuMe->text->pstring)[i], "" );
 	cmenuMe->digits = 1;
 	cmenuMe->strings = 1;
 	cmenuMe->cmmemberActual = NULL;
+	cmenuMe->lastDraw = total_ticks;
 	
 	cmmemberMe = cmenuMe->cmmember;
 	vec_set ( &colCMText, cmenuMe->style->colText );
 	vec_set ( &colCMBack, cmenuMe->style->colBack );
 	vec_set ( &colCMOver, cmenuMe->style->colOver );
 	
-	bmap_rendertarget ( cmenuMe->panel->bmap, 0, 0 );
+	bmap_rendertarget ( panel->bmap, 0, 0 );
 	draw_line ( nullvector, nullvector, 0 );
 	
 	VECTOR vecPos;
 	vec_set ( &vecPos, vector ( 0, 0, 0 ) );
 	draw_line ( &vecPos, colCMText, 0 );
 	draw_line ( &vecPos, colCMText, 100 );
-	vecPos.x = cmenuMe->panel->size_x;
+	vecPos.x = panel->size_x;
 	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.y += 1;
 	draw_line ( &vecPos, colCMBack, 100 );
@@ -100,11 +154,11 @@ void fncCMUpdate ()
 	draw_line ( &vecPos, colCMOver, 100 );
 	vecPos.y += 1;
 	VECTOR vecSize;
-	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, CM_HEADER_HEIGHT-4, 0 ) );
+	vec_set ( &vecSize, vector ( panel->size_x, CM_HEADER_HEIGHT-4, 0 ) );
 	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
 	vecPos.y = CM_HEADER_HEIGHT-1;
 	draw_line ( &vecPos, colCMText, 100 );
-	vecPos.x = cmenuMe->panel->size_x;
+	vecPos.x = panel->size_x;
 	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.y -= 1;
 	draw_line ( &vecPos, colCMBack, 100 );
@@ -112,18 +166,14 @@ void fncCMUpdate ()
 	draw_line ( &vecPos, colCMText, 100 );
 	draw_line ( &vecPos, colCMText, 0 );
 	
+	panel->size_y = cmmemberMe->size_y + CM_HEADER_HEIGHT;
 	
-	cmenuMe->panel->size_y = cmmemberMe->size_y + CM_HEADER_HEIGHT;
-	var nMouseY = mouse_pos.y - cmenuMe->panel->pos_y;
-	if ( mouse_panel == cmenuMe->panel )
-	{
-		if ( ( nMouseY <= mouse_panel->size_y ) && ( mouse_panel->size_y - nMouseY <= cmmemberMe->size_y ) )
-			cmenuMe->cmmemberActual = cmmemberMe;
-	}
-	
+	cmmemberMe->prev = NULL;
+	cmmemberMe->next = NULL;
+	cmmemberPrev = cmmemberMe;
 	cmmemberMe->class->draw ();
 	
-	vec_set ( &vecPos, vector ( 0, cmenuMe->panel->size_y, 0 ) );
+	vec_set ( &vecPos, vector ( 0, panel->size_y, 0 ) );
 	draw_line ( &vecPos, colCMText, 0 );
 	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.x = cmenuMe->panel->size_x;
@@ -134,24 +184,30 @@ void fncCMUpdate ()
 	draw_line ( &vecPos, colCMOver, 100 );
 	vecPos.y += 1;
 	draw_line ( &vecPos, colCMText, 100 );
-	vecPos.x = cmenuMe->panel->size_x;
+	vecPos.x = panel->size_x;
 	draw_line ( &vecPos, colCMOver, 100 );
 	draw_line ( &vecPos, colCMOver, 0 );
 	
-	cmenuMe->panel->size_y += CM_FOOTER_HEIGHT;
+	panel->size_y += CM_FOOTER_HEIGHT;
 	
 	vec_set ( &vecPos, nullvector );
 	draw_line ( &vecPos, colCMText, 0 );
 	draw_line ( &vecPos, colCMText, 100 );
-	vecPos.y = cmenuMe->panel->size_y - 1;
+	vecPos.y = panel->size_y - 1;
 	draw_line ( &vecPos, colCMText, 100 );
-	vecPos.x = cmenuMe->panel->size_x - 1;
+	vecPos.x = panel->size_x - 1;
 	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.y = 0;
 	draw_line ( &vecPos, colCMText, 100 );
 	draw_line ( &vecPos, colCMText, 0 );
 	
 	bmap_rendertarget ( NULL, 0, 0 );
+	
+	fncCMSelect ();
+	
+	var nCMPosDiff = screen_size.y - ( panel->pos_y + panel->size_y );
+	if ( nCMPosDiff < 0 )
+		panel->pos_y += nCMPosDiff;
 }
 
 void cmmemberCMStringParse ()
@@ -210,8 +266,8 @@ void evnCMMove ()
 	{
 		vec_diff ( &vecTemp, &mouse_pos, &oldMousePos );
 		vec_add ( &vecTemp, &oldPanelPos );
-		panel->pos_x = vecTemp.x;
-		panel->pos_y = vecTemp.y;
+		panel->pos_x = clamp ( vecTemp.x, 0, screen_size.x - panel->size_x );
+		panel->pos_y = clamp ( vecTemp.y, 0, screen_size.y - panel->size_y );
 		wait(1);
 	}
 }
@@ -223,16 +279,17 @@ void fncCMRun ()
 	
 	while (1)
 	{
+		proc_mode = PROC_EARLY;
 		wait (1);
 		if ( mouse_panel == panMouseLast )
 		{
 			if ( cmenuMouseLast == NULL )
 				continue;
 			var nMouseY = mouse_pos.y - cmenuMouseLast->panel->pos_y;
-			CMMEMBER *cmmemberTemp = cmenuMouseLast->cmmemberActual;
-			if ( cmmemberTemp == NULL )
+			cmmemberMe = cmenuMouseLast->cmmemberActual;
+			if ( cmmemberMe == NULL )
 			{
-				if ( mouse_left )
+				if ( mouse_left && !old_mouse_left )
 				{
 					evnCMMove ();
 					while ( mouse_left )
@@ -241,44 +298,68 @@ void fncCMRun ()
 				else if ( ( nMouseY > CM_HEADER_HEIGHT ) && ( cmenuMouseLast->panel->size_y - nMouseY > CM_FOOTER_HEIGHT ) )
 				{
 					cmenuMe = cmenuMouseLast;
-					fncCMUpdate ();
+					fncCMSelect ();
 				}
 			}
 			else
 			{
-				if ( ( nMouseY <= cmmemberTemp->pos_y ) || ( nMouseY > cmmemberTemp->pos_y + cmmemberTemp->size_y ) )
+				if ( nMouseY <= cmmemberMe->pos_y )
 				{
+					CMMEMBER *cmmemberTemp = cmmemberMe->prev;
+					while ( cmmemberTemp )
+					{
+						if ( nMouseY >= cmmemberTemp->pos_y )
+							break;
+						cmmemberTemp = cmmemberTemp->prev;
+					}
+					cmenuMouseLast->cmmemberActual = cmmemberTemp;
 					cmenuMe = cmenuMouseLast;
-					fncCMUpdate ();
+					drwCMSelection ();
 				}
-				else if ( mouse_left && !old_mouse_left && ( cmmemberTemp->flags & CM_ACTIVE ) )
+				else if ( nMouseY > cmmemberMe->pos_y + cmmemberMe->size_y )
 				{
-					cmmemberMe = cmmemberTemp;
+					CMMEMBER *cmmemberTemp = cmmemberMe->next;
+					while ( cmmemberTemp )
+					{
+						if ( nMouseY <= cmmemberMe->pos_y + cmmemberMe->size_y )
+							break;
+						cmmemberTemp = cmmemberTemp->next;
+					}
+					cmenuMouseLast->cmmemberActual = cmmemberTemp;
+					cmenuMe = cmenuMouseLast;
+					drwCMSelection ();
+				}
+				else if ( mouse_left && !old_mouse_left && ( cmmemberMe->flags & CM_ACTIVE ) )
+				{
 					cmmemberMe->class->event ();
 					if ( cmenuMouseLast != NULL )
 					{
-						cmenuMe = cmenuMouseLast;
-						fncCMUpdate ();
+						if ( cmmemberMe->flags & CM_RESIZE )
+						{
+							cmmemberMe->flags &= ~CM_RESIZE;
+							cmenuMe = cmenuMouseLast;
+							fncCMUpdate ();
+						}
 					}
 					while ( mouse_left )
 						wait(1);
 				}
-				old_mouse_left = mouse_left;
-				
 			}
+			old_mouse_left = mouse_left;
 			continue;
 		}
 		
 		old_mouse_left = mouse_left;
 		panMouseLast = mouse_panel;
-		if ( cmenuMouseLast != NULL )
-		{
-			cmenuMe = cmenuMouseLast;
-			fncCMUpdate ();
-		}
-		cmenuMouseLast = NULL;
 		if ( panMouseLast == NULL )
+		{
+			if ( cmenuMouseLast != NULL )
+			{
+				pan_setwindow ( cmenuMouseLast->panel, 1, 0, 0, 0, 0, cmenuMouseLast->select, &0, &0 );
+				cmenuMouseLast = NULL;
+			}
 			continue;
+		}
 		
 		COMPACT_MENU *cmenuTemp = cmenuFirst;
 		while ( cmenuTemp != NULL )
@@ -288,18 +369,26 @@ void fncCMRun ()
 			cmenuTemp = cmenuTemp->next;
 		}
 		
-		if ( cmenuTemp == NULL )
-			continue;
-		
-		cmenuMe = cmenuTemp;
-		fncCMUpdate ();
-		cmenuMouseLast = cmenuTemp;
+		if ( cmenuTemp != cmenuMouseLast )
+		{
+			if ( cmenuMouseLast != NULL )
+			{
+				pan_setwindow ( cmenuMouseLast->panel, 1, 0, 0, 0, 0, cmenuMouseLast->select, &0, &0 );
+			}
+			if ( cmenuTemp == NULL )
+				continue;
+			
+			cmenuMouseLast = cmenuTemp;
+			cmenuMe = cmenuTemp;
+			fncCMSelect ();
+//			fncCMUpdate ();
+		}
 	}
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
 
-void cmmember_draw_name ()
+void cmmember_name ()
 {
 	if ( cmenuMe->strings == cmenuMe->text->strings )
 		txt_addstring ( cmenuMe->text, NULL );
@@ -316,7 +405,7 @@ void cmmember_draw_name ()
 	cmenuMe->digits ++;
 }
 
-void cmmember_draw_var ( var *pointer, STRING *format )
+void cmmember_digit ( var *pointer, STRING *format )
 {
 	var posX = cmenuMe->panel->size_x - CM_TAB_DIGIT;
 	if ( !pan_setdigits ( cmenuMe->panel, cmenuMe->digits, posX, cmmemberMe->pos_y, format, cmenuMe->style->font, 1, pointer ) )
@@ -336,6 +425,7 @@ CMSTYLE *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBackground, COLO
 	return style;
 } 
 
+
 PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style )
 {
 	PANEL *panTemp = pan_create ( "", layer );
@@ -354,9 +444,12 @@ PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var lay
 	cmenuMe->digits = 0;
 	cmenuMe->strings = 0;
 	cmenuMe->text = txt_create ( 1, 1 );
+	cmenuMe->select = bmap_createblack ( size_x, style->font->dy, 32 );
 	cmenuMe->cmmember = sys_malloc ( sizeof(CMMEMBER) );
 	cmenuMe->next = cmenuFirst;
 	cmenuFirst = cmenuMe;
+	
+	pan_setwindow ( panTemp, 0, 0, 0, 0, 0, cmenuMe->select, &0, &0 );
 	
 	cmmemberMe = cmenuMe->cmmember;
 	cmmemberMe->index = 0;
@@ -415,6 +508,7 @@ void cmenu_remove ( PANEL *panel )
 				cmenuMouseLast = NULL;
 			
 			bmap_remove ( panel->bmap );
+			bmap_remove ( cmenuTemp->select );
 			pan_remove ( panel );
 			str_remove ( cmenuTemp->name );
 			
@@ -445,6 +539,7 @@ void cmenu_remove_all ()
 	while ( cmenuTemp != NULL )
 	{
 		bmap_remove ( cmenuTemp->panel->bmap );
+		bmap_remove ( cmenuTemp->select );
 		pan_remove ( cmenuTemp->panel );
 		str_remove ( cmenuTemp->name );
 		

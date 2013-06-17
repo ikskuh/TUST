@@ -1,9 +1,13 @@
 #ifndef _COMPACT_MENU_H_
 #define _COMPACT_MENU_H_
 
+#define PRAGMA_PATH "..\\Source\\compact_menu"
+
 #define CM_SAFE_MODE
 
-#define PRAGMA_PATH "..\\Source\\compact_menu"
+// Templates
+#define CM_DEBUG_PANEL
+#define CM_TEST01_PANEL
 
 typedef struct CMSTYLE
 {
@@ -23,9 +27,9 @@ void cmenu_remove ( PANEL *panel );
 
 void cmenu_remove_all ();
 
-void cmmember_draw_name ();
+void cmmember_name ();
 
-void cmmember_draw_var ( var *pointer, STRING *format );
+void cmmember_digit ( var *pointer, STRING *format );
 
 
 #include "compact_menu.c"
@@ -38,4 +42,6 @@ void cmmember_draw_var ( var *pointer, STRING *format );
 #include "cm_slider.c"
 #include "cm_digit.c"
 
+#include "cm_template_debug.c"
+#include "cm_template_test01.c"
 #endif

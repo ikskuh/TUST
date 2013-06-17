@@ -23,6 +23,7 @@ void fncCMLine_startup ()
 	cmclassLine.draw = drwCMLine;
 	cmclassLine.resize = NULL;
 	cmclassLine.remove = NULL;
+	cmclassLine.select = NULL;
 }
 
 void lineCMTypeCreate ( STRING *strData )

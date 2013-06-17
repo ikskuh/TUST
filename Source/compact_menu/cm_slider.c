@@ -6,13 +6,15 @@ typedef struct CMSLIDER
 	var range;
 	var step;
 	STRING *format;
-	var *value;
+	var **value;
 	void event ();
 } CMSLIDER;
 
 void fncCMSliderRemove ()
 {
 	CMSLIDER *slider = cmmemberMe->child;
+	if ( cmmemberMe->flags & CM_POINTER )
+		sys_free ( slider->value );
 	sys_free ( slider );
 }
 
@@ -31,60 +33,36 @@ void drwCMSlider ()
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
 	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
 	CMSLIDER *slider = cmmemberMe->child;
-	var slide_x = *slider->value;
+	var slide_x = **slider->value;
 	slide_x -= slider->min;
 	slide_x /= slider->range;
 	slide_x *= slider->size_x;
 	slide_x = maxv ( slide_x, 1 );
-	if ( cmmemberMe == cmenuMe->cmmemberActual )
-	{
-		vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->pos_y+1, 0 ) );
-		vec_set ( &vecSize, vector ( slide_x, cmmemberMe->size_y-2, 0 ) );
-		draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
-		vecPos.x += slider->size_x;
-		vecPos.y += cmmemberMe->size_y - 2;
-		draw_line ( &vecPos, colCMOver, 0 );
-		draw_line ( &vecPos, colCMOver, 100 );
-		vecPos.x -= slider->size_x;
-		draw_line ( &vecPos, colCMOver, 100 );
-		draw_line ( &vecPos, colCMOver, 0 );
-		
-		vec_set ( &vecPos, vector ( cmmemberMe->tab+slide_x, cmmemberMe->pos_y+1, 0 ) );
-		draw_line ( &vecPos, colCMText, 0 );
-		draw_line ( &vecPos, colCMText, 100 );
-		vecPos.y += cmmemberMe->size_y-2;
-		draw_line ( &vecPos, colCMText, 100 );
-		draw_line ( &vecPos, colCMText, 0 );
-	}
-	else
-	{
-		vec_set ( &vecPos, vector ( cmmemberMe->tab+slider->size_x, cmmemberMe->pos_y+cmmemberMe->size_y-1, 0 ) );
-		draw_line ( &vecPos, colCMOver, 0 );
-		draw_line ( &vecPos, colCMOver, 100 );
-		vecPos.x -= slider->size_x * CM_TAB_LINE;
-		draw_line ( &vecPos, colCMBack, 100 );
-		draw_line ( &vecPos, colCMBack, 0 );
-	}
+	vec_set ( &vecPos, vector ( cmmemberMe->tab+slider->size_x, cmmemberMe->pos_y+cmmemberMe->size_y-1, 0 ) );
+	draw_line ( &vecPos, colCMOver, 0 );
+	draw_line ( &vecPos, colCMOver, 100 );
+	vecPos.x -= slider->size_x * CM_TAB_LINE;
+	draw_line ( &vecPos, colCMBack, 100 );
+	draw_line ( &vecPos, colCMBack, 0 );
 	
-	cmmember_draw_var ( slider->value, slider->format );
-	cmmember_draw_name ();
+	cmmember_digit ( *slider->value, slider->format );
+	cmmember_name ();
 }
 
-void drwCMSliderUpdate ()
+void drwCMSliderSelect ()
 {
+	VECTOR vecPos;
+	vec_set ( &vecPos, vector ( 0, 0, 0 ) );
+	VECTOR vecSize;
+	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
 	CMSLIDER *slider = cmmemberMe->child;
-	var slide_x = *slider->value;
+	var slide_x = **slider->value;
 	slide_x -= slider->min;
 	slide_x /= slider->range;
 	slide_x *= slider->size_x;
 	slide_x = maxv ( slide_x, 1 );
-	VECTOR vecPos;
-	vec_set ( &vecPos, vector( cmmemberMe->tab, cmmemberMe->pos_y, 0 ) );
-	VECTOR vecSize;
-	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x-cmmemberMe->tab-1, cmmemberMe->size_y, 0 ) );
-	bmap_rendertarget ( cmenuMe->panel->bmap, 0, 1 );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
-	vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->pos_y+1, 0 ) );
+	vec_set ( &vecPos, vector ( cmmemberMe->tab, 1, 0 ) );
 	vec_set ( &vecSize, vector ( slide_x, cmmemberMe->size_y-2, 0 ) );
 	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
 	vecPos.x += slider->size_x;
@@ -95,14 +73,12 @@ void drwCMSliderUpdate ()
 	draw_line ( &vecPos, colCMOver, 100 );
 	draw_line ( &vecPos, colCMOver, 0 );
 	
-	vec_set ( &vecPos, vector ( cmmemberMe->tab+slide_x, cmmemberMe->pos_y+1, 0 ) );
+	vec_set ( &vecPos, vector ( cmmemberMe->tab+slide_x, 1, 0 ) );
 	draw_line ( &vecPos, colCMText, 0 );
 	draw_line ( &vecPos, colCMText, 100 );
 	vecPos.y += cmmemberMe->size_y-2;
 	draw_line ( &vecPos, colCMText, 100 );
 	draw_line ( &vecPos, colCMText, 0 );
-	
-	bmap_rendertarget ( NULL, 0, 0 );
 }
 
 void evnCMSlider ()
@@ -112,17 +88,20 @@ void evnCMSlider ()
 	var old_value = 0;
 	while ( mouse_left )
 	{
-		old_value = *slider->value;
-		*slider->value = clamp ( mouse_pos.x - ( cmenuMe->panel->pos_x + cmmember->tab ), 0, slider->size_x );
-		*slider->value /= slider->size_x;
-		*slider->value *= slider->range;
+		var *pointer = *slider->value;
+		old_value = *pointer;
+		*pointer = clamp ( mouse_pos.x - ( cmenuMe->panel->pos_x + cmmember->tab ), 0, slider->size_x );
+		*pointer /= slider->size_x;
+		*pointer *= slider->range;
 		if ( slider->step != 0 )
-			*slider->value = integer ( *slider->value / slider->step ) * slider->step;
-		*slider->value += slider->min;
-		if ( old_value != *slider->value )
+			*pointer = integer ( *pointer / slider->step ) * slider->step;
+		*pointer += slider->min;
+		if ( old_value != *pointer )
 		{
 			cmmemberMe = cmmember;
-			drwCMSliderUpdate ();
+			bmap_rendertarget ( cmenuMe->select, 0, 0 );
+			drwCMSliderSelect ();
+			bmap_rendertarget ( NULL, 0, 0 );
 		}
 		if ( slider->event != NULL )
 			slider->event ();
@@ -138,6 +117,7 @@ void fncCMSlider_startup ()
 	cmclassSlider.draw = drwCMSlider;
 	cmclassSlider.resize = fncCMSliderResize;
 	cmclassSlider.remove = fncCMSliderRemove;
+	cmclassSlider.select = drwCMSliderSelect;
 }
 
 void sliderCMTypeCreate ( STRING *strData )
@@ -206,7 +186,8 @@ void sliderCMTypeCreate ( STRING *strData )
 		#endif
 	}
 	
-	var *pointer = engine_getvar ( strData->chars, NULL );
+	long type;
+	var **pointer = engine_getvar ( strData->chars,  &type );
 	#ifdef CM_SAFE_MODE
 		if ( pointer == NULL )
 		{
@@ -216,7 +197,30 @@ void sliderCMTypeCreate ( STRING *strData )
 		}
 	#endif
 	
-	*pointer = clamp ( *pointer, nMin, nMax );
+	if ( ( type != 3 ) && ( type != 19 ) )
+	{
+		#ifdef CM_SAFE_MODE
+			str_cat ( strData, "\nis not a fixed variable or a pointer to a fixed variable" );
+			error ( strData );
+			sys_exit ( NULL );
+		#endif
+		cmmemberMe->flags = CM_INVISIBLE;
+		return;
+	}
+	
+	if ( type == 3 )
+	{
+		var *pointer_old = pointer;
+		pointer = sys_malloc ( sizeof(var*) );
+		*pointer = pointer_old;
+		cmmemberMe->flags = CM_POINTER;
+	}
+	else
+	{
+		cmmemberMe->flags = NULL;
+	}
+	
+	**pointer = clamp ( **pointer, nMin, nMax );
 	CMSLIDER *slider = sys_malloc ( sizeof(CMSLIDER) );
 	slider->min = nMin;
 	slider->range = nMax - nMin;
@@ -225,7 +229,7 @@ void sliderCMTypeCreate ( STRING *strData )
 	slider->format = (txtCMFormats->pstring)[iSliderFormat];
 	slider->event = fncCMPrototype;
 	
-	cmmemberMe->flags = CM_ACTIVE;
+	cmmemberMe->flags |= CM_ACTIVE;
 	cmmemberMe->class = &cmclassSlider;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = slider;

@@ -11,7 +11,6 @@ void fncCMBitmapResize ()
 
 void drwCMBitmap ()
 {
-	fncCMBitmapResize ();
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
 	VECTOR vecPos;
@@ -28,7 +27,7 @@ void drwCMBitmap ()
 	}
 	else
 	{
-		cmmember_draw_name ();
+		cmmember_name ();
 	}
 }
 
@@ -39,6 +38,7 @@ void fncCMBitmap_startup ()
 	cmclassBitmap.event = NULL;
 	cmclassBitmap.draw = drwCMBitmap;
 	cmclassBitmap.resize = fncCMBitmapResize;
+	cmclassBitmap.remove = NULL;
 	cmclassBitmap.remove = NULL;
 }
 
@@ -53,7 +53,7 @@ void bitmapCMTypeCreate ( STRING *strData )
 			sys_exit ( NULL );
 		}
 	#endif
-	cmmemberMe->flags = 0;
+	cmmemberMe->flags = NULL; //CM_RESIZE;
 	cmmemberMe->class = &cmclassBitmap;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = bmapPtr;

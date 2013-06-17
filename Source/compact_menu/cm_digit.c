@@ -1,20 +1,38 @@
 
 typedef struct CMDIGIT
 {
-	var *value;
+	var **value;
 	STRING *format;
-	void event ();
+	var event ();
+	int last_draw;
 } CMDIGIT;
+
+var cmdigitValue = 0;
 
 void fncCMDigitRemove ()
 {
 	CMDIGIT *digit = cmmemberMe->child;
+	if ( cmmemberMe->flags & CM_POINTER )
+		sys_free ( digit->value );
 	sys_free ( digit );
 }
 
 void fncCMDigitResize ()
 {
 	cmmemberMe->size_y = cmenuMe->style->font->dy;
+}
+
+void fncCMDigitPrecompute ( CMDIGIT *digit )
+{
+	COMPACT_MENU *cmenu = cmenuMe;
+	long timer = cmenu->lastDraw;
+	while ( timer == cmenu->lastDraw )
+	{
+		cmdigitValue = **digit->value;
+		**digit->value = digit->event ();
+		proc_mode = PROC_LATE;
+		wait(1);
+	}
 }
 
 void drwCMDigit ()
@@ -24,32 +42,40 @@ void drwCMDigit ()
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
 	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
-	if ( ( cmmemberMe == cmenuMe->cmmemberActual ) && ( cmmemberMe->flags & CM_ACTIVE ) )
-	{
-		vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->pos_y+cmmemberMe->size_y-3, 0 ) );
-		vec_set ( &vecSize, vector ( cmenuMe->panel->size_x-cmmemberMe->tab-CM_TAB_RIGHT, 3, 0 ) );
-		draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
-	}
-	else
-	{
-		vec_set ( &vecPos, vector ( cmenuMe->panel->size_x-cmmemberMe->tab-CM_TAB_RIGHT, cmmemberMe->pos_y+cmmemberMe->size_y-1, 0 ) );
-		draw_line ( &vecPos, colCMOver, 0 );
-		draw_line ( &vecPos, colCMOver, 100 );
-		vecPos.x -= ( cmenuMe->panel->size_x - cmmemberMe->tab - CM_TAB_RIGHT ) * CM_TAB_LINE;
-		draw_line ( &vecPos, colCMBack, 100 );
-		draw_line ( &vecPos, colCMBack, 0 );
-	}
+	vec_set ( &vecPos, vector ( cmenuMe->panel->size_x-cmmemberMe->tab-CM_TAB_RIGHT, cmmemberMe->pos_y+cmmemberMe->size_y-1, 0 ) );
+	draw_line ( &vecPos, colCMOver, 0 );
+	draw_line ( &vecPos, colCMOver, 100 );
+	vecPos.x -= vecPos.x * CM_TAB_LINE;
+	draw_line ( &vecPos, colCMBack, 100 );
+	draw_line ( &vecPos, colCMBack, 0 );
 	
 	CMDIGIT *digit = cmmemberMe->child;
-	cmmember_draw_var ( digit->value, digit->format );
-	cmmember_draw_name ();
+	if ( cmmemberMe->flags & CM_COMPUTE )
+	{
+		fncCMDigitPrecompute ( digit );
+		
+	}
+	cmmember_digit ( *digit->value, digit->format );
+	cmmember_name ();
+}
+
+void drwCMDigitSelect ()
+{
+	VECTOR vecPos;
+	vec_set ( &vecPos, vector ( 0, 0, 0 ) );
+	VECTOR vecSize;
+	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->size_y-3, 0 ) );
+	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x-cmmemberMe->tab-CM_TAB_RIGHT, 3, 0 ) );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
 }
 
 void evnCMDigit ()
 {
 	CMDIGIT *digit = cmmemberMe->child;
 	str_cpy ( strCMTemp, "" );
-	var *pointer = digit->value;
+	var *pointer = *digit->value;
 	str_cat_num ( strCMTemp, digit->format, *pointer );
 	int digitLength = str_len ( strCMTemp );
 	int digitDecimals = str_stri ( strCMTemp, "." );
@@ -81,7 +107,7 @@ void evnCMDigit ()
 	while ( mouse_left )
 	{
 		mouseLapse += mouse_force.y;
-		if ( abs(mouseLapse) > 5 )
+		if ( abs(mouseLapse) > 3 )
 		{
 			*pointer += sign(mouseLapse) * digitStep;
 			mouseLapse = 0;
@@ -100,6 +126,7 @@ void fncCMDigit_startup ()
 	cmclassDigit.draw = drwCMDigit;
 	cmclassDigit.resize = fncCMDigitResize;
 	cmclassDigit.remove = fncCMDigitRemove;
+	cmclassDigit.select = drwCMDigitSelect;
 }
 
 void digitCMTypeCreate ( STRING *strData )
@@ -125,32 +152,65 @@ void digitCMTypeCreate ( STRING *strData )
 		str_trunc ( strData, str_len(strData)-commaPos+1 );
 		
 		fncCMPrototype = engine_getscript ( strCMEvent->chars );
-		#ifdef CM_SAFE_MODE
-			if ( fncCMPrototype == NULL )
-			{
+		if ( fncCMPrototype == NULL )
+		{
+			#ifdef CM_SAFE_MODE
 				str_cat ( strCMEvent, "\nfunction not found" );
 				error ( strCMEvent );
 				sys_exit ( NULL );
-			}
-		#endif
+			#endif
+			cmmemberMe->flags = CM_INVISIBLE;
+			return;
+		}
 	}
 	
-	var *pointer = engine_getvar ( strData->chars, NULL );
-	#ifdef CM_SAFE_MODE
-		if ( pointer == NULL )
-		{
-			str_cat ( strData, "\nvariable not found" );
+	long type;
+	var *pointer = engine_getvar ( strData->chars, &type );
+	if ( pointer == NULL )
+	{
+		#ifdef CM_SAFE_MODE
+			str_cat ( strData, "\nnot found" );
 			error ( strData );
 			sys_exit ( NULL );
-		}
-	#endif
+		#endif
+		cmmemberMe->flags = CM_INVISIBLE;
+		return;
+	}
+	
+	if ( ( type != 3 ) && ( type != 19 ) )
+	{
+		#ifdef CM_SAFE_MODE
+			str_cat ( strData, "\nis not a fixed variable or a pointer to a fixed variable" );
+			error ( strData );
+			error ( str_for_int ( NULL, type ) );
+			sys_exit ( NULL );
+		#endif
+		cmmemberMe->flags = CM_INVISIBLE;
+		return;
+	}
+	
+	if ( type == 3 )
+	{
+		var *pointer_old = pointer;
+		pointer = sys_malloc ( sizeof(var*) );
+		*pointer = pointer_old;
+		cmmemberMe->flags = CM_POINTER;
+	}
+	else
+	{
+		cmmemberMe->flags = NULL;
+	}
+	
+	if ( fncCMPrototype != NULL )
+	{
+		cmmemberMe->flags |= CM_COMPUTE;
+	}
 	
 	CMDIGIT *digit = sys_malloc ( sizeof(CMDIGIT) );
 	digit->value = pointer;
 	digit->format = (txtCMFormats->pstring)[iDigitFormat];
 	digit->event = fncCMPrototype;
 	
-	cmmemberMe->flags = NULL;
 	cmmemberMe->class = &cmclassDigit;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = digit;
@@ -181,35 +241,64 @@ void digeditCMTypeCreate ( STRING *strData )
 		str_trunc ( strData, str_len(strData)-commaPos+1 );
 		
 		fncCMPrototype = engine_getscript ( strCMEvent->chars );
-		#ifdef CM_SAFE_MODE
-			if ( fncCMPrototype == NULL )
-			{
+		if ( fncCMPrototype == NULL )
+		{
+			#ifdef CM_SAFE_MODE
 				str_cat ( strCMEvent, "\nfunction not found" );
 				error ( strCMEvent );
 				sys_exit ( NULL );
-			}
-		#endif
+			#endif
+			cmmemberMe->flags = CM_INVISIBLE;
+			return;
+		}
 	}
 	
-	var *pointer = engine_getvar ( strData->chars, NULL );
-	#ifdef CM_SAFE_MODE
-		if ( pointer == NULL )
-		{
+	long type;
+	var *pointer = engine_getvar ( strData->chars, &type );
+	if ( pointer == NULL )
+	{
+		#ifdef CM_SAFE_MODE
 			str_cat ( strData, "\nvariable not found" );
 			error ( strData );
 			sys_exit ( NULL );
-		}
-	#endif
+		#endif
+		cmmemberMe->flags = CM_INVISIBLE;
+		return;
+	}
+	
+	if ( ( type != 3 ) && ( type != 19 ) )
+	{
+		#ifdef CM_SAFE_MODE
+			str_cat ( strData, "\nis not a fixed variable or a pointer to a fixed variable" );
+			error ( strData );
+			sys_exit ( NULL );
+		#endif
+		cmmemberMe->flags = CM_INVISIBLE;
+		return;
+	}
+	
+	if ( type == 3 )
+	{
+		var *pointer_old = pointer;
+		pointer = sys_malloc ( sizeof(var*) );
+		*pointer = pointer_old;
+		cmmemberMe->flags = CM_POINTER;
+	}
+	else
+	{
+		cmmemberMe->flags = NULL;
+	}
 	
 	CMDIGIT *digit = sys_malloc ( sizeof(CMDIGIT) );
 	digit->value = pointer;
 	digit->format = (txtCMFormats->pstring)[iDigitFormat];
 	digit->event = fncCMPrototype;
 	
-	cmmemberMe->flags = CM_ACTIVE;
+	cmmemberMe->flags |= CM_ACTIVE;
 	cmmemberMe->class = &cmclassDigit;
 	cmmemberMe->count = 0;
 	cmmemberMe->child = digit;
 	
 	fncCMDigitResize ();
 }
+

@@ -23,6 +23,7 @@ void fncCMSpace_startup ()
 	cmclassSpace.draw = drwCMSpace;
 	cmclassSpace.resize = NULL;
 	cmclassSpace.remove = NULL;
+	cmclassSpace.select = NULL;
 }
 
 

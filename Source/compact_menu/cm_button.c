@@ -11,25 +11,31 @@ void drwCMButton ()
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
 	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
-	if ( cmmemberMe == cmenuMe->cmmemberActual )
-	{
-		vec_set ( &vecPos, vector ( cmmemberMe->tab-1, cmmemberMe->pos_y+1, 0 ) );
-		vec_set ( &vecSize, vector ( cmenuMe->panel->size_x+1-cmmemberMe->tab, cmmemberMe->size_y-1, 0 ) );
-		draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );		
-		vec_set ( &vecPos, vector ( cmenuMe->panel->size_x-3, cmmemberMe->pos_y+(cmmemberMe->size_y/2), 0 ) );
-		draw_line ( &vecPos, colCMText, 0 );
-		draw_line ( &vecPos, colCMText, 100 );
-		vecPos.x -= 8;
-		vecPos.y -= 3;
-		draw_line ( &vecPos, colCMText, 100 );
-		vecPos.y += 6;
-		draw_line ( &vecPos, colCMText, 100 );
-		vecPos.x += 8;
-		vecPos.y -= 3;
-		draw_line ( &vecPos, colCMText, 100 );
-		draw_line ( &vecPos, colCMText, 0 );
-	}
-	cmmember_draw_name ();
+	cmmember_name ();
+}
+
+void drwCMButtonSelect ()
+{
+	VECTOR vecPos;
+	vec_set ( &vecPos, vector ( 0, 0, 0 ) );
+	VECTOR vecSize;
+	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	vec_set ( &vecPos, vector ( cmmemberMe->tab-1, 1, 0 ) );
+	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x+1-cmmemberMe->tab, cmmemberMe->size_y-1, 0 ) );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );		
+	vec_set ( &vecPos, vector ( cmenuMe->panel->size_x-3, cmmemberMe->size_y/2, 0 ) );
+	draw_line ( &vecPos, colCMText, 0 );
+	draw_line ( &vecPos, colCMText, 100 );
+	vecPos.x -= 8;
+	vecPos.y -= 3;
+	draw_line ( &vecPos, colCMText, 100 );
+	vecPos.y += 6;
+	draw_line ( &vecPos, colCMText, 100 );
+	vecPos.x += 8;
+	vecPos.y -= 3;
+	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, colCMText, 0 );
 }
 
 void fncCMButtonPrototype ();
@@ -48,6 +54,7 @@ void fncCMButton_startup ()
 	cmclassButton.draw = drwCMButton;
 	cmclassButton.resize = fncCMButtonResize;
 	cmclassButton.remove = NULL;
+	cmclassButton.select = drwCMButtonSelect;
 }
 
 void buttonCMTypeCreate ( STRING *strData )
