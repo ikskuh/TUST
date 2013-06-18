@@ -17,19 +17,17 @@ typedef struct CMSTYLE
 	FONT *font;
 } CMSTYLE;
 
-CMSTYLE *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBackground, COLOR *colOver );
+CMSTYLE *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver );
 
-PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style );
+void cmstyle_remove ( CMSTYLE *style );
+
+PANEL *cmenu_create ( char *member, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style );
 
 void cmenu_modify ( PANEL *panel, var size_x, CMSTYLE *style );
 
 void cmenu_remove ( PANEL *panel );
 
 void cmenu_remove_all ();
-
-void cmmember_name ();
-
-void cmmember_digit ( var *pointer, STRING *format );
 
 
 #include "compact_menu.c"

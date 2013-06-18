@@ -415,18 +415,22 @@ void cmmember_digit ( var *pointer, STRING *format )
 	cmenuMe->digits += 1;
 }
 
-CMSTYLE *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBackground, COLOR *colOver )
+CMSTYLE *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver )
 {
 	CMSTYLE *style = sys_malloc ( sizeof(CMSTYLE) );
 	style->font = font;
 	vec_set ( style->colText, colText );
-	vec_set ( style->colBack, colBackground );
+	vec_set ( style->colBack, colBack );
 	vec_set ( style->colOver, colOver );
 	return style;
 } 
 
+void cmstyle_remove ( CMSTYLE *style )
+{
+	sys_free ( style );
+}
 
-PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style )
+PANEL *cmenu_create ( char *member, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style )
 {
 	PANEL *panTemp = pan_create ( "", layer );
 	panTemp->bmap = bmap_createblack ( size_x, screen_size.y, 32 );
@@ -438,7 +442,7 @@ PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var lay
 	vec_set ( &panTemp->blue, style->colText );
 	
 	cmenuMe = sys_malloc ( sizeof(COMPACT_MENU) );
-	cmenuMe->name = str_create ( chrMember );
+	cmenuMe->name = str_create ( member );
 	cmenuMe->style = style;
 	cmenuMe->panel = panTemp;
 	cmenuMe->digits = 0;
