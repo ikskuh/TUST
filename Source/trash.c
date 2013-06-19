@@ -3,8 +3,6 @@
 
 TrashCollector *itTrash;
 
-void trashitem_remover ( TrashItem *item );
-
 void trashitem_free ( TrashItem *item )
 {
 	sys_free(item);
@@ -90,4 +88,3 @@ TrashData *trash_recover ( TrashCollector *trash )
 	trash->count -= 1;
 	return data;
 }
-

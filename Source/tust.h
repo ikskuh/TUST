@@ -9,6 +9,11 @@
  * TUST provides.
  */
 
+// DOXYGEN MODULE GROUPS 
+/**
+ * \defgroup GenericScriptLibrary Generic Script Library
+ */
+
 /**
  * Typedef of a boolean type.
  */
@@ -78,10 +83,6 @@ VECTOR *vec_create(var x, var y, var z);
  */
 void draw_font(STRING* text, var x, var y, COLOR* color, FONT *font, int flags, var alpha);
 
-
-/**
- * \defgroup GenericScriptLibrary Generic Script Library
- */
 
 
 #include "fs.h"
