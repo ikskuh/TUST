@@ -1,5 +1,9 @@
 var searchData=
 [
+  ['site',['Site',['../struct_site.html',1,'']]],
+  ['stmachine',['STMACHINE',['../struct_s_t_m_a_c_h_i_n_e.html',1,'']]],
+  ['stmcol',['STMCOL',['../struct_s_t_m_c_o_l.html',1,'']]],
+  ['street',['Street',['../struct_street.html',1,'']]],
   ['superset',['superset',['../structcimg__library__suffixed_1_1cimg_1_1superset.html',1,'cimg_library_suffixed::cimg']]],
   ['superset2',['superset2',['../structcimg__library__suffixed_1_1cimg_1_1superset2.html',1,'cimg_library_suffixed::cimg']]],
   ['superset3',['superset3',['../structcimg__library__suffixed_1_1cimg_1_1superset3.html',1,'cimg_library_suffixed::cimg']]],

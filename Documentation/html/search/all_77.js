@@ -5,7 +5,6 @@ var searchData=
   ['warn',['warn',['../namespacecimg__library__suffixed_1_1cimg.html#acfd3624d72ed7f79c82ec45646c685e7',1,'cimg_library_suffixed::cimg']]],
   ['warp',['warp',['../structcimg__library__suffixed_1_1_c_img.html#ab766058b3e21a5a5258dd9cede0c464d',1,'cimg_library_suffixed::CImg']]],
   ['watershed',['watershed',['../structcimg__library__suffixed_1_1_c_img.html#aa64686d26d3e168cf452891a8d083874',1,'cimg_library_suffixed::CImg']]],
-  ['weather_2eh',['weather.h',['../weather_8h.html',1,'']]],
   ['webkit_2eh',['webkit.h',['../webkit_8h.html',1,'']]],
   ['wget_5fpath',['wget_path',['../namespacecimg__library__suffixed_1_1cimg.html#a327153bbcc55a9b6f32383443c27bd58',1,'cimg_library_suffixed::cimg']]],
   ['what',['what',['../structcimg__library__suffixed_1_1_c_img_exception.html#a993f11b05af5a1bffc5f08a4c4ccdf63',1,'cimg_library_suffixed::CImgException']]],

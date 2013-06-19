@@ -91,67 +91,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="cct_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _CCT_H_</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define _CCT_H_</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="comment">// The Actor struct:</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="struct_actor.html">   12</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_actor.html">Actor</a> {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        var speed;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        var runningFactor;              <span class="comment">// How much faster do we run?</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        var strafeFactor;                   <span class="comment">// How much faster do we strafe?</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        var crawlFactor;                    <span class="comment">// How much faster do we crawl?</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        var jumpStrength;                   <span class="comment">// How high do we jump?</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        var maxRotSpeed;                    <span class="comment">// Max. character rotation speed.</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        var standingSize;                   <span class="comment">// Full standing size of the cct</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        var halfStandingSize;           <span class="comment">// Half standing size of the cct</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        var crouchingSize;              <span class="comment">// Full crouching size of the cct</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        var halfCrouchingSize;          <span class="comment">// Half crouching size of the cct</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        var cctRadius;                      <span class="comment">// The radius of the cct</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        var doStandup;                      <span class="comment">// Cct state switch! 0 - if standing; 1 - if crouching;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">int</span> flags;                          <span class="comment">// Explained below</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="comment">// internal use:</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        ENTITY* bbox;                       <span class="comment">// The physic bbox</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        VECTOR offset;                      <span class="comment">// Offset of the chars origin</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        VECTOR size;                        <span class="comment">// Size of the model</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    } <a class="code" href="struct_actor.html">Actor</a>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">    #define CCT_WALK                        1           // Walk forward (&gt;0), stand (=0), walk backwards (&lt;0)</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define CCT_STRAFE                  2           // Strafe left (&gt;0), stand (=0), strafe right (&lt;0)</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define CCT_RUN                     3           // Actor runs (!=0), actor walks (=0)</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define CCT_CRAWL                       4           //  Actor crawls (!=0), actor stands (=0)</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define CCT_JUMP                        5           // Actor starts jumping if (!=0)</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">    #define ACTOR_CRAWL_RUN             (1&lt;&lt;0)  // Allows running in crawl mode</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define ACTOR_NO_JUMP               (1&lt;&lt;1)  // Disables jumping</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define ACTOR_ALLOW_REJUMP          (1&lt;&lt;2)  // Actor jumps again when landing on the ground</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define ACTOR_ALLOW_MULTIJUMP       (1&lt;&lt;3)  // Jumping has no ground check</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define ACTOR_NO_AIRCONTROL     (1&lt;&lt;4)  // Actor can&#39;t change speed in air</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span>    </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="struct_actor.html">Actor</a>* cct_actor(ENTITY* parent, VECTOR* size, VECTOR* offset);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> cct_remove(<a class="code" href="struct_actor.html">Actor</a> *actor);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> cct_set_input(<a class="code" href="struct_actor.html">Actor</a>* actor, <span class="keywordtype">int</span> state, <span class="keywordtype">int</span> value);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> cct_rotate(<a class="code" href="struct_actor.html">Actor</a>* actor, var rotation);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">int</span> cct_get_input(<a class="code" href="struct_actor.html">Actor</a>* actor, <span class="keywordtype">int</span> state);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> cct_get_position(<a class="code" href="struct_actor.html">Actor</a>* actor, VECTOR* pos);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    var cct_get_rotation(<a class="code" href="struct_actor.html">Actor</a>* actor);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">void</span> cct_update(<a class="code" href="struct_actor.html">Actor</a>* actor);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">    #include &quot;cct.c&quot;</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span>    </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="comment">// Global skills: // Todo Put those to ONE player definition file</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">    #define HEALT                           skill20</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define ALLOW_MOVE                  skill21</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define ALLOW_ROTATE                    skill22</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span>    </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// cct skills:</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">    #define STANDING_SIZE               skill40</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define CROUCING_SIZE               skill41</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define HALF_STANDING_SIZE          skill42</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define HALF_CROUCHING_SIZE     skill43</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define CCT_RADIUS                  skill44</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span>    <span class="comment">// cct size (stand):</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">    #define STAND_SIZE_X                skill45</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span>    <span class="comment">//#define   STAND_SIZE_Y            skill46</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">    #define STAND_SIZE_Z                skill47</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span>    <span class="comment">// cct size (crawl):</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">    #define CRAWL_SIZE_X                skill48</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor"></span>    <span class="comment">//#define   CRAWL_SIZE_Y            skill49</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">    #define CRAWL_SIZE_Z                skill50</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span>    </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// collusion groups:</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">    #define PLAYER_GROUP                    3</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span>    </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// movement speed:</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">    #define CRAWL_SPEED                 0.3</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define WALK_SPEED                  0.6</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define RUN_SPEED                       1</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span>    </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> actHero();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// include cct template:</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">    #include &quot;cct.c&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun May 12 2013 20:22:05 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 19 2013 11:20:05 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

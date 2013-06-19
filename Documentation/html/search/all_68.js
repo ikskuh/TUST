@@ -1,6 +1,7 @@
 var searchData=
 [
   ['haar',['haar',['../structcimg__library__suffixed_1_1_c_img.html#ae5d38bed2e12d78631a84feb13fd715b',1,'cimg_library_suffixed::CImg::haar(const char axis, const bool invert=false, const unsigned int nb_scales=1)'],['../structcimg__library__suffixed_1_1_c_img.html#a46ada201cf0450fa8f0a6f09e047efc2',1,'cimg_library_suffixed::CImg::haar(const bool invert=false, const unsigned int nb_scales=1)']]],
+  ['halfedge',['Halfedge',['../struct_halfedge.html',1,'']]],
   ['height',['height',['../structcimg__library__suffixed_1_1_c_img_display.html#a16f87814accec7de58d46c88f839963c',1,'cimg_library_suffixed::CImgDisplay::height()'],['../structcimg__library__suffixed_1_1_c_img.html#a7e16ff863ce0320beba347b87209a86e',1,'cimg_library_suffixed::CImg::height()']]],
   ['hide_5fmouse',['hide_mouse',['../structcimg__library__suffixed_1_1_c_img_display.html#ad42869bba3895a98404a7deade4690f1',1,'cimg_library_suffixed::CImgDisplay']]],
   ['histogram',['histogram',['../structcimg__library__suffixed_1_1_c_img.html#a77776bbc8c7d5fa60c6a8dd6c2d67fa4',1,'cimg_library_suffixed::CImg']]],

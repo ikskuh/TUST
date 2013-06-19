@@ -207,7 +207,7 @@ Functions</h2></td></tr>
 <p>Blurs a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to blur </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">float</td><td>Blur factor </td></tr>
   </table>
   </dd>
@@ -308,7 +308,7 @@ Functions</h2></td></tr>
 <p>Crops an image (Get a specific part of the bmap) (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to crop </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>New top left (x value) </td></tr>
     <tr><td class="paramname">int</td><td>New top left (y value) </td></tr>
     <tr><td class="paramname">int</td><td>New bottom right (x value) </td></tr>
@@ -346,7 +346,7 @@ Functions</h2></td></tr>
 <p>Add dilate filter (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to add dilate filter to </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Dilate factor </td></tr>
   </table>
   </dd>
@@ -417,7 +417,7 @@ Functions</h2></td></tr>
 <p>Draws a line to a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Start point (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Start point (y value) </td></tr>
     <tr><td class="paramname">int</td><td>End point (x value) </td></tr>
@@ -476,7 +476,7 @@ Functions</h2></td></tr>
 <p>Draws a BMAP* onto another (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">BMAP*</td><td>Bmap that is put onto the other </td></tr>
     <tr><td class="paramname">int</td><td>Target position (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Target position (y value) </td></tr>
@@ -532,7 +532,7 @@ Functions</h2></td></tr>
 <p>Draws borders to a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Distance to borders (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Distance to borders (y value) </td></tr>
     <tr><td class="paramname">COLOR*</td><td>Color to draw the point </td></tr>
@@ -594,7 +594,7 @@ Functions</h2></td></tr>
 <p>Draws a circle (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Middle of the circle (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Middle of the circle (y value) </td></tr>
     <tr><td class="paramname">int</td><td>Radius </td></tr>
@@ -657,7 +657,7 @@ Functions</h2></td></tr>
 <p>Draws a filled circle (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Middle of the circle (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Middle of the circle (y value) </td></tr>
     <tr><td class="paramname">int</td><td>Radius </td></tr>
@@ -732,7 +732,7 @@ Functions</h2></td></tr>
 <p>Draws an ellipse (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Middle of the ellipse (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Middle of the ellipse (y value) </td></tr>
     <tr><td class="paramname">int</td><td>Radius 1 </td></tr>
@@ -809,7 +809,7 @@ Functions</h2></td></tr>
 <p>Draws a filled ellipse (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Middle of the ellipse (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Middle of the ellipse (y value) </td></tr>
     <tr><td class="paramname">int</td><td>Radius 1 </td></tr>
@@ -880,7 +880,7 @@ Functions</h2></td></tr>
 <p>Draws a line to a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Start point (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Start point (y value) </td></tr>
     <tr><td class="paramname">int</td><td>End point (x value) </td></tr>
@@ -938,7 +938,7 @@ Functions</h2></td></tr>
 <p>Draws a point to a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>x value </td></tr>
     <tr><td class="paramname">int</td><td>y value </td></tr>
     <tr><td class="paramname">COLOR*</td><td>Color to draw the point </td></tr>
@@ -1006,11 +1006,11 @@ Functions</h2></td></tr>
 <p>Draws a rectangle (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
-    <tr><td class="paramname">int</td><td>Point top left (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point top left (y value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point bottom right (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point bottom right (y value) </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> top left (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> top left (y value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> bottom right (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> bottom right (y value) </td></tr>
     <tr><td class="paramname">COLOR*</td><td>Color to draw the point </td></tr>
     <tr><td class="paramname">float</td><td>Alpha value (0.0-1.0) </td></tr>
   </table>
@@ -1076,11 +1076,11 @@ Functions</h2></td></tr>
 <p>Draws a filled rectangle (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
-    <tr><td class="paramname">int</td><td>Point top left (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point top left (y value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point bottom right (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point bottom right (y value) </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> top left (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> top left (y value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> bottom right (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> bottom right (y value) </td></tr>
     <tr><td class="paramname">COLOR*</td><td>Color to draw the point </td></tr>
     <tr><td class="paramname">float</td><td>Alpha value (0.0-1.0) </td></tr>
   </table>
@@ -1170,7 +1170,7 @@ Functions</h2></td></tr>
 <p>Draws a spline to a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Start point (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Start point (y value) </td></tr>
     <tr><td class="paramname">int</td><td>Start velocity (x value) </td></tr>
@@ -1250,7 +1250,7 @@ Functions</h2></td></tr>
 <p>Draws a text (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Draw position (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Draw position (y value) </td></tr>
     <tr><td class="paramname">char*</td><td>Text to write </td></tr>
@@ -1333,13 +1333,13 @@ Functions</h2></td></tr>
 <p>Draws a triangle (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
-    <tr><td class="paramname">int</td><td>Point 1 (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 1 (y value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 2 (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 2 (y value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 3 (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 3 (y value) </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 1 (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 1 (y value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 2 (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 2 (y value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 3 (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 3 (y value) </td></tr>
     <tr><td class="paramname">COLOR*</td><td>Color to draw the point </td></tr>
     <tr><td class="paramname">float</td><td>Alpha value (0.0-1.0) </td></tr>
   </table>
@@ -1417,13 +1417,13 @@ Functions</h2></td></tr>
 <p>Draws a filled triangle (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
-    <tr><td class="paramname">int</td><td>Point 1 (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 1 (y value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 2 (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 2 (y value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 3 (x value) </td></tr>
-    <tr><td class="paramname">int</td><td>Point 3 (y value) </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 1 (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 1 (y value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 2 (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 2 (y value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 3 (x value) </td></tr>
+    <tr><td class="paramname">int</td><td><a class="el" href="struct_point.html">Point</a> 3 (y value) </td></tr>
     <tr><td class="paramname">COLOR*</td><td>Color to draw the point </td></tr>
     <tr><td class="paramname">float</td><td>Alpha value (0.0-1.0) </td></tr>
   </table>
@@ -1459,7 +1459,7 @@ Functions</h2></td></tr>
 <p>Erodes a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to add erode filter to </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Erode factor </td></tr>
   </table>
   </dd>
@@ -1512,7 +1512,7 @@ Functions</h2></td></tr>
 <p>Fills a specific region of a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to fill </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Start position (x value) </td></tr>
     <tr><td class="paramname">int</td><td>Start position (y value) </td></tr>
     <tr><td class="paramname">COLOR*</td><td>Color to draw the point </td></tr>
@@ -1540,7 +1540,7 @@ Functions</h2></td></tr>
 <p>Transform to grayscale (Broken) (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to mirror </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
   </table>
   </dd>
 </dl>
@@ -1564,7 +1564,7 @@ Functions</h2></td></tr>
 <p>Inverts a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to blur </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
   </table>
   </dd>
 </dl>
@@ -1588,7 +1588,7 @@ Functions</h2></td></tr>
 <p>Add laplace filter (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to mirror </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
   </table>
   </dd>
 </dl>
@@ -1670,7 +1670,7 @@ Functions</h2></td></tr>
 <p>Mirrors a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to mirror </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Mirror axis (x=1, y=2) </td></tr>
   </table>
   </dd>
@@ -1705,7 +1705,7 @@ Functions</h2></td></tr>
 <p>Adds noise to bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to add noise to </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">float</td><td>Noise factor </td></tr>
   </table>
   </dd>
@@ -1740,7 +1740,7 @@ Functions</h2></td></tr>
 <p>Draws a random plasma figure (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to draw on </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">float</td><td>Alpha value (0.0-1.0) </td></tr>
   </table>
   </dd>
@@ -1781,7 +1781,7 @@ Functions</h2></td></tr>
 <p>Resizes a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to resize </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>New size (x value) </td></tr>
     <tr><td class="paramname">int</td><td>New size (y value) </td></tr>
   </table>
@@ -1902,7 +1902,7 @@ Functions</h2></td></tr>
 <p>Rotates a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to rotate </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">float</td><td>Rotation angle </td></tr>
     <tr><td class="paramname">float</td><td>Rotation point (x value) </td></tr>
     <tr><td class="paramname">float</td><td>Rotation point (y value) </td></tr>
@@ -1975,7 +1975,7 @@ Functions</h2></td></tr>
 <p>Sharpens a bitmap (Needs DLL "BmapGS.dll") </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">BMAP*</td><td>Bmap to sharpen </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Source bitmap </td></tr>
     <tr><td class="paramname">int</td><td>Amplitude </td></tr>
   </table>
   </dd>
@@ -1987,7 +1987,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun May 12 2013 20:22:06 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 19 2013 11:20:05 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

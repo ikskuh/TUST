@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['eff_5fcomplexsmoke',['eff_complexSmoke',['../effects_8h.html#ae40477b2fe0e05c896e43986aa55ace6',1,'effects.c']]],
+  ['eff_5fexplosion',['eff_explosion',['../effects_8h.html#aa159d5291baf54f93c5692a774542537',1,'effects.c']]],
+  ['eff_5fgenerate_5ffog',['eff_generate_fog',['../effects_8h.html#a0fd64620c9978a276d09adff66d0c926',1,'effects.c']]],
   ['eigen',['eigen',['../structcimg__library__suffixed_1_1_c_img.html#a3008284db237151c10783473585c57c7',1,'cimg_library_suffixed::CImg']]],
   ['elevation3d',['elevation3d',['../structcimg__library__suffixed_1_1_c_img.html#a693cdc6b4802d0fc1930890e030c1a33',1,'cimg_library_suffixed::CImg::elevation3d(CImgList&lt; tf &gt; &amp;primitives, const tfunc &amp;func, const float x0, const float y0, const float x1, const float y1, const int size_x=256, const int size_y=256)'],['../structcimg__library__suffixed_1_1_c_img.html#a43cd52ca5ecac381ff98e5e483f84815',1,'cimg_library_suffixed::CImg::elevation3d(CImgList&lt; tf &gt; &amp;primitives, const char *const expression, const float x0, const float y0, const float x1, const float y1, const int size_x=256, const int size_y=256)']]],
   ['ellipsoid3d',['ellipsoid3d',['../structcimg__library__suffixed_1_1_c_img.html#a0b8b15895c6d7bf28afb1878ee6cb122',1,'cimg_library_suffixed::CImg']]],

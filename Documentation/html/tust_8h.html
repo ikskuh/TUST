@@ -106,9 +106,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;<a class="el" href="webkit_8h_source.html">webkit.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_dynamic_models_8h_source.html">DynamicModels.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="noise_8h_source.html">noise.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="arraylist_8h_source.html">arraylist.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="bmap_8h_source.html">bmap.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="camera_8h_source.html">camera.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="lvector_8h_source.html">lvector.h</a>&quot;</code><br/>
+<code>#include &quot;state_machine.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="nodemesh_8h_source.html">nodemesh.h</a>&quot;</code><br/>
+<code>#include &quot;compact_menu.h&quot;</code><br/>
 <code>#include &quot;tust.c&quot;</code><br/>
 </div>
 <p><a href="tust_8h_source.html">Go to the source code of this file.</a></p>
@@ -132,6 +135,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a83f9535de21da838bf4f970ea0bc6c19"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tust_8h.html#a83f9535de21da838bf4f970ea0bc6c19">memmove</a> (BYTE *destination, BYTE *source, unsigned int num)</td></tr>
 <tr class="memdesc:a83f9535de21da838bf4f970ea0bc6c19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move block of memory. Copies the values of num bytes from the location pointed by source to the memory block pointed by destination. Copying takes place as if an intermediate buffer were used, allowing the destination and source to overlap. The underlying type of the objects pointed by both the source and destination pointers are irrelevant for this function; The result is a binary copy of the data. The function does not check for any terminating null character in source - it always copies exactly num bytes. To avoid overflows, the size of the arrays pointed by both the destination and source parameters, shall be at least num bytes.  <a href="#a83f9535de21da838bf4f970ea0bc6c19">More...</a><br/></td></tr>
 <tr class="separator:a83f9535de21da838bf4f970ea0bc6c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1014f2153bbbf97f9f9a506a94f1d166"><td class="memItemLeft" align="right" valign="top">VECTOR *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tust_8h.html#a1014f2153bbbf97f9f9a506a94f1d166">vec_create</a> (var x, var y, var z)</td></tr>
+<tr class="separator:a1014f2153bbbf97f9f9a506a94f1d166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a2fdf1f1d5e0e394690ffee8afe458e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tust_8h.html#a2a2fdf1f1d5e0e394690ffee8afe458e">draw_font</a> (STRING *text, var x, var y, COLOR *color, FONT *font, int flags, var alpha)</td></tr>
+<tr class="separator:a2a2fdf1f1d5e0e394690ffee8afe458e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Script library core. </p>
@@ -271,6 +278,75 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a2a2fdf1f1d5e0e394690ffee8afe458e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw_font </td>
+          <td>(</td>
+          <td class="paramtype">STRING *&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COLOR *&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FONT *&#160;</td>
+          <td class="paramname"><em>font</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>alpha</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Writes a string at the given XY screen position in the current frame, using a Gamestudio FONT. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>The string to be written </td></tr>
+    <tr><td class="paramname">x</td><td>The screen position in pixels from the left border </td></tr>
+    <tr><td class="paramname">y</td><td>The screen position in pixels from the top border </td></tr>
+    <tr><td class="paramname">color</td><td>A BGR color vector that determines the text color </td></tr>
+    <tr><td class="paramname">font</td><td>A FONT object that determines the font. </td></tr>
+    <tr><td class="paramname">flags</td><td>Flags to change the behaviour of draw_font: CENTER_X, CENTER_Y, FILTER, ARIGHT, CONDENSED, SHADOW, OUTLINE </td></tr>
+    <tr><td class="paramname">alpha</td><td>The alpha value of the text. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a83f9535de21da838bf4f970ea0bc6c19"></a>
 <div class="memitem">
 <div class="memproto">
@@ -315,10 +391,52 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a1014f2153bbbf97f9f9a506a94f1d166"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VECTOR* vec_create </td>
+          <td>(</td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates a new vector and allocates memory for it. Needs to be freed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X Value. </td></tr>
+    <tr><td class="paramname">y</td><td>Y Value. </td></tr>
+    <tr><td class="paramname">z</td><td>Z Value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Newly allocated VECTOR. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun May 12 2013 20:22:06 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 19 2013 11:20:06 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

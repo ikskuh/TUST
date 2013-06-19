@@ -181,6 +181,8 @@ Functions</h2></td></tr>
 <tr class="separator:a586206ed2ba09c8ac6ef30a41359e54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a705701ea9a05c376edea643a3b07ed99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structitem.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inven_8h.html#a705701ea9a05c376edea643a3b07ed99">inv_create_item</a> (int _id, STRING *_name, STRING *_descr, int _value, int _type)</td></tr>
 <tr class="separator:a705701ea9a05c376edea643a3b07ed99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa02159e4e43513d1f33a750ce22a72a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structitem.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inven_8h.html#aa02159e4e43513d1f33a750ce22a72a6">inv_create_item</a> (int _id, STRING *_name, STRING *_descr, int _value, int _type, BMAP *_bitmap)</td></tr>
+<tr class="separator:aa02159e4e43513d1f33a750ce22a72a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a421bb783d2864add6b9bcbdc877f0b0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inven_8h.html#a421bb783d2864add6b9bcbdc877f0b0f">inv_increate_iterator</a> (<a class="el" href="struct_inventory.html">Inventory</a> *_inv)</td></tr>
 <tr class="separator:a421bb783d2864add6b9bcbdc877f0b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee58c782f6c19e74b320c4be029dff13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inven_8h.html#aee58c782f6c19e74b320c4be029dff13">inv_hide_items</a> (<a class="el" href="struct_inventory.html">Inventory</a> *_inv)</td></tr>
@@ -362,6 +364,69 @@ FONT *&#160;</td><td class="memItemRight" valign="bottom"><b>fontInventoryDescri
     <tr><td class="paramname">STRING*</td><td>A description </td></tr>
     <tr><td class="paramname">int</td><td>A value (i.e. in gold) </td></tr>
     <tr><td class="paramname">int</td><td>An item type (see defines above) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The item </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa02159e4e43513d1f33a750ce22a72a6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structitem.html">Item</a>* inv_create_item </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STRING *&#160;</td>
+          <td class="paramname"><em>_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STRING *&#160;</td>
+          <td class="paramname"><em>_descr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BMAP *&#160;</td>
+          <td class="paramname"><em>_bitmap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates an item with a bitmap </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">int</td><td>A fixed ID for the item </td></tr>
+    <tr><td class="paramname">STRING*</td><td>The name of the item </td></tr>
+    <tr><td class="paramname">STRING*</td><td>A description </td></tr>
+    <tr><td class="paramname">int</td><td>A value (i.e. in gold) </td></tr>
+    <tr><td class="paramname">int</td><td>An item type (see defines above) </td></tr>
+    <tr><td class="paramname">BMAP*</td><td>Bitmap to illustrate the item </td></tr>
   </table>
   </dd>
 </dl>
@@ -711,7 +776,7 @@ FONT *&#160;</td><td class="memItemRight" valign="bottom"><b>fontInventoryDescri
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun May 12 2013 20:22:06 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 19 2013 11:20:06 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

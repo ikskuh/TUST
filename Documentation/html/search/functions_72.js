@@ -28,6 +28,7 @@ var searchData=
   ['rotate',['rotate',['../structcimg__library__suffixed_1_1_c_img.html#ae9bac82e486211829767ef6f719a8a9e',1,'cimg_library_suffixed::CImg::rotate(const float angle, const unsigned int boundary_conditions=0, const unsigned int interpolation_type=1)'],['../structcimg__library__suffixed_1_1_c_img.html#ab14d4a8f3645037adfd88a3d050baa03',1,'cimg_library_suffixed::CImg::rotate(const float angle, const float cx, const float cy, const float zoom, const unsigned int boundary_conditions=3, const unsigned int interpolation_type=1)']]],
   ['rotation_5fmatrix',['rotation_matrix',['../structcimg__library__suffixed_1_1_c_img.html#a18ba2075fe783f6b185de03695bd625f',1,'cimg_library_suffixed::CImg']]],
   ['round',['round',['../structcimg__library__suffixed_1_1_c_img.html#af897fe0a1ea103ff79abeab31ad2005e',1,'cimg_library_suffixed::CImg::round()'],['../namespacecimg__library__suffixed_1_1cimg.html#a6d56f0222849c155d029b86cc7517ad9',1,'cimg_library_suffixed::cimg::round()']]],
+  ['route_5fdelete',['route_delete',['../nodemesh_8h.html#a168325c22e614e723e8fc9ebca104781',1,'nodemesh.h']]],
   ['row',['row',['../structcimg__library__suffixed_1_1_c_img.html#a9886301c093acc4a1731781d6e5d7dae',1,'cimg_library_suffixed::CImg']]],
   ['rows',['rows',['../structcimg__library__suffixed_1_1_c_img.html#a5670c3567eaefbfdfc8b32922dfd918a',1,'cimg_library_suffixed::CImg']]]
 ];

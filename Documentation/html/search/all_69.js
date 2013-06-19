@@ -20,7 +20,7 @@ var searchData=
   ['inv_5fadd_5fitem',['inv_add_item',['../inven_8h.html#a635e9212563e0c557800afcd7720067d',1,'inven.c']]],
   ['inv_5fcenter',['inv_center',['../inven_8h.html#af585cb0b231becbab993275d64d8f1a0',1,'inven.c']]],
   ['inv_5fcreate',['inv_create',['../inven_8h.html#a5aac27a63e3912d1edade55c5340cefc',1,'inven.c']]],
-  ['inv_5fcreate_5fitem',['inv_create_item',['../inven_8h.html#a705701ea9a05c376edea643a3b07ed99',1,'inven.c']]],
+  ['inv_5fcreate_5fitem',['inv_create_item',['../inven_8h.html#a705701ea9a05c376edea643a3b07ed99',1,'inv_create_item(int _id, STRING *_name, STRING *_descr, int _value, int _type):&#160;inven.c'],['../inven_8h.html#aa02159e4e43513d1f33a750ce22a72a6',1,'inv_create_item(int _id, STRING *_name, STRING *_descr, int _value, int _type, BMAP *_bitmap):&#160;inven.c']]],
   ['inv_5ffree',['inv_free',['../inven_8h.html#a26cfdf3db32a40c5edb500216b413914',1,'inven.c']]],
   ['inv_5fhide',['inv_hide',['../inven_8h.html#a2e65078a6564c8bf295b4f05cde99785',1,'inven.c']]],
   ['inv_5fhide_5fitems',['inv_hide_items',['../inven_8h.html#aee58c782f6c19e74b320c4be029dff13',1,'inven.c']]],

@@ -94,7 +94,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Math helpers and other function Provides math helpers and useful functions.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;math.c&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br/>
+<code>#include &quot;log.h&quot;</code><br/>
+<code>#include &quot;math.c&quot;</code><br/>
 </div>
 <p><a href="math_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -114,6 +116,10 @@ Functions</h2></td></tr>
 <tr class="separator:a8bd2699511031abba46369ad730dffc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d502c28812d6b01a0ba81ca64f95530"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2d502c28812d6b01a0ba81ca64f95530">point_to_line2D_escalar</a> (var px, var py, var l1x, var l1y, var l2x, var l2y)</td></tr>
 <tr class="separator:a2d502c28812d6b01a0ba81ca64f95530"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3aeef13379da2ee1f40201b2d1e87e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_list.html">List</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4a3aeef13379da2ee1f40201b2d1e87e">calculate_spline</a> (<a class="el" href="struct_list.html">List</a> *_points, int _detail)</td></tr>
+<tr class="separator:a4a3aeef13379da2ee1f40201b2d1e87e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a253fdcc0f73c7ed6a9bd04faacb33f90"><td class="memItemLeft" align="right" valign="top">VECTOR *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a253fdcc0f73c7ed6a9bd04faacb33f90">math_get_spline</a> (VECTOR *points, int pointcount, float pos)</td></tr>
+<tr class="separator:a253fdcc0f73c7ed6a9bd04faacb33f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Math helpers and other function Provides math helpers and useful functions. </p>
@@ -205,6 +211,83 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Interpolated angle. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4a3aeef13379da2ee1f40201b2d1e87e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_list.html">List</a>* calculate_spline </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list.html">List</a> *&#160;</td>
+          <td class="paramname"><em>_points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_detail</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculates a spline </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">List*(VECTOR*)</td><td>Input points </td></tr>
+    <tr><td class="paramname">int</td><td>Details. Set how many VECTOR*s are returned </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>List*(VECTOR*) of Points that make the spline more detailed </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a253fdcc0f73c7ed6a9bd04faacb33f90"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VECTOR* math_get_spline </td>
+          <td>(</td>
+          <td class="paramtype">VECTOR *&#160;</td>
+          <td class="paramname"><em>points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pointcount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculates a spline </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">points</td><td>Input points </td></tr>
+    <tr><td class="paramname">pointcount</td><td>Number of points in points. </td></tr>
+    <tr><td class="paramname">pos</td><td>Interpolation position between 0 and 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector at pos. </dd></dl>
 
 </div>
 </div>
@@ -435,7 +518,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun May 12 2013 20:22:06 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 19 2013 11:20:06 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

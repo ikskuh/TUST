@@ -86,345 +86,95 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">cct.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>PhysX character controller.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;cct.c&quot;</code><br/>
 </div>
 <p><a href="cct_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_actor.html">Actor</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ac1bd0004f2bccc5bb3ffae0878ef4f50"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1bd0004f2bccc5bb3ffae0878ef4f50"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CCT_WALK</b>&#160;&#160;&#160;1</td></tr>
-<tr class="separator:ac1bd0004f2bccc5bb3ffae0878ef4f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e5c705e40726fbae41cec3189162577"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e5c705e40726fbae41cec3189162577"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CCT_STRAFE</b>&#160;&#160;&#160;2</td></tr>
-<tr class="separator:a7e5c705e40726fbae41cec3189162577"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c680b55b4de72a0ae43eb384b39eea2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c680b55b4de72a0ae43eb384b39eea2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CCT_RUN</b>&#160;&#160;&#160;3</td></tr>
-<tr class="separator:a0c680b55b4de72a0ae43eb384b39eea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac979fb203ebdef8acd1aefaf6332372b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac979fb203ebdef8acd1aefaf6332372b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CCT_CRAWL</b>&#160;&#160;&#160;4</td></tr>
-<tr class="separator:ac979fb203ebdef8acd1aefaf6332372b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95bdf4bf31366e0b4bcfea6dbb5817a3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95bdf4bf31366e0b4bcfea6dbb5817a3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CCT_JUMP</b>&#160;&#160;&#160;5</td></tr>
-<tr class="separator:a95bdf4bf31366e0b4bcfea6dbb5817a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29c466fee483fd46c587a0543cada354"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29c466fee483fd46c587a0543cada354"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>ACTOR_CRAWL_RUN</b>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
-<tr class="separator:a29c466fee483fd46c587a0543cada354"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74ffd41b9f6bda8b6e97816869ac9a59"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74ffd41b9f6bda8b6e97816869ac9a59"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>ACTOR_NO_JUMP</b>&#160;&#160;&#160;(1&lt;&lt;1)</td></tr>
-<tr class="separator:a74ffd41b9f6bda8b6e97816869ac9a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ac06a6b6e1b0eb089d9e02e51f6b288"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ac06a6b6e1b0eb089d9e02e51f6b288"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>ACTOR_ALLOW_REJUMP</b>&#160;&#160;&#160;(1&lt;&lt;2)</td></tr>
-<tr class="separator:a2ac06a6b6e1b0eb089d9e02e51f6b288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8afdf4ff34abad82f5db5d8fcdd126d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8afdf4ff34abad82f5db5d8fcdd126d6"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>ACTOR_ALLOW_MULTIJUMP</b>&#160;&#160;&#160;(1&lt;&lt;3)</td></tr>
-<tr class="separator:a8afdf4ff34abad82f5db5d8fcdd126d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af149c105d705a9543c79017a5803ca3b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af149c105d705a9543c79017a5803ca3b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>ACTOR_NO_AIRCONTROL</b>&#160;&#160;&#160;(1&lt;&lt;4)</td></tr>
-<tr class="separator:af149c105d705a9543c79017a5803ca3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a9ee839cef0d9ec5833dd5f3968ea5c2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ee839cef0d9ec5833dd5f3968ea5c2c"></a>
-typedef struct <a class="el" href="struct_actor.html">Actor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Actor</b></td></tr>
-<tr class="separator:a9ee839cef0d9ec5833dd5f3968ea5c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f09ddd3b461d49e96642d274b9f56e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f09ddd3b461d49e96642d274b9f56e1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HEALT</b>&#160;&#160;&#160;skill20</td></tr>
+<tr class="separator:a5f09ddd3b461d49e96642d274b9f56e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a342ae4d9c3cfa92e88e4eb57e8ccf3b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a342ae4d9c3cfa92e88e4eb57e8ccf3b9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ALLOW_MOVE</b>&#160;&#160;&#160;skill21</td></tr>
+<tr class="separator:a342ae4d9c3cfa92e88e4eb57e8ccf3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf77d6a09573e945332401cad46bcd6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf77d6a09573e945332401cad46bcd6e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>ALLOW_ROTATE</b>&#160;&#160;&#160;skill22</td></tr>
+<tr class="separator:adf77d6a09573e945332401cad46bcd6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d85e6fd25f8d255fd035950f7016505"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d85e6fd25f8d255fd035950f7016505"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STANDING_SIZE</b>&#160;&#160;&#160;skill40</td></tr>
+<tr class="separator:a5d85e6fd25f8d255fd035950f7016505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bd18fe7f3032ca0c4a5d50f5c29fac0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0bd18fe7f3032ca0c4a5d50f5c29fac0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CROUCING_SIZE</b>&#160;&#160;&#160;skill41</td></tr>
+<tr class="separator:a0bd18fe7f3032ca0c4a5d50f5c29fac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bdf3673854750033caf2701da7a3467"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3bdf3673854750033caf2701da7a3467"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HALF_STANDING_SIZE</b>&#160;&#160;&#160;skill42</td></tr>
+<tr class="separator:a3bdf3673854750033caf2701da7a3467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abea3b155d435218a0a8d93b852e83ee0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abea3b155d435218a0a8d93b852e83ee0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HALF_CROUCHING_SIZE</b>&#160;&#160;&#160;skill43</td></tr>
+<tr class="separator:abea3b155d435218a0a8d93b852e83ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac20c044a4ebcd8da2ee277ede53908f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac20c044a4ebcd8da2ee277ede53908f1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CCT_RADIUS</b>&#160;&#160;&#160;skill44</td></tr>
+<tr class="separator:ac20c044a4ebcd8da2ee277ede53908f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09e0d3987063a8b13b7011c438fbe814"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09e0d3987063a8b13b7011c438fbe814"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STAND_SIZE_X</b>&#160;&#160;&#160;skill45</td></tr>
+<tr class="separator:a09e0d3987063a8b13b7011c438fbe814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7373c75308b78c0e373463d55a2e64b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7373c75308b78c0e373463d55a2e64b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STAND_SIZE_Z</b>&#160;&#160;&#160;skill47</td></tr>
+<tr class="separator:ab7373c75308b78c0e373463d55a2e64b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5a349b7f0a3194d2e2a487c221ff00d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5a349b7f0a3194d2e2a487c221ff00d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CRAWL_SIZE_X</b>&#160;&#160;&#160;skill48</td></tr>
+<tr class="separator:aa5a349b7f0a3194d2e2a487c221ff00d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0253f6226d2ad17cdddcb29552b8d4e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0253f6226d2ad17cdddcb29552b8d4e2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CRAWL_SIZE_Z</b>&#160;&#160;&#160;skill50</td></tr>
+<tr class="separator:a0253f6226d2ad17cdddcb29552b8d4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94d5b022e368cccf9eb46c8409bd93b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94d5b022e368cccf9eb46c8409bd93b4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PLAYER_GROUP</b>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:a94d5b022e368cccf9eb46c8409bd93b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43db7314443d3ab82042c9fbc431e3ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43db7314443d3ab82042c9fbc431e3ec"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CRAWL_SPEED</b>&#160;&#160;&#160;0.3</td></tr>
+<tr class="separator:a43db7314443d3ab82042c9fbc431e3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad73b28bd01b01fc40fe385c789c9b36d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad73b28bd01b01fc40fe385c789c9b36d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>WALK_SPEED</b>&#160;&#160;&#160;0.6</td></tr>
+<tr class="separator:ad73b28bd01b01fc40fe385c789c9b36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5f3efb32c476acce65037d89e154c60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5f3efb32c476acce65037d89e154c60"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RUN_SPEED</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:aa5f3efb32c476acce65037d89e154c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9dc114e965296798b931af379ea57775"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_actor.html">Actor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cct_8h.html#a9dc114e965296798b931af379ea57775">cct_actor</a> (ENTITY *parent, VECTOR *size, VECTOR *offset)</td></tr>
-<tr class="separator:a9dc114e965296798b931af379ea57775"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a999857467c208532269ba4dd687cb786"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cct_8h.html#a999857467c208532269ba4dd687cb786">cct_remove</a> (<a class="el" href="struct_actor.html">Actor</a> *actor)</td></tr>
-<tr class="separator:a999857467c208532269ba4dd687cb786"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc1fa8301602d5b2166d0d158612a51b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cct_8h.html#adc1fa8301602d5b2166d0d158612a51b">cct_set_input</a> (<a class="el" href="struct_actor.html">Actor</a> *actor, int state, int value)</td></tr>
-<tr class="separator:adc1fa8301602d5b2166d0d158612a51b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd9fe987b6b5cb78874b6dffd9ffff1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cct_8h.html#afd9fe987b6b5cb78874b6dffd9ffff1b">cct_rotate</a> (<a class="el" href="struct_actor.html">Actor</a> *actor, var rotation)</td></tr>
-<tr class="separator:afd9fe987b6b5cb78874b6dffd9ffff1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa88367a91349e88be538c199be5cdf12"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cct_8h.html#aa88367a91349e88be538c199be5cdf12">cct_get_input</a> (<a class="el" href="struct_actor.html">Actor</a> *actor, int state)</td></tr>
-<tr class="separator:aa88367a91349e88be538c199be5cdf12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a258911439b9fc2c937eda98856ec9325"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cct_8h.html#a258911439b9fc2c937eda98856ec9325">cct_get_position</a> (<a class="el" href="struct_actor.html">Actor</a> *actor, VECTOR *pos)</td></tr>
-<tr class="separator:a258911439b9fc2c937eda98856ec9325"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35f9c2434150837acbff121e79339067"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cct_8h.html#a35f9c2434150837acbff121e79339067">cct_get_rotation</a> (<a class="el" href="struct_actor.html">Actor</a> *actor)</td></tr>
-<tr class="separator:a35f9c2434150837acbff121e79339067"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc4a132b6c2b900c8b33a5e239c50479"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cct_8h.html#acc4a132b6c2b900c8b33a5e239c50479">cct_update</a> (<a class="el" href="struct_actor.html">Actor</a> *actor)</td></tr>
-<tr class="separator:acc4a132b6c2b900c8b33a5e239c50479"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a881653abfb7d7b090576a2f6fe9a2197"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cct_8h.html#a881653abfb7d7b090576a2f6fe9a2197">actHero</a> ()</td></tr>
+<tr class="separator:a881653abfb7d7b090576a2f6fe9a2197"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>PhysX character controller. </p>
-<p><a class="el" href="cct_8h.html" title="PhysX character controller.">cct.h</a> provides helper functions related to the character controller template. </p>
+<div class="textblock"><p>Physics based player movement </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a9dc114e965296798b931af379ea57775"></a>
+<a class="anchor" id="a881653abfb7d7b090576a2f6fe9a2197"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_actor.html">Actor</a>* cct_actor </td>
+          <td class="memname">void actHero </td>
           <td>(</td>
-          <td class="paramtype">ENTITY *&#160;</td>
-          <td class="paramname"><em>parent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">VECTOR *&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">VECTOR *&#160;</td>
-          <td class="paramname"><em>offset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Set up an actor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">parent</td><td>The pointer to the creator entity, which is placed in WED. </td></tr>
-    <tr><td class="paramname">size</td><td>The size of the cct bounding ellipsoid (max_x). </td></tr>
-    <tr><td class="paramname">offset</td><td>The cct offset from the creator entity. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="aa88367a91349e88be538c199be5cdf12"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int cct_get_input </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_actor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>actor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>state</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Returns the value of an actors input state. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">actor</td><td>The pointer to the cct actor. </td></tr>
-    <tr><td class="paramname">state</td><td>Current movement state (f.e. CCT_WALK). </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a258911439b9fc2c937eda98856ec9325"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void cct_get_position </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_actor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>actor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">VECTOR *&#160;</td>
-          <td class="paramname"><em>pos</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Gets the position of an actor into the vector. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">actor</td><td>The pointer to the cct actor. </td></tr>
-    <tr><td class="paramname">pos</td><td>The cct position. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a35f9c2434150837acbff121e79339067"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">var cct_get_rotation </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_actor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>actor</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Gets the rotation of an actor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">actor</td><td>The pointer to the cct actor. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a999857467c208532269ba4dd687cb786"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void cct_remove </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_actor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>actor</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Removes all actor entitys and quits the actors update loop. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">actor</td><td>The pointer to the cct actor. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="afd9fe987b6b5cb78874b6dffd9ffff1b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void cct_rotate </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_actor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>actor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">var&#160;</td>
-          <td class="paramname"><em>rotation</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Rotates the actor about a relative angle and limits the rotation speed to Actor::maxRotSpeed. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">actor</td><td>The pointer to the cct actor. </td></tr>
-    <tr><td class="paramname">rotation</td><td>Rotation input. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="adc1fa8301602d5b2166d0d158612a51b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void cct_set_input </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_actor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>actor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>state</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p><a class="el" href="struct_actor.html">Actor</a> control. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">actor</td><td>The pointer to the cct actor. </td></tr>
-    <tr><td class="paramname">state</td><td>Current movement state (f.e. CCT_WALK). </td></tr>
-    <tr><td class="paramname">value</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="acc4a132b6c2b900c8b33a5e239c50479"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void cct_update </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_actor.html">Actor</a> *&#160;</td>
-          <td class="paramname"><em>actor</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Updates the actor and performs all moving, jumping etc. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">actor</td><td>The pointer to the cct actor. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Action for the player. </p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun May 12 2013 20:22:06 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 19 2013 11:20:05 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

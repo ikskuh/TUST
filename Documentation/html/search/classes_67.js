@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gravity',['GRAVITY',['../struct_g_r_a_v_i_t_y.html',1,'']]]
+  ['graphedge',['GraphEdge',['../struct_graph_edge.html',1,'']]]
 ];

@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -85,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -92,54 +94,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">nodemesh.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="node_8h_source.html">node.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br/>
 <code>#include &quot;nodemesh.c&quot;</code><br/>
 </div>
 <p><a href="nodemesh_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node.html">Node</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node_mesh.html">NodeMesh</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a0d128c06babfe3e794a8d4a156dc310e"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_list.html">List</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a></td></tr>
-<tr class="separator:a0d128c06babfe3e794a8d4a156dc310e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0466fc5f1bc9e6de776e48149b19c471"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_node.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a0466fc5f1bc9e6de776e48149b19c471">Node</a></td></tr>
+<tr class="separator:a0466fc5f1bc9e6de776e48149b19c471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae83ea6d2a88c164378d1a8035f216e69"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae83ea6d2a88c164378d1a8035f216e69"></a>
+typedef struct <a class="el" href="struct_node_mesh.html">NodeMesh</a>&#160;</td><td class="memItemRight" valign="bottom"><b>NodeMesh</b></td></tr>
+<tr class="separator:ae83ea6d2a88c164378d1a8035f216e69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c0aa0cd85787d886f7cdcd40ffbcbff"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_list.html">List</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a></td></tr>
 <tr class="separator:a9c0aa0cd85787d886f7cdcd40ffbcbff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a56930dd269b3f2809f856eb97378c222"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a56930dd269b3f2809f856eb97378c222">nmesh_create</a> ()</td></tr>
-<tr class="separator:a56930dd269b3f2809f856eb97378c222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbf504e7945a9330f082e731cf23dc19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#adbf504e7945a9330f082e731cf23dc19">nmesh_remove</a> (<a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *nmesh)</td></tr>
-<tr class="separator:adbf504e7945a9330f082e731cf23dc19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36057d46a56098000d8f6dbf4e440e8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a36057d46a56098000d8f6dbf4e440e8a">nmesh_clone</a> (<a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *nmesh)</td></tr>
-<tr class="separator:a36057d46a56098000d8f6dbf4e440e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cad2ddb7b1b732a6e776c4fd9820cd7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a1cad2ddb7b1b732a6e776c4fd9820cd7">nmesh_add</a> (<a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *nmesh, VECTOR *pos)</td></tr>
-<tr class="separator:a1cad2ddb7b1b732a6e776c4fd9820cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cb5be3ae6f26fd047ed2f57762897af"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a0cb5be3ae6f26fd047ed2f57762897af">nmesh_nearest</a> (<a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *nmesh, VECTOR *pos)</td></tr>
-<tr class="separator:a0cb5be3ae6f26fd047ed2f57762897af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75ba528e91ee6dabed7451659aaf9c1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a75ba528e91ee6dabed7451659aaf9c1b">nmesh_find_route</a> (<a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *nmesh, int indexFrom, int indexTo)</td></tr>
-<tr class="separator:a75ba528e91ee6dabed7451659aaf9c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada81367d4b61ccbc6ab1198a746de7b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node_mesh.html">NodeMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#ada81367d4b61ccbc6ab1198a746de7b6">nodemesh_create</a> ()</td></tr>
+<tr class="separator:ada81367d4b61ccbc6ab1198a746de7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61656398eafd3350c98b8d977fe03af1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a61656398eafd3350c98b8d977fe03af1">nodemesh_remove</a> (<a class="el" href="struct_node_mesh.html">NodeMesh</a> *nodemesh)</td></tr>
+<tr class="separator:a61656398eafd3350c98b8d977fe03af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c97d77e4b4f0d1b790390873dd96812"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a4c97d77e4b4f0d1b790390873dd96812">nodemesh_add</a> (<a class="el" href="struct_node_mesh.html">NodeMesh</a> *nodemesh, VECTOR *pos)</td></tr>
+<tr class="separator:a4c97d77e4b4f0d1b790390873dd96812"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17fcafe5ab44b26a393954bacdc3676"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#ab17fcafe5ab44b26a393954bacdc3676">nodemesh_nearest</a> (<a class="el" href="struct_node_mesh.html">NodeMesh</a> *nodemesh, VECTOR *pos)</td></tr>
+<tr class="separator:ab17fcafe5ab44b26a393954bacdc3676"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac00421bf3cece0dfbaa6e74234565550"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#ac00421bf3cece0dfbaa6e74234565550">nodemesh_ctrace_node</a> (<a class="el" href="struct_node_mesh.html">NodeMesh</a> *nodemesh, int nodeindex)</td></tr>
+<tr class="separator:ac00421bf3cece0dfbaa6e74234565550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be24ca510d0d54c96e0ab527cbc1dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a6be24ca510d0d54c96e0ab527cbc1dac">nodemesh_find_route</a> (<a class="el" href="struct_node_mesh.html">NodeMesh</a> *nodemesh, int indexFrom, int indexTo)</td></tr>
+<tr class="separator:a6be24ca510d0d54c96e0ab527cbc1dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a168325c22e614e723e8fc9ebca104781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a168325c22e614e723e8fc9ebca104781">route_delete</a> (<a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a> *route)</td></tr>
 <tr class="separator:a168325c22e614e723e8fc9ebca104781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a48c4ee3d256f864bc98614bc4df19fd8"><td class="memItemLeft" align="right" valign="top">ENTITY *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a48c4ee3d256f864bc98614bc4df19fd8">nmesh_collider</a></td></tr>
-<tr class="separator:a48c4ee3d256f864bc98614bc4df19fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c8e9994061e3c70dc66c555c7f33744"><td class="memItemLeft" align="right" valign="top">ENTITY *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a8c8e9994061e3c70dc66c555c7f33744">nodemesh_collider</a> = NULL</td></tr>
+<tr class="separator:a8c8e9994061e3c70dc66c555c7f33744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="nodemesh_8h.html">nodemesh.h</a> provides a nodes collection management and pathfinder </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="a0d128c06babfe3e794a8d4a156dc310e"></a>
+<a class="anchor" id="a0466fc5f1bc9e6de776e48149b19c471"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="struct_list.html">List</a> <a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a></td>
+          <td class="memname">typedef struct <a class="el" href="struct_node.html">Node</a>  <a class="el" href="struct_node.html">Node</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Dependencies NodeMesh is used instead of <a class="el" href="struct_list.html">List</a> to give a clear difference between a normal list and a list of nodes. </p>
+<p>Dependencies </p>
 
 </div>
 </div>
@@ -157,15 +168,15 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a1cad2ddb7b1b732a6e776c4fd9820cd7"></a>
+<a class="anchor" id="a4c97d77e4b4f0d1b790390873dd96812"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int nmesh_add </td>
+          <td class="memname">int nodemesh_add </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *&#160;</td>
-          <td class="paramname"><em>nmesh</em>, </td>
+          <td class="paramtype"><a class="el" href="struct_node_mesh.html">NodeMesh</a> *&#160;</td>
+          <td class="paramname"><em>nodemesh</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -180,11 +191,18 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Adds a node to the nodemesh and builds it neighborhood with a c_trace. </p>
+<p>Clones a nodemesh. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nmesh</td><td>The nmesh. </td></tr>
-    <tr><td class="paramname">pos</td><td>The position of the node. </td></tr>
+    <tr><td class="paramname">nodemesh</td><td>The nodemesh to clone. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new nodemesh. Adds a node to the nodemesh and builds it neighborhood with a c_trace. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodemesh</td><td>The nodemesh. </td></tr>
+    <tr><td class="paramname">pos</td><td>The position of the node to be added. </td></tr>
   </table>
   </dd>
 </dl>
@@ -192,36 +210,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a36057d46a56098000d8f6dbf4e440e8a"></a>
+<a class="anchor" id="ada81367d4b61ccbc6ab1198a746de7b6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a>* nmesh_clone </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *&#160;</td>
-          <td class="paramname"><em>nmesh</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Clones a nmesh. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nmesh</td><td>The nmesh to clone. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A new nmesh. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a56930dd269b3f2809f856eb97378c222"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a>* nmesh_create </td>
+          <td class="memname"><a class="el" href="struct_node_mesh.html">NodeMesh</a>* nodemesh_create </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -233,15 +227,49 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a75ba528e91ee6dabed7451659aaf9c1b"></a>
+<a class="anchor" id="ac00421bf3cece0dfbaa6e74234565550"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a>* nmesh_find_route </td>
+          <td class="memname">void nodemesh_ctrace_node </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *&#160;</td>
-          <td class="paramname"><em>nmesh</em>, </td>
+          <td class="paramtype"><a class="el" href="struct_node_mesh.html">NodeMesh</a> *&#160;</td>
+          <td class="paramname"><em>nodemesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nodeindex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks the visibilty between a node and all the other nodes inside a nodemesh. Connects them if visible </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodemesh</td><td>The nodemesh. </td></tr>
+    <tr><td class="paramname">nodeindex</td><td>The index of the node. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6be24ca510d0d54c96e0ab527cbc1dac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a>* nodemesh_find_route </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_node_mesh.html">NodeMesh</a> *&#160;</td>
+          <td class="paramname"><em>nodemesh</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -265,7 +293,7 @@ Variables</h2></td></tr>
 <p>Looks for a route between two nodes. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nmesh</td><td>The nmesh. </td></tr>
+    <tr><td class="paramname">nodemesh</td><td>The nodemesh. </td></tr>
     <tr><td class="paramname">indexFrom</td><td>The index of the starting node </td></tr>
     <tr><td class="paramname">indexTo</td><td>The index of the ending node </td></tr>
   </table>
@@ -275,15 +303,15 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0cb5be3ae6f26fd047ed2f57762897af"></a>
+<a class="anchor" id="ab17fcafe5ab44b26a393954bacdc3676"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int nmesh_nearest </td>
+          <td class="memname">int nodemesh_nearest </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *&#160;</td>
-          <td class="paramname"><em>nmesh</em>, </td>
+          <td class="paramtype"><a class="el" href="struct_node_mesh.html">NodeMesh</a> *&#160;</td>
+          <td class="paramname"><em>nodemesh</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -301,32 +329,32 @@ Variables</h2></td></tr>
 <p>Looks for the nearest node to a certain position. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nmesh</td><td>The nmesh. </td></tr>
+    <tr><td class="paramname">nodemesh</td><td>The nodemesh. </td></tr>
     <tr><td class="paramname">pos</td><td>The position . </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The node index in the nodemesh list. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the node in the nodemesh list. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="adbf504e7945a9330f082e731cf23dc19"></a>
+<a class="anchor" id="a61656398eafd3350c98b8d977fe03af1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void nmesh_remove </td>
+          <td class="memname">void nodemesh_remove </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="nodemesh_8h.html#a0d128c06babfe3e794a8d4a156dc310e">NodeMesh</a> *&#160;</td>
-          <td class="paramname"><em>nmesh</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_node_mesh.html">NodeMesh</a> *&#160;</td>
+          <td class="paramname"><em>nodemesh</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Deletes a nmesh. </p>
+<p>Deletes a nodemesh. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nmesh</td><td>The nmesh to delete. </td></tr>
+    <tr><td class="paramname">nodemesh</td><td>The nodemesh to delete. </td></tr>
   </table>
   </dd>
 </dl>
@@ -357,24 +385,24 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a48c4ee3d256f864bc98614bc4df19fd8"></a>
+<a class="anchor" id="a8c8e9994061e3c70dc66c555c7f33744"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ENTITY* nmesh_collider</td>
+          <td class="memname">ENTITY* nodemesh_collider = NULL</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Builds a nodemesh from an entity path. </p>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the new nodemesh. A pointer to the nmesh constructor collision entity </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the new nodemesh. A pointer to the nodemesh constructor collision entity </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 7 2013 15:14:16 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 19 2013 11:20:06 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
