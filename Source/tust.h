@@ -78,10 +78,15 @@ VECTOR *vec_create(var x, var y, var z);
  */
 void draw_font(STRING* text, var x, var y, COLOR* color, FONT *font, int flags, var alpha);
 
+
+/**
+ * \defgroup GenericScriptLibrary Generic Script Library
+ */
+
+
 #include "fs.h"
 #include "ini.h"
 #include "list.h"
-#include "trash.h"
 #include "math.h"
 #include "dialogs.h"
 #include "network.h"
@@ -94,6 +99,8 @@ void draw_font(STRING* text, var x, var y, COLOR* color, FONT *font, int flags, 
 #include "state_machine.h"
 #include "nodemesh.h"
 #include "compact_menu.h"
+#include "trash.h"
+
 
 #ifdef _TEMPLATE_H_
 	#error Template include guard still exists!

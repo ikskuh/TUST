@@ -1,6 +1,6 @@
 #include <acknex.h>
 #include <default.c>
-#include "..\\Source\\tust.h"
+#include "..\\Source\\trash.h"
 
 #define LOOPS		20
 
@@ -11,10 +11,11 @@ function main()
 	wait(1);
 	def_debug();
 	level_load ( "" );
+	trash_open ();
 	
 	wait(-1);
 	error ( "Create a 10 entities trash with 'ent_remove' as item remover" );
-	Trash *EntityTrash = trash_create ( 10, ent_remove );
+	TrashCollector *EntityTrash = trash_create ( 10, ent_remove );
 	
 	error ( "Create many entities" );
 	error ( str_for_int(NULL,LOOPS) );
@@ -56,7 +57,7 @@ function main()
 	
 	trash_remove ( EntityTrash );
 	
-	it_trash_close (); // <-need a global solution
+	trash_close (); // <-needs a global solution
 	
 	sys_exit ( NULL );
 }

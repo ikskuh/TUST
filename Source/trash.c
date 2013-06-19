@@ -1,27 +1,24 @@
 #include <acknex.h>
 #include "trash.h"
 
-/**
- * trash to contain recyclable trashitem structs.
- */
-Trash *itTrash;
+TrashCollector *itTrash;
 
-void trashitem_remover ( void *item );
+void trashitem_remover ( TrashItem *item );
 
 void trashitem_free ( TrashItem *item )
 {
 	sys_free(item);
 }
 
-void trash_startup ()
+void trash_open ()
 {
 	itTrash = trash_create ( 10, trashitem_free );
 }
 
-void it_trash_close ()
+void trash_close ()
 {
 	TrashItem *it = itTrash->first;
-	for ( it = itTrash->first; it != NULL; )
+	for ( ; it != NULL; )
 	{
 		TrashItem *next = it->next;
 		sys_free ( it->data );
@@ -30,9 +27,9 @@ void it_trash_close ()
 	}
 }
 
-Trash *trash_create ( int items_max, void *remove_function )
+TrashCollector *trash_create ( int items_max, TrashRemover *remove_function )
 {
-	Trash *trash = sys_malloc(sizeof(Trash));
+	TrashCollector *trash = sys_malloc(sizeof(TrashCollector));
 	trash->first = NULL;
 	trash->top = maxv(items_max,1);
 	trash->count = 0;
@@ -40,13 +37,13 @@ Trash *trash_create ( int items_max, void *remove_function )
 	return trash;
 }
 
-void trash_remove ( Trash *trash )
+void trash_remove ( TrashCollector *trash )
 {
 	trash_clear ( trash );
 	sys_free ( trash );
 }
 
-void trash_add ( Trash *trash, TrashData *data )
+void trash_add ( TrashCollector *trash, TrashData *data )
 {
 	if ( trash->count < trash->top )
 	{
@@ -61,19 +58,17 @@ void trash_add ( Trash *trash, TrashData *data )
 	}
 	else
 	{
-		trashitem_remover = trash->delete_function;
-		trashitem_remover ( data );
+		trash->delete_function ( data );
 	}
 }
 
-void trash_clear ( Trash *trash )
+void trash_clear ( TrashCollector *trash )
 {
 	TrashItem *it = trash->first;
-	for ( it = trash->first; it != NULL; )
+	for ( ; it != NULL; )
 	{
 		TrashItem *next = it->next;
-		trashitem_remover = trash->delete_function;
-		trashitem_remover ( it->data );
+		trash->delete_function ( it->data );
 		trash_add ( itTrash, it );
 		it = next;
 	}
@@ -83,7 +78,7 @@ void trash_clear ( Trash *trash )
 	trash->delete_function = NULL;
 }
 
-TrashData *trash_recover ( Trash *trash )
+TrashData *trash_recover ( TrashCollector *trash )
 {
 	if ( trash->first == NULL )
 		return NULL;
