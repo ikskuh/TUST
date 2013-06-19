@@ -19,7 +19,6 @@ var searchData=
   ['net_5fskill_5fpos_5fz',['NET_SKILL_POS_Z',['../network_8h.html#a46eb167adc178b4b14487aab2670a074',1,'network.h']]],
   ['network_2eh',['network.h',['../network_8h.html',1,'']]],
   ['node',['Node',['../struct_node.html',1,'Node'],['../nodemesh_8h.html#a0466fc5f1bc9e6de776e48149b19c471',1,'Node():&#160;nodemesh.h']]],
-  ['nodemesh',['NodeMesh',['../struct_node_mesh.html',1,'']]],
   ['nodemesh_2eh',['nodemesh.h',['../nodemesh_8h.html',1,'']]],
   ['nodemesh_5fadd',['nodemesh_add',['../nodemesh_8h.html#a4c97d77e4b4f0d1b790390873dd96812',1,'nodemesh.c']]],
   ['nodemesh_5fcollider',['nodemesh_collider',['../nodemesh_8h.html#a8c8e9994061e3c70dc66c555c7f33744',1,'nodemesh.h']]],

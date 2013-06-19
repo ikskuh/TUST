@@ -20,6 +20,5 @@ var searchData=
   ['vo_5fget_5fpoint_5fcount',['vo_get_point_count',['../proc__city_8h.html#ac6722681e7fd900923d7b460daf16f78',1,'dllmain.cpp']]],
   ['vo_5fget_5fresult_5fat',['vo_get_result_at',['../proc__city_8h.html#a110929480151ce0ed04f6b8cd2773d12',1,'proc_city.h']]],
   ['vo_5fget_5fresult_5fcount',['vo_get_result_count',['../proc__city_8h.html#ac1f8bd26397545618f02847664f1ea5f',1,'dllmain.cpp']]],
-  ['vo_5finit',['vo_init',['../proc__city_8h.html#a298dffe41348c05f45ee22167dc62f50',1,'dllmain.cpp']]],
-  ['voronoidiagramgenerator',['VoronoiDiagramGenerator',['../class_voronoi_diagram_generator.html',1,'']]]
+  ['vo_5finit',['vo_init',['../proc__city_8h.html#a298dffe41348c05f45ee22167dc62f50',1,'dllmain.cpp']]]
 ];

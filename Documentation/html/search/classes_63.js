@@ -6,22 +6,11 @@ var searchData=
   ['cimg_3c_20floatt_20_3e',['CImg&lt; floatT &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
   ['cimg_3c_20tdouble_20_3e',['CImg&lt; Tdouble &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
   ['cimg_3c_20uintt_20_3e',['CImg&lt; uintT &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
-  ['cimgargumentexception',['CImgArgumentException',['../structcimg__library__suffixed_1_1_c_img_argument_exception.html',1,'cimg_library_suffixed']]],
   ['cimgdisplay',['CImgDisplay',['../structcimg__library__suffixed_1_1_c_img_display.html',1,'cimg_library_suffixed']]],
-  ['cimgdisplayexception',['CImgDisplayException',['../structcimg__library__suffixed_1_1_c_img_display_exception.html',1,'cimg_library_suffixed']]],
   ['cimgexception',['CImgException',['../structcimg__library__suffixed_1_1_c_img_exception.html',1,'cimg_library_suffixed']]],
-  ['cimginstanceexception',['CImgInstanceException',['../structcimg__library__suffixed_1_1_c_img_instance_exception.html',1,'cimg_library_suffixed']]],
-  ['cimgioexception',['CImgIOException',['../structcimg__library__suffixed_1_1_c_img_i_o_exception.html',1,'cimg_library_suffixed']]],
   ['cimglist',['CImgList',['../structcimg__library__suffixed_1_1_c_img_list.html',1,'cimg_library_suffixed']]],
   ['cimglist_3c_20chart_20_3e',['CImgList&lt; charT &gt;',['../structcimg__library__suffixed_1_1_c_img_list.html',1,'cimg_library_suffixed']]],
   ['cimglist_3c_20uintt_20_3e',['CImgList&lt; uintT &gt;',['../structcimg__library__suffixed_1_1_c_img_list.html',1,'cimg_library_suffixed']]],
-  ['cimgwarningexception',['CImgWarningException',['../structcimg__library__suffixed_1_1_c_img_warning_exception.html',1,'cimg_library_suffixed']]],
   ['cllist',['CLLIST',['../struct_c_l_l_i_s_t.html',1,'']]],
-  ['cltext',['CLTEXT',['../struct_c_l_t_e_x_t.html',1,'']]],
-  ['cmclass',['CMCLASS',['../struct_c_m_c_l_a_s_s.html',1,'']]],
-  ['cmdigit',['CMDIGIT',['../struct_c_m_d_i_g_i_t.html',1,'']]],
-  ['cmmember',['CMMEMBER',['../struct_c_m_m_e_m_b_e_r.html',1,'']]],
-  ['cmslider',['CMSLIDER',['../struct_c_m_s_l_i_d_e_r.html',1,'']]],
-  ['cmstyle',['CMSTYLE',['../struct_c_m_s_t_y_l_e.html',1,'']]],
-  ['compact_5fmenu',['COMPACT_MENU',['../struct_c_o_m_p_a_c_t___m_e_n_u.html',1,'']]]
+  ['cltext',['CLTEXT',['../struct_c_l_t_e_x_t.html',1,'']]]
 ];

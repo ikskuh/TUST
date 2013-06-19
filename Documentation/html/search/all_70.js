@@ -6,7 +6,6 @@ var searchData=
   ['pi',['PI',['../namespacecimg__library__suffixed_1_1cimg.html#af1864f3c9389e27966891b286b442980',1,'cimg_library_suffixed::cimg']]],
   ['pixel_5ftype',['pixel_type',['../structcimg__library__suffixed_1_1_c_img.html#ab5cb3e6f07f2cd894641aa6a26807c1e',1,'cimg_library_suffixed::CImg::pixel_type()'],['../structcimg__library__suffixed_1_1_c_img_list.html#a55a11e1b7827dac9e38f29e1c4cfb3ec',1,'cimg_library_suffixed::CImgList::pixel_type()']]],
   ['plane3d',['plane3d',['../structcimg__library__suffixed_1_1_c_img.html#a38bca8940aa19a72153372c6615a0c61',1,'cimg_library_suffixed::CImg']]],
-  ['point',['Point',['../struct_point.html',1,'']]],
   ['point_5fto_5fline2d_5fdist',['point_to_line2D_dist',['../math_8h.html#a8bd2699511031abba46369ad730dffc1',1,'math.c']]],
   ['point_5fto_5fline2d_5fescalar',['point_to_line2D_escalar',['../math_8h.html#a2d502c28812d6b01a0ba81ca64f95530',1,'math.c']]],
   ['pop_5fback',['pop_back',['../structcimg__library__suffixed_1_1_c_img_list.html#ac619bd8222ff38259b6f891ae3f646bb',1,'cimg_library_suffixed::CImgList']]],

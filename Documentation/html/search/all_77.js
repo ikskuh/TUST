@@ -13,6 +13,5 @@ var searchData=
   ['window_5fheight',['window_height',['../structcimg__library__suffixed_1_1_c_img_display.html#acf4db659d35da6a2c2fcd52abafb47d2',1,'cimg_library_suffixed::CImgDisplay']]],
   ['window_5fwidth',['window_width',['../structcimg__library__suffixed_1_1_c_img_display.html#a452ab40c1716503c6e22cb17a76acafe',1,'cimg_library_suffixed::CImgDisplay']]],
   ['window_5fx',['window_x',['../structcimg__library__suffixed_1_1_c_img_display.html#a86c6e533ad4f79fda80e2bbcaf921ceb',1,'cimg_library_suffixed::CImgDisplay']]],
-  ['window_5fy',['window_y',['../structcimg__library__suffixed_1_1_c_img_display.html#ae61526fed26a0538ef4d22b8761785c6',1,'cimg_library_suffixed::CImgDisplay']]],
-  ['wkerect',['wkeRect',['../structwke_rect.html',1,'']]]
+  ['window_5fy',['window_y',['../structcimg__library__suffixed_1_1_c_img_display.html#ae61526fed26a0538ef4d22b8761785c6',1,'cimg_library_suffixed::CImgDisplay']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['trash',['Trash',['../trash_8h.html#a151e3192d837776a332f6287d9b73d7e',1,'trash.h']]],
-  ['trashdata',['TrashData',['../trash_8h.html#a62ab731698c00862181606003d3d08c6',1,'trash.h']]],
-  ['trashitem',['TrashItem',['../trash_8h.html#a4c70577dff6bf9e99ac623021acde3f5',1,'trash.h']]]
+  ['trashdata',['TrashData',['../group___trash_group.html#ga45a760137d674746d9590cec9c3d4cbf',1,'trash.h']]],
+  ['trashremover',['TrashRemover',['../group___trash_group.html#gaff1dbf897c25d92e7c88c38c17d05753',1,'trash.h']]]
 ];
