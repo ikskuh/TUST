@@ -13,7 +13,7 @@ var searchData=
   ['first',['first',['../struct_list.html#a97f88af611098c8b5a96d15f5648016e',1,'List']]],
   ['flag_5flut256',['flag_LUT256',['../structcimg__library__suffixed_1_1_c_img.html#adb5bd770cc77e0989d01df4498f5138c',1,'cimg_library_suffixed::CImg']]],
   ['flush',['flush',['../structcimg__library__suffixed_1_1_c_img_display.html#a260b55ecbe9f4648a045357f8906f3c7',1,'cimg_library_suffixed::CImgDisplay']]],
-  ['font',['font',['../structcimg__library__suffixed_1_1_c_img_list.html#a441d9e2202042bdc332a31709abfceee',1,'cimg_library_suffixed::CImgList']]],
+  ['font',['FONT',['../class_f_o_n_t.html',1,'FONT'],['../structcimg__library__suffixed_1_1_c_img_list.html#a441d9e2202042bdc332a31709abfceee',1,'cimg_library_suffixed::CImgList::font()']]],
   ['fopen',['fopen',['../namespacecimg__library__suffixed_1_1cimg.html#a9aafdb8732ff87625052ce2723f8a516',1,'cimg_library_suffixed::cimg']]],
   ['frames_5fper_5fsecond',['frames_per_second',['../structcimg__library__suffixed_1_1_c_img_display.html#ac98fc29fc303ea835a630ab2253cb7b4',1,'cimg_library_suffixed::CImgDisplay']]],
   ['fread',['fread',['../namespacecimg__library__suffixed_1_1cimg.html#a7cd7bd152a6e4f6fec78001ee210ccd3',1,'cimg_library_suffixed::cimg']]],

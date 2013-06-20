@@ -92,313 +92,71 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">nodemesh.h File Reference</div>  </div>
+<div class="title">nodemesh.h File Reference<div class="ingroups"><a class="el" href="group___node_mesh_module.html">NodeMesh</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Node based pathfinder header.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br/>
-<code>#include &quot;nodemesh.c&quot;</code><br/>
+<code>#include &quot;<a class="el" href="nodemesh_8c.html">nodemesh.c</a>&quot;</code><br/>
 </div>
 <p><a href="nodemesh_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node.html">Node</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_node_mesh"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#struct_node_mesh">NodeMesh</a></td></tr>
+<tr class="memdesc:struct_node_mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic <a class="el" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> struct.  <a href="group___node_mesh_module.html#struct_node_mesh">More...</a><br/></td></tr>
+<tr class="separator:struct_node_mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a0466fc5f1bc9e6de776e48149b19c471"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_node.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a0466fc5f1bc9e6de776e48149b19c471">Node</a></td></tr>
-<tr class="separator:a0466fc5f1bc9e6de776e48149b19c471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c0aa0cd85787d886f7cdcd40ffbcbff"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_list.html">List</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a></td></tr>
-<tr class="separator:a9c0aa0cd85787d886f7cdcd40ffbcbff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae83ea6d2a88c164378d1a8035f216e69"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae83ea6d2a88c164378d1a8035f216e69"></a>
+typedef struct <a class="el" href="group___node_mesh_module.html#struct_node_mesh">NodeMesh</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#gae83ea6d2a88c164378d1a8035f216e69">NodeMesh</a></td></tr>
+<tr class="memdesc:gae83ea6d2a88c164378d1a8035f216e69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic <a class="el" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> struct. <br/></td></tr>
+<tr class="separator:gae83ea6d2a88c164378d1a8035f216e69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9c0aa0cd85787d886f7cdcd40ffbcbff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9c0aa0cd85787d886f7cdcd40ffbcbff"></a>
+typedef <a class="el" href="struct_list.html">List</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#ga9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a></td></tr>
+<tr class="memdesc:ga9c0aa0cd85787d886f7cdcd40ffbcbff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Route is used instead of <a class="el" href="struct_list.html">List</a> to give a clear difference between a normal list and a route of nodes. <br/></td></tr>
+<tr class="separator:ga9c0aa0cd85787d886f7cdcd40ffbcbff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ada81367d4b61ccbc6ab1198a746de7b6"><td class="memItemLeft" align="right" valign="top">NodeMesh *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#ada81367d4b61ccbc6ab1198a746de7b6">nodemesh_create</a> ()</td></tr>
-<tr class="separator:ada81367d4b61ccbc6ab1198a746de7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61656398eafd3350c98b8d977fe03af1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a61656398eafd3350c98b8d977fe03af1">nodemesh_remove</a> (NodeMesh *nodemesh)</td></tr>
-<tr class="separator:a61656398eafd3350c98b8d977fe03af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c97d77e4b4f0d1b790390873dd96812"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a4c97d77e4b4f0d1b790390873dd96812">nodemesh_add</a> (NodeMesh *nodemesh, VECTOR *pos)</td></tr>
-<tr class="separator:a4c97d77e4b4f0d1b790390873dd96812"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab17fcafe5ab44b26a393954bacdc3676"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#ab17fcafe5ab44b26a393954bacdc3676">nodemesh_nearest</a> (NodeMesh *nodemesh, VECTOR *pos)</td></tr>
-<tr class="separator:ab17fcafe5ab44b26a393954bacdc3676"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac00421bf3cece0dfbaa6e74234565550"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#ac00421bf3cece0dfbaa6e74234565550">nodemesh_ctrace_node</a> (NodeMesh *nodemesh, int nodeindex)</td></tr>
-<tr class="separator:ac00421bf3cece0dfbaa6e74234565550"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6be24ca510d0d54c96e0ab527cbc1dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a6be24ca510d0d54c96e0ab527cbc1dac">nodemesh_find_route</a> (NodeMesh *nodemesh, int indexFrom, int indexTo)</td></tr>
-<tr class="separator:a6be24ca510d0d54c96e0ab527cbc1dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a168325c22e614e723e8fc9ebca104781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a168325c22e614e723e8fc9ebca104781">route_delete</a> (<a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a> *route)</td></tr>
-<tr class="separator:a168325c22e614e723e8fc9ebca104781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gada81367d4b61ccbc6ab1198a746de7b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___node_mesh_module.html#struct_node_mesh">NodeMesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#gada81367d4b61ccbc6ab1198a746de7b6">nodemesh_create</a> ()</td></tr>
+<tr class="memdesc:gada81367d4b61ccbc6ab1198a746de7b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new nodemesh.  <a href="group___node_mesh_module.html#gada81367d4b61ccbc6ab1198a746de7b6">More...</a><br/></td></tr>
+<tr class="separator:gada81367d4b61ccbc6ab1198a746de7b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga61656398eafd3350c98b8d977fe03af1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#ga61656398eafd3350c98b8d977fe03af1">nodemesh_remove</a> (<a class="el" href="group___node_mesh_module.html#struct_node_mesh">NodeMesh</a> *nodemesh)</td></tr>
+<tr class="memdesc:ga61656398eafd3350c98b8d977fe03af1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a nodemesh.  <a href="group___node_mesh_module.html#ga61656398eafd3350c98b8d977fe03af1">More...</a><br/></td></tr>
+<tr class="separator:ga61656398eafd3350c98b8d977fe03af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c97d77e4b4f0d1b790390873dd96812"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#ga4c97d77e4b4f0d1b790390873dd96812">nodemesh_add</a> (<a class="el" href="group___node_mesh_module.html#struct_node_mesh">NodeMesh</a> *nodemesh, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *pos)</td></tr>
+<tr class="memdesc:ga4c97d77e4b4f0d1b790390873dd96812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a node to the nodemesh and builds it neighborhood with a c_trace.  <a href="group___node_mesh_module.html#ga4c97d77e4b4f0d1b790390873dd96812">More...</a><br/></td></tr>
+<tr class="separator:ga4c97d77e4b4f0d1b790390873dd96812"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab17fcafe5ab44b26a393954bacdc3676"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#gab17fcafe5ab44b26a393954bacdc3676">nodemesh_nearest</a> (<a class="el" href="group___node_mesh_module.html#struct_node_mesh">NodeMesh</a> *nodemesh, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *pos)</td></tr>
+<tr class="memdesc:gab17fcafe5ab44b26a393954bacdc3676"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks for the nearest node to a certain position.  <a href="group___node_mesh_module.html#gab17fcafe5ab44b26a393954bacdc3676">More...</a><br/></td></tr>
+<tr class="separator:gab17fcafe5ab44b26a393954bacdc3676"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac00421bf3cece0dfbaa6e74234565550"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#gac00421bf3cece0dfbaa6e74234565550">nodemesh_ctrace_node</a> (<a class="el" href="group___node_mesh_module.html#struct_node_mesh">NodeMesh</a> *nodemesh, int nodeindex)</td></tr>
+<tr class="memdesc:gac00421bf3cece0dfbaa6e74234565550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the visibilty between a node and all the other nodes inside a nodemesh. Connects them if visible.  <a href="group___node_mesh_module.html#gac00421bf3cece0dfbaa6e74234565550">More...</a><br/></td></tr>
+<tr class="separator:gac00421bf3cece0dfbaa6e74234565550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6be24ca510d0d54c96e0ab527cbc1dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___node_mesh_module.html#ga9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#ga6be24ca510d0d54c96e0ab527cbc1dac">nodemesh_find_route</a> (<a class="el" href="group___node_mesh_module.html#struct_node_mesh">NodeMesh</a> *nodemesh, int indexFrom, int indexTo)</td></tr>
+<tr class="memdesc:ga6be24ca510d0d54c96e0ab527cbc1dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks for a route between two nodes.  <a href="group___node_mesh_module.html#ga6be24ca510d0d54c96e0ab527cbc1dac">More...</a><br/></td></tr>
+<tr class="separator:ga6be24ca510d0d54c96e0ab527cbc1dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga168325c22e614e723e8fc9ebca104781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#ga168325c22e614e723e8fc9ebca104781">route_delete</a> (<a class="el" href="group___node_mesh_module.html#ga9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a> *route)</td></tr>
+<tr class="memdesc:ga168325c22e614e723e8fc9ebca104781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a route.  <a href="group___node_mesh_module.html#ga168325c22e614e723e8fc9ebca104781">More...</a><br/></td></tr>
+<tr class="separator:ga168325c22e614e723e8fc9ebca104781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a8c8e9994061e3c70dc66c555c7f33744"><td class="memItemLeft" align="right" valign="top">ENTITY *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nodemesh_8h.html#a8c8e9994061e3c70dc66c555c7f33744">nodemesh_collider</a> = NULL</td></tr>
-<tr class="separator:a8c8e9994061e3c70dc66c555c7f33744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8c8e9994061e3c70dc66c555c7f33744"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8c8e9994061e3c70dc66c555c7f33744"></a>
+<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___node_mesh_module.html#ga8c8e9994061e3c70dc66c555c7f33744">nodemesh_collider</a> = NULL</td></tr>
+<tr class="memdesc:ga8c8e9994061e3c70dc66c555c7f33744"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the nodemesh constructor collision entity. <br/></td></tr>
+<tr class="separator:ga8c8e9994061e3c70dc66c555c7f33744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="nodemesh_8h.html">nodemesh.h</a> provides a nodes collection management and pathfinder </p>
-</div><h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="a0466fc5f1bc9e6de776e48149b19c471"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct_node.html">Node</a>  <a class="el" href="struct_node.html">Node</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Dependencies </p>
-
-</div>
-</div>
-<a class="anchor" id="a9c0aa0cd85787d886f7cdcd40ffbcbff"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="struct_list.html">List</a> <a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Route is used instead of <a class="el" href="struct_list.html">List</a> to give a clear difference between a normal list and a route of nodes. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a4c97d77e4b4f0d1b790390873dd96812"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int nodemesh_add </td>
-          <td>(</td>
-          <td class="paramtype">NodeMesh *&#160;</td>
-          <td class="paramname"><em>nodemesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">VECTOR *&#160;</td>
-          <td class="paramname"><em>pos</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Clones a nodemesh. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nodemesh</td><td>The nodemesh to clone. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A new nodemesh. Adds a node to the nodemesh and builds it neighborhood with a c_trace. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nodemesh</td><td>The nodemesh. </td></tr>
-    <tr><td class="paramname">pos</td><td>The position of the node to be added. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The node index in the nodemesh list. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ada81367d4b61ccbc6ab1198a746de7b6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">NodeMesh* nodemesh_create </td>
-          <td>(</td>
-          <td class="paramname">)</td><td></td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Creates a new nodemesh. </p>
-<dl class="section return"><dt>Returns</dt><dd>A new nodemesh. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ac00421bf3cece0dfbaa6e74234565550"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void nodemesh_ctrace_node </td>
-          <td>(</td>
-          <td class="paramtype">NodeMesh *&#160;</td>
-          <td class="paramname"><em>nodemesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nodeindex</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Checks the visibilty between a node and all the other nodes inside a nodemesh. Connects them if visible </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nodemesh</td><td>The nodemesh. </td></tr>
-    <tr><td class="paramname">nodeindex</td><td>The index of the node. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a6be24ca510d0d54c96e0ab527cbc1dac"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a>* nodemesh_find_route </td>
-          <td>(</td>
-          <td class="paramtype">NodeMesh *&#160;</td>
-          <td class="paramname"><em>nodemesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indexFrom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indexTo</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Looks for a route between two nodes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nodemesh</td><td>The nodemesh. </td></tr>
-    <tr><td class="paramname">indexFrom</td><td>The index of the starting node </td></tr>
-    <tr><td class="paramname">indexTo</td><td>The index of the ending node </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A new route between nodes. NULL in the case there is no route. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ab17fcafe5ab44b26a393954bacdc3676"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int nodemesh_nearest </td>
-          <td>(</td>
-          <td class="paramtype">NodeMesh *&#160;</td>
-          <td class="paramname"><em>nodemesh</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">VECTOR *&#160;</td>
-          <td class="paramname"><em>pos</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Looks for the nearest node to a certain position. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nodemesh</td><td>The nodemesh. </td></tr>
-    <tr><td class="paramname">pos</td><td>The position . </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The index of the node in the nodemesh list. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a61656398eafd3350c98b8d977fe03af1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void nodemesh_remove </td>
-          <td>(</td>
-          <td class="paramtype">NodeMesh *&#160;</td>
-          <td class="paramname"><em>nodemesh</em>)</td><td></td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Deletes a nodemesh. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nodemesh</td><td>The nodemesh to delete. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a168325c22e614e723e8fc9ebca104781"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void route_delete </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="nodemesh_8h.html#a9c0aa0cd85787d886f7cdcd40ffbcbff">Route</a> *&#160;</td>
-          <td class="paramname"><em>route</em>)</td><td></td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Deletes a route. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">route</td><td>The route to delete. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a8c8e9994061e3c70dc66c555c7f33744"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ENTITY* nodemesh_collider = NULL</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Builds a nodemesh from an entity path. </p>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the new nodemesh. A pointer to the nodemesh constructor collision entity </dd></dl>
-
-</div>
-</div>
-</div><!-- contents -->
+<div class="textblock"><p>Node based pathfinder header. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 19 2013 15:20:53 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 20 2013 15:36:50 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

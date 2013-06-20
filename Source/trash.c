@@ -1,3 +1,13 @@
+
+/* The Ultimate Script Library 
+-----------------------------------------------------------------------------------
+   Module: Trash
+   Linked trash or stack implementation.
+
+   Read the documentation for further information: TUST\Documentation\index.html
+----------------------------------------------------------------------------------- 
+*/
+
 #include <acknex.h>
 #include "trash.h"
 

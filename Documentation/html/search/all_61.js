@@ -5,6 +5,7 @@ var searchData=
   ['acthero',['actHero',['../cct_8h.html#a881653abfb7d7b090576a2f6fe9a2197',1,'cct.c']]],
   ['ang_5flerp',['ang_lerp',['../math_8h.html#a85fd94060f0d46d9e7ec9325a13e7832',1,'math.c']]],
   ['ang_5flerp_5fsingle',['ang_lerp_single',['../math_8h.html#a26f0647978690bd69a18b76fdfc84516',1,'math.c']]],
+  ['angle',['ANGLE',['../class_a_n_g_l_e.html',1,'']]],
   ['append',['append',['../structcimg__library__suffixed_1_1_c_img.html#a66b642b7548536f9dfe0328207e37ef4',1,'cimg_library_suffixed::CImg::append(const CImg&lt; t &gt; &amp;img, const char axis=&apos;x&apos;, const float align=0)'],['../structcimg__library__suffixed_1_1_c_img.html#a07fd2a69e02ca2fa66fc81b28468a9f1',1,'cimg_library_suffixed::CImg::append(const CImg&lt; T &gt; &amp;img, const char axis=&apos;x&apos;, const float align=0)']]],
   ['append_5fobject3d',['append_object3d',['../structcimg__library__suffixed_1_1_c_img.html#af97fedf01cd4a4d8b7e0d11d519981e8',1,'cimg_library_suffixed::CImg']]],
   ['asin',['asin',['../structcimg__library__suffixed_1_1_c_img.html#af21cdfa737adecc1d4f261f5a3a27e3b',1,'cimg_library_suffixed::CImg']]],

@@ -125,119 +125,119 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_OPTIONS_INPUT 8</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MENU_CREDITS 9</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;FONT* fontMenu = <span class="stringliteral">&quot;Arial#12b&quot;</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<a class="code" href="class_f_o_n_t.html" title="The FONT struct is defined in GStudio8\include\atypes.h. ">FONT</a>* fontMenu = <span class="stringliteral">&quot;Arial#12b&quot;</span>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">int</span> nCurrentMenu            = 0;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> nMenuVisible            = 0;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">int</span> nMessageBoxResult   = 0;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;BMAP* bmapMenuButtonOn          = NULL;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;BMAP* bmapMenuButtonOff         = NULL;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;BMAP* bmapOptionsChoiceBg       = NULL;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;BMAP* bmapOptionsBg             = NULL;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapMenuButtonOn          = NULL;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapMenuButtonOff         = NULL;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapOptionsChoiceBg       = NULL;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapOptionsBg             = NULL;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;BMAP* bmapComboboxOn                = NULL;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;BMAP* bmapComboboxOff           = NULL;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapComboboxOn                = NULL;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapComboboxOff           = NULL;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;BMAP* bmapSaveSlotOn                = NULL;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;BMAP* bmapSaveSlotOff           = NULL;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapSaveSlotOn                = NULL;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapSaveSlotOff           = NULL;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;BMAP* bmapSliderBg              = NULL;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;BMAP* bmapSliderKnob                = NULL;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapSliderBg              = NULL;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapSliderKnob                = NULL;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;BMAP* bmapCheckBoxCheckedOn = NULL;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;BMAP* bmapCheckBoxCheckedOff    = NULL;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;BMAP* bmapCheckBoxUncheckedOn   = NULL;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;BMAP* bmapCheckBoxUncheckedOff= NULL;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapCheckBoxCheckedOn = NULL;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapCheckBoxCheckedOff    = NULL;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapCheckBoxUncheckedOn   = NULL;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapCheckBoxUncheckedOff= NULL;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;BMAP* bmapKeyButtonOn           = NULL;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;BMAP* bmapKeyButtonOff          = NULL;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapKeyButtonOn           = NULL;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapKeyButtonOff          = NULL;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;PANEL* panStartMenu             = NULL;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;PANEL* panInGameMenu                = NULL;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;PANEL* panLoadMenu              = NULL;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;PANEL* panSaveMenu              = NULL;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;PANEL* panOptionsMenu           = NULL; <span class="comment">// The top bar to switch between option panels</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;PANEL* panOptionsGame           = NULL;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    PANEL* panOptionsGameDifficulty = NULL;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        TEXT* txtOptionsGameEasy                    = NULL;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        TEXT* txtOptionsGameMedium                  = NULL;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        TEXT* txtOptionsGameHard                    = NULL;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;PANEL* panOptionsGraphics       = NULL;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    PANEL* panOptionsGraphicsDetails                = NULL;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        TEXT* txtOptionsGraphicsDetailsLow      = NULL;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        TEXT* txtOptionsGraphicsDetailsMedium   = NULL;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        TEXT* txtOptionsGraphicsDetailsHigh     = NULL;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    PANEL* panOptionsGraphicsAntiAliasing       = NULL;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        TEXT* txtOptionsGraphicsAAOff               = NULL;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        TEXT* txtOptionsGraphicsAA1x                = NULL;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        TEXT* txtOptionsGraphicsAA4x                = NULL;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        TEXT* txtOptionsGraphicsAA9x                = NULL;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    PANEL* panOptionsGraphicsResolutionList = NULL;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        TEXT* txtResCurrent         = NULL;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        TEXT* txtRes800x600         = NULL;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        TEXT* txtRes1024x768            = NULL;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        TEXT* txtRes1280x1024       = NULL;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        TEXT* txtRes1400x1050       = NULL;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        TEXT* txtRes1600x1200       = NULL;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        TEXT* txtRes1920x1200       = NULL;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;PANEL* panOptionsAudio          = NULL;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;PANEL* panOptionsInput          = NULL;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;PANEL* panGraphicMenu           = NULL;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;PANEL* panAudioMenu             = NULL;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;PANEL* panInputMenu             = NULL;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    PANEL* panInputMenuKeys     = NULL;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    TEXT** txtInputMenuKeyNames= NULL;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    TEXT** txtInputMenuKeyValues= NULL;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;PANEL* panCreditsMenu           = NULL;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panStartMenu             = NULL;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panInGameMenu                = NULL;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panLoadMenu              = NULL;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panSaveMenu              = NULL;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panOptionsMenu           = NULL; <span class="comment">// The top bar to switch between option panels</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panOptionsGame           = NULL;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panOptionsGameDifficulty = NULL;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGameEasy                    = NULL;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGameMedium                  = NULL;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGameHard                    = NULL;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panOptionsGraphics       = NULL;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panOptionsGraphicsDetails                = NULL;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGraphicsDetailsLow      = NULL;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGraphicsDetailsMedium   = NULL;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGraphicsDetailsHigh     = NULL;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panOptionsGraphicsAntiAliasing       = NULL;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGraphicsAAOff               = NULL;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGraphicsAA1x                = NULL;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGraphicsAA4x                = NULL;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtOptionsGraphicsAA9x                = NULL;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panOptionsGraphicsResolutionList = NULL;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtResCurrent         = NULL;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtRes800x600         = NULL;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtRes1024x768            = NULL;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtRes1280x1024       = NULL;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtRes1400x1050       = NULL;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtRes1600x1200       = NULL;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtRes1920x1200       = NULL;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panOptionsAudio          = NULL;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panOptionsInput          = NULL;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panGraphicMenu           = NULL;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panAudioMenu             = NULL;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panInputMenu             = NULL;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panInputMenuKeys     = NULL;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>** txtInputMenuKeyNames= NULL;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>** txtInputMenuKeyValues= NULL;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panCreditsMenu           = NULL;</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;TEXT* txtMenuNewGame                = NULL;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;TEXT* txtMenuContinueGame       = NULL;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;TEXT* txtMenuLoadGame           = NULL;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;TEXT* txtMenuSaveGame           = NULL;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;TEXT* txtMenuOptions                = NULL;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    TEXT* txtMenuOptionsGame        = NULL;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuNewGame                = NULL;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuContinueGame       = NULL;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuLoadGame           = NULL;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuSaveGame           = NULL;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuOptions                = NULL;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuOptionsGame        = NULL;</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">// Game options</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        TEXT* txtMenuDifficulty         = NULL;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        TEXT* txtMenuViolence           = NULL;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        TEXT* txtMenuShowDialogs        = NULL;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        TEXT* txtMenuShowHints          = NULL;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    TEXT* txtMenuOptionsGraphics    = NULL;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        TEXT* txtMenuFullscreen             = NULL;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        TEXT* txtMenuResolutions            = NULL;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        TEXT* txtMenuAntialias              = NULL;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        TEXT* txtMenuBrightness             = NULL;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        TEXT* txtMenuCurrentBrightness  = NULL;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        TEXT* txtMenuShader                 = NULL;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        TEXT* txtMenuShadows                    = NULL;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        TEXT* txtMenuDetails                    = NULL;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    TEXT* txtMenuOptionsAudio       = NULL;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        TEXT* txtMenuMusicVolume            = NULL;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        TEXT* txtMenuMusicVolumeTest        = NULL;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        TEXT* txtMenuSpeechVolume           = NULL;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        TEXT* txtMenuSpeechVolumeTest       = NULL;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        TEXT* txtMenuEffectsVolume          = NULL;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        TEXT* txtMenuEffectsVolumeTest  = NULL;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    TEXT* txtMenuOptionsInput       = NULL;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        TEXT* txtMenuMouseSensivity = NULL;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        TEXT* txtMenuInputDefaults      = NULL;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;TEXT* txtMenuOptionsApply       = NULL;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;TEXT* txtMenuCredits                = NULL;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;TEXT* txtMenuExitGame           = NULL;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;TEXT* txtMenuReturnToWin        = NULL;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;TEXT* txtMenuBack                   = NULL;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;TEXT** txtMenuSaveGameTitles    = NULL;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuDifficulty         = NULL;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuViolence           = NULL;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuShowDialogs        = NULL;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuShowHints          = NULL;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuOptionsGraphics    = NULL;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuFullscreen             = NULL;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuResolutions            = NULL;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuAntialias              = NULL;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuBrightness             = NULL;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuCurrentBrightness  = NULL;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuShader                 = NULL;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuShadows                    = NULL;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuDetails                    = NULL;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuOptionsAudio       = NULL;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuMusicVolume            = NULL;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuMusicVolumeTest        = NULL;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuSpeechVolume           = NULL;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuSpeechVolumeTest       = NULL;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuEffectsVolume          = NULL;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuEffectsVolumeTest  = NULL;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuOptionsInput       = NULL;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuMouseSensivity = NULL;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuInputDefaults      = NULL;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuOptionsApply       = NULL;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuCredits                = NULL;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuExitGame           = NULL;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuReturnToWin        = NULL;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMenuBack                   = NULL;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>** txtMenuSaveGameTitles    = NULL;</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;PANEL* panMessageBoxBg          = NULL;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;PANEL* panMessageBox                = NULL;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;TEXT* txtMessageBoxCaption      = NULL;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;TEXT* txtMessageBoxBtn1         = NULL;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;TEXT* txtMessageBoxBtn2         = NULL;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panMessageBoxBg          = NULL;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* panMessageBox                = NULL;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMessageBoxCaption      = NULL;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMessageBoxBtn1         = NULL;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<a class="code" href="class_t_e_x_t.html" title="The TEXT struct is defined in GStudio8\include\atypes.h. ">TEXT</a>* txtMessageBoxBtn2         = NULL;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;SOUND* sndMusicTest             = <span class="stringliteral">&quot;..\\Ressources\\Audio\\Sounds\\beep1.wav&quot;</span>;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;SOUND* sndSpeechTest                = <span class="stringliteral">&quot;..\\Ressources\\Audio\\Sounds\\beep1.wav&quot;</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;SOUND* sndEffectsTest           = <span class="stringliteral">&quot;..\\Ressources\\Audio\\Sounds\\beep1.wav&quot;</span>;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<a class="code" href="class_s_o_u_n_d.html" title="The SOUND struct is defined in GStudio8\include\atypes.h. ">SOUND</a>* sndMusicTest             = <span class="stringliteral">&quot;..\\Ressources\\Audio\\Sounds\\beep1.wav&quot;</span>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<a class="code" href="class_s_o_u_n_d.html" title="The SOUND struct is defined in GStudio8\include\atypes.h. ">SOUND</a>* sndSpeechTest                = <span class="stringliteral">&quot;..\\Ressources\\Audio\\Sounds\\beep1.wav&quot;</span>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<a class="code" href="class_s_o_u_n_d.html" title="The SOUND struct is defined in GStudio8\include\atypes.h. ">SOUND</a>* sndEffectsTest           = <span class="stringliteral">&quot;..\\Ressources\\Audio\\Sounds\\beep1.wav&quot;</span>;</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">// Variables to hold a game state until changes are applied</span></div>
@@ -277,9 +277,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="keywordtype">void</span> menu_set_pos(<span class="keywordtype">int</span> _x, <span class="keywordtype">int</span> _y);</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="keywordtype">void</span> menu_show_message(STRING* _msg, STRING* _button);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="keywordtype">void</span> menu_show_message(<a class="code" href="class_s_t_r_i_n_g.html" title="The STRING struct is defined in GStudio8\include\atypes.h. ">STRING</a>* _msg, <a class="code" href="class_s_t_r_i_n_g.html" title="The STRING struct is defined in GStudio8\include\atypes.h. ">STRING</a>* _button);</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="keywordtype">int</span> menu_show_choice_message(STRING* _msg, STRING* _button1, STRING* _button2);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="keywordtype">int</span> menu_show_choice_message(<a class="code" href="class_s_t_r_i_n_g.html" title="The STRING struct is defined in GStudio8\include\atypes.h. ">STRING</a>* _msg, <a class="code" href="class_s_t_r_i_n_g.html" title="The STRING struct is defined in GStudio8\include\atypes.h. ">STRING</a>* _button1, <a class="code" href="class_s_t_r_i_n_g.html" title="The STRING struct is defined in GStudio8\include\atypes.h. ">STRING</a>* _button2);</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="keywordtype">void</span> menu_hide_message();</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
@@ -293,41 +293,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keywordtype">void</span> menu_resolution_show();</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="keywordtype">void</span> menu_resolution_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="keywordtype">void</span> menu_resolution_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="keywordtype">void</span> menu_options_choose(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="keywordtype">void</span> menu_options_choose(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="keywordtype">void</span> menu_apply_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="keywordtype">void</span> menu_apply_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="keywordtype">void</span> menu_back_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="keywordtype">void</span> menu_back_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="keywordtype">void</span> menu_start_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="keywordtype">void</span> menu_start_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="keywordtype">void</span> menu_ingame_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="keywordtype">void</span> menu_ingame_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="keywordtype">void</span> menu_difficulty_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="keywordtype">void</span> menu_difficulty_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="keywordtype">void</span> menu_anti_aliasing_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="keywordtype">void</span> menu_anti_aliasing_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="keywordtype">void</span> menu_details_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="keywordtype">void</span> menu_details_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="keywordtype">void</span> menu_message_box_init();</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="keywordtype">void</span> menu_message_box_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="keywordtype">void</span> menu_message_box_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="keywordtype">void</span> menu_audio_test_box_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="keywordtype">void</span> menu_audio_test_box_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="keywordtype">void</span> menu_input_key_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="keywordtype">void</span> menu_input_key_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="keywordtype">void</span> menu_input_key_defaults_click(var _button_number, PANEL* _panel);</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="keywordtype">void</span> menu_input_key_defaults_click(var _button_number, <a class="code" href="class_p_a_n_e_l.html" title="The PANEL struct is defined in GStudio8\include\atypes.h. ">PANEL</a>* _panel);</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">#include &quot;menu.c&quot;</span></div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 19 2013 15:20:53 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 20 2013 15:36:49 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

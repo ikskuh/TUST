@@ -4,7 +4,7 @@ var searchData=
   ['variance',['variance',['../structcimg__library__suffixed_1_1_c_img.html#a7f932b27556ab1e37907fb4423a9f475',1,'cimg_library_suffixed::CImg']]],
   ['variance_5fmean',['variance_mean',['../structcimg__library__suffixed_1_1_c_img.html#aa53db77a856a97bd8a163d07fed9e110',1,'cimg_library_suffixed::CImg']]],
   ['variance_5fnoise',['variance_noise',['../structcimg__library__suffixed_1_1_c_img.html#a8b91c1ccb5aeba5ef5ad25464ad9f238',1,'cimg_library_suffixed::CImg']]],
-  ['vec_5fcreate',['vec_create',['../tust_8h.html#a1014f2153bbbf97f9f9a506a94f1d166',1,'tust.c']]],
+  ['vec_5fcreate',['vec_create',['../group___script_library_core.html#ga1014f2153bbbf97f9f9a506a94f1d166',1,'vec_create(var x, var y, var z):&#160;tust.c'],['../group___script_library_core.html#ga1014f2153bbbf97f9f9a506a94f1d166',1,'vec_create(var x, var y, var z):&#160;tust.c']]],
   ['vec_5frotatexy',['vec_rotateXY',['../math_8h.html#a7de23a19f08e7f11e28af94564c86120',1,'math.c']]],
   ['vec_5frotatexz',['vec_rotateXZ',['../math_8h.html#a24c3bf84517de0fcdc2b58f823ee8fc5',1,'math.c']]],
   ['vec_5frotateyz',['vec_rotateYZ',['../math_8h.html#ac8b534f2eff3a476b381a01fb7bbcd64',1,'math.c']]],
