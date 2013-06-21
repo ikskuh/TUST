@@ -1,3 +1,12 @@
+
+/* The Ultimate Script Library 
+-----------------------------------------------------------------------------------
+   Script Library Core
+
+   Read the documentation for further information: TUST\Documentation\index.html
+----------------------------------------------------------------------------------- 
+*/
+
 #ifndef _TUST_H_
 #define _TUST_H_
 

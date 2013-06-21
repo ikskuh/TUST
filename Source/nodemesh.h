@@ -1,3 +1,13 @@
+
+/* The Ultimate Script Library 
+-----------------------------------------------------------------------------------
+   Module: NodeMesh
+   Node based pathfinder.
+
+   Read the documentation for further information: TUST\Documentation\index.html
+----------------------------------------------------------------------------------- 
+*/
+
 #ifndef _NODEMESH_H_
 #define _NODEMESH_H_
 
@@ -12,7 +22,11 @@
  *
  * \file  nodemesh.c
  * \brief Node based pathfinder code.
+ *
+ * \file  test_nodemesh.c
+ * \brief Node based pathfinder test code.
  */
+
 
 #include "list.h"
 
@@ -32,6 +46,7 @@ typedef struct Node
 } Node;
 
 /**
+ * \struct   NodeMesh
  * \brief    Generic NodeMesh struct
  */
 typedef struct NodeMesh
@@ -45,6 +60,12 @@ typedef struct NodeMesh
  * \brief    Route is used instead of List to give a clear difference between a normal list and a route of nodes.
  */
 typedef List Route;
+
+/**
+ * \brief    A pointer to the nodemesh constructor collision entity
+ */
+ENTITY *nodemesh_collider = NULL;
+
 
 /**
  * \brief    Creates a new nodemesh.
@@ -109,11 +130,6 @@ void route_delete ( Route *route );
  * \return   A pointer to the new nodemesh.
  */
 //NodeMesh *nodemesh_from_path ( ENTITY *ent );
-
-/**
- * \brief    A pointer to the nodemesh constructor collision entity
- */
-ENTITY *nodemesh_collider = NULL;
 
 /**
  * \}

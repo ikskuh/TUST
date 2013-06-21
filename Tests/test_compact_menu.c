@@ -75,12 +75,12 @@ void main ()
 	// Create style for the menues
 	// CMMEMBER *myMenuStyle = cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver )
 	FONT *fntTTF = font_create("Arial#16");
-	CMSTYLE *myMenuStyle01 = cmstyle_create ( fntTTF, vector(40,40,40), vector(250,250,250), vector(210,210,210) );
+	CMStyle *myMenuStyle01 = cmstyle_create ( fntTTF, vector(40,40,40), vector(250,250,250), vector(210,210,210) );
 	FONT *fntBitmap = font_create("ackfont.pcx");
-	CMSTYLE *myMenuStyle02 = cmstyle_create ( fntBitmap, vector(170,170,255), vector(30,20,0), vector(0,0,185) );
+	CMStyle *myMenuStyle02 = cmstyle_create ( fntBitmap, vector(170,170,255), vector(30,20,0), vector(0,0,185) );
 	
 	// Create a compact menu panel
-	// PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style )
+	// PANEL *cmenu_create ( char *chrMember, var pos_x, var pos_y, var size_x, var layer, var flags, CMStyle *style )
 	PANEL *myMenu01 = cmenu_create ( "menu name.submenu=txtMain", 110, 20, 200, 1, SHOW, myMenuStyle01 );
 	PANEL *myMenu02 = cmenu_create ( "debug & statics.submenu=txtCMDebug", 500, 20, 200, 1, SHOW, myMenuStyle01 );
 	

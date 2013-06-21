@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.4"/>
-<title>TUST: Source/nodemesh.h Source File</title>
+<title>TUST: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -16,6 +16,8 @@
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<div id="content">
+<div id="content2">
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
@@ -39,7 +41,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -90,70 +91,81 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">nodemesh.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="nodemesh_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _NODEMESH_H_</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _NODEMESH_H_</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="list_8h.html" title="Linked list implementation. ">list.h</a>&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Node</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    var x;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    var y;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    var z;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">int</span> index;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    var weight;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">int</span> includer;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span> *linked;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">int</span> count;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> capacity;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">struct </span>Node *next;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;} Node;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="group___node_mesh_module.html">   37</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    Node *nodes;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="group___node_mesh_module.html#a12fe5081f80706d9464d61c3fc37667f">   40</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="group___node_mesh_module.html#a12fe5081f80706d9464d61c3fc37667f" title="Amount of nodes cointained by the mesh. ">count</a>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">int</span> capacity;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;} <a class="code" href="group___node_mesh_module.html#gae83ea6d2a88c164378d1a8035f216e69" title="Generic NodeMesh struct. ">NodeMesh</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="group___node_mesh_module.html#ga9c0aa0cd85787d886f7cdcd40ffbcbff">   47</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="struct_list.html">List</a> <a class="code" href="group___node_mesh_module.html#ga9c0aa0cd85787d886f7cdcd40ffbcbff" title="Route is used instead of List to give a clear difference between a normal list and a route of nodes...">Route</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *<a class="code" href="group___node_mesh_module.html#gada81367d4b61ccbc6ab1198a746de7b6" title="Creates a new nodemesh. ">nodemesh_create</a> ();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___node_mesh_module.html#ga61656398eafd3350c98b8d977fe03af1" title="Removes a nodemesh. ">nodemesh_remove</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh );</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> * \brief Clones a nodemesh.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"> * \param    nodemesh      The nodemesh to clone.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"> * \return   A new nodemesh.</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//NodeMesh *nodemesh_clone ( NodeMesh *nodemesh );</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group___node_mesh_module.html#ga4c97d77e4b4f0d1b790390873dd96812" title="Adds a node to the nodemesh and builds it neighborhood with a c_trace. ">nodemesh_add</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh, <a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a> *pos );</div>
+<a href="nodemesh_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">/* The Ultimate Script Library </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">-----------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">   Module: NodeMesh</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">   Node based pathfinder.</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">   Read the documentation for further information: TUST\Documentation\index.html</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">----------------------------------------------------------------------------------- </span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef _NODEMESH_H_</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _NODEMESH_H_</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="list_8h.html" title="Linked list implementation. ">list.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Node</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    var x;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    var y;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    var z;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">int</span> index;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    var weight;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">int</span> includer;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">int</span> *linked;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">int</span> count;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">int</span> capacity;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">struct </span>Node *next;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} Node;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="group___node_mesh_module.html">   52</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    Node *nodes;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="group___node_mesh_module.html#a12fe5081f80706d9464d61c3fc37667f">   55</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="group___node_mesh_module.html#a12fe5081f80706d9464d61c3fc37667f" title="Amount of nodes cointained by the mesh. ">count</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">int</span> capacity;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;} <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="group___node_mesh_module.html#ga9c0aa0cd85787d886f7cdcd40ffbcbff">   62</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="struct_list.html">List</a> <a class="code" href="group___node_mesh_module.html#ga9c0aa0cd85787d886f7cdcd40ffbcbff" title="Route is used instead of List to give a clear difference between a normal list and a route of nodes...">Route</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="group___node_mesh_module.html#ga8c8e9994061e3c70dc66c555c7f33744">   67</a></span>&#160;<a class="code" href="class_e_n_t_i_t_y.html" title="The ENTITY struct is defined in GStudio8\include\atypes.h. ">ENTITY</a> *<a class="code" href="group___node_mesh_module.html#ga8c8e9994061e3c70dc66c555c7f33744" title="A pointer to the nodemesh constructor collision entity. ">nodemesh_collider</a> = NULL;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *<a class="code" href="group___node_mesh_module.html#gada81367d4b61ccbc6ab1198a746de7b6" title="Creates a new nodemesh. ">nodemesh_create</a> ();</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group___node_mesh_module.html#gab17fcafe5ab44b26a393954bacdc3676" title="Looks for the nearest node to a certain position. ">nodemesh_nearest</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh, <a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a> *pos );</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___node_mesh_module.html#gac00421bf3cece0dfbaa6e74234565550" title="Checks the visibilty between a node and all the other nodes inside a nodemesh. Connects them if visib...">nodemesh_ctrace_node</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh, <span class="keywordtype">int</span> nodeindex );</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<a class="code" href="struct_list.html">Route</a> *<a class="code" href="group___node_mesh_module.html#ga6be24ca510d0d54c96e0ab527cbc1dac" title="Looks for a route between two nodes. ">nodemesh_find_route</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh, <span class="keywordtype">int</span> indexFrom, <span class="keywordtype">int</span> indexTo );</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___node_mesh_module.html#ga168325c22e614e723e8fc9ebca104781" title="Deletes a route. ">route_delete</a> ( <a class="code" href="struct_list.html">Route</a> *route );</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment"> * \brief    Builds a nodemesh from an entity path.</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment"> * \return   A pointer to the new nodemesh.</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">//NodeMesh *nodemesh_from_path ( ENTITY *ent );</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___node_mesh_module.html#ga61656398eafd3350c98b8d977fe03af1" title="Removes a nodemesh. ">nodemesh_remove</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh );</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"> * \brief Clones a nodemesh.</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"> * \param    nodemesh      The nodemesh to clone.</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment"> * \return   A new nodemesh.</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//NodeMesh *nodemesh_clone ( NodeMesh *nodemesh );</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group___node_mesh_module.html#ga4c97d77e4b4f0d1b790390873dd96812" title="Adds a node to the nodemesh and builds it neighborhood with a c_trace. ">nodemesh_add</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh, <a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a> *pos );</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">int</span> <a class="code" href="group___node_mesh_module.html#gab17fcafe5ab44b26a393954bacdc3676" title="Looks for the nearest node to a certain position. ">nodemesh_nearest</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh, <a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a> *pos );</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___node_mesh_module.html#gac00421bf3cece0dfbaa6e74234565550" title="Checks the visibilty between a node and all the other nodes inside a nodemesh. Connects them if visib...">nodemesh_ctrace_node</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh, <span class="keywordtype">int</span> nodeindex );</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno"><a class="code" href="group___node_mesh_module.html#ga8c8e9994061e3c70dc66c555c7f33744">  116</a></span>&#160;<a class="code" href="class_e_n_t_i_t_y.html" title="The ENTITY struct is defined in GStudio8\include\atypes.h. ">ENTITY</a> *<a class="code" href="group___node_mesh_module.html#ga8c8e9994061e3c70dc66c555c7f33744" title="A pointer to the nodemesh constructor collision entity. ">nodemesh_collider</a> = NULL;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nodemesh_8c.html" title="Node based pathfinder code. ">nodemesh.c</a>&quot;</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<a class="code" href="struct_list.html">Route</a> *<a class="code" href="group___node_mesh_module.html#ga6be24ca510d0d54c96e0ab527cbc1dac" title="Looks for a route between two nodes. ">nodemesh_find_route</a> ( <a class="code" href="group___node_mesh_module.html#struct_node_mesh" title="Generic NodeMesh struct. ">NodeMesh</a> *nodemesh, <span class="keywordtype">int</span> indexFrom, <span class="keywordtype">int</span> indexTo );</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___node_mesh_module.html#ga168325c22e614e723e8fc9ebca104781" title="Deletes a route. ">route_delete</a> ( <a class="code" href="struct_list.html">Route</a> *route );</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment"> * \brief    Builds a nodemesh from an entity path.</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"> * \return   A pointer to the new nodemesh.</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">//NodeMesh *nodemesh_from_path ( ENTITY *ent );</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nodemesh_8c.html" title="Node based pathfinder code. ">nodemesh.c</a>&quot;</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 20 2013 15:36:50 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 21 2013 22:46:03 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

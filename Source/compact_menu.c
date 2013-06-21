@@ -45,7 +45,7 @@ typedef struct CMMEMBER
 typedef struct COMPACT_MENU
 {
 	STRING *name;
-	CMSTYLE *style;
+	CMStyle *style;
 	CMMEMBER *cmmember;
 	CMMEMBER *cmmemberActual;
 	BMAP *select;
@@ -415,9 +415,9 @@ void cmmember_digit ( var *pointer, STRING *format )
 	cmenuMe->digits += 1;
 }
 
-CMSTYLE *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver )
+CMStyle *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver )
 {
-	CMSTYLE *style = sys_malloc ( sizeof(CMSTYLE) );
+	CMStyle *style = sys_malloc ( sizeof(CMStyle) );
 	style->font = font;
 	vec_set ( style->colText, colText );
 	vec_set ( style->colBack, colBack );
@@ -425,12 +425,12 @@ CMSTYLE *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *col
 	return style;
 } 
 
-void cmstyle_remove ( CMSTYLE *style )
+void cmstyle_remove ( CMStyle *style )
 {
 	sys_free ( style );
 }
 
-PANEL *cmenu_create ( char *member, var pos_x, var pos_y, var size_x, var layer, var flags, CMSTYLE *style )
+PANEL *cmenu_create ( char *member, var pos_x, var pos_y, var size_x, var layer, var flags, CMStyle *style )
 {
 	PANEL *panTemp = pan_create ( "", layer );
 	panTemp->bmap = bmap_createblack ( size_x, screen_size.y, 32 );
@@ -471,7 +471,7 @@ PANEL *cmenu_create ( char *member, var pos_x, var pos_y, var size_x, var layer,
 	return panTemp;
 }
 
-void cmenu_modify ( PANEL *panel, var size_x, CMSTYLE *style )
+void cmenu_modify ( PANEL *panel, var size_x, CMStyle *style )
 {
 	COMPACT_MENU *cmenuTemp = cmenuFirst;
 	while ( cmenuTemp != NULL )

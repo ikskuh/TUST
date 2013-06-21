@@ -18,7 +18,7 @@ var searchData=
   ['net_5fskill_5fpos_5fy',['NET_SKILL_POS_Y',['../network_8h.html#ad4638fb8b6f0e52a6dc7477d3d1cd92b',1,'network.h']]],
   ['net_5fskill_5fpos_5fz',['NET_SKILL_POS_Z',['../network_8h.html#a46eb167adc178b4b14487aab2670a074',1,'network.h']]],
   ['network_2eh',['network.h',['../network_8h.html',1,'']]],
-  ['nodemesh',['NodeMesh',['../group___node_mesh_module.html#struct_node_mesh',1,'NodeMesh'],['../group___node_mesh_module.html#gae83ea6d2a88c164378d1a8035f216e69',1,'NodeMesh():&#160;nodemesh.h']]],
+  ['nodemesh',['NodeMesh',['../group___node_mesh_module.html#struct_node_mesh',1,'']]],
   ['nodemesh_2ec',['nodemesh.c',['../nodemesh_8c.html',1,'']]],
   ['nodemesh_2eh',['nodemesh.h',['../nodemesh_8h.html',1,'']]],
   ['nodemesh_5fadd',['nodemesh_add',['../group___node_mesh_module.html#ga4c97d77e4b4f0d1b790390873dd96812',1,'nodemesh_add(NodeMesh *nodemesh, VECTOR *pos):&#160;nodemesh.c'],['../group___node_mesh_module.html#ga4c97d77e4b4f0d1b790390873dd96812',1,'nodemesh_add(NodeMesh *nodemesh, VECTOR *pos):&#160;nodemesh.c']]],

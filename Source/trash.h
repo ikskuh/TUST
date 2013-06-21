@@ -22,6 +22,9 @@
  *
  * \file  trash.c
  * \brief Linked trash or stack implementation code.
+ *
+ * \file  test_trash.c
+ * \brief Linked trash or stack implementation test code.
  */
 
 /**
@@ -41,6 +44,7 @@ typedef struct TrashItem
 } TrashItem;
 
 /**
+ * \struct   TrashCollector
  * \brief    Generic trash struct
  */
 typedef struct TrashCollector
