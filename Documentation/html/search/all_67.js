@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['game_20templates',['Game Templates',['../group___game_templates.html',1,'']]],
   ['generic_20script_20library',['Generic Script Library',['../group___generic_script_library.html',1,'']]],
   ['get_5fabs',['get_abs',['../structcimg__library__suffixed_1_1_c_img.html#a4fdde3f85df5c32cfa46946146bb0967',1,'cimg_library_suffixed::CImg']]],
   ['get_5facos',['get_acos',['../structcimg__library__suffixed_1_1_c_img.html#ac22d54c9002d7b8db13e05b0cf113d65',1,'cimg_library_suffixed::CImg']]],

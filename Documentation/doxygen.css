@@ -23,7 +23,6 @@ body {
 	text-align:left;
 }
 
-
 /* @group Heading Levels */
 
 h1.groupheader {
@@ -208,7 +207,6 @@ pre.fragment {
         background-color: #FBFCFD;
         padding: 4px 6px;
         margin: 4px 8px 4px 2px;
-        overflow: auto;
         word-wrap: break-word;
         font-size:  9pt;
         line-height: 125%;
@@ -217,23 +215,26 @@ pre.fragment {
 }
 
 div.fragment {
-        padding: 0px;
-        margin: 0px;
-	background-color: #FBFCFD;
-	border: 1px solid #C4CFE5;
+        max-width: 840px;
+        margin-bottom: 13px;
+        margin-top: 6px;
+        padding: 6px;
+        background-color: #FBFCFD;
+        border: 1px solid #C4CFE5;
+        overflow: auto;
+        overflow-x: scroll;
+        margin-left: 20px;
 }
 
 div.line {
+	max-width: 5000px;
 	font-family: monospace, fixed;
         font-size: 13px;
 	min-height: 13px;
 	line-height: 1.0;
-	text-wrap: unrestricted;
-	white-space: -moz-pre-wrap; /* Moz */
-	white-space: -pre-wrap;     /* Opera 4-6 */
-	white-space: -o-pre-wrap;   /* Opera 7 */
-	white-space: pre-wrap;      /* CSS3  */
-	word-wrap: break-word;      /* IE 5.5+ */
+	text-wrap: nowrap;
+	white-space: pre;
+	word-wrap: nowrap;      
 	text-indent: -53px;
 	padding-left: 53px;
 	padding-bottom: 0px;
@@ -572,6 +573,7 @@ table.memberdecls {
 .memname {
         font-weight: bold;
         margin-left: 6px;
+        margin-right: 25px;
         font-size: 114%;
 }
 
@@ -628,6 +630,12 @@ table.memberdecls {
         -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
+.textblock
+{
+	padding-top: 7px;
+	padding-bottom: 3px;
+}
+
 dl.reflist dt {
         padding: 5px;
 }
@@ -648,10 +656,11 @@ dl.reflist dd {
 .paramname {
 	color: #602020;
 	white-space: nowrap;
-	padding-right: 30px;
+	padding-right: 15px;
 }
 .paramname em {
 	font-style: normal;
+	margin-right: 8px;
 }
 .paramname code {
         line-height: 14px;
@@ -678,7 +687,7 @@ dl.reflist dd {
 }
 
 .paramname {
-        text-align: right;
+        text-align: left;
         font-size: 110%;
 }
 
@@ -1021,10 +1030,9 @@ dl.note
 
 dl.warning, dl.attention
 {
-        margin-left:-7px;
+        margin-left:0px;
         padding-left: 3px;
-        border-left:4px solid;
-        border-color: #FF0000;
+        background-color: #F2E3E9; //#E2E8F2;
 }
 
 dl.pre, dl.post, dl.invariant

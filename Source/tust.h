@@ -62,6 +62,9 @@
  * \defgroup GenericScriptLibrary Generic Script Library
  * \brief Generic script library
  *
+ * \defgroup GameTemplates Game Templates
+ * \brief Game template sets
+ *
  * \defgroup ScriptLibraryCore Script Library Core
  * \brief The core of the scripting library. 
  * \{

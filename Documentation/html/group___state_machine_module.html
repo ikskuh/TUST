@@ -169,6 +169,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Function pointer based state machine collection manager. </p>
+<p>A state machine is a code structure that changes the execution flow in reference to the state of a variable. A function pointer based state machine is the same concept but it references a function to be executed next frame instead of checking a variable value.</p>
+<p>This module offers the possibility of running state machines for any kind of data, even without any data. It is conceived to ensure that the actual state of every object is executed before been changed by another machine. This characteristic avoids the inherent advantage of the execution order. It has also the minor benefit of executing all the machines from a single array pass inside a single while loop. The state machines will be executed in the same order they were created</p>
+<h1>How to use these state machine</h1>
+<ul>
+<li>Include TUST library into your project.</li>
+<li>Start the state machines manager. <div class="fragment"><div class="line"><span class="comment">// Funtion to be executed by a state machine</span></div>
+<div class="line"><span class="keyword">function</span> myState1 ( STMACHINE *stm ) </div>
+<div class="line">{</div>
+<div class="line">   <span class="comment">// Retrieve the object of the machine</span></div>
+<div class="line">   MyStruct *myStruct = <a class="code" href="group___state_machine_module.html#gadc650fec0f8b57dccbc31f6f61249001" title="The pointer to the object of a state machine. ">stm_me</a> ( stm ); </div>
+<div class="line">   you = <a class="code" href="group___state_machine_module.html#ga8253c914d52a34cd97be3bdc61c5f8b8" title="The pointer to the nth state machine. ">stm_by_index</a> ( stm ); <span class="comment">// Retrieve an object by its index</span></div>
+<div class="line">   <a class="code" href="group___state_machine_module.html#ga80e5e0d7f1db1a496f299586e56576e3" title="Change a state of a machine. ">stm_set_state</a> ( stm, stEnt2, 2 );</div>
+<div class="line">   my-&gt;clock += 20+random(30);</div>
+<div class="line">}</div>
+<div class="line">...</div>
+<div class="line">stm_open ();</div>
+<div class="line">...</div>
+</div><!-- fragment --></li>
+<li></li>
+</ul>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="ga8253c914d52a34cd97be3bdc61c5f8b8"></a>
 <div class="memitem">
@@ -187,7 +207,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>The pointer to the nth state machine. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>index into the state machines array </td></tr>
+    <tr><td class="paramname">i</td><td>Index into the state machines array </td></tr>
   </table>
   </dd>
 </dl>
@@ -212,7 +232,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Use it when you want to use an entity or panel (etc) skill as state machine index allocator</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>variable to use as pointer to an integer </td></tr>
+    <tr><td class="paramname">i</td><td>Fixed variable (var) to use as pointer to an integer </td></tr>
   </table>
   </dd>
 </dl>
@@ -237,7 +257,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>It has to be called after using stm_create_index</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>variable used as pointer to an integer </td></tr>
+    <tr><td class="paramname">i</td><td>Fixed variable (var) used as pointer to an integer </td></tr>
   </table>
   </dd>
 </dl>
@@ -262,7 +282,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Use it when you used an entity or panel (etc) skill as state machine index allocator</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>variable to be casted to an integer pointer </td></tr>
+    <tr><td class="paramname">i</td><td>Fixed variable (var) to be casted to an integer pointer </td></tr>
   </table>
   </dd>
 </dl>
@@ -287,7 +307,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Use it into last parameter of stm_add function when stm_create_index is used</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>variable used as pointer to an integer </td></tr>
+    <tr><td class="paramname">i</td><td>Fixed variable (var) used as pointer to an integer </td></tr>
   </table>
   </dd>
 </dl>
@@ -311,7 +331,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>The pointer to the object of a state machine. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stmt</td><td>a pointer to a state machine </td></tr>
+    <tr><td class="paramname">stmt</td><td>A pointer to a state machine </td></tr>
   </table>
   </dd>
 </dl>
@@ -335,7 +355,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>A state identify number of a state machine. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stmt</td><td>a pointer to a state machine </td></tr>
+    <tr><td class="paramname">stmt</td><td>A pointer to a state machine </td></tr>
   </table>
   </dd>
 </dl>
@@ -359,7 +379,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Stop a state machine in the next frame. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stmt</td><td>a pointer to a state machine </td></tr>
+    <tr><td class="paramname">stmt</td><td>A pointer to a state machine </td></tr>
   </table>
   </dd>
 </dl>
@@ -420,7 +440,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the object. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the object. </dd></dl>
 
 </div>
 </div>
@@ -457,9 +477,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Change the object of a machine. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stm</td><td>a pointer to a state machine </td></tr>
-    <tr><td class="paramname">obj</td><td>a pointer to an object </td></tr>
-    <tr><td class="paramname">remover</td><td>a function that deletes the object </td></tr>
+    <tr><td class="paramname">stm</td><td>A pointer to a state machine </td></tr>
+    <tr><td class="paramname">obj</td><td>A pointer to an object </td></tr>
+    <tr><td class="paramname">remover</td><td>A function that deletes the object </td></tr>
   </table>
   </dd>
 </dl>
@@ -499,9 +519,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Change a state of a machine. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stm</td><td>a pointer to a a state machine </td></tr>
-    <tr><td class="paramname">fnc</td><td>function to execute in the new state </td></tr>
-    <tr><td class="paramname">state</td><td>a number to identify the new state </td></tr>
+    <tr><td class="paramname">stm</td><td>A pointer to a state machine </td></tr>
+    <tr><td class="paramname">fnc</td><td>Function to execute in the new state </td></tr>
+    <tr><td class="paramname">state</td><td>A number to identify the new state </td></tr>
   </table>
   </dd>
 </dl>
@@ -525,7 +545,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 <p>Stop all the state machines that point to a certain object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">obj</td><td>a pointer to an object </td></tr>
+    <tr><td class="paramname">obj</td><td>A pointer to an object </td></tr>
   </table>
   </dd>
 </dl>
@@ -535,7 +555,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grou
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 21 2013 22:46:04 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 28 2013 19:48:39 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

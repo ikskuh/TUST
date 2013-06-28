@@ -4294,7 +4294,7 @@ template&lt;typename T = float&gt; </div>
 </dd></dl>
 <dl class="section user"><dt>Example</dt><dd><div class="fragment"><div class="line"><span class="keyword">const</span> CImg&lt;float&gt; img(<span class="stringliteral">&quot;reference.jpg&quot;</span>);                                    <span class="comment">// Load image from file.</span></div>
 <div class="line"><span class="keywordtype">float</span> <a class="code" href="structcimg__library__suffixed_1_1_c_img.html#a303b808aaa6fcc7aa1ef981907806d93" title="Return the sum of all the pixel values. ">sum</a> = 0;</div>
-<div class="line"><span class="keywordflow">for</span> (CImg&lt;float&gt;::iterator it = img.begin(), it&lt;img.end(); ++it) <a class="code" href="structcimg__library__suffixed_1_1_c_img.html#a303b808aaa6fcc7aa1ef981907806d93" title="Return the sum of all the pixel values. ">sum</a>+=*it; <span class="comment">// Compute sum of all pixel values, through a CImg iterator.</span></div>
+<div class="line"><span class="keywordflow">for</span> (CImg&lt;float&gt;::iterator it = img.begin(), it&lt;img.end(); ++it) sum+=*it; <span class="comment">// Compute sum of all pixel values, through a CImg iterator.</span></div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">float</span> sum2 = img.sum();                                              <span class="comment">// Do the same with a built-in method.</span></div>
 </div><!-- fragment --> </dd></dl>
 
@@ -31885,7 +31885,7 @@ template&lt;typename T = float&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 21 2013 22:46:05 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 28 2013 19:48:41 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

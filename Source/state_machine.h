@@ -14,6 +14,84 @@
 /**
  * \defgroup  StateMachineModule State Machines
  * \brief     Function pointer based state machine collection manager.
+ * 
+ * A state machine is a code structure that changes the execution flow in reference to the 
+ * state of a variable. A function pointer based state machine is the same concept but it 
+ * references a function to be executed next frame instead of checking a variable value.
+ *
+ * This module offers the possibility of running state machines for any kind of data, even
+ * without any data. It is conceived to ensure that the actual state of every object is 
+ * executed before been changed by another machine. This characteristic avoids the inherent advantage of the
+ * execution order. It has also the minor benefit of executing all the machines from a single
+ * array pass inside a single while loop. The state machines will be executed in the same order
+ * they were created
+ *
+ * # How to use these state machine
+ * 
+ * - Include TUST library into your project.
+ * - Start the state machines manager.
+ *   ~~~
+ *   // Funtion to be executed by a state machine
+ *   function myState1 ( STMACHINE *stm ) 
+ *   {
+ *      // Retrieve the object of the machine
+ *      MyStruct *myStruct = stm_me ( stm ); 
+ *      you = stm_by_index ( stm ); // Retrieve an object by its index
+ *      stm_set_state ( stm, stEnt2, 2 );
+ *      my->clock += 20+random(30);
+ *   }
+ *   ...
+ *   stm_open ();
+ *   ...
+ *   ~~~
+ * - 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ *
+ *
  * \ingroup   GenericScriptLibrary
  * \{
  *
@@ -102,14 +180,14 @@ void stm_close ();
  *	                     their index into the array and memory address changes with the flow
  *                      so this integer is used as a secure and fast reference
  *                      to the new state machine.
- * \returns             a pointer to the object.
+ * \returns             A pointer to the object.
  */
 void *stm_add ( void *obj, void *remover, void *fnc, var state, int *index );
 
 
 
 /* ----------------------------------------------------------------------------------------- */
-/* GENERAL FUNCTION HELPERS
+/* GENERAL FUNCTION HELPER MACROS
 /* ----------------------------------------------------------------------------------------- */
 
 
@@ -118,7 +196,7 @@ void *stm_add ( void *obj, void *remover, void *fnc, var state, int *index );
  *
  * Use it when you want to use an entity or panel (etc) skill as state machine index allocator
  *
- * \param    i          variable to use as pointer to an integer			
+ * \param    i          Fixed variable (var) to use as pointer to an integer			
  */
 #define stm_create_index(i)		i=(int*)sys_malloc(sizeof(int))
 
@@ -128,7 +206,7 @@ void *stm_add ( void *obj, void *remover, void *fnc, var state, int *index );
  *
  * It has to be called after using stm_create_index
  *
- * \param    i          variable used as pointer to an integer			
+ * \param    i          Fixed variable (var) used as pointer to an integer			
  */
 #define stm_delete_index(i)		sys_free(i)
 
@@ -138,7 +216,7 @@ void *stm_add ( void *obj, void *remover, void *fnc, var state, int *index );
  *
  * Use it into last parameter of stm_add function when stm_create_index is used
  *
- * \param    i          variable used as pointer to an integer			
+ * \param    i          Fixed variable (var) used as pointer to an integer			
  */
 #define stm_index_ptr(i)			(int*)i
 
@@ -150,51 +228,51 @@ void *stm_add ( void *obj, void *remover, void *fnc, var state, int *index );
 
 /**
  * \brief    Change a state of a machine
- * \param    stm        a pointer to a a state machine
- * \param    fnc        function to execute in the new state
- * \param    state      a number to identify the new state
+ * \param    stm        A pointer to a state machine
+ * \param    fnc        Function to execute in the new state
+ * \param    state      A number to identify the new state
  */
 void stm_set_state ( STMACHINE *stm, void *fnc, var state );
 
 
 /**
  * \brief    Change the object of a machine
- * \param    stm        a pointer to a state machine
- * \param    obj        a pointer to an object
- * \param    remover    a function that deletes the object
+ * \param    stm        A pointer to a state machine
+ * \param    obj        A pointer to an object
+ * \param    remover    A function that deletes the object
  */
 void stm_set_me ( STMACHINE *stm, void *obj, void *remover );
 
 
 /**
  * \brief    Stop all the state machines that point to a certain object
- * \param    obj        a pointer to an object
+ * \param    obj        A pointer to an object
  */
 void stm_stop_ptr ( void *obj );
 
 
 
 /* ----------------------------------------------------------------------------------------- */
-/* INSIDE MACHINE HELPERS
+/* INSIDE MACHINE HELPER MACROS
 /* ----------------------------------------------------------------------------------------- */
 
 /**
  * \brief    A state identify number of a state machine
- * \param    stmt	      a pointer to a state machine			
+ * \param    stmt	      A pointer to a state machine			
  */
 #define stm_state(stmt)				stmt->state
 
 
 /**
  * \brief    The pointer to the object of a state machine 
- * \param    stmt       a pointer to a state machine			
+ * \param    stmt       A pointer to a state machine			
  */
 #define stm_me(stmt)					stmt->ptrMe
 
 
 /**
  * \brief    Stop a state machine in the next frame 
- * \param    stmt       a pointer to a state machine			
+ * \param    stmt       A pointer to a state machine			
  */
 #define stm_stop(stmt)				stm_set_state(stmt,stm_stop_machine,NULL)
 
@@ -204,14 +282,14 @@ void stm_stop_ptr ( void *obj );
  *
  * Use it when you used an entity or panel (etc) skill as state machine index allocator
  *
- * \param    i          variable to be casted to an integer pointer			
+ * \param    i          Fixed variable (var) to be casted to an integer pointer			
  */
 #define stm_index(i)					*((int*)i)
 
 
 /**
  * \brief    The pointer to the nth state machine
- * \param    i          index into the state machines array			
+ * \param    i          Index into the state machines array			
  */
 #define stm_by_index(i)				(gblMachines->stmFirst+i)
 

@@ -14,24 +14,24 @@
 /**
  * \defgroup  CompactMenuModule Compact Menu
  * \ingroup   GenericScriptLibrary
- * \brief     Extendable and collapsable menu panels manager.
+ * \brief     Extendable manager for collapsable menu panels.
  *
  * The compact menu module is a tool that lets you create and use collapsable menus very easily. It is also conceived to be easily extensible with your own compact_menu members.
  *
  * ## How it does work
- * Every compact_menu is a secuence of members that are shown, hidden or modified with the mouse interaction.
- * Compact_menu parses the content of strings in order to build the data structs needed to manage the automatic menu drawing and menu member selection.
+ * Every compact_menu is a secuence of members that are automatically shown, hidden or modified with the mouse interaction.
+ * Compact menu parses the content of strings in order to build the data structs needed to manage the automatic menu drawing and menu member selection.
  *
  * \{
  *
  * \file  compact_menu.h
- * \brief Extendable and collapsable menu panels manager header.
+ * \brief Header of the extendable manager for collapsable menu panels.
  *
  * \file  compact_menu.c
- * \brief Extendable and collapsable menu panels manager code.
+ * \brief Code of the extendable manager for collapsable menu panels.
  *
  * \file  test_compact_menu.c
- * \brief Extendable and collapsable menu panels manager test code.
+ * \brief Test code of the extendable manager for collapsable menu panels.
  */
 
 #define PRAGMA_PATH "..\\Source\\compact_menu"
@@ -93,27 +93,32 @@ void cmstyle_remove ( CMStyle *style );
  * 
  * ## General member syntax rule
  *
- * <div class="memitem"><div class="memproto"><div class="memname">name.member_type=parameters</div></div>
+ * <div class="memitem">
+ * <div class="memproto"><div class="memname">name.member_type=parameters</div></div>
  * <div class="memdoc">
- * Parameter     | Description
- * ------------: | :----------
- * `name`        | text to be displayed in the left side of the member field.
- * `member_type` | is the member type name.
- * `parameters`  | one or more parameters in reference to member_type separated by commas.
+ * Parameter            | Description
+ * :------------------- | :----------
+ * <b>name</b>          | text to be displayed in the left side of the member field.
+ * <b>member_type</b>   | is the member type name.
+ * <b>parameters</b>    | one or more parameters in reference to member_type separated by commas.
  * </div></div>
  *
  * ## Default Members
  * 
- * <div class="memitem"><div class="memproto"><div class="memname">submenu</div></div>
- * <div class="memdoc"><div class="memname">name.submenu=TEXT*</div>
+ * <div class="memitem">
+ * <div class="memproto"><div class="memname">submenu</div></div>
+ * <div class="memdoc">
+ * <div class="memname">name.submenu=TEXT*</div>
+ * <div class="textblock">
  * The most important member in compact menu. It lets us create collapsable menus.
+ * </div><div class="textblock">
  * Each submenu is created in reference to a TEXT struct that contains all the member construction strings of the submenu.
- * Parameter | Description
- * --------: | :----------
- * `TEXT*`   | TEXT struct that contains the strings to be parsed as members of the submenu.
- * Example:
- * ~~~~
- *
+ * </div>
+ * Parameter        | Description
+ * :--------------- | :----------
+ * <b>TEXT*</b>     | TEXT struct that contains the strings to be parsed as members of the submenu.
+ * <div class="textblock">Example:</div>
+ * ~~~
  * TEXT *txtMenu =
  * {
  *    string = (
@@ -123,70 +128,98 @@ void cmstyle_remove ( CMStyle *style );
  *       "ambient.submenu=txtAmbient", 
  *       ".line=2" );
  * }
- *
- * ~~~~
+ * ~~~
  * </div></div>
  *
- * <div class="memitem"><div class="memproto"><div class="memname">title</div></div>
- * <div class="memdoc"><div class="memname">name.title=size_y</div>
+ * <div class="memitem">
+ * <div class="memproto"><div class="memname">title</div></div>
+ * <div class="memdoc">
+ * <div class="memname">name.title=size_y</div>
  * Draws an underlined title
- * Parameter | Description
- * --------: | :----------
- * `size_y`  | height of the title field.
+ * Parameter        | Description
+ * :--------------- | :----------
+ * <b>size_y</b>    | height of the title field.
  * </div></div>
  * 
- * <div class="memitem"><div class="memproto"><div class="memname">line</div></div>
- * <div class="memdoc"><div class="memname">.line=size_y</div>
- * Draws a horizontal gradient line from the style *text* color to background color. Conceived to use as visual separator.
- * Parameter | Description
- * --------: | :----------
- * `size_y`  | height of the line field.
+ * <div class="memitem">
+ * <div class="memproto"><div class="memname">line</div></div>
+ * <div class="memdoc">
+ * <div class="memname">.line=size_y</div>
+ * <div class="textblock">
+ * Draws an horizontal gradient line from the style *text* color to background color. Conceived to use as visual separator.
+ * </div>
+ * Parameter        | Description
+ * :--------------- | :----------
+ * <b>size_y</b>    | height of the line field.
  * </div></div>
  *
- * <div class="memitem"><div class="memproto"><div class="memname">space</div></div>
- * <div class="memdoc"><div class="memname">.space=size_y</div>
- * Draws a horizontal gradient line from the style *over* color to background color. Conceived to use as visual separator.
- * Parameter | Description
- * --------: | :----------
- * `size_y`  | height of the space field.
+ * <div class="memitem">
+ * <div class="memproto"><div class="memname">space</div></div>
+ * <div class="memdoc">
+ * <div class="memname">.space=size_y</div>
+ * <div class="textblock">
+ * Draws an horizontal gradient line from the style *over* color to background color. Conceived to use as visual separator.
+ * </div>
+ * Parameter        | Description
+ * :--------------- | :----------
+ * <b>size_y</b>    | height of the space field.
  * </div></div>
  *
  * <div class="memitem"><div class="memproto"><div class="memname">digit</div></div>
  * <div class="memdoc"><div class="memname">name.digit=decimal,var</div>
  * <div class="memname">name.digit=decimal,var,event</div>
+ * <div class="textblock">
  * Draws the content of a var. If the var is a pointer to a var, the digit will show the content of the var that was pointed by the pointer in the moment of the menu creation.
- * </br></br>If the a digit var is continued by a function, the content of the var will be set to the return of the function while the digit is visible. Conceived to show menu related temporary values.
- * Parameter | Description
- * --------: | :----------
- * `decimal` | decimal number. 0 <-> 3
- * `var`     | variable to be shown.
- * `event`   | function to fill the var.
+ * </div><div class="textblock">
+ * 
+ * </div>
+ * Parameter        | Description
+ * :--------------- | :----------
+ * <b>decimal</b>   | decimal number. 0 <-> 3
+ * <b>var</b>       | variable to be shown.
+ * <b>event</b>     | function to fill the var.
+ * <div class="textblock">
+ * The event must be named as follows:
+ * </div>
+ * ~~~
+ * var myFunctionName ()
+ * {
+ *    ...
+ *    return myNewValue; // If the a digit var is continued by a function, the content of the var will be set to the return of the function while the digit is visible. Conceived to show menu related temporary values.
+ * }
+ * ~~~
  * </div></div>
  *
- * <div class="memitem"><div class="memproto"><div class="memname">digedit</div></div>
+ * <div class="memitem">
+ * <div class="memproto"><div class="memname">digedit</div></div>
  * <div class="memdoc"><div class="memname">name.digedit=decimal,var</div>
  * <div class="memname">name.digedit=decimal,var,event</div>
- * Draws and edit the content of a var. If the var is a pointer to a var, the digedit will show the content of the var that was pointed by the pointer in the moment of the menu creation.
- * </br></br>The digedits are edited by clicking over them and moving the mouse up and down. The change difference depends on the horizontal position of the mouse.
- * Parameter | Description
- * --------: | :----------
- * `decimal` | decimal number. 0 <-> 3
- * `var`     | variable to be shown and edited.
- * `event`   | function to be called after editing the digedit. It can be obviated.
+ * <div class="textblock">
+ * Draws and edits the content of a var. If the var is a pointer to a var, the digedit will show the content of the var that was pointed by the pointer in the moment of the menu creation.
+ * </div><div class="textblock">
+ * The digedits are edited by clicking over them and moving the mouse up and down. The change difference depends on the horizontal position of the mouse.
+ * </div>
+ * Parameter        | Description
+ * :--------------- | :----------
+ * <b>decimal</b>   | decimal number. 0 <-> 3
+ * <b>var</b>       | variable to be shown and edited.
+ * <b>event</b>     | function to be called after editing the digedit. It can be obviated.
  * </div></div>
  * 
  * <div class="memitem"><div class="memproto"><div class="memname">slider</div></div>
  * <div class="memdoc"><div class="memname">name.slider=min,max,step,decimal,var</div>
  * <div class="memname">name.slider=min,max,step,decimal,var,event</div>
- * Draws a horizontal slider
- * Parameter | Description
- * --------: | :----------
- * `min`     | minimum value in the slider.
- * `max`     | maximum value in the slider.
- * `step`    | step of change.
- * `decimal` | decimal number. 0 <-> 3
- * `var`     |  variable to be shown and edited.
- * `event`   | function to be called after editing the slider. It can be obviated.
+ * <div class="textblock">
+ * Draws an horizontal slider
+ * </div>
+ * Parameter        | Description
+ * :--------------- | :----------
+ * <b>min</b>       | minimum value in the slider.
+ * <b>max</b>       | maximum value in the slider.
+ * <b>step</b>      | step of change.
+ * <b>decimal</b>   | decimal number. 0 <-> 3
+ * <b>var</b>       | variable to be shown and edited.
+ * <b>event</b>     | function to be called after editing the slider. It can be obviated.
  * </div></div>
  */
 PANEL *cmenu_create ( char *member, var pos_x, var pos_y, var size_x, var layer, var flags, CMStyle *style );
