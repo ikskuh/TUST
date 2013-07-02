@@ -7,6 +7,16 @@
 // Street tool
 // ----------------------------------------------------------------------------------------
 
+Intersection *intersection_create(VECTOR* _pos)
+{
+	Intersection *newInter = sys_malloc(sizeof(Intersection));
+	newInter->incomingAngles = list_create();
+	newInter->pos = sys_malloc(sizeof(VECTOR));
+	vec_set(newInter->pos, _pos);
+	return newInter;
+}
+
+
 Street *street_create(int _streetWidth, int groundDistance)
 {
 	// Sets up a new street object

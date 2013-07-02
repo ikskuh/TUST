@@ -92,6 +92,21 @@ typedef struct Street
 	LPD3DXMESH mesh;
 } Street;
 
+typedef struct {
+	VECTOR *pos;
+	int incomingStreets;
+	List *incomingAngles;
+} Intersection;
+
+
+/**
+ * Creates a new intersection.
+ * \param   _pos            Position of the intersection
+ * \return                  The newly created intersection.
+ */
+Intersection *intersection_create(VECTOR* _pos);
+
+
 /**
  * Creates a new street without mesh.
  * \param   _streetWidth    The width of the street in quants

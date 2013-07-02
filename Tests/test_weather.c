@@ -1,6 +1,12 @@
 #include <acknex.h>
 #include <default.c>
+#include <mtlView.c>
 #include "..\\Source\\weather.h"
+
+
+MATERIAL* matGodRay = {
+	effect = "godrays.fx";
+}
 
 TEXT* txtDescription = {
 	flags = SHOW | OUTLINE;
@@ -23,6 +29,9 @@ TEXT* txtDescription = {
 void main() {
 	video_mode = 10;
 	level_load("..\\Ressources\\Terrains\\small.hmp");
+	
+	//ENTITY* entTest = ent_create(SPHERE_MDL, vector(100,0,0), NULL);
+	//entTest.material = matGodRay;
 	random_seed(0);
 	sky_init();
 	
@@ -38,4 +47,11 @@ void main() {
 	on_q = weather_daynight_static;	
 	
 	on_space = weather_toggle;
+	
+	if (d3d_shaderversion >= 3) {
+		pp_set(camera, matGodRay);
+	}
+	
+	//printf("%.3f", (double)d3d_shaderversion);
+	
 }
