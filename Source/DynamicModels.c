@@ -319,6 +319,22 @@ void dmdl_save(DynamicModel *model, char *filename)
 		DMDLSettings.xFormat);
 }
 
+int dmdl_add_vertex(DynamicModel *_model, D3DVERTEX *_v)
+{
+	int index = _model->vertexCount;
+	memcpy(&_model->vertexBuffer[index], _v, sizeof(D3DVERTEX));
+	_model->vertexCount +=1;
+	return index;
+}
+
+void dmdl_connect_vertices(DynamicModel *_model, int _v1, int _v2, int _v3)
+{
+	int bufferIndex = 3 * _model->faceCount;
+	_model->indexBuffer[bufferIndex + 0] = _v1;
+	_model->indexBuffer[bufferIndex + 1] = _v2;
+	_model->indexBuffer[bufferIndex + 2] = _v3;
+	_model->faceCount +=1;
+}
 
 
 

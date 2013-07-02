@@ -92,6 +92,199 @@ void street_create_segment(DynamicModel *model, int sep1, int sep2)
 	model->faceCount += 2;
 }
 
+D3DVERTEX *create_vertex(int _x, int _y, int _z, int _nx, int _ny, int _nz, int _uv1x, int _uv1y) {
+	D3DVERTEX *newVertex = sys_malloc(sizeof(D3DVERTEX));
+	newVertex->x  = _x;    newVertex->y = _y;      newVertex->z = _z;
+	newVertex->nx = _nx;   newVertex->ny = _ny;   newVertex->nz = _nz;
+	newVertex->u1 = _uv1x; newVertex->v1 = _uv1y;
+	return newVertex;
+}
+
+ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTexture)
+{
+	int nIncomingCount = _intersection->incomingStreets;
+	DynamicModel *model = dmdl_create();
+	model->skin[0] = _intersectionTexture;
+	
+	/*D3DVERTEX *v1 = sys_malloc(sizeof(D3DVERTEX));
+	D3DVERTEX *v2 = sys_malloc(sizeof(D3DVERTEX));
+	D3DVERTEX *v3 = sys_malloc(sizeof(D3DVERTEX));
+	D3DVERTEX *v4 = sys_malloc(sizeof(D3DVERTEX));*/
+	
+	
+	switch(nIncomingCount) {
+		// Should not happen!
+		case 0: return NULL; break;
+		
+		// Street ending
+		case 1:
+			// y == z
+			D3DVERTEX *v1 = create_vertex(_intersection->pos->x + 00, _intersection->pos->y, _intersection->pos->z + 00, 0, 1, 0, 0, 1);
+			D3DVERTEX *v2 = create_vertex(_intersection->pos->x + 00, _intersection->pos->y, _intersection->pos->z - 50, 0, 1, 0, 0, 1);
+			D3DVERTEX *v3 = create_vertex(_intersection->pos->x + 40, _intersection->pos->y, _intersection->pos->z - 50, 0, 1, 0, 0, 1);
+			D3DVERTEX *v4 = create_vertex(_intersection->pos->x + 55, _intersection->pos->y, _intersection->pos->z - 40, 0, 1, 0, 0, 1);
+			D3DVERTEX *v5 = create_vertex(_intersection->pos->x + 60, _intersection->pos->y, _intersection->pos->z - 30, 0, 1, 0, 0, 1);
+			D3DVERTEX *v6 = create_vertex(_intersection->pos->x + 60, _intersection->pos->y, _intersection->pos->z - 20, 0, 1, 0, 0, 1);
+			D3DVERTEX *v7 = create_vertex(_intersection->pos->x + 55, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v8 = create_vertex(_intersection->pos->x + 40, _intersection->pos->y, _intersection->pos->z + 00, 0, 1, 0, 0, 1);
+			
+			int i1 = dmdl_add_vertex(model, v1);
+			int i2 = dmdl_add_vertex(model, v2);
+			int i3 = dmdl_add_vertex(model, v3);
+			int i4 = dmdl_add_vertex(model, v4);
+			int i5 = dmdl_add_vertex(model, v5);
+			int i6 = dmdl_add_vertex(model, v6);
+			int i7 = dmdl_add_vertex(model, v7);
+			int i8 = dmdl_add_vertex(model, v8);
+			
+			dmdl_connect_vertices(model, i1, i8, i7);
+			dmdl_connect_vertices(model, i1, i7, i6);
+			dmdl_connect_vertices(model, i1, i6, i5);
+			dmdl_connect_vertices(model, i1, i5, i4);
+			dmdl_connect_vertices(model, i1, i4, i3);
+			dmdl_connect_vertices(model, i1, i3, i2);
+		break;
+		
+		// A simple connection
+		case 2:
+			D3DVERTEX *v1 = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v2 = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v3 = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v4 = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v5 = create_vertex(_intersection->pos->x + 10, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v6 = create_vertex(_intersection->pos->x + 10, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v7 = create_vertex(_intersection->pos->x + 30, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v8 = create_vertex(_intersection->pos->x + 30, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			
+			int i1 = dmdl_add_vertex(model, v1);
+			int i2 = dmdl_add_vertex(model, v2);
+			int i3 = dmdl_add_vertex(model, v3);
+			int i4 = dmdl_add_vertex(model, v4);
+			int i5 = dmdl_add_vertex(model, v5);
+			int i6 = dmdl_add_vertex(model, v6);
+			int i7 = dmdl_add_vertex(model, v7);
+			int i8 = dmdl_add_vertex(model, v8);
+			
+			dmdl_connect_vertices(model, i1, i3, i2);
+			dmdl_connect_vertices(model, i2, i3, i4);
+			dmdl_connect_vertices(model, i2, i4, i5);
+			dmdl_connect_vertices(model, i5, i4, i6);
+			dmdl_connect_vertices(model, i7, i5, i6);
+			dmdl_connect_vertices(model, i7, i6, i8);		
+		break;
+		
+		// Three incoming streets
+		case 3:
+			D3DVERTEX *v1  = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v2  = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v3  = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v4  = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v5  = create_vertex(_intersection->pos->x + 10, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v6  = create_vertex(_intersection->pos->x + 10, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v7  = create_vertex(_intersection->pos->x + 30, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v8  = create_vertex(_intersection->pos->x + 30, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v9  = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z + 30, 0, 1, 0, 0, 1);			
+			D3DVERTEX *v10 = create_vertex(_intersection->pos->x + 10, _intersection->pos->y, _intersection->pos->z + 30, 0, 1, 0, 0, 1);			
+			
+			int i1  = dmdl_add_vertex(model, v1);
+			int i2  = dmdl_add_vertex(model, v2);
+			int i3  = dmdl_add_vertex(model, v3);
+			int i4  = dmdl_add_vertex(model, v4);
+			int i5  = dmdl_add_vertex(model, v5);
+			int i6  = dmdl_add_vertex(model, v6);
+			int i7  = dmdl_add_vertex(model, v7);
+			int i8  = dmdl_add_vertex(model, v8);
+			int i9  = dmdl_add_vertex(model, v9);
+			int i10 = dmdl_add_vertex(model, v10);
+			
+			dmdl_connect_vertices(model, i1, i3, i2);
+			dmdl_connect_vertices(model, i2, i3, i4);
+			dmdl_connect_vertices(model, i2, i4, i5);
+			dmdl_connect_vertices(model, i5, i4, i6);
+			dmdl_connect_vertices(model, i7, i5, i6);
+			dmdl_connect_vertices(model, i7, i6, i8);
+			dmdl_connect_vertices(model, i4, i9, i6);
+			dmdl_connect_vertices(model, i6, i9, i10);
+		break;
+		
+		// A cross
+		case 4:
+			D3DVERTEX *v1  = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v2  = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v3  = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v4  = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v5  = create_vertex(_intersection->pos->x + 10, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v6  = create_vertex(_intersection->pos->x + 10, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v7  = create_vertex(_intersection->pos->x + 30, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v8  = create_vertex(_intersection->pos->x + 30, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0, 1);
+			D3DVERTEX *v9  = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z + 30, 0, 1, 0, 0, 1);			
+			D3DVERTEX *v10 = create_vertex(_intersection->pos->x + 10, _intersection->pos->y, _intersection->pos->z + 30, 0, 1, 0, 0, 1);			
+			D3DVERTEX *v11 = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z - 30, 0, 1, 0, 0, 1);
+			D3DVERTEX *v12 = create_vertex(_intersection->pos->x + 10, _intersection->pos->y, _intersection->pos->z - 30, 0, 1, 0, 0, 1);
+			
+			int i1  = dmdl_add_vertex(model, v1);
+			int i2  = dmdl_add_vertex(model, v2);
+			int i3  = dmdl_add_vertex(model, v3);
+			int i4  = dmdl_add_vertex(model, v4);
+			int i5  = dmdl_add_vertex(model, v5);
+			int i6  = dmdl_add_vertex(model, v6);
+			int i7  = dmdl_add_vertex(model, v7);
+			int i8  = dmdl_add_vertex(model, v8);
+			int i9  = dmdl_add_vertex(model, v9);
+			int i10 = dmdl_add_vertex(model, v10);
+			int i11 = dmdl_add_vertex(model, v11);
+			int i12 = dmdl_add_vertex(model, v12);
+			
+			dmdl_connect_vertices(model, i1, i3, i2);
+			dmdl_connect_vertices(model, i2, i3, i4);
+			dmdl_connect_vertices(model, i2, i4, i5);
+			dmdl_connect_vertices(model, i5, i4, i6);
+			dmdl_connect_vertices(model, i7, i5, i6);
+			dmdl_connect_vertices(model, i7, i6, i8);
+			dmdl_connect_vertices(model, i4, i9, i6);
+			dmdl_connect_vertices(model, i6, i9, i10);
+			dmdl_connect_vertices(model, i12, i11, i2);
+			dmdl_connect_vertices(model, i12, i2, i5);
+		break;
+		
+		// A circle
+		default:
+			D3DVERTEX *v1  = create_vertex(_intersection->pos->x + 00, _intersection->pos->y, _intersection->pos->z + 00, 0, 1, 0, 0, 1);
+			D3DVERTEX *v2  = create_vertex(_intersection->pos->x + 00, _intersection->pos->y, _intersection->pos->z - 30, 0, 1, 0, 0, 1);
+			D3DVERTEX *v3  = create_vertex(_intersection->pos->x + 20, _intersection->pos->y, _intersection->pos->z - 20, 0, 1, 0, 0, 1);
+			D3DVERTEX *v4  = create_vertex(_intersection->pos->x + 30, _intersection->pos->y, _intersection->pos->z + 00, 0, 1, 0, 0, 1);
+			D3DVERTEX *v5  = create_vertex(_intersection->pos->x + 20, _intersection->pos->y, _intersection->pos->z + 20, 0, 1, 0, 0, 1);
+			D3DVERTEX *v6  = create_vertex(_intersection->pos->x + 00, _intersection->pos->y, _intersection->pos->z + 30, 0, 1, 0, 0, 1);
+			D3DVERTEX *v7  = create_vertex(_intersection->pos->x - 20, _intersection->pos->y, _intersection->pos->z + 20, 0, 1, 0, 0, 1);
+			D3DVERTEX *v8  = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z + 00, 0, 1, 0, 0, 1);
+			D3DVERTEX *v9  = create_vertex(_intersection->pos->x - 20, _intersection->pos->y, _intersection->pos->z - 20, 0, 1, 0, 0, 1);			
+			
+			int i1  = dmdl_add_vertex(model, v1);
+			int i2  = dmdl_add_vertex(model, v2);
+			int i3  = dmdl_add_vertex(model, v3);
+			int i4  = dmdl_add_vertex(model, v4);
+			int i5  = dmdl_add_vertex(model, v5);
+			int i6  = dmdl_add_vertex(model, v6);
+			int i7  = dmdl_add_vertex(model, v7);
+			int i8  = dmdl_add_vertex(model, v8);
+			int i9  = dmdl_add_vertex(model, v9);
+			
+			dmdl_connect_vertices(model, i1, i3, i2);
+			dmdl_connect_vertices(model, i1, i4, i3);
+			dmdl_connect_vertices(model, i1, i5, i4);
+			dmdl_connect_vertices(model, i1, i6, i5);
+			dmdl_connect_vertices(model, i1, i7, i6);
+			dmdl_connect_vertices(model, i1, i8, i7);
+			dmdl_connect_vertices(model, i1, i9, i8);
+			dmdl_connect_vertices(model, i1, i2, i9);		
+		break;
+	}
+	
+	//printf("Vertices %i Faces: %i", model->vertexCount, model->faceCount);
+	ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
+	dmdl_delete(model);
+	return ent;	
+}
 
 
 ENTITY *street_build(Street *street, BMAP* _streetTexture)

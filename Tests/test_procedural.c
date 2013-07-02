@@ -17,6 +17,7 @@ void draw_point(int _x, int _y) {
 	draw_line(vector(_x+1, _y+1, 0), COLOR_BLUE, 100);
 }
 
+// Example 1: Draws a simple voronoi diagram on screen
 void draw_voronoi() {
 	int i=0;
 		
@@ -55,6 +56,7 @@ void draw_voronoi() {
 	vo_free();	
 }
 
+// Example 2: Renders a simple street on a terrain
 void create_small_streets()
 {
 	level_load("");
@@ -90,6 +92,7 @@ void create_small_streets()
 #define VO_MIN_Y -1000
 #define VO_MAX_Y 1000
 
+// Example 3: Draws a complex road network based on a voronoi diagram
 void create_random_streets()
 {
 	int i, j;
@@ -142,6 +145,7 @@ void create_random_streets()
 		nIncomingStreets = 0;
 		vo_get_result_at(i, &x1, &y1, &x2, &y2);
 		
+		// There could be roads with the start==end; ignore them!
 		if ((x1 == x2) && (y1 == y2)) continue;
 		
 		#ifdef DEBUG
@@ -157,6 +161,9 @@ void create_random_streets()
 		
 		bFoundOne = false;
 		bFoundTwo = false;
+		
+		// We are checking lines, so check start and end point separately
+		// Start point
 		for (j=0; j<list_get_count(intersections); j++) {
 		
 			Intersection *tempInter = list_item_at(intersections, j);
@@ -183,6 +190,7 @@ void create_random_streets()
 			#endif
 		}
 
+		// End point
 		for (j=0; j<list_get_count(intersections); j++) {
 		
 			Intersection *tempInter = list_item_at(intersections, j);
@@ -234,8 +242,38 @@ void create_random_streets()
 	} */
 }
 
+// Example 4: Create intersections
+void create_intersections() {
+	level_load("");
+	vec_set(camera.x, vector(-11, -500, 228));
+	vec_set(camera.pan, vector(87, -28, 0));
+	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
+	
+	
+	Intersection *i1 = intersection_create(vector(-200,0,0));
+	i1->incomingStreets +=5;
+	build_intersection(i1, bmapStreetTexture);
+	
+	Intersection *i2 = intersection_create(vector(-100,0,0));
+	i2->incomingStreets +=4;
+	build_intersection(i2, bmapStreetTexture);
+	
+	Intersection *i3 = intersection_create(vector(0,0,0));
+	i3->incomingStreets +=3;
+	build_intersection(i3, bmapStreetTexture);
+	
+	Intersection *i4 = intersection_create(vector(100,0,0));
+	i4->incomingStreets +=2;
+	build_intersection(i4, bmapStreetTexture);
+	
+	Intersection *i5 = intersection_create(vector(200,0,0));
+	i5->incomingStreets +=1;
+	build_intersection(i5, bmapStreetTexture);
+}
+
 void main() {
 	//draw_voronoi();
-	create_random_streets();
+	//create_random_streets();
 	//create_small_streets();
+	create_intersections();
 }

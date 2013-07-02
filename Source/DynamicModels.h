@@ -183,6 +183,24 @@ void dmdl_add_quad(DynamicModel *model, DYNAMIC_QUAD *quad);
 ///
 void dmdl_save(DynamicModel *model, char *filename);
 
+
+/**
+ * Adds a vertex to a model
+ * \param   _model          The model
+ * \param   _v              The new vertex
+ * \return                  Index of the new vertex in the vertex buffer
+ */
+int dmdl_add_vertex(DynamicModel *_model, D3DVERTEX *_v);
+
+/**
+ * Connects 3 vertices to a face
+ * \param   _model          The model
+ * \param   _v1             First vertex (index)
+ * \param   _v2             Second vertex (index)
+ * \param   _v3             Third vertex (index)
+ */
+void dmdl_connect_vertices(DynamicModel *_model, int _v1, int _v2, int _v3);
+
 #include "DynamicModels.c"
 
 #endif

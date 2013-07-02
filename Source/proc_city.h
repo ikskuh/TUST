@@ -106,6 +106,14 @@ typedef struct {
  */
 Intersection *intersection_create(VECTOR* _pos);
 
+/**
+ * Builds a mesh and ENTITY* from a given intersection object.
+ * \param   _intersection          The _intersection to be built.
+ * \param   _intersectionTexture   The texture of the street. Should be tilable in y direction.
+ * \return                         The ENTITY* build from the intersection.
+ */
+ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTexture);
+
 
 /**
  * Creates a new street without mesh.
