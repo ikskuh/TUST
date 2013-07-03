@@ -309,14 +309,39 @@ void dmdl_add_mesh(DynamicModel *model, LPD3DXMESH mesh, VECTOR *offset, ANGLE *
 void dmdl_save(DynamicModel *model, char *filename)
 {
 	LPD3DXMESH mesh = dmdl_create_mesh(model);
+	
+	D3DMATERIAL9 mat9_1;
+	/*mat9_1.Diffuse.r = 255;
+	mat9_1.Ambient.r = 255;
+	mat9_1.Specular.r = 255;
+	mat9_1.Emissive.r = 255;
+	mat9_1.Power = 1.0;*/
+	
+	
+	D3DXMATERIAL mat1;
+	memcpy(&mat1.MatD3D, &mat9_1, sizeof(D3DMATERIAL9));
+	
+	char buffer[256];
+	strcpy(buffer, "test.bmp");
+	mat1.pTextureFilename = buffer;
+	
 	SaveMeshToX(
+		filename,
+		mesh,
+		NULL,
+		&mat1,
+		NULL,
+		1,
+		DMDLSettings.xFormat);
+	
+	/*SaveMeshToX(
 		filename,
 		mesh,
 		NULL,
 		NULL,
 		NULL,
 		0,
-		DMDLSettings.xFormat);
+		DMDLSettings.xFormat);*/
 }
 
 int dmdl_add_vertex(DynamicModel *_model, D3DVERTEX *_v)

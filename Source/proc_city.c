@@ -132,6 +132,9 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 			dmdl_connect_vertices(model, i5, i2, i4);
 			dmdl_connect_vertices(model, i4, i2, i3);
 			dmdl_connect_vertices(model, i1, i5, i6);
+			
+			dmdl_save(model, "C:\\Users\\jonas.freiknecht\\inter1.x");
+			bmap_save(_intersectionTexture, "C:\\Users\\jonas.freiknecht\\inter1.bmp");
 		break;
 		
 		// A simple connection
@@ -159,7 +162,7 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 			dmdl_connect_vertices(model, i2, i4, i5);
 			dmdl_connect_vertices(model, i5, i4, i6);
 			dmdl_connect_vertices(model, i7, i5, i6);
-			dmdl_connect_vertices(model, i7, i6, i8);		
+			dmdl_connect_vertices(model, i7, i6, i8);	
 		break;
 		
 		// Three incoming streets
@@ -193,7 +196,7 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 			dmdl_connect_vertices(model, i7, i5, i6);
 			dmdl_connect_vertices(model, i7, i6, i8);
 			dmdl_connect_vertices(model, i2, i5, i10);
-			dmdl_connect_vertices(model, i9, i2, i10);			
+			dmdl_connect_vertices(model, i9, i2, i10);
 		break;
 		
 		// A cross
@@ -265,7 +268,7 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 			dmdl_connect_vertices(model, i1, i7, i6);
 			dmdl_connect_vertices(model, i1, i8, i7);
 			dmdl_connect_vertices(model, i1, i9, i8);
-			dmdl_connect_vertices(model, i1, i2, i9);		
+			dmdl_connect_vertices(model, i1, i2, i9);	
 		break;
 	}
 	
