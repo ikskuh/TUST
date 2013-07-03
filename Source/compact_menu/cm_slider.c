@@ -2,8 +2,8 @@
 typedef struct CMSLIDER
 {
 	var size_x;
-	var min;
-	var range;
+	var *min;
+	var *max;
 	var step;
 	STRING *format;
 	var **value;
@@ -33,9 +33,13 @@ void drwCMSlider ()
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
 	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
 	CMSLIDER *slider = cmmemberMe->child;
+	**slider->value = clamp ( **slider->value, *slider->min, *slider->max );
 	var slide_x = **slider->value;
-	slide_x -= slider->min;
-	slide_x /= slider->range;
+	slide_x -= *slider->min;
+	if ( *slider->max - *slider->min != 0 )
+		slide_x /= *slider->max - *slider->min;
+	else
+		slide_x = 1;
 	slide_x *= slider->size_x;
 	slide_x = maxv ( slide_x, 1 );
 	vec_set ( &vecPos, vector ( cmmemberMe->tab+slider->size_x, cmmemberMe->pos_y+cmmemberMe->size_y-1, 0 ) );
@@ -57,9 +61,13 @@ void drwCMSliderSelect ()
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
 	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
 	CMSLIDER *slider = cmmemberMe->child;
+	**slider->value = clamp ( **slider->value, *slider->min, *slider->max );
 	var slide_x = **slider->value;
-	slide_x -= slider->min;
-	slide_x /= slider->range;
+	slide_x -= *slider->min;
+	if ( *slider->max - *slider->min != 0 )
+		slide_x /= *slider->max - *slider->min;
+	else
+		slide_x = 1;
 	slide_x *= slider->size_x;
 	slide_x = maxv ( slide_x, 1 );
 	vec_set ( &vecPos, vector ( cmmemberMe->tab, 1, 0 ) );
@@ -92,10 +100,10 @@ void evnCMSlider ()
 		old_value = *pointer;
 		*pointer = clamp ( mouse_pos.x - ( cmenuMe->panel->pos_x + cmmember->tab ), 0, slider->size_x );
 		*pointer /= slider->size_x;
-		*pointer *= slider->range;
+		*pointer *= *slider->max - *slider->min;
 		if ( slider->step != 0 )
 			*pointer = integer ( *pointer / slider->step ) * slider->step;
-		*pointer += slider->min;
+		*pointer += *slider->min;
 		if ( old_value != *pointer )
 		{
 			cmmemberMe = cmmember;
@@ -122,7 +130,8 @@ void fncCMSlider_startup ()
 
 void sliderCMTypeCreate ( STRING *strData )
 {
-	var nMin = str_to_num ( strData );
+	long type;
+	
 	var commaPos = str_stri ( strData, "," );
 	#ifdef CM_SAFE_MODE
 		if ( !commaPos )
@@ -132,8 +141,26 @@ void sliderCMTypeCreate ( STRING *strData )
 			sys_exit ( NULL );
 		}
 	#endif
+	str_cpy ( strCMTemp, strData );
+	str_trunc ( strCMTemp, str_len ( strCMTemp ) - commaPos + 1 );
+   var **ptrMin = engine_getvar ( strCMTemp->chars,  &type );
+	var *nMin;
+	if ( ptrMin == NULL ) 
+	{
+		nMin = (var*)sys_malloc ( sizeof(var) );
+		*nMin = str_to_num ( strCMTemp );
+		cmmemberMe->flags = CM_POINTER1;
+	}
+	else if ( type == 3 )
+	{
+		nMin = ptrMin;
+	}
+	else if ( type == 19 )
+	{
+		nMin = *ptrMin;
+	}
 	str_clip ( strData, commaPos );
-	var nMax = str_to_num ( strData );
+	
 	commaPos = str_stri ( strData, "," );
 	#ifdef CM_SAFE_MODE
 		if ( !commaPos )
@@ -143,7 +170,26 @@ void sliderCMTypeCreate ( STRING *strData )
 			sys_exit ( NULL );
 		}
 	#endif
+	str_cpy ( strCMTemp, strData );
+	str_trunc ( strCMTemp, str_len ( strCMTemp ) - commaPos + 1 );
+   var **ptrMax = engine_getvar ( strCMTemp->chars,  &type );
+	var *nMax;
+	if ( ptrMax == NULL ) 
+	{
+		nMax = (var*)sys_malloc ( sizeof(var) );
+		*nMax = str_to_num ( strCMTemp );
+		cmmemberMe->flags = CM_POINTER1;
+	}
+	else if ( type == 3 )
+	{
+		nMax = ptrMax;
+	}
+	else if ( type == 19 )
+	{
+		nMax = *ptrMax;
+	}
 	str_clip ( strData, commaPos );
+	
 	var nStep = str_to_num ( strData );
 	commaPos = str_stri ( strData, "," );
 	#ifdef CM_SAFE_MODE
@@ -155,6 +201,7 @@ void sliderCMTypeCreate ( STRING *strData )
 		}
 	#endif
 	str_clip ( strData, commaPos );
+	
 	int iSliderFormat = clamp ( str_to_int ( strData ), 0, 3 );
 	commaPos = str_stri ( strData, "," );
 	#ifdef CM_SAFE_MODE
@@ -186,7 +233,6 @@ void sliderCMTypeCreate ( STRING *strData )
 		#endif
 	}
 	
-	long type;
 	var **pointer = engine_getvar ( strData->chars,  &type );
 	#ifdef CM_SAFE_MODE
 		if ( pointer == NULL )
@@ -204,7 +250,7 @@ void sliderCMTypeCreate ( STRING *strData )
 			error ( strData );
 			sys_exit ( NULL );
 		#endif
-		cmmemberMe->flags = CM_INVISIBLE;
+		cmmemberMe->flags |= CM_INVISIBLE;
 		return;
 	}
 	
@@ -213,17 +259,17 @@ void sliderCMTypeCreate ( STRING *strData )
 		var *pointer_old = pointer;
 		pointer = sys_malloc ( sizeof(var*) );
 		*pointer = pointer_old;
-		cmmemberMe->flags = CM_POINTER;
+		cmmemberMe->flags |= CM_POINTER;
 	}
 	else
 	{
 		cmmemberMe->flags = NULL;
 	}
 	
-	**pointer = clamp ( **pointer, nMin, nMax );
+	**pointer = clamp ( **pointer, *nMin, *nMax );
 	CMSLIDER *slider = sys_malloc ( sizeof(CMSLIDER) );
 	slider->min = nMin;
-	slider->range = nMax - nMin;
+	slider->max = nMax;
 	slider->step = nStep;
 	slider->value = pointer;
 	slider->format = (txtCMFormats->pstring)[iSliderFormat];

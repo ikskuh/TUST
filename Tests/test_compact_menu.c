@@ -24,6 +24,29 @@ void fncBeep ( void *object )
 	snd_play ( sndBeep, 50, 0 );
 }
 
+var minLimit = 0;
+var *minPtr;
+var maxLimit = 180;
+var *maxPtr;
+var nStep = 1;
+var *ptrStep;
+void limits_startup ()
+{
+	minPtr = &minLimit;
+	maxPtr = &maxLimit;
+	ptrStep = &nStep;
+}
+void min_control ()
+{
+	minLimit = minv ( minLimit, maxLimit );
+	nSlider = maxv ( minLimit, nSlider );
+}
+void max_control ()
+{
+	maxLimit = maxv ( minLimit, maxLimit );
+	nSlider = minv ( maxLimit, nSlider );
+}
+
 var myTimer = 0;
 var mytimer_fill ()
 {
@@ -34,21 +57,27 @@ TEXT *txtMain =
 {
 	string = 
 	(
+		".line = 2",
+	 	".bitmap = bmpSky",
+		".line = 2",
+		"title.title = 0",
+		"digit (var).digit = 3, nDigit",
+		"digit (var*).digit = 3, ptrDigit",
+		"digit (var return).digit = 0, myTimer, mytimer_fill",
+	 	"button.button = fncBeep"
+	 	"rbutton.rbutton = fncBeep"
+		"slider (var).slider = -180, 180, 1, 0, nSlider",
+		"slider (var*).slider = -180, 180, 1, 0, ptrSlider",
+		"digedit (var).digedit = 3, nDigit",
+		"digedit (var*).digedit = 3, ptrDigit",
+		"submenu.submenu = txtCMTest01",
+		".space = 12",
+		"Slider with var or var* limits.title=0",
+		"min.digedit = 0, minLimit, min_control",
+		"max.digedit = 0, maxPtr, max_control",
+		"var limits.slider = minLimit, maxLimit, 1, 0, nSlider",
+		"var* limits.slider = minPtr, maxPtr, 1, 0, nSlider",
 		".line=2",
-	 	".bitmap=bmpSky",
-		".line=2",
-		"title.title=0",
-		"digit (var).digit=3,nDigit",
-		"digit (var*).digit=3,ptrDigit",
-		"digit (var return).digit=0,myTimer,mytimer_fill",
-	 	"button.button=fncBeep"
-	 	"rbutton.rbutton=fncBeep"
-		"slider (var).slider=-180,180,1,0,nSlider",
-		"slider (var*).slider=-180,180,1,0,ptrSlider",
-		"digedit (var).digedit=3,nDigit",
-		"digedit (var*).digedit=3,ptrDigit",
-		"submenu.submenu=txtCMTest01",
-		".space=2"
 	);
 }
 

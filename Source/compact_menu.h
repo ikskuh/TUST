@@ -94,13 +94,13 @@ void cmstyle_remove ( CMStyle *style );
  * ## General member syntax rule
  *
  * <div class="memitem">
- * <div class="memproto"><div class="memname">name.member_type=parameters</div></div>
+ * <div class="memproto"><div class="memname">name.member_type = parameters</div></div>
  * <div class="memdoc">
  * Parameter            | Description
  * :------------------- | :----------
- * <b>name</b>          | text to be displayed in the left side of the member field.
- * <b>member_type</b>   | is the member type name.
- * <b>parameters</b>    | one or more parameters in reference to member_type separated by commas.
+ * <b>name</b>          | Text to be displayed in the left side of the member field.
+ * <b>member_type</b>   | The member type name.
+ * <b>parameters</b>    | One or more parameters in reference to member_type separated by commas.
  * </div></div>
  *
  * ## Default Members
@@ -108,7 +108,7 @@ void cmstyle_remove ( CMStyle *style );
  * <div class="memitem">
  * <div class="memproto"><div class="memname">submenu</div></div>
  * <div class="memdoc">
- * <div class="memname">name.submenu=TEXT*</div>
+ * <div class="memname">name.submenu = TEXT*</div>
  * <div class="textblock">
  * The most important member in compact menu. It lets us create collapsable menus.
  * </div><div class="textblock">
@@ -134,50 +134,49 @@ void cmstyle_remove ( CMStyle *style );
  * <div class="memitem">
  * <div class="memproto"><div class="memname">title</div></div>
  * <div class="memdoc">
- * <div class="memname">name.title=size_y</div>
+ * <div class="memname">name.title = size_y</div>
  * Draws an underlined title
  * Parameter        | Description
  * :--------------- | :----------
- * <b>size_y</b>    | height of the title field.
+ * <b>size_y</b>    | Height of the title field.
  * </div></div>
  * 
  * <div class="memitem">
  * <div class="memproto"><div class="memname">line</div></div>
  * <div class="memdoc">
- * <div class="memname">.line=size_y</div>
+ * <div class="memname">.line = size_y</div>
  * <div class="textblock">
  * Draws an horizontal gradient line from the style *text* color to background color. Conceived to use as visual separator.
  * </div>
  * Parameter        | Description
  * :--------------- | :----------
- * <b>size_y</b>    | height of the line field.
+ * <b>size_y</b>    | Height of the line field.
  * </div></div>
  *
  * <div class="memitem">
  * <div class="memproto"><div class="memname">space</div></div>
  * <div class="memdoc">
- * <div class="memname">.space=size_y</div>
+ * <div class="memname">.space = size_y</div>
  * <div class="textblock">
  * Draws an horizontal gradient line from the style *over* color to background color. Conceived to use as visual separator.
  * </div>
  * Parameter        | Description
  * :--------------- | :----------
- * <b>size_y</b>    | height of the space field.
+ * <b>size_y</b>    | Height of the space field.
  * </div></div>
  *
  * <div class="memitem"><div class="memproto"><div class="memname">digit</div></div>
- * <div class="memdoc"><div class="memname">name.digit=decimal,var</div>
- * <div class="memname">name.digit=decimal,var,event</div>
+ * <div class="memdoc">
+ * <div class="memname">name.digit = decimal, var</div>
+ * <div class="memname">name.digit = decimal, var, event</div>
  * <div class="textblock">
  * Draws the content of a var. If the var is a pointer to a var, the digit will show the content of the var that was pointed by the pointer in the moment of the menu creation.
- * </div><div class="textblock">
- * 
  * </div>
  * Parameter        | Description
  * :--------------- | :----------
- * <b>decimal</b>   | decimal number. 0 <-> 3
- * <b>var</b>       | variable to be shown.
- * <b>event</b>     | function to fill the var.
+ * <b>decimal</b>   | Decimal number. 0 <-> 3
+ * <b>var</b>       | Variable to be shown.
+ * <b>event</b>     | Function to fill the var.
  * <div class="textblock">
  * The event must be named as follows:
  * </div>
@@ -185,15 +184,16 @@ void cmstyle_remove ( CMStyle *style );
  * var myFunctionName ()
  * {
  *    ...
- *    return myNewValue; // If the a digit var is continued by a function, the content of the var will be set to the return of the function while the digit is visible. Conceived to show menu related temporary values.
+ *    return myNewValue;
  * }
  * ~~~
  * </div></div>
  *
  * <div class="memitem">
  * <div class="memproto"><div class="memname">digedit</div></div>
- * <div class="memdoc"><div class="memname">name.digedit=decimal,var</div>
- * <div class="memname">name.digedit=decimal,var,event</div>
+ * <div class="memdoc">
+ * <div class="memname">name.digedit = decimal, var</div>
+ * <div class="memname">name.digedit = decimal, var, event</div>
  * <div class="textblock">
  * Draws and edits the content of a var. If the var is a pointer to a var, the digedit will show the content of the var that was pointed by the pointer in the moment of the menu creation.
  * </div><div class="textblock">
@@ -201,25 +201,26 @@ void cmstyle_remove ( CMStyle *style );
  * </div>
  * Parameter        | Description
  * :--------------- | :----------
- * <b>decimal</b>   | decimal number. 0 <-> 3
- * <b>var</b>       | variable to be shown and edited.
- * <b>event</b>     | function to be called after editing the digedit. It can be obviated.
+ * <b>decimal</b>   | Decimal number. 0 <-> 3
+ * <b>var</b>       | Variable to be shown and edited.
+ * <b>event</b>     | Function to be called after editing the digedit. It can be obviated.
  * </div></div>
  * 
  * <div class="memitem"><div class="memproto"><div class="memname">slider</div></div>
- * <div class="memdoc"><div class="memname">name.slider=min,max,step,decimal,var</div>
- * <div class="memname">name.slider=min,max,step,decimal,var,event</div>
+ * <div class="memdoc">
+ * <div class="memname">name.slider = min, max, step, decimal, var</div>
+ * <div class="memname">name.slider = min, max, step, decimal, var, event</div>
  * <div class="textblock">
- * Draws an horizontal slider
+ * Draws an horizontal slider. If the var is a pointer to a var, the digedit will show the content of the var that was pointed by the pointer in the moment of the menu creation.
  * </div>
  * Parameter        | Description
  * :--------------- | :----------
- * <b>min</b>       | minimum value in the slider.
- * <b>max</b>       | maximum value in the slider.
- * <b>step</b>      | step of change.
- * <b>decimal</b>   | decimal number. 0 <-> 3
- * <b>var</b>       | variable to be shown and edited.
- * <b>event</b>     | function to be called after editing the slider. It can be obviated.
+ * <b>min</b>       | Minimum value in the slider. It can be a fixed value, a var or a pointer to a var.
+ * <b>max</b>       | Maximum value in the slider. It can be a fixed value, a var or a pointer to a var.
+ * <b>step</b>      | Step of change.
+ * <b>decimal</b>   | Decimal number. 0 <-> 3
+ * <b>var</b>       | Variable to be shown and edited.
+ * <b>event</b>     | Function to be called after editing the slider. It can be obviated.
  * </div></div>
  */
 PANEL *cmenu_create ( char *member, var pos_x, var pos_y, var size_x, var layer, var flags, CMStyle *style );

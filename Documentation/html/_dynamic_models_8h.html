@@ -155,6 +155,10 @@ Functions</h2></td></tr>
 <tr class="separator:a431ebd5fcd37b48a1bc865472e248e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab497feb50e2b5e61747886f045a58b65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#ab497feb50e2b5e61747886f045a58b65">dmdl_save</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *model, char *filename)</td></tr>
 <tr class="separator:ab497feb50e2b5e61747886f045a58b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a228e30b9727d9d6e88b19b697d281b57"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a228e30b9727d9d6e88b19b697d281b57">dmdl_add_vertex</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *_model, <a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *_v)</td></tr>
+<tr class="separator:a228e30b9727d9d6e88b19b697d281b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5300cc41fe89575ee9d92b91d7871b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a5300cc41fe89575ee9d92b91d7871b99">dmdl_connect_vertices</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *_model, int _v1, int _v2, int _v3)</td></tr>
+<tr class="separator:a5300cc41fe89575ee9d92b91d7871b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -378,6 +382,89 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a228e30b9727d9d6e88b19b697d281b57"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dmdl_add_vertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
+          <td class="paramname"><em>_model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *&#160;</td>
+          <td class="paramname"><em>_v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adds a vertex to a model </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_model</td><td>The model </td></tr>
+    <tr><td class="paramname">_v</td><td>The new vertex </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Index of the new vertex in the vertex buffer </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5300cc41fe89575ee9d92b91d7871b99"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dmdl_connect_vertices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
+          <td class="paramname"><em>_model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_v2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_v3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Connects 3 vertices to a face </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_model</td><td>The model </td></tr>
+    <tr><td class="paramname">_v1</td><td>First vertex (index) </td></tr>
+    <tr><td class="paramname">_v2</td><td>Second vertex (index) </td></tr>
+    <tr><td class="paramname">_v3</td><td>Third vertex (index) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a435580d6f97e63bb5a97d476fcab1da6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -532,7 +619,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 28 2013 19:48:39 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 3 2013 12:53:44 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

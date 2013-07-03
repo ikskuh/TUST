@@ -47,5 +47,6 @@ var searchData=
   ['bitmap_20processes',['Bitmap processes',['../group___bmap_group.html',1,'']]],
   ['bool',['bool',['../group___script_library_core.html#ga97a80ca1602ebf2303258971a2c938e2',1,'tust.h']]],
   ['box3d',['box3d',['../structcimg__library__suffixed_1_1_c_img.html#a2d70ee859df458d9448ba2a127cedc82',1,'cimg_library_suffixed::CImg']]],
+  ['build_5fintersection',['build_intersection',['../proc__city_8h.html#a2950132cf781eb077ad5849414c7a744',1,'proc_city.c']]],
   ['button',['button',['../structcimg__library__suffixed_1_1_c_img_display.html#ab9fe940f9f5037dbcb303dc11563f3a5',1,'cimg_library_suffixed::CImgDisplay']]]
 ];

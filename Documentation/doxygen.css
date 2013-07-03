@@ -222,7 +222,6 @@ div.fragment {
         background-color: #FBFCFD;
         border: 1px solid #C4CFE5;
         overflow: auto;
-        overflow-x: scroll;
         margin-left: 20px;
 }
 

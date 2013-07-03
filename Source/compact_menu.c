@@ -15,7 +15,10 @@
 #define CM_ARIGHT              (1<<3)
 #define CM_RESIZE              (1<<4)
 #define CM_POINTER             (1<<5)
-#define CM_COMPUTE             (1<<6)
+#define CM_POINTER1            (1<<6)
+#define CM_POINTER2            (1<<7)
+#define CM_POINTER3            (1<<8)
+#define CM_COMPUTE             (1<<9)
 
 typedef struct CMCLASS
 {
@@ -76,6 +79,25 @@ TEXT *txtCMFormats =
 
 void fncCMPrototype ( void *object );
 void fncCMConstructor ( STRING *strData );
+
+void fncDataRemoveSpaces ( STRING *str )
+{
+	var length = str_len ( str );
+	str_cpy ( strCMTemp, str );
+	var i = 0, ii = 0;
+	for ( ; i<length; i+=1 )
+	{
+		if ( ( str_stri ( str, " " ) != 1 ) && ( str_stri ( str, "	" ) != 1 ) )
+		{
+			ii += 1;
+			str_setchr ( strCMTemp, ii, str_getchr(str, 1) );
+		}
+		str_clip ( str, 1 );
+	}
+	str_trunc ( strCMTemp, length - ii );
+	str_cpy ( str, strCMTemp );
+}
+
 
 void drwCMSelection ()
 {
@@ -218,18 +240,20 @@ void cmmemberCMStringParse ()
 	#ifdef CM_SAFE_MODE
 		if ( !pointPos )
 		{
-			str_cat ( strCMData, "\npoint expected" );
+			str_cat ( strCMData, "/npoint expected" );
 			error ( strCMData );
 			sys_exit ( NULL );
 		}
 	#endif
 	str_trunc ( strData, str_len(strData)-pointPos+1 );
 	str_clip ( strCMData, pointPos );
+	
+	fncDataRemoveSpaces ( strCMData );
 	var equalPos = str_stri ( strCMData, "=" );
 	#ifdef CM_SAFE_MODE
 		if ( !equalPos )
 		{
-			str_cat ( strCMData, "\nequal sign expected" );
+			str_cat ( strCMData, "/nequal sign expected" );
 			error ( strCMData );
 			sys_exit ( NULL );
 		}
