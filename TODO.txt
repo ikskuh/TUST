@@ -83,10 +83,12 @@ o Generic Script Library
 		x DynamicModels (MasterQ32) --> Source/DynamicModels.h
 	o Lua Scripting Support
 	! Generic Array Lists (MasterQ32)
-	x Bitmap processes --> Source\bmap.h
+	- Bitmap processes --> Source\bmap.h
 		x bmap_lerp (txesmi)  --> Source\bmap.h
 		x bmap_rotate (txesmi)  --> Source\bmap.h
 		x Draw line, draw rectangle, draw circle, draw border, fill (padmalcom)
+		- Draw thick line, Draw line with noise, draw XX with noise
+		- Fill with pattern
 	x Logging (padmalcom)
 	x Camera Controller
 		x Flythrough
