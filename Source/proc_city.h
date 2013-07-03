@@ -83,6 +83,14 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 // Street tool
 // ----------------------------------------------------------------------------------------
 
+#define PROC_TEXT_RES 512
+
+BMAP* bmapStreetIntersection1 = NULL;
+BMAP* bmapStreetIntersection2 = NULL;
+BMAP* bmapStreetIntersection3 = NULL;
+BMAP* bmapStreetIntersection4 = NULL;
+BMAP* bmapStreetIntersection5 = NULL;
+
 typedef struct Street
 {
 	List *points;

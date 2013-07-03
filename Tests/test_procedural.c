@@ -244,34 +244,43 @@ void create_random_streets()
 
 // Example 4: Create intersections
 void create_intersections() {
+	
 	level_load("");
 	vec_set(camera.x, vector(-11, -500, 228));
 	vec_set(camera.pan, vector(87, -28, 0));
+	
+	proc_city_create_skins();
+	
+	/*while(1) {
+		DEBUG_BMAP(bmapStreetIntersection5, 10, 1);
+		wait(1);
+	}*/
+	
 	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
-	
-	
+
 	Intersection *i1 = intersection_create(vector(-200,0,0));
 	i1->incomingStreets +=5;
-	build_intersection(i1, bmapStreetTexture);
+	build_intersection(i1, bmapStreetIntersection5);
 	
-	Intersection *i2 = intersection_create(vector(-100,0,0));
+	Intersection *i2 = intersection_create(vector(-125,0,0));
 	i2->incomingStreets +=4;
-	build_intersection(i2, bmapStreetTexture);
+	build_intersection(i2, bmapStreetIntersection4);
 	
-	Intersection *i3 = intersection_create(vector(0,0,0));
+	Intersection *i3 = intersection_create(vector(-50,0,0));
 	i3->incomingStreets +=3;
-	build_intersection(i3, bmapStreetTexture);
+	build_intersection(i3, bmapStreetIntersection3);
 	
-	Intersection *i4 = intersection_create(vector(100,0,0));
+	Intersection *i4 = intersection_create(vector(25,0,0));
 	i4->incomingStreets +=2;
-	build_intersection(i4, bmapStreetTexture);
+	build_intersection(i4, bmapStreetIntersection2);
 	
-	Intersection *i5 = intersection_create(vector(200,0,0));
+	Intersection *i5 = intersection_create(vector(100,0,0));
 	i5->incomingStreets +=1;
-	build_intersection(i5, bmapStreetTexture);
+	build_intersection(i5, bmapStreetIntersection1);
 }
 
 void main() {
+	video_mode = 10;
 	//draw_voronoi();
 	//create_random_streets();
 	//create_small_streets();
