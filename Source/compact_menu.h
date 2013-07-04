@@ -165,6 +165,18 @@ void cmstyle_remove ( CMStyle *style );
  * <b>size_y</b>    | Height of the space field.
  * </div></div>
  *
+ * <div class="memitem">
+ * <div class="memproto"><div class="memname">string</div></div>
+ * <div class="memdoc">
+ * <div class="memname">name.string = STRING*</div>
+ * <div class="textblock">
+ * Draws a string cutted to fit the panel size.
+ * </div>
+ * Parameter        | Description
+ * :--------------- | :----------
+ * <b>STRING*</b>   | STRING to be shown.
+ * </div></div>
+ *
  * <div class="memitem"><div class="memproto"><div class="memname">digit</div></div>
  * <div class="memdoc">
  * <div class="memname">name.digit = decimal, var</div>
@@ -257,6 +269,7 @@ void cmenu_remove_all ();
 #include "cm_button.c"
 #include "cm_slider.c"
 #include "cm_digit.c"
+#include "cm_string.c"
 
 #include "cm_template_debug.c"
 #include "cm_template_test01.c"

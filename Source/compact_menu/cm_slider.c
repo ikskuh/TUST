@@ -15,6 +15,10 @@ void fncCMSliderRemove ()
 	CMSLIDER *slider = cmmemberMe->child;
 	if ( cmmemberMe->flags & CM_POINTER )
 		sys_free ( slider->value );
+	if ( cmmemberMe->flags & CM_POINTER1 )
+		sys_free ( slider->min );
+	if ( cmmemberMe->flags & CM_POINTER2 )
+		sys_free ( slider->max );
 	sys_free ( slider );
 }
 
@@ -131,6 +135,7 @@ void fncCMSlider_startup ()
 void sliderCMTypeCreate ( STRING *strData )
 {
 	long type;
+	cmmemberMe->flags = NULL;
 	
 	var commaPos = str_stri ( strData, "," );
 	#ifdef CM_SAFE_MODE
@@ -149,7 +154,7 @@ void sliderCMTypeCreate ( STRING *strData )
 	{
 		nMin = (var*)sys_malloc ( sizeof(var) );
 		*nMin = str_to_num ( strCMTemp );
-		cmmemberMe->flags = CM_POINTER1;
+		cmmemberMe->flags |= CM_POINTER1;
 	}
 	else if ( type == 3 )
 	{
@@ -178,7 +183,7 @@ void sliderCMTypeCreate ( STRING *strData )
 	{
 		nMax = (var*)sys_malloc ( sizeof(var) );
 		*nMax = str_to_num ( strCMTemp );
-		cmmemberMe->flags = CM_POINTER1;
+		cmmemberMe->flags |= CM_POINTER2;
 	}
 	else if ( type == 3 )
 	{
@@ -261,10 +266,7 @@ void sliderCMTypeCreate ( STRING *strData )
 		*pointer = pointer_old;
 		cmmemberMe->flags |= CM_POINTER;
 	}
-	else
-	{
-		cmmemberMe->flags = NULL;
-	}
+
 	
 	**pointer = clamp ( **pointer, *nMin, *nMax );
 	CMSLIDER *slider = sys_malloc ( sizeof(CMSLIDER) );

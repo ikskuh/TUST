@@ -53,7 +53,6 @@ void drwCMDigit ()
 	if ( cmmemberMe->flags & CM_COMPUTE )
 	{
 		fncCMDigitPrecompute ( digit );
-		
 	}
 	cmmember_digit ( *digit->value, digit->format );
 	cmmember_name ();

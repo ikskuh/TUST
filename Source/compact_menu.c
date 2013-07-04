@@ -240,7 +240,7 @@ void cmmemberCMStringParse ()
 	#ifdef CM_SAFE_MODE
 		if ( !pointPos )
 		{
-			str_cat ( strCMData, "/npoint expected" );
+			str_cat ( strCMData, "\npoint expected" );
 			error ( strCMData );
 			sys_exit ( NULL );
 		}
@@ -253,7 +253,7 @@ void cmmemberCMStringParse ()
 	#ifdef CM_SAFE_MODE
 		if ( !equalPos )
 		{
-			str_cat ( strCMData, "/nequal sign expected" );
+			str_cat ( strCMData, "\nequal sign expected" );
 			error ( strCMData );
 			sys_exit ( NULL );
 		}
@@ -438,6 +438,49 @@ void cmmember_digit ( var *pointer, STRING *format )
 	}
 	cmenuMe->digits += 1;
 }
+
+void fncCMStringCopy ( STRING *cmMemberString, STRING *string )
+{
+	COMPACT_MENU *cmenu = cmenuMe;
+	long timer = cmenu->lastDraw;
+	while ( timer == cmenu->lastDraw )
+	{
+		str_cpy ( cmMemberString, "" );
+		str_cpy ( strCMTemp, " " );
+		var i = 1;
+		var length = str_stri ( string, "\n" );
+		if ( length == 0 )
+			length = str_len ( string );
+		else
+			length -= 1;
+		while ( ( str_width(cmMemberString,cmenuMe->style->font) < cmenuMe->panel->size_x / 2 ) && ( i <= length ) )
+		{
+			str_setchr ( strCMTemp, 1, str_getchr(string, i) );
+			str_cat ( cmMemberString, strCMTemp );
+			i ++;
+		}
+		if ( ( length > i ) || ( i == str_stri ( string, "\n" ) ) )
+			str_cat ( cmMemberString, "..." );
+		wait(1);
+	}
+}
+
+void cmmember_string ( STRING *string )
+{
+	if ( cmenuMe->strings == cmenuMe->text->strings )
+		txt_addstring ( cmenuMe->text, NULL );
+	var posX = cmenuMe->panel->size_x - CM_TAB_DIGIT;
+	STRING *cmMemberString = (cmenuMe->text->pstring)[cmenuMe->strings];
+	
+	fncCMStringCopy ( cmMemberString, string );
+	
+	if ( !pan_setstring ( cmenuMe->panel, cmenuMe->digits, posX, cmmemberMe->pos_y, cmenuMe->style->font, cmMemberString ) )
+		pan_setstring ( cmenuMe->panel, 0, posX, cmmemberMe->pos_y, cmenuMe->style->font, cmMemberString );
+	
+	cmenuMe->digits ++;
+	cmenuMe->strings ++;
+}
+
 
 CMStyle *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *colOver )
 {

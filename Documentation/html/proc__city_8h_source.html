@@ -130,42 +130,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">// Street tool</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// ----------------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Street</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;{</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="struct_list.html">List</a> *points;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    var width;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    var groundDist;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="class_e_n_t_i_t_y.html" title="The ENTITY struct is defined in GStudio8\include\atypes.h. ">ENTITY</a> *ent;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    LPD3DXMESH mesh;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;} Street;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a> *pos;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">int</span> incomingStreets;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="struct_list.html">List</a> *incomingAngles;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;} Intersection;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;Intersection *intersection_create(<a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a>* _pos);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#define PROC_TEXT_RES 512</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapStreetIntersection1 = NULL;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapStreetIntersection2 = NULL;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapStreetIntersection3 = NULL;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapStreetIntersection4 = NULL;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* bmapStreetIntersection5 = NULL;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>Street</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;{</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="struct_list.html">List</a> *points;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    var width;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    var groundDist;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="class_e_n_t_i_t_y.html" title="The ENTITY struct is defined in GStudio8\include\atypes.h. ">ENTITY</a> *ent;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    LPD3DXMESH mesh;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;} Street;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a> *pos;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordtype">int</span> incomingStreets;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="struct_list.html">List</a> *incomingAngles;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;} Intersection;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<a class="code" href="class_e_n_t_i_t_y.html" title="The ENTITY struct is defined in GStudio8\include\atypes.h. ">ENTITY</a> *build_intersection(Intersection *_intersection, <a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* _intersectionTexture);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;Intersection *intersection_create(<a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a>* _pos);</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;Street *street_create(<span class="keywordtype">int</span> _streetWidth, <span class="keywordtype">int</span> groundDistance);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<a class="code" href="class_e_n_t_i_t_y.html" title="The ENTITY struct is defined in GStudio8\include\atypes.h. ">ENTITY</a> *build_intersection(Intersection *_intersection, <a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* _intersectionTexture);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keywordtype">void</span> street_remove(Street *street);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="keywordtype">void</span> street_addpos(Street *street, <a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a> *pos);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<a class="code" href="class_e_n_t_i_t_y.html" title="The ENTITY struct is defined in GStudio8\include\atypes.h. ">ENTITY</a> *street_build(Street *street, <a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* _streetTexture);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;Street *street_create(<span class="keywordtype">int</span> _streetWidth, <span class="keywordtype">int</span> groundDistance);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="keywordtype">void</span> street_remove(Street *street);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="keywordtype">void</span> street_addpos(Street *street, <a class="code" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a> *pos);</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#include &quot;proc_city.c&quot;</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<a class="code" href="class_e_n_t_i_t_y.html" title="The ENTITY struct is defined in GStudio8\include\atypes.h. ">ENTITY</a> *street_build(Street *street, <a class="code" href="class_b_m_a_p.html" title="The BMAP struct is defined in GStudio8\include\atypes.h. ">BMAP</a>* _streetTexture);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#include &quot;proc_city.c&quot;</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 3 2013 12:53:44 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 4 2013 13:36:51 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

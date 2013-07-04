@@ -24,6 +24,7 @@ void fncBeep ( void *object )
 	snd_play ( sndBeep, 50, 0 );
 }
 
+STRING *strString = "string\n string string string string string string string string string string string string string string ";
 var minLimit = 0;
 var *minPtr;
 var maxLimit = 180;
@@ -59,25 +60,20 @@ TEXT *txtMain =
 	(
 		".line = 2",
 	 	".bitmap = bmpSky",
-		".line = 2",
+		".space = 2",
 		"title.title = 0",
 		"digit (var).digit = 3, nDigit",
 		"digit (var*).digit = 3, ptrDigit",
 		"digit (var return).digit = 0, myTimer, mytimer_fill",
-	 	"button.button = fncBeep"
-	 	"rbutton.rbutton = fncBeep"
+		"string.string = strString",
+	 	"button.button = fncBeep",
+	 	"rbutton.rbutton = fncBeep",
 		"slider (var).slider = -180, 180, 1, 0, nSlider",
 		"slider (var*).slider = -180, 180, 1, 0, ptrSlider",
 		"digedit (var).digedit = 3, nDigit",
 		"digedit (var*).digedit = 3, ptrDigit",
 		"submenu.submenu = txtCMTest01",
-		".space = 12",
-		"Slider with var or var* limits.title=0",
-		"min.digedit = 0, minLimit, min_control",
-		"max.digedit = 0, maxPtr, max_control",
-		"var limits.slider = minLimit, maxLimit, 1, 0, nSlider",
-		"var* limits.slider = minPtr, maxPtr, 1, 0, nSlider",
-		".line=2",
+		".line=2"
 	);
 }
 
@@ -118,15 +114,20 @@ void main ()
 	bmpSky = bmap_create ( "sky_fu_256+6.tga" );
 	
 	while ( !key_esc && !nExit )
+	{
+		str_setchr ( strString, 1, random(32)+32 );
 		wait(1);
+	}
 	
 	bmap_remove ( bmpSky );
 	bmpSky = NULL;
 	bmap_remove ( mouse_map );
 	mouse_map = NULL;
+	
 	cmenu_remove ( myMenu01 );
 	sys_free ( myMenuStyle01 ); 
-	font_remove ( fntTTF ); 
+	font_remove ( fntTTF );
+	
 	cmenu_remove ( myMenu02 );
 	sys_free ( myMenuStyle02 );
 	font_remove ( fntBitmap ); 
