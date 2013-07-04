@@ -5,7 +5,7 @@
 #include "..\\Source\\proc_city.h"
 #include "..\\Source\\DynamicModels.h"
 
-//#define DEBUG
+//#define PROCEDURAL_DEBUG
 
 
 void draw_point(int _x, int _y) {
@@ -101,13 +101,15 @@ void create_random_streets()
 	vec_set(camera.x, vector(41, 2328, 1658));
 	vec_set(camera.pan, vector(270, -35, 0));
 	
+	proc_city_create_skins();
+	
 	//ENTITY* entTerrain = ent_create("..\\Ressources\\Terrains\\helymap1.hmp", vector(0,0,0), NULL);
 	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
 
 	// Create a road network using voronoi diagrams
 	random_seed(0);
 	vo_init();
-	for(i=0; i<6; i++) {
+	for(i=0; i<20; i++) {
 		vo_add_point(VO_MIN_X + integer(random(2 * VO_MAX_X)), VO_MIN_Y + integer(random(2 * VO_MAX_Y)));
 	}
 	vo_execute(VO_MIN_X, VO_MAX_X, VO_MIN_Y, VO_MAX_Y, 3);
@@ -148,15 +150,15 @@ void create_random_streets()
 		// There could be roads with the start==end; ignore them!
 		if ((x1 == x2) && (y1 == y2)) continue;
 		
-		#ifdef DEBUG
-			str_cpy((txtStreets.pstring)[i], "From ");
+		#ifdef PROCEDURAL_DEBUG
+			/*str_cpy((txtStreets.pstring)[i], "From ");
 			str_cat((txtStreets.pstring)[i], str_for_float(NULL, x1));
 			str_cat((txtStreets.pstring)[i], ",");
 			str_cat((txtStreets.pstring)[i], str_for_float(NULL, y1));
 			str_cat((txtStreets.pstring)[i], " to ");
 			str_cat((txtStreets.pstring)[i], str_for_float(NULL, x2));
 			str_cat((txtStreets.pstring)[i], ",");
-			str_cat((txtStreets.pstring)[i], str_for_float(NULL, y2));
+			str_cat((txtStreets.pstring)[i], str_for_float(NULL, y2));*/
 		#endif
 		
 		bFoundOne = false;
@@ -169,7 +171,7 @@ void create_random_streets()
 			Intersection *tempInter = list_item_at(intersections, j);
 			
 			// Found an intersection at a known point (1st end)
-			if (vec_dist(vector(tempInter->pos->x, tempInter->pos->y, 0), vector(x1, y1, 0)) == 0) {
+			if ((integer(tempInter->pos->x) == integer(x1)) && (integer(tempInter->pos->z) == integer(y1))) {
 				bFoundOne = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
@@ -179,11 +181,11 @@ void create_random_streets()
 		}
 		
 		if (bFoundOne == false) {
-			Intersection *newInter = intersection_create(vector(x1, y1, 0));
+			Intersection *newInter = intersection_create(vector(x1, 0, y1));
 			newInter->incomingStreets = 1;
 			list_add(intersections, newInter);
-			ent_create(CUBE_MDL, vector(x1, y1, 0), NULL);
-			#ifdef DEBUG
+		//	ent_create(CUBE_MDL, vector(x1, y1, 0), NULL);
+			#ifdef PROCEDURAL_DEBUG
 				str_cpy((txtIntersections.pstring)[list_get_count(intersections)], str_for_num(NULL, newInter->pos->x));
 				str_cat((txtIntersections.pstring)[list_get_count(intersections)], ",");
 				str_cat((txtIntersections.pstring)[list_get_count(intersections)], str_for_num(NULL, newInter->pos->y));
@@ -194,7 +196,7 @@ void create_random_streets()
 		for (j=0; j<list_get_count(intersections); j++) {
 		
 			Intersection *tempInter = list_item_at(intersections, j);
-			if (vec_dist(vector(tempInter->pos->x, tempInter->pos->y, 0), vector(x2, y2, 0)) == 0) {
+			if ((integer(tempInter->pos->x) == integer(x2)) && (integer(tempInter->pos->z) == integer(y2))) {
 				bFoundTwo = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
@@ -204,11 +206,11 @@ void create_random_streets()
 		}
 		
 		if (bFoundTwo == false) {
-			Intersection *newInter = intersection_create(vector(x2, y2, 0));
+			Intersection *newInter = intersection_create(vector(x2, 0, y2));
 			newInter->incomingStreets = 1;
 			list_add(intersections, newInter);
-			ent_create(CUBE_MDL, vector(x2, y2, 0), NULL);
-			#ifdef DEBUG
+			//ent_create(CUBE_MDL, vector(x2, y2, 0), NULL);
+			#ifdef PROCEDURAL_DEBUG
 				str_cpy((txtIntersections.pstring)[list_get_count(intersections)], str_for_num(NULL, newInter->pos->x));
 				str_cat((txtIntersections.pstring)[list_get_count(intersections)], ",");
 				str_cat((txtIntersections.pstring)[list_get_count(intersections)], str_for_num(NULL, newInter->pos->y));
@@ -218,6 +220,10 @@ void create_random_streets()
 	
 	int count = list_get_count(intersections);
 	printf("Intersections found: %i", count);
+	for(i=0; i<list_get_count(intersections); i++) {
+		Intersection* tempInter = list_item_at(intersections, i);
+		build_intersection(tempInter);	
+	}
 		
 	while(!key_esc) {
 		// Draw diagram
@@ -253,29 +259,29 @@ void create_intersections() {
 	
 	Intersection *i1 = intersection_create(vector(-200,0,0));
 	i1->incomingStreets +=5;
-	build_intersection(i1, bmapStreetIntersection5);
+	build_intersection(i1);
 	
 	Intersection *i2 = intersection_create(vector(-125,0,0));
 	i2->incomingStreets +=4;
-	build_intersection(i2, bmapStreetIntersection4);
+	build_intersection(i2);
 	
 	Intersection *i3 = intersection_create(vector(-50,0,0));
 	i3->incomingStreets +=3;
-	build_intersection(i3, bmapStreetIntersection3);
+	build_intersection(i3);
 	
 	Intersection *i4 = intersection_create(vector(25,0,0));
 	i4->incomingStreets +=2;
-	build_intersection(i4, bmapStreetIntersection2);
+	build_intersection(i4);
 	
 	Intersection *i5 = intersection_create(vector(100,0,0));
 	i5->incomingStreets +=1;
-	build_intersection(i5, bmapStreetIntersection1);
+	build_intersection(i5);
 }
 
 void main() {
 	video_mode = 7;
 	//draw_voronoi();
+	create_small_streets();
+	//create_intersections();
 	//create_random_streets();
-	//create_small_streets();
-	create_intersections();
 }

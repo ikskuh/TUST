@@ -4,6 +4,8 @@
 #include "math.h"
 #include "bmap.h" // Needs "BmapGS.dll"
 
+//#define DEBUG
+
 // ----------------------------------------------------------------------------------------
 // Street tool
 // ----------------------------------------------------------------------------------------
@@ -101,11 +103,16 @@ D3DVERTEX *create_vertex(float _x, float _y, float _z, float _nx, float _ny, flo
 	return newVertex;
 }
 
-ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTexture)
+ENTITY *build_intersection(Intersection *_intersection)
 {
 	int nIncomingCount = _intersection->incomingStreets;
 	DynamicModel *model = dmdl_create();
-	model->skin[0] = _intersectionTexture;
+	
+	#ifdef DEBUG
+		if (bmapStreetIntersection1 == NULL) {
+			printf("Intersection skins are not initialized - consider calling 'proc_city_create_skins' first!");
+		}
+	#endif
 	
 	switch(nIncomingCount) {
 		// Should not happen!
@@ -113,6 +120,7 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 		
 		// Street ending
 		case 1:
+			model->skin[0] = bmapStreetIntersection1;
 			// y == z
 			D3DVERTEX *v1 = create_vertex(_intersection->pos->x - 10,  _intersection->pos->y, _intersection->pos->z - 10,   0, 1, 0,   0,    0);
 			D3DVERTEX *v2 = create_vertex(_intersection->pos->x - 10,  _intersection->pos->y, _intersection->pos->z + 10,   0, 1, 0,   0,    1);
@@ -120,6 +128,13 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 			D3DVERTEX *v4 = create_vertex(_intersection->pos->x + 7.5, _intersection->pos->y, _intersection->pos->z + 2.5,  0, 1, 0,   1,    0.66);
 			D3DVERTEX *v5 = create_vertex(_intersection->pos->x + 7.5, _intersection->pos->y, _intersection->pos->z - 2.5,  0, 1, 0,   1,    0.33);
 			D3DVERTEX *v6 = create_vertex(_intersection->pos->x + 2.5, _intersection->pos->y, _intersection->pos->z - 10,   0, 1, 0,   0.66, 0);
+			
+			/*D3DVERTEX *v1 = create_vertex(_intersection->pos->x - 10,  _intersection->pos->y-10, _intersection->pos->z,   0, 1, 0,   0,    0);
+			D3DVERTEX *v2 = create_vertex(_intersection->pos->x - 10,  _intersection->pos->y+10, _intersection->pos->z,   0, 1, 0,   0,    1);
+			D3DVERTEX *v3 = create_vertex(_intersection->pos->x + 2.5, _intersection->pos->y+10, _intersection->pos->z,   0, 1, 0,   0.66, 1);
+			D3DVERTEX *v4 = create_vertex(_intersection->pos->x + 7.5, _intersection->pos->y+2.5, _intersection->pos->z,  0, 1, 0,   1,    0.66);
+			D3DVERTEX *v5 = create_vertex(_intersection->pos->x + 7.5, _intersection->pos->y-2.5, _intersection->pos->z,  0, 1, 0,   1,    0.33);
+			D3DVERTEX *v6 = create_vertex(_intersection->pos->x + 2.5, _intersection->pos->y-10, _intersection->pos->z,   0, 1, 0,   0.66, 0);*/
 			
 			int i1 = dmdl_add_vertex(model, v1);
 			int i2 = dmdl_add_vertex(model, v2);
@@ -133,12 +148,14 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 			dmdl_connect_vertices(model, i4, i2, i3);
 			dmdl_connect_vertices(model, i1, i5, i6);
 			
-			dmdl_save(model, "C:\\Users\\jonas.freiknecht\\inter1.x");
-			bmap_save(_intersectionTexture, "C:\\Users\\jonas.freiknecht\\inter1.bmp");
+			dmdl_save(model, "C:\\Users\\padmalcom\\inter1.x");
+			bmap_save(bmapStreetIntersection1, "C:\\Users\\padmalcom\\test.bmp");
 		break;
 		
 		// A simple connection
 		case 2:
+			model->skin[0] = bmapStreetIntersection2;
+			
 			D3DVERTEX *v1 = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0,    0.33);
 			D3DVERTEX *v2 = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0.33, 0.33);
 			D3DVERTEX *v3 = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0,    0.66);
@@ -167,6 +184,8 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 		
 		// Three incoming streets
 		case 3:
+			model->skin[0] = bmapStreetIntersection3;
+			
 			D3DVERTEX *v1  = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0,    0.33);
 			D3DVERTEX *v2  = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0.33, 0.33);
 			D3DVERTEX *v3  = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0,    0.66);
@@ -201,6 +220,8 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 		
 		// A cross
 		case 4:
+			model->skin[0] = bmapStreetIntersection4;
+			
 			D3DVERTEX *v1  = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0,    0.33);
 			D3DVERTEX *v2  = create_vertex(_intersection->pos->x - 10, _intersection->pos->y, _intersection->pos->z - 10, 0, 1, 0, 0.33, 0.33);
 			D3DVERTEX *v3  = create_vertex(_intersection->pos->x - 30, _intersection->pos->y, _intersection->pos->z + 10, 0, 1, 0, 0,    0.66);
@@ -241,6 +262,7 @@ ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTextu
 		
 		// A circle
 		default:
+			model->skin[0] = bmapStreetIntersection5;
 			D3DVERTEX *v1  = create_vertex(_intersection->pos->x + 00, _intersection->pos->y, _intersection->pos->z + 00, 0, 1, 0, 0.5,   0.5);
 			D3DVERTEX *v2  = create_vertex(_intersection->pos->x + 00, _intersection->pos->y, _intersection->pos->z - 30, 0, 1, 0, 0.5,   0);
 			D3DVERTEX *v3  = create_vertex(_intersection->pos->x + 20, _intersection->pos->y, _intersection->pos->z - 20, 0, 1, 0, 0.875, 0.125);
@@ -310,6 +332,8 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture)
 	
 	int previousSeparator = 0;
 	
+	VECTOR vecStartPosition;
+	
 	var dist = 0;
 	for(dist = 0; dist <= 1; dist += 0.01)
 	{
@@ -317,6 +341,12 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture)
 
 		// Get starting position
 		vec_set(&startSegment, math_get_spline(splineData, iPointCount, dist));
+		
+		// Save beginning to create the entity at the end
+		/*if (dist == 0) {
+			vec_set(vecStartPosition, startSegment);
+			ent_create(CUBE_MDL, vecStartPosition, NULL);
+		}*/
 		
 		// Get a next segment on the street (to calculate the distance)
 		if(dist >= 1)
@@ -330,7 +360,7 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture)
 			vec_set(&endSegment, math_get_spline(splineData, iPointCount, dist + 0.01));
 			vec_diff(&dir, &endSegment, &startSegment);
 		}
-	
+		
 		// Calculate direction
 		dir.z = 0;
 		vec_to_angle(&dir, &dir);
@@ -381,6 +411,7 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture)
 	
 	// Create the entity
 	ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
+	//ENTITY *ent = dmdl_create_instance(model, vecStartPosition, NULL);
 	dmdl_save(model, "C:\\Users\\padmalcom\\test.x");
 	
 	// Free data
