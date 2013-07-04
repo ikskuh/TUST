@@ -251,13 +251,6 @@ void create_intersections() {
 	
 	proc_city_create_skins();
 	
-	/*while(1) {
-		DEBUG_BMAP(bmapStreetIntersection5, 10, 1);
-		wait(1);
-	}*/
-	
-	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
-
 	Intersection *i1 = intersection_create(vector(-200,0,0));
 	i1->incomingStreets +=5;
 	build_intersection(i1, bmapStreetIntersection5);
@@ -280,7 +273,7 @@ void create_intersections() {
 }
 
 void main() {
-	video_mode = 10;
+	video_mode = 7;
 	//draw_voronoi();
 	//create_random_streets();
 	//create_small_streets();
