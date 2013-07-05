@@ -81,6 +81,13 @@ void create_small_streets()
 	street_addpos(editorStreet, vector(-100,200,0));
 	street_addpos(editorStreet, vector(-350,200,0));
 	street_addpos(editorStreet, vector(100,200,0));
+	
+
+	/*street_addpos(editorStreet, vector(-200,-200,0));
+	street_addpos(editorStreet, vector(-100,-200,0));
+	street_addpos(editorStreet, vector(   0,-100,0));
+	street_addpos(editorStreet, vector( 100,   0,0));
+	street_addpos(editorStreet, vector( 200,   0,0));*/
 
 	// "Draw" streets
 	ENTITY *street = street_build(editorStreet, bmapStreetTexture);
@@ -125,7 +132,7 @@ void create_random_streets()
 	
 	// A temporary street that is filled so long with points until
 	// an intersection is reached
-	Street *currentStreet = street_create(25, 5); // Type: Street
+	//Street *currentStreet = street_create(25, 5); // Type: Street
 	
 	
 	float x1, y1, x2, y2, x3, y3, x4, y4;
@@ -240,12 +247,12 @@ void create_random_streets()
 
 	// "Draw" all streets
 	
-	/*ListIterator *it = list_begin_iterate(streets);
+	ListIterator *it = list_begin_iterate(streets);
 	Street* tempStreet;
 	for(tempStreet = list_iterate(it); it->hasNext; tempStreet = list_iterate(it))
 	{
 		street_build(tempStreet, bmapStreetTexture);
-	} */
+	}
 }
 
 // Example 4: Create intersections
