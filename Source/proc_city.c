@@ -148,8 +148,8 @@ ENTITY *build_intersection(Intersection *_intersection)
 			dmdl_connect_vertices(model, i4, i2, i3);
 			dmdl_connect_vertices(model, i1, i5, i6);
 			
-			dmdl_save(model, "C:\\Users\\padmalcom\\inter1.x");
-			bmap_save(bmapStreetIntersection1, "C:\\Users\\padmalcom\\test.bmp");
+			dmdl_save(model, "inter1.x");
+			bmap_save(bmapStreetIntersection1, "test.bmp");
 		break;
 		
 		// A simple connection
@@ -300,6 +300,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 	return ent;	
 }
 
+// Places each vertex of an entity's mesh on the ground (and adds a given distance)
 void place_street_on_ground(ENTITY* _street, int _dist) {
 	
 	var nVertexCount = ent_status(_street, 0);
@@ -352,7 +353,7 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround)
 	
 	int previousSeparator = 0;
 	
-	VECTOR vecStartPosition;
+	//VECTOR vecStartPosition;
 	
 	var dist = 0;
 	for(dist = 0; dist <= 1.0; dist += 0.01)
@@ -362,10 +363,10 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround)
 		// Save beginning to create the entity at the end
 		if (dist == 0) {
 			vec_set(&startSegment, &splineData[0]);
-			vec_set(vecStartPosition, startSegment);
+			//vec_set(vecStartPosition, startSegment);
 			
 			#ifdef PROC_DEBUG
-				ENTITY* entB = ent_create(CUBE_MDL, vecStartPosition, NULL); set(entB, LIGHT); entB.lightrange = 255; vec_set(entB.blue, vector(0,255,0));
+				ENTITY* entB = ent_create(CUBE_MDL, startSegment, NULL); set(entB, LIGHT); entB.lightrange = 255; vec_set(entB.blue, vector(0,255,0));
 			#endif
 		}
 		else
@@ -434,16 +435,24 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround)
 		
 		// Create separator for this part
 		int separator = street_create_separator(model, &left, &right);
-		if(dist > 0)
+		
+		// Fix to be able to close loops
+		if((dist > 0) && (dist < 0.99)) {
 			// Connect the current and the last separator to a segment (surface)
 			street_create_segment(model, previousSeparator, separator);
-		previousSeparator = separator;
+		}
+		
+		// Fix to be able to close loops	
+		if (dist < 0.99) {
+			previousSeparator = separator;
+		}
 	}
 	
 	// Connect to loop
-	if(isLooped)
+	if(isLooped) {
 		// Link the last to the first segment
 		street_create_segment(model, previousSeparator, 0);
+	}
 	
 	// Create the entity
 	ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
