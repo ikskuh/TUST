@@ -148,9 +148,17 @@ void street_addpos(Street *street, VECTOR *pos);
  * Builds a mesh and ENTITY* from a given street object.
  * \param   street          The street to be built.
  * \param   _streetTexture  The texture of the street. Should be tilable in y direction.
+ * \param   _placeOnGround  Align street to ground?
  * \return                  The ENTITY* build from the street.
  */
-ENTITY *street_build(Street *street, BMAP* _streetTexture);
+ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround);
+
+/**
+ * Places a street or another flat model on the ground
+ * \param   _street         The street to be placed on ground.
+ * \param   _dist           Distance to the ground (Should be 3 to 5)
+ */
+void place_street_on_ground(ENTITY* _street, int _dist);
 
 #include "proc_city.c"
 

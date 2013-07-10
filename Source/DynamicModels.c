@@ -2,7 +2,7 @@
 #include <d3d9.h>
 
 /************************************************************************************************/
-/*	DX9 API Includes																			*/
+/*	DX9 API Includes                                                                             */
 /************************************************************************************************/
 typedef struct _D3DXWELDEPSILONS {
   FLOAT Position;
@@ -17,10 +17,10 @@ typedef struct _D3DXWELDEPSILONS {
   FLOAT TessFactor;
 } D3DXWELDEPSILONS;
 
-#define D3DXWELDEPSILONS_WELDALL				1
-#define D3DXWELDEPSILONS_WELDPARTIALMATCHES		2
-#define D3DXWELDEPSILONS_DONOTREMOVEVERTICES	4
-#define D3DXWELDEPSILONS_DONOTSPLIT				8 
+#define D3DXWELDEPSILONS_WELDALL             1
+#define D3DXWELDEPSILONS_WELDPARTIALMATCHES  2
+#define D3DXWELDEPSILONS_DONOTREMOVEVERTICES 4
+#define D3DXWELDEPSILONS_DONOTSPLIT          8 
 
 HRESULT WeldVertices(
 	LPD3DXMESH pMesh,
