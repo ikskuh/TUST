@@ -4,7 +4,7 @@
 #include "math.h"
 #include "bmap.h" // Needs "BmapGS.dll"
 
-//#define DEBUG
+#define PROC_DEBUG
 
 // ----------------------------------------------------------------------------------------
 // Street tool
@@ -108,7 +108,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 	int nIncomingCount = _intersection->incomingStreets;
 	DynamicModel *model = dmdl_create();
 	
-	#ifdef DEBUG
+	#ifdef PROC_DEBUG
 		if (bmapStreetIntersection1 == NULL) {
 			printf("Intersection skins are not initialized - consider calling 'proc_city_create_skins' first!");
 		}
@@ -148,8 +148,8 @@ ENTITY *build_intersection(Intersection *_intersection)
 			dmdl_connect_vertices(model, i4, i2, i3);
 			dmdl_connect_vertices(model, i1, i5, i6);
 			
-			dmdl_save(model, "C:\\Users\\padmalcom\\inter1.x");
-			bmap_save(bmapStreetIntersection1, "C:\\Users\\padmalcom\\test.bmp");
+			dmdl_save(model, "inter1.x");
+			bmap_save(bmapStreetIntersection1, "test.bmp");
 		break;
 		
 		// A simple connection
@@ -300,8 +300,29 @@ ENTITY *build_intersection(Intersection *_intersection)
 	return ent;	
 }
 
+// Places each vertex of an entity's mesh on the ground (and adds a given distance)
+void place_street_on_ground(ENTITY* _street, int _dist) {
+	
+	var nVertexCount = ent_status(_street, 0);
+	var i;
+	VECTOR* vecTemp;
+	CONTACT* c;
+	for (i=1; i<=nVertexCount; i++) {
+		c = ent_getvertex(_street, NULL, i);
+		if (c != NULL) {
+			if(c_trace(	vector(c.v.x, c.v.z, c.v.y + 1024),
+						vector(c.v.x, c.v.z, c.v.y - 1024),
+						IGNORE_MODELS | IGNORE_SPRITES | IGNORE_PASSABLE | IGNORE_PASSENTS | USE_POLYGON))
+			{
+				c.v.y = target.z+_dist;
+			}
+			ent_setvertex(_street, c, i);
+		}
+	}
+}
 
-ENTITY *street_build(Street *street, BMAP* _streetTexture)
+// Start and end segments are no longer spline aligned!
+ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround)
 {
 	int iPointCount = list_get_count(street->points);
 	
@@ -317,7 +338,7 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture)
 	{
 		vec_set(splineData[i], value);
 		i++;
-	} 
+	}
 	list_end_iterate(it);
 	
 	DynamicModel *model = dmdl_create();
@@ -332,27 +353,39 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture)
 	
 	int previousSeparator = 0;
 	
-	VECTOR vecStartPosition;
+	//VECTOR vecStartPosition;
 	
 	var dist = 0;
-	for(dist = 0; dist <= 1; dist += 0.01)
+	for(dist = 0; dist <= 1.0; dist += 0.01)
 	{
 		VECTOR startSegment, endSegment, dir;		
 
-		// Get starting position
-		vec_set(&startSegment, math_get_spline(splineData, iPointCount, dist));
-		
 		// Save beginning to create the entity at the end
-		/*if (dist == 0) {
-			vec_set(vecStartPosition, startSegment);
-			ent_create(CUBE_MDL, vecStartPosition, NULL);
-		}*/
+		if (dist == 0) {
+			vec_set(&startSegment, &splineData[0]);
+			//vec_set(vecStartPosition, startSegment);
+			
+			#ifdef PROC_DEBUG
+				ENTITY* entB = ent_create(CUBE_MDL, startSegment, NULL); set(entB, LIGHT); entB.lightrange = 255; vec_set(entB.blue, vector(0,255,0));
+			#endif
+		}
+		else
+		{
+			// Get starting position
+			vec_set(&startSegment, math_get_spline(splineData, iPointCount, dist));
+		}
 		
 		// Get a next segment on the street (to calculate the distance)
-		if(dist >= 1)
+		if(dist >= 0.99)
 		{
 			// Special case: Last segment
-			vec_set(&endSegment, math_get_spline(splineData, iPointCount, dist - 0.01));
+			vec_set(&endSegment, &splineData[iPointCount-1]);
+			
+			#ifdef PROC_DEBUG
+				ENTITY* entA = ent_create(CUBE_MDL, endSegment, NULL); set(entA, LIGHT); entA.lightrange = 255; vec_set(entA.blue, vector(0,0,255));
+			#endif
+			
+			//vec_set(&endSegment, math_get_spline(splineData, iPointCount, dist - 0.01));
 			vec_diff(&dir, &startSegment, &endSegment);
 		}
 		else
@@ -371,13 +404,17 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture)
 		vec_rotate(&offset, &dir);
 
 		// Get left and right street height
-		var zStartLeft = street_getground(street, vector(startSegment.x + offset.x, startSegment.y + offset.y, startSegment.z));
-		var zStartRight = street_getground(street, vector(startSegment.x - offset.x, startSegment.y - offset.y, startSegment.z));
+		var zStartLeft = startSegment.z;
+		var zStartRight = startSegment.z;
+		if (_placeOnGround == true) {
+			zStartLeft = street_getground(street, vector(startSegment.x + offset.x, startSegment.y + offset.y, startSegment.z));
+			zStartRight = street_getground(street, vector(startSegment.x - offset.x, startSegment.y - offset.y, startSegment.z));
+		}
 		zStartLeft += street->groundDist;
 		zStartRight += street->groundDist;
 		
 		/************************************************************************************************/
-		/*	Build Street Surface																		*/
+		/*	Build Street Surface                                                                         */
 		/************************************************************************************************/
 		
 		// Setup left vertex
@@ -398,16 +435,24 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture)
 		
 		// Create separator for this part
 		int separator = street_create_separator(model, &left, &right);
-		if(dist > 0)
+		
+		// Fix to be able to close loops
+		if((dist > 0) && (dist < 0.99)) {
 			// Connect the current and the last separator to a segment (surface)
 			street_create_segment(model, previousSeparator, separator);
-		previousSeparator = separator;
+		}
+		
+		// Fix to be able to close loops	
+		if (dist < 0.99) {
+			previousSeparator = separator;
+		}
 	}
 	
 	// Connect to loop
-	if(isLooped)
+	if(isLooped) {
 		// Link the last to the first segment
 		street_create_segment(model, previousSeparator, 0);
+	}
 	
 	// Create the entity
 	ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);

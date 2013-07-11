@@ -90,7 +90,8 @@ void create_small_streets()
 	street_addpos(editorStreet, vector( 200,   0,0));*/
 
 	// "Draw" streets
-	ENTITY *street = street_build(editorStreet, bmapStreetTexture);
+	ENTITY *street = street_build(editorStreet, bmapStreetTexture, false);
+	place_street_on_ground(street, 3);
 }
 
 
@@ -306,7 +307,7 @@ void create_random_streets()
 	Street* tempStreet;
 	for(tempStreet = list_iterate(it); it->hasNext; tempStreet = list_iterate(it))
 	{
-		street_build(tempStreet, bmapStreetTexture);
+		street_build(tempStreet, bmapStreetTexture, true);
 	}
 }
 
