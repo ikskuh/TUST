@@ -6,7 +6,7 @@
 
 #define PROC_DEBUG
 
-#define PROC_INTERSECTION_SIZE 1
+#define PROC_INTERSECTION_EXTREMITIES 5
 
 // ----------------------------------------------------------------------------------------
 // Street tool
@@ -241,14 +241,14 @@ ENTITY *build_intersection(Intersection *_intersection)
 		case 2:
 			model->skin[0] = bmapStreetIntersection2;
 			
-			D3DVERTEX *v1 = create_vertex(0 - 30, 0, 0 - 10, 0, 1, 0, 0,    0.33);
-			D3DVERTEX *v2 = create_vertex(0 - 10, 0, 0 - 10, 0, 1, 0, 0.33, 0.33);
-			D3DVERTEX *v3 = create_vertex(0 - 30, 0, 0 + 10, 0, 1, 0, 0,    0.66);
-			D3DVERTEX *v4 = create_vertex(0 - 10, 0, 0 + 10, 0, 1, 0, 0.33, 0.66);
-			D3DVERTEX *v5 = create_vertex(0 + 10, 0, 0 - 10, 0, 1, 0, 0.66, 0.33);
-			D3DVERTEX *v6 = create_vertex(0 + 10, 0, 0 + 10, 0, 1, 0, 0.66, 0.66);
-			D3DVERTEX *v7 = create_vertex(0 + 30, 0, 0 - 10, 0, 1, 0, 1,    0.33);
-			D3DVERTEX *v8 = create_vertex(0 + 30, 0, 0 + 10, 0, 1, 0, 1,    0.66);
+			D3DVERTEX *v1 = create_vertex(-10 - PROC_INTERSECTION_EXTREMITIES, 0, -10, 0, 1, 0, 0,    0.33);
+			D3DVERTEX *v2 = create_vertex(-10,                                 0, -10, 0, 1, 0, 0.33, 0.33);
+			D3DVERTEX *v3 = create_vertex(-10 - PROC_INTERSECTION_EXTREMITIES, 0,  10, 0, 1, 0, 0,    0.66);
+			D3DVERTEX *v4 = create_vertex(-10,                                 0,  10, 0, 1, 0, 0.33, 0.66);
+			D3DVERTEX *v5 = create_vertex( 10,                                 0, -10, 0, 1, 0, 0.66, 0.33);
+			D3DVERTEX *v6 = create_vertex( 10,                                 0,  10, 0, 1, 0, 0.66, 0.66);
+			D3DVERTEX *v7 = create_vertex( 10 + PROC_INTERSECTION_EXTREMITIES, 0, -10, 0, 1, 0, 1,    0.33);
+			D3DVERTEX *v8 = create_vertex( 10 + PROC_INTERSECTION_EXTREMITIES, 0,  10, 0, 1, 0, 1,    0.66);
 			
 			int i1 = dmdl_add_vertex(model, v1);
 			int i2 = dmdl_add_vertex(model, v2);
@@ -384,9 +384,11 @@ ENTITY *build_intersection(Intersection *_intersection)
 	
 	
 	// Rotate intersections according the first incoming street
-	VECTOR* vecTempAngle = nullvector;
-	vec_set(vecTempAngle, list_item_at(_intersection->incomingAngles, 0));
-	ent.pan = vecTempAngle->x;
+	if (list_get_count(_intersection->incomingAngles) > 0) {
+		VECTOR* vecTempAngle = nullvector;
+		vec_set(vecTempAngle, list_item_at(_intersection->incomingAngles, 0));
+		ent.pan = vecTempAngle->x;
+	}
 	
 	
 	dmdl_delete(model);
