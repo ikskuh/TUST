@@ -113,33 +113,6 @@ var normalize_pan(var _pan) {
 	}
 }
 
-/*float optimal_intersection_rotation(Intersection* _inter) {
-
-	int j,k;
-	float bestPan = list_get_count(_inter->incomingAngles) * 360;
-	
-	for (j=0; j<list_get_count(_inter->incomingAngles); j++) {
-		
-		float newPan = 0;
-		VECTOR* currentPan = list_item_at(_inter->incomingAngles, j);
-		entInter.pan = currentPan.x;
-		
-		for(k=0; k<list_get_count(_inter->incomingAngles); k++) {
-			
-			VECTOR* currentPan2 = list_item_at(_inter->incomingAngles, k);
-			if (entInter.pan > currentPan2.x) {
-				newPan += entInter.pan - currentPan2.x;
-			} else {
-				newPan += currentPan2.x - entInter.pan;
-			}
-		}
-		
-		if (newPan<bestPan) {
-			bestPan = newPan;
-		}
-	}	
-}*/
-
 // Example 3: Draws a complex road network based on a voronoi diagram
 void create_random_streets()
 {
@@ -223,8 +196,10 @@ void create_random_streets()
 				bFoundOne = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-				vec_set(vecNewAngle, vector(x1,0,y1));
-				vec_sub(vecNewAngle, vector(x2,0,y2));
+				VECTOR* vecTemp2 = nullvector;
+				vec_set(vecTemp2, vector(x1,0,y1));
+				vec_sub(vecTemp2, vector(x2,0,y2));
+				vec_to_angle(vecNewAngle, vecTemp2);
 				list_add(tempInter->incomingAngles, vecNewAngle);
 			}
 		}
@@ -234,8 +209,10 @@ void create_random_streets()
 			newInter->incomingStreets = 1;
 			
 			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-			vec_set(vecNewAngle, vector(x1,0,y1));
-			vec_sub(vecNewAngle, vector(x2,0,y2));
+			VECTOR* vecTemp2 = nullvector;
+			vec_set(vecTemp2, vector(x1,0,y1));
+			vec_sub(vecTemp2, vector(x2,0,y2));
+			vec_to_angle(vecNewAngle, vecTemp2);
 			list_add(newInter->incomingAngles, vecNewAngle);
 			
 			list_add(intersections, newInter);
@@ -246,6 +223,9 @@ void create_random_streets()
 			#endif
 		}
 
+
+
+
 		// End point
 		for (j=0; j<list_get_count(intersections); j++) {
 		
@@ -254,8 +234,10 @@ void create_random_streets()
 				bFoundTwo = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-				vec_set(vecNewAngle, vector(x2,0,y2));
-				vec_sub(vecNewAngle, vector(x1,0,y1));
+				VECTOR* vecTemp2;
+				vec_set(vecTemp2, vector(x2,0,y2));
+				vec_sub(vecTemp2, vector(x1,0,y1));
+				vec_to_angle(vecNewAngle, vecTemp2);
 				list_add(tempInter->incomingAngles, vecNewAngle);
 			}
 		}
@@ -265,8 +247,10 @@ void create_random_streets()
 			newInter->incomingStreets = 1;
 			
 			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-			vec_set(vecNewAngle, vector(x2,0,y2));
-			vec_sub(vecNewAngle, vector(x1,0,y1));
+			VECTOR* vecTemp2;
+			vec_set(vecTemp2, vector(x2,0,y2));
+			vec_sub(vecTemp2, vector(x1,0,y1));
+			vec_to_angle(vecNewAngle, vecTemp2);
 			list_add(newInter->incomingAngles, vecNewAngle);
 
 			list_add(intersections, newInter);
@@ -283,9 +267,6 @@ void create_random_streets()
 	for(i=0; i<list_get_count(intersections); i++) {
 		Intersection* tempInter = list_item_at(intersections, i);
 		ENTITY* entInter = build_intersection(tempInter);
-		//entInter.pan = optimal_intersection_rotation(tempInter);
-		
-		
 	}
 		
 	while(!key_esc) {
@@ -343,6 +324,10 @@ void create_intersections() {
 
 void main() {
 	video_mode = 7;
+	mouse_mode = 4;
+	
+	while(total_frames < 1) wait(1);
+	draw_textmode("Arial", 0, 14, 100);
 	//draw_voronoi();
 	//create_small_streets();
 	//create_intersections();
