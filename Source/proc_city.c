@@ -168,6 +168,21 @@ action inter_info() {
 			}
 			draw_text("My pan:", 0, (i+1)*20, COLOR_GREEN);
 			draw_text(str_for_num(NULL, my.pan), 50, (i+1)*20, COLOR_RED);
+			
+			draw_text("Src:", 0, (i+2)*20, COLOR_GREEN);
+			draw_text(str_for_int(NULL, i1->source), 50, (i+2)*20, COLOR_RED);
+			
+			draw_text("Pos", 0, (i+3)*20, COLOR_GREEN);
+			draw_text(str_for_num(NULL, i1->pos->x), 075, (i+3)*20, COLOR_RED);
+			draw_text(str_for_num(NULL, i1->pos->y), 155, (i+3)*20, COLOR_RED);
+			draw_text(str_for_num(NULL, i1->pos->z), 235, (i+3)*20, COLOR_RED);
+			
+			if (key_q) {
+				my.pan +=10 * time_step;
+			}
+			if (key_e) {
+				my.pan -=2 * time_step;
+			}
 		}
 		wait(1);
 	}
@@ -371,7 +386,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 	// Rotate intersections according the first incoming street
 	VECTOR* vecTempAngle = nullvector;
 	vec_set(vecTempAngle, list_item_at(_intersection->incomingAngles, 0));
-	ent.pan = vecTempAngle->y;
+	ent.pan = vecTempAngle->x;
 	
 	
 	dmdl_delete(model);

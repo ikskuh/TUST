@@ -196,9 +196,9 @@ void create_random_streets()
 				bFoundOne = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-				VECTOR* vecTemp2 = nullvector;
-				vec_set(vecTemp2, vector(x1,0,y1));
-				vec_sub(vecTemp2, vector(x2,0,y2));
+				VECTOR* vecTemp2 = vector(0,0,0);
+				vec_set(vecTemp2, vector(x1,y1,0));
+				vec_sub(vecTemp2, vector(x2,y2,0));
 				vec_to_angle(vecNewAngle, vecTemp2);
 				list_add(tempInter->incomingAngles, vecNewAngle);
 			}
@@ -207,11 +207,12 @@ void create_random_streets()
 		if (bFoundOne == false) {
 			Intersection *newInter = intersection_create(vector(x1, 0, y1));
 			newInter->incomingStreets = 1;
+			newInter->source = 1;
 			
 			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-			VECTOR* vecTemp2 = nullvector;
-			vec_set(vecTemp2, vector(x1,0,y1));
-			vec_sub(vecTemp2, vector(x2,0,y2));
+			VECTOR* vecTemp2 = vector(0,0,0);
+			vec_set(vecTemp2, vector(x1,y1,0));
+			vec_sub(vecTemp2, vector(x2,y2,0));
 			vec_to_angle(vecNewAngle, vecTemp2);
 			list_add(newInter->incomingAngles, vecNewAngle);
 			
@@ -234,9 +235,9 @@ void create_random_streets()
 				bFoundTwo = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-				VECTOR* vecTemp2;
-				vec_set(vecTemp2, vector(x2,0,y2));
-				vec_sub(vecTemp2, vector(x1,0,y1));
+				VECTOR* vecTemp2 = vector(0,0,0);
+				vec_set(vecTemp2, vector(x2,y2,0));
+				vec_sub(vecTemp2, vector(x1,y1,0));
 				vec_to_angle(vecNewAngle, vecTemp2);
 				list_add(tempInter->incomingAngles, vecNewAngle);
 			}
@@ -245,11 +246,12 @@ void create_random_streets()
 		if (bFoundTwo == false) {
 			Intersection *newInter = intersection_create(vector(x2, 0, y2));
 			newInter->incomingStreets = 1;
+			newInter->source = 2;
 			
 			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-			VECTOR* vecTemp2;
-			vec_set(vecTemp2, vector(x2,0,y2));
-			vec_sub(vecTemp2, vector(x1,0,y1));
+			VECTOR* vecTemp2 = vector(0,0,0);
+			vec_set(vecTemp2, vector(x2,y2,0));
+			vec_sub(vecTemp2, vector(x1,y1,0));
 			vec_to_angle(vecNewAngle, vecTemp2);
 			list_add(newInter->incomingAngles, vecNewAngle);
 
@@ -328,6 +330,8 @@ void main() {
 	
 	while(total_frames < 1) wait(1);
 	draw_textmode("Arial", 0, 14, 100);
+	
+
 	//draw_voronoi();
 	//create_small_streets();
 	//create_intersections();
