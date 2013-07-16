@@ -289,7 +289,7 @@ void create_intersections() {
 void main() {
 	video_mode = 7;
 	//draw_voronoi();
-	create_small_streets();
+	//create_small_streets();
 	//create_intersections();
-	//create_random_streets();
+	create_random_streets();
 }
