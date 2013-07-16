@@ -100,10 +100,23 @@ void create_small_streets()
 #define VO_MIN_Y -1000
 #define VO_MAX_Y 1000
 
+var normalize_pan(var _pan) {
+	if (_pan > 0) {
+		return (_pan % 360);
+	}
+	else
+	{
+		while(_pan < 0) {
+			_pan +=360;
+		}
+		return _pan;
+	}
+}
+
 // Example 3: Draws a complex road network based on a voronoi diagram
 void create_random_streets()
 {
-	int i, j;
+	int i, j, k;
 	
 	level_load("");
 	vec_set(camera.x, vector(41, 2328, 1658));
@@ -183,7 +196,10 @@ void create_random_streets()
 				bFoundOne = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-				vec_set(vecNewAngle, vector(0,0,0));
+				VECTOR* vecTemp2 = vector(0,0,0);
+				vec_set(vecTemp2, vector(x1,y1,0));
+				vec_sub(vecTemp2, vector(x2,y2,0));
+				vec_to_angle(vecNewAngle, vecTemp2);
 				list_add(tempInter->incomingAngles, vecNewAngle);
 			}
 		}
@@ -191,14 +207,25 @@ void create_random_streets()
 		if (bFoundOne == false) {
 			Intersection *newInter = intersection_create(vector(x1, 0, y1));
 			newInter->incomingStreets = 1;
+			newInter->source = 1;
+			
+			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
+			VECTOR* vecTemp2 = vector(0,0,0);
+			vec_set(vecTemp2, vector(x1,y1,0));
+			vec_sub(vecTemp2, vector(x2,y2,0));
+			vec_to_angle(vecNewAngle, vecTemp2);
+			list_add(newInter->incomingAngles, vecNewAngle);
+			
 			list_add(intersections, newInter);
-		//	ent_create(CUBE_MDL, vector(x1, y1, 0), NULL);
 			#ifdef PROCEDURAL_DEBUG
 				str_cpy((txtIntersections.pstring)[list_get_count(intersections)], str_for_num(NULL, newInter->pos->x));
 				str_cat((txtIntersections.pstring)[list_get_count(intersections)], ",");
 				str_cat((txtIntersections.pstring)[list_get_count(intersections)], str_for_num(NULL, newInter->pos->y));
 			#endif
 		}
+
+
+
 
 		// End point
 		for (j=0; j<list_get_count(intersections); j++) {
@@ -208,7 +235,10 @@ void create_random_streets()
 				bFoundTwo = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-				vec_set(vecNewAngle, vector(0,0,0));
+				VECTOR* vecTemp2 = vector(0,0,0);
+				vec_set(vecTemp2, vector(x2,y2,0));
+				vec_sub(vecTemp2, vector(x1,y1,0));
+				vec_to_angle(vecNewAngle, vecTemp2);
 				list_add(tempInter->incomingAngles, vecNewAngle);
 			}
 		}
@@ -216,8 +246,16 @@ void create_random_streets()
 		if (bFoundTwo == false) {
 			Intersection *newInter = intersection_create(vector(x2, 0, y2));
 			newInter->incomingStreets = 1;
+			newInter->source = 2;
+			
+			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
+			VECTOR* vecTemp2 = vector(0,0,0);
+			vec_set(vecTemp2, vector(x2,y2,0));
+			vec_sub(vecTemp2, vector(x1,y1,0));
+			vec_to_angle(vecNewAngle, vecTemp2);
+			list_add(newInter->incomingAngles, vecNewAngle);
+
 			list_add(intersections, newInter);
-			//ent_create(CUBE_MDL, vector(x2, y2, 0), NULL);
 			#ifdef PROCEDURAL_DEBUG
 				str_cpy((txtIntersections.pstring)[list_get_count(intersections)], str_for_num(NULL, newInter->pos->x));
 				str_cat((txtIntersections.pstring)[list_get_count(intersections)], ",");
@@ -230,7 +268,7 @@ void create_random_streets()
 	printf("Intersections found: %i", count);
 	for(i=0; i<list_get_count(intersections); i++) {
 		Intersection* tempInter = list_item_at(intersections, i);
-		build_intersection(tempInter);	
+		ENTITY* entInter = build_intersection(tempInter);
 	}
 		
 	while(!key_esc) {
@@ -288,8 +326,14 @@ void create_intersections() {
 
 void main() {
 	video_mode = 7;
+	mouse_mode = 4;
+	
+	while(total_frames < 1) wait(1);
+	draw_textmode("Arial", 0, 14, 100);
+	
+
 	//draw_voronoi();
 	//create_small_streets();
-	//create_intersections();
-	create_random_streets();
+	create_intersections();
+	//create_random_streets();
 }

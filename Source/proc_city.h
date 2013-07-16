@@ -104,6 +104,7 @@ typedef struct {
 	VECTOR *pos;
 	int incomingStreets;
 	List *incomingAngles;
+	int source;
 } Intersection;
 
 
