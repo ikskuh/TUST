@@ -40,69 +40,22 @@ typedef struct Ftimer
 /**
  * \brief    Stops all the running function timers
  */
-void ftimer_stop_all ()
-{
-	while ( ftimerCol != NULL )
-	{
-		Ftimer *ftimerTemp = ftimerCol;
-		ftimerCol = ftimerCol->next;
-		sys_free ( ftimerTemp );
-	}
-}
+void ftimer_stop_all ();
+
 
 /**
  * \brief    Stops all the running function timers that has the given object as Me pointer.
  * \param    prtMe    Object pointer to be stopped.
  */
-void ftimer_stop_me ( void *ptrMe )
-{
-	Ftimer *ftimer = ftimerCol;
-	Ftimer *ftimerPrev = NULL;
-	while ( ftimer != NULL )
-	{
-		if ( ftimer->ptrMe == ptrMe )
-		{
-			if ( ftimerPrev == NULL )
-				ftimerCol = ftimer->next;
-			else
-				ftimerPrev->next = ftimer->next;
-			Ftimer *ftimerTemp = ftimer;
-			ftimer = ftimer->next;
-			sys_free ( ftimerTemp );
-		}
-		else
-		{
-			ftimerPrev = ftimer;
-			ftimer = ftimer->next;
-		}
-	}
-}
+void ftimer_stop_me ( void *ptrMe );
+
 
 /**
  * \brief    Stops all the given function timer.
  * \param    ftimer    Pointer to the function timer to be stopped.
  */
-void ftimer_stop ( Ftimer *ftimer )
-{
-	Ftimer *ftimerTemp = ftimerCol;
-	Ftimer *ftimerPrev = NULL;
-	while ( ftimerTemp != NULL )
-	{
-		if ( ftimer != ftimerTemp )
-		{
-			ftimerPrev = ftimerTemp;
-			ftimerTemp = ftimerTemp->next;
-			continue;
-		}
-		
-		if ( ftimerPrev == NULL )
-			ftimerCol = ftimerTemp->next;
-		else
-			ftimerPrev->next = ftimerTemp->next;
-		sys_free ( ftimerTemp`);
-		break;
-	}
-}
+void ftimer_stop ( Ftimer *ftimer );
+
 
 /**
  * \brief    Start a new function timer.
@@ -111,45 +64,11 @@ void ftimer_stop ( Ftimer *ftimer )
  * \param    time_lapse    Time to be elapsed before executing the function.
  * \returns  A pointer to the newly created function timer.
  */
-Ftimer *ftimer_add ( void *ptrMe, void *event, var time_lapse )
-{
-	Ftimer *ftimer = sys_malloc ( sizeof(Ftimer) );
-	ftimer->ticks = total_ticks + time_lapse;
-	ftimer->ptrMe = ptrMe;
-	ftimer->event = event;
-	
-	Ftimer *ftimerTemp = ftimerCol;
-	Ftimer *ftimerPrev = NULL;
-	while ( ftimerTemp != NULL )
-	{
-		if ( ftimer->ticks < ftimerTemp->ticks )
-			break;
-		
-		ftimerPrev = ftimerTemp;
-		ftimerTemp = ftimerTemp->next;
-	}
-	
-	ftimer->next = ftimerTemp;
-	if ( ftimerPrev == NULL )
-		ftimerCol = ftimer;
-	else
-		ftimerPrev->next = ftimer;
-	
-	if ( !proc_status ( ftimer_run ) )
-		ftimer_run ();
-	
-	return ftimer;
-}
+Ftimer *ftimer_add ( void *ptrMe, void *event, var time_lapse );
+
 
 /**
  * \brief    Pauses all the running function timers.
  * \param    ftimer    Pointer to the function timer to be stopped.
  */
-void ftimer_pause ()
-{
-	if ( nFTPause )
-		nFTPause = 0;
-	else
-		nFTPause = total_ticks;
-}
-
+void ftimer_pause ();
