@@ -105,7 +105,7 @@ D3DVERTEX *create_vertex(float _x, float _y, float _z, float _nx, float _ny, flo
 	return newVertex;
 }
 
-/*float optimal_intersection_rotation(Intersection* _inter) {
+float optimal_intersection_rotation(Intersection* _inter) {
 
 
 	switch(_inter->incomingStreets) {
@@ -113,42 +113,49 @@ D3DVERTEX *create_vertex(float _x, float _y, float _z, float _nx, float _ny, flo
 			// Error
 		break;
 		case 1:
-			return list_item_at(_inter->incomingAngles, 0);
+			return ((ANGLE*)list_item_at(_inter->incomingAngles, 0))->pan;
 		break;
 		case 2:
-			
+			return ((ANGLE*)list_item_at(_inter->incomingAngles, 0))->pan;
 		break;
-		case 3: break;
-		case 4: break;
-		default: break;
+		case 3:
+		case 4:
+		
+			int j,k,tempPan;
+			VECTOR currentPan, currentPan2;
+			float bestPan = list_get_count(_inter->incomingAngles) * 360;
+			
+			for (j=0; j<list_get_count(_inter->incomingAngles); j++) {
+				
+				float newPan = 0;
+				vec_set(currentPan, list_item_at(_inter->incomingAngles, j));
+				tempPan = currentPan.x;
+				
+				for(k=0; k<list_get_count(_inter->incomingAngles); k++) {
+					
+					vec_set(currentPan2, list_item_at(_inter->incomingAngles, k));
+					if (tempPan > currentPan2.x) {
+						newPan += tempPan - currentPan2.x;
+					} else {
+						newPan += currentPan2.x - tempPan;
+					}
+				}
+				
+				if (newPan<bestPan) {
+					bestPan = newPan;
+				}
+			}
+			return bestPan;				
+		break;
+		default:
+			return ((ANGLE*)list_item_at(_inter->incomingAngles, 0))->pan;
+		break;
 	}
 
 
 
-	int j,k;
-	float bestPan = list_get_count(_inter->incomingAngles) * 360;
 	
-	for (j=0; j<list_get_count(_inter->incomingAngles); j++) {
-		
-		float newPan = 0;
-		VECTOR* currentPan = list_item_at(_inter->incomingAngles, j);
-		entInter.pan = currentPan.x;
-		
-		for(k=0; k<list_get_count(_inter->incomingAngles); k++) {
-			
-			VECTOR* currentPan2 = list_item_at(_inter->incomingAngles, k);
-			if (entInter.pan > currentPan2.x) {
-				newPan += entInter.pan - currentPan2.x;
-			} else {
-				newPan += currentPan2.x - entInter.pan;
-			}
-		}
-		
-		if (newPan<bestPan) {
-			bestPan = newPan;
-		}
-	}	
-}*/
+}
 
 action inter_info() {
 	mouse_range = 10000;
@@ -198,6 +205,12 @@ ENTITY *build_intersection(Intersection *_intersection)
 			printf("Intersection skins are not initialized - consider calling 'proc_city_create_skins' first!");
 		}
 	#endif
+	
+	// Rotate intersections according the first incoming street
+	float fOptimalPan = 0;
+	if (list_get_count(_intersection->incomingAngles) > 0) {
+		fOptimalPan = optimal_intersection_rotation(_intersection);
+	}	
 	
 	switch(nIncomingCount) {
 		// Should not happen!
@@ -382,14 +395,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 	ENTITY *ent = dmdl_create_instance(model, vector(_intersection->pos->x, _intersection->pos->z, _intersection->pos->y), inter_info);
 	ent->skill1 = _intersection;
 	
-	
-	// Rotate intersections according the first incoming street
-	if (list_get_count(_intersection->incomingAngles) > 0) {
-		VECTOR* vecTempAngle = nullvector;
-		vec_set(vecTempAngle, list_item_at(_intersection->incomingAngles, 0));
-		ent.pan = vecTempAngle->x;
-	}
-	
+	ent->pan = fOptimalPan;
 	
 	dmdl_delete(model);
 	return ent;	

@@ -334,6 +334,6 @@ void main() {
 
 	//draw_voronoi();
 	//create_small_streets();
-	create_intersections();
-	//create_random_streets();
+	//create_intersections();
+	create_random_streets();
 }
