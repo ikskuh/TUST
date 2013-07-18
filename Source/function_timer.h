@@ -8,6 +8,9 @@
 ----------------------------------------------------------------------------------- 
 */
 
+#ifndef _FUNCTION_TIMER_H_
+#define _FUNCTION_TIMER_H_
+
 /**
  * \defgroup  FunctionTimerModule Function Timer
  * \ingroup   GenericScriptLibrary
@@ -72,3 +75,6 @@ Ftimer *ftimer_add ( void *ptrMe, void *event, var time_lapse );
  * \param    ftimer    Pointer to the function timer to be stopped.
  */
 void ftimer_pause ();
+
+#include "function_timer.c"
+#endif
