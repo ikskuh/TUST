@@ -91,6 +91,17 @@ List* calculate_spline(List* _points,  int _detail);
  */
 VECTOR* math_get_spline(VECTOR* points, int pointcount, float pos);
 
+
+/**
+ * Calculates a position on a bezier courve
+ * \param	pos         Vector to store result in.
+ * \param	points      Pointer to a vector array that stores all points for the bezier courve.
+ * \param	count       Number of vectors in the points array.
+ * \param	p           Interpolation factor, between 0 and 1.
+ * \return	            Point on the bezier courve.
+ */
+VECTOR *vec_to_bezier(VECTOR *pos, VECTOR *points, int count, float p);
+
 #include "math.c"
 
 #endif

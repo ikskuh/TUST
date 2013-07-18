@@ -182,3 +182,47 @@ VECTOR* math_get_spline(VECTOR* _points, int pointcount, float pos)
 	
 	return vector(vecCurveTemp.x, vecCurveTemp.y, vecCurveTemp.z);
 }
+
+int vec_to_bezierBufferSize = 0;
+VECTOR *vec_to_bezierBuffer = NULL;
+
+VECTOR *vec_to_bezier(VECTOR *pos, VECTOR *points, int count, float p)
+{
+	// Check if we need more space
+	if(count > vec_to_bezierBufferSize)
+	{
+		// Free previous
+		if(vec_to_bezierBuffer != NULL)
+			sys_free(vec_to_bezierBuffer);
+		// Reset buffer ptr
+		vec_to_bezierBuffer = NULL;
+	}
+	// Check if we need a new bezier buffer
+	if(vec_to_bezierBuffer == NULL)
+	{
+		// Allocate the bezier buffer
+		vec_to_bezierBufferSize = count + 10;
+		vec_to_bezierBuffer = sys_malloc(sizeof(VECTOR) * vec_to_bezierBufferSize);
+	}
+	// Copy points to bezier buffer
+	memcpy(vec_to_bezierBuffer, points, sizeof(VECTOR) * count);
+	
+	// Go through the complete buffer until we have only 1 item left.
+	while(count > 1)
+	{
+		int i;
+		for(i = 0; i < count - 1; i++)
+		{
+			// Interpolate 2 items to 1
+			vec_lerp(&vec_to_bezierBuffer[i], &vec_to_bezierBuffer[i], &vec_to_bezierBuffer[i + 1], p);
+		}
+		// Reduce number of items
+		count --;
+	}
+	// Get temporary vector if needed
+	if(pos == NULL) pos = vector(0, 0, 0);
+	
+	// Copy to result
+	vec_set(pos, &vec_to_bezierBuffer[0]);
+	return pos;
+}
