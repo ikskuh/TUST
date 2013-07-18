@@ -42,6 +42,6 @@ var searchData=
   ['bmap_5fsavetga',['bmap_savetga',['../group___bmap_group.html#gaf31268e5176d89ff965581661eef3922',1,'bmap_savetga(BMAP *b, char *filename):&#160;bmap.c'],['../group___bmap_group.html#gaf31268e5176d89ff965581661eef3922',1,'bmap_savetga(BMAP *b, char *filename):&#160;bmap.c']]],
   ['bmap_5fsharpen',['bmap_sharpen',['../group___bmap_group.html#ga4082e5339ab93eaaa8356e02e0a04ce7',1,'bmap_sharpen(BMAP *_target, int _amplitude):&#160;dllmain.cpp'],['../group___bmap_group.html#ga4082e5339ab93eaaa8356e02e0a04ce7',1,'bmap_sharpen(BMAP *_target, int _amplitude):&#160;dllmain.cpp']]],
   ['box3d',['box3d',['../structcimg__library__suffixed_1_1_c_img.html#a2d70ee859df458d9448ba2a127cedc82',1,'cimg_library_suffixed::CImg']]],
-  ['build_5fintersection',['build_intersection',['../proc__city_8h.html#a2950132cf781eb077ad5849414c7a744',1,'proc_city.c']]],
+  ['build_5fintersection',['build_intersection',['../proc__city_8h.html#a2950132cf781eb077ad5849414c7a744',1,'proc_city.h']]],
   ['button',['button',['../structcimg__library__suffixed_1_1_c_img_display.html#ab9fe940f9f5037dbcb303dc11563f3a5',1,'cimg_library_suffixed::CImgDisplay']]]
 ];

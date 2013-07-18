@@ -128,8 +128,10 @@ Functions</h2></td></tr>
 <tr class="separator:a31167664c0d3a0b4a6477e5dc0889e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4727ba925220605d6f3dde1f68f8f798"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="proc__city_8h.html#a4727ba925220605d6f3dde1f68f8f798">street_addpos</a> (Street *street, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *pos)</td></tr>
 <tr class="separator:a4727ba925220605d6f3dde1f68f8f798"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a429f5b8f87702f3b3763b11b1a0a975b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="proc__city_8h.html#a429f5b8f87702f3b3763b11b1a0a975b">street_build</a> (Street *street, <a class="el" href="class_b_m_a_p.html">BMAP</a> *_streetTexture)</td></tr>
-<tr class="separator:a429f5b8f87702f3b3763b11b1a0a975b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af81f91d2c487ae724809334f2772ce81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="proc__city_8h.html#af81f91d2c487ae724809334f2772ce81">street_build</a> (Street *street, <a class="el" href="class_b_m_a_p.html">BMAP</a> *_streetTexture, BOOL _placeOnGround)</td></tr>
+<tr class="separator:af81f91d2c487ae724809334f2772ce81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8bbfb24a9296230ec149322ead307a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="proc__city_8h.html#af8bbfb24a9296230ec149322ead307a6">place_street_on_ground</a> (<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *_street, int _dist)</td></tr>
+<tr class="separator:af8bbfb24a9296230ec149322ead307a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains functions for procedural generation of cities and other content </p>
@@ -193,6 +195,40 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af8bbfb24a9296230ec149322ead307a6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void place_street_on_ground </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td>
+          <td class="paramname"><em>_street</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>_dist</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Places a street or another flat model on the ground </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_street</td><td>The street to be placed on ground. </td></tr>
+    <tr><td class="paramname">_dist</td><td>Distance to the ground (Should be 3 to 5) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a4727ba925220605d6f3dde1f68f8f798"></a>
 <div class="memitem">
 <div class="memproto">
@@ -227,7 +263,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a429f5b8f87702f3b3763b11b1a0a975b"></a>
+<a class="anchor" id="af81f91d2c487ae724809334f2772ce81"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -241,7 +277,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_b_m_a_p.html">BMAP</a> *&#160;</td>
-          <td class="paramname"><em>_streetTexture</em>&#160;</td>
+          <td class="paramname"><em>_streetTexture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BOOL&#160;</td>
+          <td class="paramname"><em>_placeOnGround</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -255,6 +297,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">street</td><td>The street to be built. </td></tr>
     <tr><td class="paramname">_streetTexture</td><td>The texture of the street. Should be tilable in y direction. </td></tr>
+    <tr><td class="paramname">_placeOnGround</td><td>Align street to ground? </td></tr>
   </table>
   </dd>
 </dl>
@@ -574,7 +617,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 4 2013 13:36:52 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 18 2013 20:28:44 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

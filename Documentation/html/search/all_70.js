@@ -7,6 +7,7 @@ var searchData=
   ['permute_5faxes',['permute_axes',['../structcimg__library__suffixed_1_1_c_img.html#a246ec3c9585a6afb847c938e45f4cdc8',1,'cimg_library_suffixed::CImg']]],
   ['pi',['PI',['../namespacecimg__library__suffixed_1_1cimg.html#af1864f3c9389e27966891b286b442980',1,'cimg_library_suffixed::cimg']]],
   ['pixel_5ftype',['pixel_type',['../structcimg__library__suffixed_1_1_c_img.html#ab5cb3e6f07f2cd894641aa6a26807c1e',1,'cimg_library_suffixed::CImg::pixel_type()'],['../structcimg__library__suffixed_1_1_c_img_list.html#a55a11e1b7827dac9e38f29e1c4cfb3ec',1,'cimg_library_suffixed::CImgList::pixel_type()']]],
+  ['place_5fstreet_5fon_5fground',['place_street_on_ground',['../proc__city_8h.html#af8bbfb24a9296230ec149322ead307a6',1,'proc_city.c']]],
   ['plane3d',['plane3d',['../structcimg__library__suffixed_1_1_c_img.html#a38bca8940aa19a72153372c6615a0c61',1,'cimg_library_suffixed::CImg']]],
   ['point_5fto_5fline2d_5fdist',['point_to_line2D_dist',['../math_8h.html#a8bd2699511031abba46369ad730dffc1',1,'math.c']]],
   ['point_5fto_5fline2d_5fescalar',['point_to_line2D_escalar',['../math_8h.html#a2d502c28812d6b01a0ba81ca64f95530',1,'math.c']]],

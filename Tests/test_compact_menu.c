@@ -48,6 +48,11 @@ void max_control ()
 	nSlider = minv ( maxLimit, nSlider );
 }
 
+void digedit_clamp ()
+{
+	nDigit = clamp ( nDigit, -10000, 10000 );
+}
+
 var myTimer = 0;
 var mytimer_fill ()
 {
@@ -70,7 +75,7 @@ TEXT *txtMain =
 	 	"rbutton.rbutton = fncBeep",
 		"slider (var).slider = -180, 180, 1, 0, nSlider",
 		"slider (var*).slider = -180, 180, 1, 0, ptrSlider",
-		"digedit (var).digedit = 3, nDigit",
+		"digedit (var).digedit = 3, nDigit, digedit_clamp",
 		"digedit (var*).digedit = 3, ptrDigit",
 		"submenu.submenu = txtCMTest01",
 		".line=2"
