@@ -122,6 +122,8 @@ Functions</h2></td></tr>
 <tr class="separator:a4a3aeef13379da2ee1f40201b2d1e87e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a253fdcc0f73c7ed6a9bd04faacb33f90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a253fdcc0f73c7ed6a9bd04faacb33f90">math_get_spline</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *points, int pointcount, float pos)</td></tr>
 <tr class="separator:a253fdcc0f73c7ed6a9bd04faacb33f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a970e2c95685da5c73a6fc92c40012e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a5a970e2c95685da5c73a6fc92c40012e">vec_to_bezier</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *pos, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *points, int count, float p)</td></tr>
+<tr class="separator:a5a970e2c95685da5c73a6fc92c40012e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Math helpers and other function Provides math helpers and useful functions. </p>
@@ -517,10 +519,59 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5a970e2c95685da5c73a6fc92c40012e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a>* vec_to_bezier </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculates a position on a bezier courve </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Vector to store result in. </td></tr>
+    <tr><td class="paramname">points</td><td>Pointer to a vector array that stores all points for the bezier courve. </td></tr>
+    <tr><td class="paramname">count</td><td>Number of vectors in the points array. </td></tr>
+    <tr><td class="paramname">p</td><td>Interpolation factor, between 0 and 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Point on the bezier courve. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 18 2013 20:28:43 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 18 2013 20:37:27 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>

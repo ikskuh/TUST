@@ -27,7 +27,7 @@
  
 /**
  * \struct   Ftimer
- * \brief    Function timer general struct
+ * \brief    Function timer general struct.
  */
 typedef struct Ftimer
 {
@@ -38,7 +38,7 @@ typedef struct Ftimer
 } Ftimer;
 
 /**
- * \brief    Stops all the running function timers
+ * \brief    Stops all the running function timers.
  */
 void ftimer_stop_all ();
 
@@ -51,14 +51,14 @@ void ftimer_stop_me ( void *ptrMe );
 
 
 /**
- * \brief    Stops all the given function timer.
+ * \brief    Stops the given function timer.
  * \param    ftimer    Pointer to the function timer to be stopped.
  */
 void ftimer_stop ( Ftimer *ftimer );
 
 
 /**
- * \brief    Start a new function timer.
+ * \brief    Starts a new function timer.
  * \param    ptrMe         Pointer to an object that serves as Me pointer.
  * \param    event         Function to be executed at time end.
  * \param    time_lapse    Time to be elapsed before executing the function.
