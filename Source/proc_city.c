@@ -121,7 +121,7 @@ float optimal_intersection_rotation(Intersection* _inter) {
 		case 3:
 		case 4:
 		
-			int j,k,tempPan;
+			int j,k,tempPan, resultPan;
 			VECTOR currentPan, currentPan2;
 			float bestPan = list_get_count(_inter->incomingAngles) * 360;
 			
@@ -143,9 +143,10 @@ float optimal_intersection_rotation(Intersection* _inter) {
 				
 				if (newPan<bestPan) {
 					bestPan = newPan;
+					resultPan = currentPan.x;
 				}
 			}
-			return bestPan;				
+			return resultPan;				
 		break;
 		default:
 			return ((ANGLE*)list_item_at(_inter->incomingAngles, 0))->pan;
@@ -195,6 +196,20 @@ action inter_info() {
 	}
 }
 
+int pan_angle_compare(ListData *left, ListData *right) { //and returns 1 if left>right, 0 if left=right and -1 if left<right.
+	if (((ANGLE*)left)->pan > ((ANGLE*)right)->pan) {
+		return 1;
+	}
+	
+	if (((ANGLE*)left)->pan == ((ANGLE*)right)->pan) {
+		return 0;
+	}
+	
+	if (((ANGLE*)left)->pan < ((ANGLE*)right)->pan) {
+		return -1;
+	}	
+}
+
 ENTITY *build_intersection(Intersection *_intersection)
 {
 	int nIncomingCount = _intersection->incomingStreets;
@@ -209,6 +224,10 @@ ENTITY *build_intersection(Intersection *_intersection)
 	// Rotate intersections according the first incoming street
 	float fOptimalPan = 0;
 	if (list_get_count(_intersection->incomingAngles) > 0) {
+		
+		// Sort incoming angles
+		list_sort(_intersection->incomingAngles, pan_angle_compare);	
+			
 		fOptimalPan = optimal_intersection_rotation(_intersection);
 	}	
 	
