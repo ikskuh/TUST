@@ -3,10 +3,7 @@
 
 #define PRAGMA_POINTER
 
-#define PRAGMA_PATH "..\\Source"
-#define PRAGMA_PATH "test_ftimer"
-#include "function_timer.h"
-
+#include "..\\Source\\function_timer.h"
 
 SOUND *sndSnare = "..\\Ressources\\Audio\\Sounds\\snaredrum.wav";
 SOUND *sndBass = "..\\Ressources\\Audio\\Sounds\\bassdrum.wav";
@@ -63,9 +60,7 @@ void fncBass ( Ftimer *ftimer )
 
 void main ()
 {
-	video_window(NULL,NULL,1,"");
-	video_set ( 200, 600, 32, 2 );
-	fps_max = 32;
+//	fps_max = 32;
 	wait(2);
 	
 	Ftimer *myHihat = ftimer_add ( sndHihat, fncHihat, 4 );
@@ -80,7 +75,7 @@ void main ()
 		int i = 0;
 		while ( ftimerTemp != NULL )
 		{
-			draw_text ( str_for_num(NULL,ftimerTemp->ticks-total_ticks), 10, 30+(i*30), COLOR_WHITE );
+			draw_text ( str_for_num(NULL,ftimerTemp->ticks-ftimer_total_ticks), 10, 30+(i*30), COLOR_WHITE );
 			switch ( ftimerTemp->event )
 			{
 				case fncBass:
@@ -94,6 +89,7 @@ void main ()
 			ftimerTemp = ftimerTemp->next;
 			i ++;
 		}
+		draw_text ( str_for_num(NULL,ftimer_total_ticks), 80, 0, COLOR_WHITE );
 		draw_text ( str_for_int(NULL,i), 10, 0, COLOR_WHITE );
 		wait(1);
 	}

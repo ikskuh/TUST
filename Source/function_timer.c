@@ -1,18 +1,32 @@
 
 Ftimer *ftimerCol = NULL;
 var nFTPause = 0;
+var ftimer_total_ticks = 0;
 
 void ftimer_run ()
 {
+	wait(1);
 	while (1)
 	{
 		while ( nFTPause == 0 )
 		{
+			if ( time_step < 32 / fps_max )
+				ftimer_total_ticks += time_step;
+			if ( ftimer_total_ticks > 1000000 )
+			{
+				ftimer_total_ticks -= 1000000;
+				Ftimer *ftimerTemp = ftimerCol;
+				while ( ftimerTemp != NULL )
+				{
+					ftimerTemp->ticks -= 1000000;
+					ftimerTemp = ftimerTemp->next;
+				}
+			}
 			Ftimer *ftimerTemp = ftimerCol;
 			Ftimer *ftimerPrev = NULL;
 			while ( ftimerCol != NULL )
 			{
-				if ( ftimerCol->ticks > total_ticks )
+				if ( ftimerCol->ticks > ftimer_total_ticks )
 					break;
 				
 				ftimerPrev = ftimerCol;
@@ -29,20 +43,10 @@ void ftimer_run ()
 					sys_free ( ftimerPrev );
 				}
 			}
-			
 			wait(1);
 		}
-		var nFTPauseOld = nFTPause;
 		while ( nFTPause != 0 )
 			wait(1);
-		
-		nFTPauseOld = total_ticks - nFTPauseOld;
-		Ftimer *ftimerTemp = ftimerCol;
-		while ( ftimerTemp != NULL )
-		{
-			ftimerTemp->ticks += nFTPauseOld;
-			ftimerTemp = ftimerTemp->next;
-		}
 	}
 }
 
@@ -105,7 +109,7 @@ void ftimer_stop ( Ftimer *ftimer )
 Ftimer *ftimer_add ( void *ptrMe, void *event, var time_lapse )
 {
 	Ftimer *ftimer = sys_malloc ( sizeof(Ftimer) );
-	ftimer->ticks = total_ticks + time_lapse;
+	ftimer->ticks = ftimer_total_ticks + time_lapse;
 	ftimer->ptrMe = ptrMe;
 	ftimer->event = event;
 	
@@ -137,6 +141,6 @@ void ftimer_pause ()
 	if ( nFTPause )
 		nFTPause = 0;
 	else
-		nFTPause = total_ticks;
+		nFTPause = ftimer_total_ticks;
 }
 
