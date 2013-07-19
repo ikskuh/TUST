@@ -486,9 +486,9 @@ CMStyle *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *col
 {
 	CMStyle *style = sys_malloc ( sizeof(CMStyle) );
 	style->font = font;
-	vec_set ( &style->colText, &colText );
-	vec_set ( &style->colBack, &colBack );
-	vec_set ( &style->colOver, &colOver );
+	vec_set ( &style->colText, colText );
+	vec_set ( &style->colBack, colBack );
+	vec_set ( &style->colOver, colOver );
 	return style;
 } 
 
