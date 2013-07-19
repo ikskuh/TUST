@@ -86,4 +86,27 @@ void draw_font(STRING* text, var x, var y, COLOR* color, FONT *font, int flags, 
 	draw_obj(txt);
 }
 
+void ang_normalize(ANGLE* _ang) {
+	// pan
+	if (_ang->pan > 0) {
+		_ang->pan = _ang->pan % 360;
+	} else {
+		while(_ang->pan < 0) _ang->pan = _ang->pan +=360;
+	}
+	
+	// tilt
+	if (_ang->tilt > 0) {
+		_ang->tilt = _ang->tilt % 360;
+	} else {
+		while(_ang->tilt < 0) _ang->tilt = _ang->tilt +=360;
+	}
+	
+	// roll
+	if (_ang->roll > 0) {
+		_ang->roll = _ang->roll % 360;
+	} else {
+		while(_ang->roll < 0) _ang->roll = _ang->roll +=360;
+	}	
+}
+
 

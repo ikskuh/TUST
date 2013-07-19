@@ -146,6 +146,12 @@ void *memmove(BYTE *destination, BYTE *source, unsigned int num);
 VECTOR *vec_create(var x, var y, var z);
 
 /**
+ * \brief Sets all values of an angle between 0 and 360
+ * \param   _ang        Then ANGLE to be "normalized"
+ */
+void ang_normalize(ANGLE* _ang);
+
+/**
  * \brief Writes a string at the given XY screen position in the current frame, using a Gamestudio FONT.
  * \param text  The string to be written
  * \param x     The screen position in pixels from the left border
