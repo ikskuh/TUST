@@ -8,10 +8,10 @@
 #include "function_timer.h"
 
 
-SOUND *sndSnare = "snaredrum.wav";
-SOUND *sndBass = "bassdrum.wav";
-SOUND *sndHihat = "hihat.wav";
-SOUND *sndHihatOpen = "hihat_open.wav";
+SOUND *sndSnare = "..\\Ressources\\Audio\\Sounds\\snaredrum.wav";
+SOUND *sndBass = "..\\Ressources\\Audio\\Sounds\\bassdrum.wav";
+SOUND *sndHihat = "..\\Ressources\\Audio\\Sounds\\hihat.wav";
+SOUND *sndHihatOpen = "..\\Ressources\\Audio\\Sounds\\hihat_open.wav";
 
 void fncSnare ( Ftimer *ftimer )
 {
