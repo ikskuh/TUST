@@ -4,6 +4,7 @@
 
 #include "..\\Source\\proc_city.h"
 #include "..\\Source\\DynamicModels.h"
+#include "..\\Source\\tust.h"
 
 //#define PROCEDURAL_DEBUG
 
@@ -100,19 +101,6 @@ void create_small_streets()
 #define VO_MIN_Y -1000
 #define VO_MAX_Y 1000
 
-var normalize_pan(var _pan) {
-	if (_pan > 0) {
-		return (_pan % 360);
-	}
-	else
-	{
-		while(_pan < 0) {
-			_pan +=360;
-		}
-		return _pan;
-	}
-}
-
 // Example 3: Draws a complex road network based on a voronoi diagram
 void create_random_streets()
 {
@@ -200,6 +188,7 @@ void create_random_streets()
 				vec_set(vecTemp2, vector(x1,y1,0));
 				vec_sub(vecTemp2, vector(x2,y2,0));
 				vec_to_angle(vecNewAngle, vecTemp2);
+				ang_normalize(vecNewAngle);
 				list_add(tempInter->incomingAngles, vecNewAngle);
 			}
 		}
@@ -214,6 +203,7 @@ void create_random_streets()
 			vec_set(vecTemp2, vector(x1,y1,0));
 			vec_sub(vecTemp2, vector(x2,y2,0));
 			vec_to_angle(vecNewAngle, vecTemp2);
+			ang_normalize(vecNewAngle);
 			list_add(newInter->incomingAngles, vecNewAngle);
 			
 			list_add(intersections, newInter);
@@ -239,6 +229,7 @@ void create_random_streets()
 				vec_set(vecTemp2, vector(x2,y2,0));
 				vec_sub(vecTemp2, vector(x1,y1,0));
 				vec_to_angle(vecNewAngle, vecTemp2);
+				ang_normalize(vecNewAngle);
 				list_add(tempInter->incomingAngles, vecNewAngle);
 			}
 		}
@@ -253,6 +244,7 @@ void create_random_streets()
 			vec_set(vecTemp2, vector(x2,y2,0));
 			vec_sub(vecTemp2, vector(x1,y1,0));
 			vec_to_angle(vecNewAngle, vecTemp2);
+			ang_normalize(vecNewAngle);
 			list_add(newInter->incomingAngles, vecNewAngle);
 
 			list_add(intersections, newInter);
