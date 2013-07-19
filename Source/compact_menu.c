@@ -400,12 +400,14 @@ void fncCMRun ()
 				pan_setwindow ( cmenuMouseLast->panel, 1, 0, 0, 0, 0, cmenuMouseLast->select, &0, &0 );
 			}
 			if ( cmenuTemp == NULL )
+			{
+				cmenuMouseLast = NULL;
 				continue;
+			}
 			
 			cmenuMouseLast = cmenuTemp;
 			cmenuMe = cmenuTemp;
 			fncCMSelect ();
-//			fncCMUpdate ();
 		}
 	}
 }
