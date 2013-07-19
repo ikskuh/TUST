@@ -184,6 +184,7 @@ void draw_font(STRING* text, var x, var y, COLOR* color, FONT *font, int flags, 
 #include "nodemesh.h"
 #include "compact_menu.h"
 #include "trash.h"
+#include "function_timer.h"
 
 #ifdef _TEMPLATE_H_
 	#error Template include guard still exists!

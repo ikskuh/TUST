@@ -97,7 +97,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Math helpers and other function Provides math helpers and useful functions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br/>
-<code>#include &quot;log.h&quot;</code><br/>
 <code>#include &quot;math.c&quot;</code><br/>
 </div>
 <p><a href="math_8h_source.html">Go to the source code of this file.</a></p>
@@ -105,15 +104,92 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a26f0647978690bd69a18b76fdfc84516"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a26f0647978690bd69a18b76fdfc84516">ang_lerp_single</a> (var a1, var a2, var f)</td></tr>
+<tr class="memdesc:a26f0647978690bd69a18b76fdfc84516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolates a single angle.  <a href="#a26f0647978690bd69a18b76fdfc84516">More...</a><br/></td></tr>
 <tr class="separator:a26f0647978690bd69a18b76fdfc84516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85fd94060f0d46d9e7ec9325a13e7832"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a85fd94060f0d46d9e7ec9325a13e7832">ang_lerp</a> (<a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *a, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *a1, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *a2, var f)</td></tr>
+<tr class="memdesc:a85fd94060f0d46d9e7ec9325a13e7832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolates an euler angle.  <a href="#a85fd94060f0d46d9e7ec9325a13e7832">More...</a><br/></td></tr>
 <tr class="separator:a85fd94060f0d46d9e7ec9325a13e7832"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7de23a19f08e7f11e28af94564c86120"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7de23a19f08e7f11e28af94564c86120">vec_rotateXY</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec, var angle)</td></tr>
+<tr class="memdesc:a7de23a19f08e7f11e28af94564c86120"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates a vector about an orthogonal axis.  <a href="#a7de23a19f08e7f11e28af94564c86120">More...</a><br/></td></tr>
 <tr class="separator:a7de23a19f08e7f11e28af94564c86120"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24c3bf84517de0fcdc2b58f823ee8fc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a24c3bf84517de0fcdc2b58f823ee8fc5">vec_rotateXZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec, var angle)</td></tr>
+<tr class="memdesc:a24c3bf84517de0fcdc2b58f823ee8fc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates a vector about an orthogonal axis.  <a href="#a24c3bf84517de0fcdc2b58f823ee8fc5">More...</a><br/></td></tr>
 <tr class="separator:a24c3bf84517de0fcdc2b58f823ee8fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8b534f2eff3a476b381a01fb7bbcd64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac8b534f2eff3a476b381a01fb7bbcd64">vec_rotateYZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec, var angle)</td></tr>
+<tr class="memdesc:ac8b534f2eff3a476b381a01fb7bbcd64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates a vector about an orthogonal axis.  <a href="#ac8b534f2eff3a476b381a01fb7bbcd64">More...</a><br/></td></tr>
 <tr class="separator:ac8b534f2eff3a476b381a01fb7bbcd64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2de7304f0afbb1576ae8c1b1c2fa3ab"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac2de7304f0afbb1576ae8c1b1c2fa3ab">vec_lengthXY</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec)</td></tr>
+<tr class="memdesc:ac2de7304f0afbb1576ae8c1b1c2fa3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the length of the XY components of a <a class="el" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a>.  <a href="#ac2de7304f0afbb1576ae8c1b1c2fa3ab">More...</a><br/></td></tr>
+<tr class="separator:ac2de7304f0afbb1576ae8c1b1c2fa3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68a98a821edbfc49487411b2ee3f0f90"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a68a98a821edbfc49487411b2ee3f0f90">vec_lengthXZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec)</td></tr>
+<tr class="memdesc:a68a98a821edbfc49487411b2ee3f0f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the length of the XZ components of a <a class="el" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a>.  <a href="#a68a98a821edbfc49487411b2ee3f0f90">More...</a><br/></td></tr>
+<tr class="separator:a68a98a821edbfc49487411b2ee3f0f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7da4e7af2fbc838012a2f4deaaeb6c28"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7da4e7af2fbc838012a2f4deaaeb6c28">vec_lengthYZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec)</td></tr>
+<tr class="memdesc:a7da4e7af2fbc838012a2f4deaaeb6c28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the length of the YZ components of a <a class="el" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a>.  <a href="#a7da4e7af2fbc838012a2f4deaaeb6c28">More...</a><br/></td></tr>
+<tr class="separator:a7da4e7af2fbc838012a2f4deaaeb6c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35ca68a4ccb129f77f0a1b5570678572"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a35ca68a4ccb129f77f0a1b5570678572">vec_diffXY</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vR, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:a35ca68a4ccb129f77f0a1b5570678572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the XY components of the vector vR to the difference of the XY components of v1 and v2.  <a href="#a35ca68a4ccb129f77f0a1b5570678572">More...</a><br/></td></tr>
+<tr class="separator:a35ca68a4ccb129f77f0a1b5570678572"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62392ea46a38b6e9e0ea91f287f069ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a62392ea46a38b6e9e0ea91f287f069ed">vec_diffXZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vR, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:a62392ea46a38b6e9e0ea91f287f069ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the XZ components of the vector vR to the difference of the XZ components of v1 and v2.  <a href="#a62392ea46a38b6e9e0ea91f287f069ed">More...</a><br/></td></tr>
+<tr class="separator:a62392ea46a38b6e9e0ea91f287f069ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c1fe7bd5f7a389f3a63af6ef9347047"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a6c1fe7bd5f7a389f3a63af6ef9347047">vec_diffYZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vR, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:a6c1fe7bd5f7a389f3a63af6ef9347047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the YZ components of the vector vR to the difference of the YZ components of v1 and v2.  <a href="#a6c1fe7bd5f7a389f3a63af6ef9347047">More...</a><br/></td></tr>
+<tr class="separator:a6c1fe7bd5f7a389f3a63af6ef9347047"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeea1126093c5b0a3763b550ea51fb008"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aeea1126093c5b0a3763b550ea51fb008">vec_distXY</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *p1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *p2)</td></tr>
+<tr class="memdesc:aeea1126093c5b0a3763b550ea51fb008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the distance in XY plane between two points.  <a href="#aeea1126093c5b0a3763b550ea51fb008">More...</a><br/></td></tr>
+<tr class="separator:aeea1126093c5b0a3763b550ea51fb008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ae912ed1b28bf0559667dbe7569d2cb"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4ae912ed1b28bf0559667dbe7569d2cb">vec_distXZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *p1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *p2)</td></tr>
+<tr class="memdesc:a4ae912ed1b28bf0559667dbe7569d2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the distance in XZ plane between two points.  <a href="#a4ae912ed1b28bf0559667dbe7569d2cb">More...</a><br/></td></tr>
+<tr class="separator:a4ae912ed1b28bf0559667dbe7569d2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aedb30fac760eb1fdb548658f1e364c"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7aedb30fac760eb1fdb548658f1e364c">vec_distYZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *p1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *p2)</td></tr>
+<tr class="memdesc:a7aedb30fac760eb1fdb548658f1e364c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the distance in YZ plane between two points.  <a href="#a7aedb30fac760eb1fdb548658f1e364c">More...</a><br/></td></tr>
+<tr class="separator:a7aedb30fac760eb1fdb548658f1e364c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90138ef8a3ba68eea85997162f0893d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a90138ef8a3ba68eea85997162f0893d2">vec_setXY</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:a90138ef8a3ba68eea85997162f0893d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the XY components of the second vector to the first, thus overwriting the first vector.  <a href="#a90138ef8a3ba68eea85997162f0893d2">More...</a><br/></td></tr>
+<tr class="separator:a90138ef8a3ba68eea85997162f0893d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a416cc060250255248985f73e50d97aa2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a416cc060250255248985f73e50d97aa2">vec_setXZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:a416cc060250255248985f73e50d97aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the XZ components of the second vector to the first, thus overwriting the first vector.  <a href="#a416cc060250255248985f73e50d97aa2">More...</a><br/></td></tr>
+<tr class="separator:a416cc060250255248985f73e50d97aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18d0e54ed665591943161071c37c3a6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a18d0e54ed665591943161071c37c3a6c">vec_setYZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:a18d0e54ed665591943161071c37c3a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the YZ components of the second vector to the first, thus overwriting the first vector.  <a href="#a18d0e54ed665591943161071c37c3a6c">More...</a><br/></td></tr>
+<tr class="separator:a18d0e54ed665591943161071c37c3a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4afd3992e8ee05680fe16f3ad358d89c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4afd3992e8ee05680fe16f3ad358d89c">vec_addXY</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:a4afd3992e8ee05680fe16f3ad358d89c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the XY components of the second vector to the first.  <a href="#a4afd3992e8ee05680fe16f3ad358d89c">More...</a><br/></td></tr>
+<tr class="separator:a4afd3992e8ee05680fe16f3ad358d89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a670f8e0e246bb49436892de422162f9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a670f8e0e246bb49436892de422162f9e">vec_addXZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:a670f8e0e246bb49436892de422162f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the XZ components of the second vector to the first.  <a href="#a670f8e0e246bb49436892de422162f9e">More...</a><br/></td></tr>
+<tr class="separator:a670f8e0e246bb49436892de422162f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00b9c86be531bdea257f9c9c2e1e4c8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a00b9c86be531bdea257f9c9c2e1e4c8d">vec_addYZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:a00b9c86be531bdea257f9c9c2e1e4c8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the YZ components of the second vector to the first.  <a href="#a00b9c86be531bdea257f9c9c2e1e4c8d">More...</a><br/></td></tr>
+<tr class="separator:a00b9c86be531bdea257f9c9c2e1e4c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae937961fc6f39b3fdfd85e0b0338bc1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ae937961fc6f39b3fdfd85e0b0338bc1e">vec_subXY</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:ae937961fc6f39b3fdfd85e0b0338bc1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Substract the XY components of the second vector from the first.  <a href="#ae937961fc6f39b3fdfd85e0b0338bc1e">More...</a><br/></td></tr>
+<tr class="separator:ae937961fc6f39b3fdfd85e0b0338bc1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0ea2e87d8874917f039c680725477b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ad0ea2e87d8874917f039c680725477b1">vec_subXZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:ad0ea2e87d8874917f039c680725477b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Substract the XZ components of the second vector from the first.  <a href="#ad0ea2e87d8874917f039c680725477b1">More...</a><br/></td></tr>
+<tr class="separator:ad0ea2e87d8874917f039c680725477b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad84b50512f579f8866dedd572f340746"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ad84b50512f579f8866dedd572f340746">vec_subYZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2)</td></tr>
+<tr class="memdesc:ad84b50512f579f8866dedd572f340746"><td class="mdescLeft">&#160;</td><td class="mdescRight">Substract the YZ components of the second vector from the first.  <a href="#ad84b50512f579f8866dedd572f340746">More...</a><br/></td></tr>
+<tr class="separator:ad84b50512f579f8866dedd572f340746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94ea5665f82d4282014313e9dc5de14d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a94ea5665f82d4282014313e9dc5de14d">vec_normalizeXY</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec, var length)</td></tr>
+<tr class="memdesc:a94ea5665f82d4282014313e9dc5de14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the XY components of the vector to the magnitude given by length.  <a href="#a94ea5665f82d4282014313e9dc5de14d">More...</a><br/></td></tr>
+<tr class="separator:a94ea5665f82d4282014313e9dc5de14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98468e2f9c600ec38be9d01278331e20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a98468e2f9c600ec38be9d01278331e20">vec_normalizeXZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec, var length)</td></tr>
+<tr class="memdesc:a98468e2f9c600ec38be9d01278331e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the XZ components of the vector to the magnitude given by length.  <a href="#a98468e2f9c600ec38be9d01278331e20">More...</a><br/></td></tr>
+<tr class="separator:a98468e2f9c600ec38be9d01278331e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78b035704a3495847dc73297bf08e4fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a78b035704a3495847dc73297bf08e4fc">vec_normalizeYZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec, var length)</td></tr>
+<tr class="memdesc:a78b035704a3495847dc73297bf08e4fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the YZ components of the vector to the magnitude given by length.  <a href="#a78b035704a3495847dc73297bf08e4fc">More...</a><br/></td></tr>
+<tr class="separator:a78b035704a3495847dc73297bf08e4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c69d2b6036fbae57cdada77a5b532b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a1c69d2b6036fbae57cdada77a5b532b4">vec_scaleXY</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec, var f)</td></tr>
+<tr class="memdesc:a1c69d2b6036fbae57cdada77a5b532b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the XY components of the vector by a factor.  <a href="#a1c69d2b6036fbae57cdada77a5b532b4">More...</a><br/></td></tr>
+<tr class="separator:a1c69d2b6036fbae57cdada77a5b532b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82dd6a203adc3d51b00071219e72c0e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a82dd6a203adc3d51b00071219e72c0e8">vec_scaleXZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec, var f)</td></tr>
+<tr class="memdesc:a82dd6a203adc3d51b00071219e72c0e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the XZ components of the vector by a factor.  <a href="#a82dd6a203adc3d51b00071219e72c0e8">More...</a><br/></td></tr>
+<tr class="separator:a82dd6a203adc3d51b00071219e72c0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad61ce6a8daafc52ebaad72699f329e2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ad61ce6a8daafc52ebaad72699f329e2b">vec_scaleYZ</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *vec, var f)</td></tr>
+<tr class="memdesc:ad61ce6a8daafc52ebaad72699f329e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales the YZ components of the vector by a factor.  <a href="#ad61ce6a8daafc52ebaad72699f329e2b">More...</a><br/></td></tr>
+<tr class="separator:ad61ce6a8daafc52ebaad72699f329e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bd2699511031abba46369ad730dffc1"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a8bd2699511031abba46369ad730dffc1">point_to_line2D_dist</a> (var px, var py, var l1x, var l1y, var l2x, var l2y)</td></tr>
 <tr class="separator:a8bd2699511031abba46369ad730dffc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d502c28812d6b01a0ba81ca64f95530"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2d502c28812d6b01a0ba81ca64f95530">point_to_line2D_escalar</a> (var px, var py, var l1x, var l1y, var l2x, var l2y)</td></tr>
@@ -163,6 +239,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Interpolates an euler angle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -205,6 +282,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Interpolates a single angle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -417,6 +495,525 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a4afd3992e8ee05680fe16f3ad358d89c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_addXY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds the XY components of the second vector to the first. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v1</td><td>The fisrt vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a670f8e0e246bb49436892de422162f9e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_addXZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds the XZ components of the second vector to the first. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v1</td><td>The fisrt vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a00b9c86be531bdea257f9c9c2e1e4c8d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_addYZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds the YZ components of the second vector to the first. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v1</td><td>The fisrt vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a35ca68a4ccb129f77f0a1b5570678572"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_diffXY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the XY components of the vector vR to the difference of the XY components of v1 and v2. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vR</td><td>The vector to be filled. </td></tr>
+    <tr><td class="paramname">v1</td><td>The first vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a62392ea46a38b6e9e0ea91f287f069ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_diffXZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the XZ components of the vector vR to the difference of the XZ components of v1 and v2. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vR</td><td>The vector to be filled. </td></tr>
+    <tr><td class="paramname">v1</td><td>The first vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6c1fe7bd5f7a389f3a63af6ef9347047"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_diffYZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the YZ components of the vector vR to the difference of the YZ components of v1 and v2. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vR</td><td>The vector to be filled. </td></tr>
+    <tr><td class="paramname">v1</td><td>The first vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aeea1126093c5b0a3763b550ea51fb008"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">var vec_distXY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>p2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the distance in XY plane between two points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>The fisrt point. </td></tr>
+    <tr><td class="paramname">p2</td><td>The second point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance in XY plane between two points. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4ae912ed1b28bf0559667dbe7569d2cb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">var vec_distXZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>p2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the distance in XZ plane between two points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>The fisrt point. </td></tr>
+    <tr><td class="paramname">p2</td><td>The second point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance in XZ plane between two points. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7aedb30fac760eb1fdb548658f1e364c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">var vec_distYZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>p2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the distance in YZ plane between two points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p1</td><td>The fisrt point. </td></tr>
+    <tr><td class="paramname">p2</td><td>The second point. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The distance in YZ plane between two points. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac2de7304f0afbb1576ae8c1b1c2fa3ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">var vec_lengthXY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the length of the XY components of a <a class="el" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the XY vector </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a68a98a821edbfc49487411b2ee3f0f90"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">var vec_lengthXZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the length of the XZ components of a <a class="el" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the XZ vector </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7da4e7af2fbc838012a2f4deaaeb6c28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">var vec_lengthYZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the length of the YZ components of a <a class="el" href="class_v_e_c_t_o_r.html" title="The VECTOR struct is defined in GStudio8\include\atypes.h. ">VECTOR</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the YZ vector </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a94ea5665f82d4282014313e9dc5de14d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_normalizeXY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scales the XY components of the vector to the magnitude given by length. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+    <tr><td class="paramname">length</td><td>The length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a98468e2f9c600ec38be9d01278331e20"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_normalizeXZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scales the XZ components of the vector to the magnitude given by length. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+    <tr><td class="paramname">length</td><td>The length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a78b035704a3495847dc73297bf08e4fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_normalizeYZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scales the YZ components of the vector to the magnitude given by length. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+    <tr><td class="paramname">length</td><td>The length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a7de23a19f08e7f11e28af94564c86120"></a>
 <div class="memitem">
 <div class="memproto">
@@ -440,6 +1037,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Rotates a vector about an orthogonal axis. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -474,6 +1072,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Rotates a vector about an orthogonal axis. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -508,11 +1107,327 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Rotates a vector about an orthogonal axis. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vec</td><td>The vector. </td></tr>
     <tr><td class="paramname">angle</td><td>Angle of rotation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1c69d2b6036fbae57cdada77a5b532b4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_scaleXY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scales the XY components of the vector by a factor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+    <tr><td class="paramname">f</td><td>The length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a82dd6a203adc3d51b00071219e72c0e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_scaleXZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scales the XZ components of the vector by a factor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+    <tr><td class="paramname">f</td><td>The length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad61ce6a8daafc52ebaad72699f329e2b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_scaleYZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">var&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scales the YZ components of the vector by a factor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>The vector. </td></tr>
+    <tr><td class="paramname">f</td><td>The length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a90138ef8a3ba68eea85997162f0893d2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_setXY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the XY components of the second vector to the first, thus overwriting the first vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v1</td><td>The fisrt vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a416cc060250255248985f73e50d97aa2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_setXZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the XZ components of the second vector to the first, thus overwriting the first vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v1</td><td>The fisrt vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a18d0e54ed665591943161071c37c3a6c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_setYZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the YZ components of the second vector to the first, thus overwriting the first vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v1</td><td>The fisrt vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae937961fc6f39b3fdfd85e0b0338bc1e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_subXY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Substract the XY components of the second vector from the first. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v1</td><td>The fisrt vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad0ea2e87d8874917f039c680725477b1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_subXZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Substract the XZ components of the second vector from the first. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v1</td><td>The fisrt vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad84b50512f579f8866dedd572f340746"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec_subYZ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
+          <td class="paramname"><em>v2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Substract the YZ components of the second vector from the first. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v1</td><td>The fisrt vector. </td></tr>
+    <tr><td class="paramname">v2</td><td>The second vector. </td></tr>
   </table>
   </dd>
 </dl>
@@ -571,7 +1486,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 18 2013 20:37:27 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 19 2013 15:33:28 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.4
 </small></address>
