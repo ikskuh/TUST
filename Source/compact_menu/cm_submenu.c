@@ -58,28 +58,28 @@ void drwCMSubmenu ()
 	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y, 0 ) );
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMBack, 100, 0 );
 	VECTOR vecOffset;
 	if ( cmmemberMe->flags & CM_OPENED )
 	{
 		vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->pos_y+cmmemberMe->size_y-3, 0 ) );
 		vec_set ( &vecSize, vector(cmenuMe->panel->size_x-vecPos.x,3,0) );
-		draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
+		draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMOver, 100, 0 );
 	}
 	else
 	{
 		vec_set ( &vecPos, vector ( cmmemberMe->tab+2, cmmemberMe->pos_y+(cmmemberMe->size_y/2)-2, 0 ) );
-		draw_line ( &vecPos, colCMText, 0 );
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.y += 5;
-		draw_line ( &vecPos, colCMText, 100 );
-		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
 		vec_set ( &vecPos, vector ( cmmemberMe->tab+1, cmmemberMe->pos_y+(cmmemberMe->size_y/2), 0 ) );
-		draw_line ( &vecPos, colCMText, 0 );
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.x += 3;
-		draw_line ( &vecPos, colCMText, 100 );
-		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
 	}
 	
 	cmmember_name ();
@@ -112,11 +112,11 @@ void drwCMSubmenu ()
 			cmmemberMe->class->draw ();
 			
 			vec_set ( &vecPos, vector ( parent->tab, old_position, 0 ) );
-			draw_line ( &vecPos, colCMText, 0 );
-			draw_line ( &vecPos, colCMText, 100 );
+			draw_line ( &vecPos, &colCMText, 0 );
+			draw_line ( &vecPos, &colCMText, 100 );
 			vecPos.y = cmenuMe->panel->size_y;
-			draw_line ( &vecPos, colCMText, 100 );
-			draw_line ( &vecPos, colCMText, 0 );
+			draw_line ( &vecPos, &colCMText, 100 );
+			draw_line ( &vecPos, &colCMText, 0 );
 		}
 	}
 }
@@ -128,52 +128,52 @@ void drwCMSubmenuSelect ()
 	vec_set ( &vecPos, nullvector );
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMBack, 100, 0 );
 	vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->size_y-3, 0 ) );
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x - vecPos.x, 3, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMOver, 100, 0 );
 	if ( cmmemberMe->flags & CM_OPENED )
 	{
 		vec_set ( &vecPos, vector ( cmenuMe->panel->size_x-1-CM_TAB_RIGHT, cmmemberMe->size_y-4, 0 ) );
-		draw_line ( &vecPos, colCMText, 0 );
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.x -= 3;
 		vecPos.y -= 6;
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.x -= 3;
 		vecPos.y += 6;
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.x += 6;
-		draw_line ( &vecPos, colCMText, 100 );
-		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
 	}
 	else
 	{
 		vec_set ( &vecPos, vector ( cmmemberMe->tab+2, (cmmemberMe->size_y/2)-2, 0 ) );
-		draw_line ( &vecPos, colCMText, 0 );
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.y += 5;
-		draw_line ( &vecPos, colCMText, 100 );
-		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
 		vec_set ( &vecPos, vector ( cmmemberMe->tab+1, (cmmemberMe->size_y/2), 0 ) );
-		draw_line ( &vecPos, colCMText, 0 );
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.x += 3;
-		draw_line ( &vecPos, colCMText, 100 );
-		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
 		
 		vec_set ( &vecPos, vector ( cmenuMe->panel->size_x-1-CM_TAB_RIGHT, cmmemberMe->size_y-9, 0 ) );
-		draw_line ( &vecPos, colCMText, 0 );
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.x -= 3;
 		vecPos.y += 6;
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.x -= 3;
 		vecPos.y -= 6;
-		draw_line ( &vecPos, colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 100 );
 		vecPos.x += 6;
-		draw_line ( &vecPos, colCMText, 100 );
-		draw_line ( &vecPos, colCMText, 0 );
+		draw_line ( &vecPos, &colCMText, 100 );
+		draw_line ( &vecPos, &colCMText, 0 );
 	}
 }
 

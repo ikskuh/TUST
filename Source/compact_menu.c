@@ -157,36 +157,36 @@ void fncCMUpdate ()
 	cmenuMe->lastDraw = total_ticks;
 	
 	cmmemberMe = cmenuMe->cmmember;
-	vec_set ( &colCMText, cmenuMe->style->colText );
-	vec_set ( &colCMBack, cmenuMe->style->colBack );
-	vec_set ( &colCMOver, cmenuMe->style->colOver );
+	vec_set ( &colCMText, &cmenuMe->style->colText );
+	vec_set ( &colCMBack, &cmenuMe->style->colBack );
+	vec_set ( &colCMOver, &cmenuMe->style->colOver );
 	
 	bmap_rendertarget ( panel->bmap, 0, 0 );
 	draw_line ( nullvector, nullvector, 0 );
 	
 	VECTOR vecPos;
 	vec_set ( &vecPos, vector ( 0, 0, 0 ) );
-	draw_line ( &vecPos, colCMText, 0 );
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 0 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.x = panel->size_x;
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.y += 1;
-	draw_line ( &vecPos, colCMBack, 100 );
+	draw_line ( &vecPos, &colCMBack, 100 );
 	vecPos.x = 0;
-	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 100 );
 	vecPos.y += 1;
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( panel->size_x, CM_HEADER_HEIGHT-4, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMOver, 100, 0 );
 	vecPos.y = CM_HEADER_HEIGHT-1;
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.x = panel->size_x;
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.y -= 1;
-	draw_line ( &vecPos, colCMBack, 100 );
+	draw_line ( &vecPos, &colCMBack, 100 );
 	vecPos.x = 0;
-	draw_line ( &vecPos, colCMText, 100 );
-	draw_line ( &vecPos, colCMText, 0 );
+	draw_line ( &vecPos, &colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 0 );
 	
 	panel->size_y = cmmemberMe->size_y + CM_HEADER_HEIGHT;
 	
@@ -196,32 +196,32 @@ void fncCMUpdate ()
 	cmmemberMe->class->draw ();
 	
 	vec_set ( &vecPos, vector ( 0, panel->size_y, 0 ) );
-	draw_line ( &vecPos, colCMText, 0 );
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 0 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.x = cmenuMe->panel->size_x;
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.y += 1;
-	draw_line ( &vecPos, colCMBack, 100 );
+	draw_line ( &vecPos, &colCMBack, 100 );
 	vecPos.x = 0;
-	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 100 );
 	vecPos.y += 1;
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.x = panel->size_x;
-	draw_line ( &vecPos, colCMOver, 100 );
-	draw_line ( &vecPos, colCMOver, 0 );
+	draw_line ( &vecPos, &colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 0 );
 	
 	panel->size_y += CM_FOOTER_HEIGHT;
 	
 	vec_set ( &vecPos, nullvector );
-	draw_line ( &vecPos, colCMText, 0 );
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 0 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.y = panel->size_y - 1;
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.x = panel->size_x - 1;
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.y = 0;
-	draw_line ( &vecPos, colCMText, 100 );
-	draw_line ( &vecPos, colCMText, 0 );
+	draw_line ( &vecPos, &colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 0 );
 	
 	bmap_rendertarget ( NULL, 0, 0 );
 	
@@ -486,9 +486,9 @@ CMStyle *cmstyle_create ( FONT *font, COLOR *colText, COLOR *colBack, COLOR *col
 {
 	CMStyle *style = sys_malloc ( sizeof(CMStyle) );
 	style->font = font;
-	vec_set ( style->colText, colText );
-	vec_set ( style->colBack, colBack );
-	vec_set ( style->colOver, colOver );
+	vec_set ( &style->colText, &colText );
+	vec_set ( &style->colBack, &colBack );
+	vec_set ( &style->colOver, &colOver );
 	return style;
 } 
 
@@ -506,7 +506,7 @@ PANEL *cmenu_create ( char *member, var pos_x, var pos_y, var size_x, var layer,
 	panTemp->size_x = size_x;
 	panTemp->size_y = 0;
 	panTemp->flags = flags | ARIGHT;
-	vec_set ( &panTemp->blue, style->colText );
+	vec_set ( &panTemp->blue, &style->colText );
 	
 	cmenuMe = sys_malloc ( sizeof(COMPACT_MENU) );
 	cmenuMe->name = str_create ( member );
@@ -548,7 +548,7 @@ void cmenu_modify ( PANEL *panel, var size_x, CMStyle *style )
 			if ( style != NULL )
 			{
 				cmenuTemp->style = style;
-				vec_set ( panel->blue, style->colText );
+				vec_set ( &panel->blue, &style->colText );
 			}
 			if ( ( size_x != 0 ) && ( size_x != panel->size_x ) )
 			{

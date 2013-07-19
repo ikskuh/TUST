@@ -35,7 +35,7 @@ void drwCMSlider ()
 	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y, 0 ) );
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMBack, 100, 0 );
 	CMSLIDER *slider = cmmemberMe->child;
 	**slider->value = clamp ( **slider->value, *slider->min, *slider->max );
 	var slide_x = **slider->value;
@@ -47,11 +47,11 @@ void drwCMSlider ()
 	slide_x *= slider->size_x;
 	slide_x = maxv ( slide_x, 1 );
 	vec_set ( &vecPos, vector ( cmmemberMe->tab+slider->size_x, cmmemberMe->pos_y+cmmemberMe->size_y-1, 0 ) );
-	draw_line ( &vecPos, colCMOver, 0 );
-	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 0 );
+	draw_line ( &vecPos, &colCMOver, 100 );
 	vecPos.x -= slider->size_x * CM_TAB_LINE;
-	draw_line ( &vecPos, colCMBack, 100 );
-	draw_line ( &vecPos, colCMBack, 0 );
+	draw_line ( &vecPos, &colCMBack, 100 );
+	draw_line ( &vecPos, &colCMBack, 0 );
 	
 	cmmember_digit ( *slider->value, slider->format );
 	cmmember_name ();
@@ -63,7 +63,7 @@ void drwCMSliderSelect ()
 	vec_set ( &vecPos, vector ( 0, 0, 0 ) );
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMBack, 100, 0 );
 	CMSLIDER *slider = cmmemberMe->child;
 	**slider->value = clamp ( **slider->value, *slider->min, *slider->max );
 	var slide_x = **slider->value;
@@ -76,21 +76,21 @@ void drwCMSliderSelect ()
 	slide_x = maxv ( slide_x, 1 );
 	vec_set ( &vecPos, vector ( cmmemberMe->tab, 1, 0 ) );
 	vec_set ( &vecSize, vector ( slide_x, cmmemberMe->size_y-2, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMOver, 100, 0 );
 	vecPos.x += slider->size_x;
 	vecPos.y += cmmemberMe->size_y - 2;
-	draw_line ( &vecPos, colCMOver, 0 );
-	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 0 );
+	draw_line ( &vecPos, &colCMOver, 100 );
 	vecPos.x -= slider->size_x;
-	draw_line ( &vecPos, colCMOver, 100 );
-	draw_line ( &vecPos, colCMOver, 0 );
+	draw_line ( &vecPos, &colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 0 );
 	
 	vec_set ( &vecPos, vector ( cmmemberMe->tab+slide_x, 1, 0 ) );
-	draw_line ( &vecPos, colCMText, 0 );
-	draw_line ( &vecPos, colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 0 );
+	draw_line ( &vecPos, &colCMText, 100 );
 	vecPos.y += cmmemberMe->size_y-2;
-	draw_line ( &vecPos, colCMText, 100 );
-	draw_line ( &vecPos, colCMText, 0 );
+	draw_line ( &vecPos, &colCMText, 100 );
+	draw_line ( &vecPos, &colCMText, 0 );
 }
 
 void evnCMSlider ()

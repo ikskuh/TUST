@@ -12,18 +12,18 @@ void drwCMTitle ()
 	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y, 0 ) );
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMBack, 100, 0 );
 	vecPos.x = cmmemberMe->tab + 1;
 	vecPos.y = cmmemberMe->pos_y + cmmemberMe->size_y - 1;
-	draw_line ( &vecPos, colCMOver, 0 );
-	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 0 );
+	draw_line ( &vecPos, &colCMOver, 100 );
 	vecPos.x = cmenuMe->panel->size_x;
-	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 100 );
 	vecPos.y -= 1;
-	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 100 );
 	vecPos.x = cmmemberMe->tab + 1;
-	draw_line ( &vecPos, colCMOver, 100 );
-	draw_line ( &vecPos, colCMOver, 0 );
+	draw_line ( &vecPos, &colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 0 );
 	
 	cmmember_name ();
 }

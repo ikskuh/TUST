@@ -41,13 +41,13 @@ void drwCMDigit ()
 	vec_set ( &vecPos, vector ( 0, cmmemberMe->pos_y, 0 ) );
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMBack, 100, 0 );
 	vec_set ( &vecPos, vector ( cmenuMe->panel->size_x-cmmemberMe->tab-CM_TAB_RIGHT, cmmemberMe->pos_y+cmmemberMe->size_y-1, 0 ) );
-	draw_line ( &vecPos, colCMOver, 0 );
-	draw_line ( &vecPos, colCMOver, 100 );
+	draw_line ( &vecPos, &colCMOver, 0 );
+	draw_line ( &vecPos, &colCMOver, 100 );
 	vecPos.x -= vecPos.x * CM_TAB_LINE;
-	draw_line ( &vecPos, colCMBack, 100 );
-	draw_line ( &vecPos, colCMBack, 0 );
+	draw_line ( &vecPos, &colCMBack, 100 );
+	draw_line ( &vecPos, &colCMBack, 0 );
 	
 	CMDIGIT *digit = cmmemberMe->child;
 	if ( cmmemberMe->flags & CM_COMPUTE )
@@ -64,10 +64,10 @@ void drwCMDigitSelect ()
 	vec_set ( &vecPos, vector ( 0, 0, 0 ) );
 	VECTOR vecSize;
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x, cmmemberMe->size_y, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMBack, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMBack, 100, 0 );
 	vec_set ( &vecPos, vector ( cmmemberMe->tab, cmmemberMe->size_y-3, 0 ) );
 	vec_set ( &vecSize, vector ( cmenuMe->panel->size_x-cmmemberMe->tab-CM_TAB_RIGHT, 3, 0 ) );
-	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, colCMOver, 100, 0 );
+	draw_quad ( NULL, &vecPos, NULL, &vecSize, NULL, &colCMOver, 100, 0 );
 }
 
 void evnCMDigit ()
