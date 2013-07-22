@@ -189,7 +189,12 @@ void create_random_streets()
 				vec_sub(vecTemp2, vector(x2,y2,0));
 				vec_to_angle(vecNewAngle, vecTemp2);
 				ang_normalize(vecNewAngle);
-				list_add(tempInter->incomingAngles, vecNewAngle);
+				
+				IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
+				ic->incomingAngle = vecNewAngle;
+				ic->id = i;
+				
+				list_add(tempInter->incomingConnections, ic);
 			}
 		}
 		
@@ -204,7 +209,12 @@ void create_random_streets()
 			vec_sub(vecTemp2, vector(x2,y2,0));
 			vec_to_angle(vecNewAngle, vecTemp2);
 			ang_normalize(vecNewAngle);
-			list_add(newInter->incomingAngles, vecNewAngle);
+
+			IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
+			ic->incomingAngle = vecNewAngle;
+			ic->id = i;
+			
+			list_add(newInter->incomingConnections, ic);
 			
 			list_add(intersections, newInter);
 			#ifdef PROCEDURAL_DEBUG
@@ -230,7 +240,12 @@ void create_random_streets()
 				vec_sub(vecTemp2, vector(x1,y1,0));
 				vec_to_angle(vecNewAngle, vecTemp2);
 				ang_normalize(vecNewAngle);
-				list_add(tempInter->incomingAngles, vecNewAngle);
+				
+				IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
+				ic->incomingAngle = vecNewAngle;
+				ic->id = i;
+				
+				list_add(tempInter->incomingConnections, ic);
 			}
 		}
 		
@@ -245,7 +260,12 @@ void create_random_streets()
 			vec_sub(vecTemp2, vector(x1,y1,0));
 			vec_to_angle(vecNewAngle, vecTemp2);
 			ang_normalize(vecNewAngle);
-			list_add(newInter->incomingAngles, vecNewAngle);
+
+				IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
+				ic->incomingAngle = vecNewAngle;
+				ic->id = i;
+				
+				list_add(newInter->incomingConnections, ic);
 
 			list_add(intersections, newInter);
 			#ifdef PROCEDURAL_DEBUG

@@ -15,7 +15,7 @@
 Intersection *intersection_create(VECTOR* _pos)
 {
 	Intersection *newInter = sys_malloc(sizeof(Intersection));
-	newInter->incomingAngles = list_create();
+	newInter->incomingConnections = list_create();
 	newInter->pos = sys_malloc(sizeof(VECTOR));
 	vec_set(newInter->pos, _pos);
 	return newInter;
@@ -113,27 +113,32 @@ float optimal_intersection_rotation(Intersection* _inter) {
 			// Error
 		break;
 		case 1:
-			return ((ANGLE*)list_item_at(_inter->incomingAngles, 0))->pan;
-		break;
-		case 2:
-			return ((ANGLE*)list_item_at(_inter->incomingAngles, 0))->pan;
+		case 2: // Todo: 2 has also to be rotated!
+			IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_inter->incomingConnections, 0);
+			return ic->incomingAngle->pan;
 		break;
 		case 3:
 		case 4:
 		
 			int j,k,tempPan, resultPan;
 			VECTOR currentPan, currentPan2;
-			float bestPan = list_get_count(_inter->incomingAngles) * 360;
+			float bestPan = list_get_count(_inter->incomingConnections) * 360;
 			
-			for (j=0; j<list_get_count(_inter->incomingAngles); j++) {
+			for (j=0; j<list_get_count(_inter->incomingConnections); j++) {
 				
 				float newPan = 0;
-				vec_set(currentPan, list_item_at(_inter->incomingAngles, j));
+				IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_inter->incomingConnections, j);
+				
+				
+				vec_set(currentPan, ic->incomingAngle->pan);
 				tempPan = currentPan.x;
 				
-				for(k=0; k<list_get_count(_inter->incomingAngles); k++) {
+				for(k=0; k<list_get_count(_inter->incomingConnections); k++) {
 					
-					vec_set(currentPan2, list_item_at(_inter->incomingAngles, k));
+					IntersectionConnection *ic2 = (IntersectionConnection*)list_item_at(_inter->incomingConnections, k);
+					
+					
+					vec_set(currentPan2, ic2->incomingAngle->pan);
 					if (tempPan > currentPan2.x) {
 						newPan += tempPan - currentPan2.x;
 					} else {
@@ -149,7 +154,8 @@ float optimal_intersection_rotation(Intersection* _inter) {
 			return resultPan;				
 		break;
 		default:
-			return ((ANGLE*)list_item_at(_inter->incomingAngles, 0))->pan;
+			IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_inter->incomingConnections, 0);
+			return ic->incomingAngle->pan;
 		break;
 	}
 
@@ -166,8 +172,12 @@ action inter_info() {
 	Intersection* i1 = my.skill1;
 	while(me) {
 		if(mouse_ent == me) {
-			for(i=0; i<list_get_count(i1->incomingAngles); i++) {
-				VECTOR* vecCurrentAng = list_item_at(i1->incomingAngles,i);
+			for(i=0; i<list_get_count(i1->incomingConnections); i++) {
+				
+				IntersectionConnection *ic = (IntersectionConnection*)list_item_at(i1->incomingConnections, i);
+				VECTOR* vecCurrentAng;
+				vec_set(vecCurrentAng, ic->incomingAngle->pan);
+				
 				draw_text("Inc. street", 0, i*20, COLOR_GREEN);
 				draw_text(str_for_int(NULL, i), 50, i*20, COLOR_GREEN);
 				draw_text(str_for_num(NULL, vecCurrentAng->x), 075, i*20, COLOR_RED);
@@ -197,15 +207,19 @@ action inter_info() {
 }
 
 int pan_angle_compare(ListData *left, ListData *right) { //and returns 1 if left>right, 0 if left=right and -1 if left<right.
-	if (((ANGLE*)left)->pan > ((ANGLE*)right)->pan) {
+	
+	IntersectionConnection *icLeft = (IntersectionConnection*)left;
+	IntersectionConnection *icRight = (IntersectionConnection*)right;
+	
+	if (((ANGLE*)icLeft->incomingAngle)->pan > ((ANGLE*)icRight->incomingAngle)->pan) {
 		return 1;
 	}
 	
-	if (((ANGLE*)left)->pan == ((ANGLE*)right)->pan) {
+	if (((ANGLE*)icLeft->incomingAngle)->pan == ((ANGLE*)icRight->incomingAngle)->pan) {
 		return 0;
 	}
 	
-	if (((ANGLE*)left)->pan < ((ANGLE*)right)->pan) {
+	if (((ANGLE*)icLeft->incomingAngle)->pan < ((ANGLE*)icRight->incomingAngle)->pan) {
 		return -1;
 	}	
 }
@@ -223,10 +237,10 @@ ENTITY *build_intersection(Intersection *_intersection)
 	
 	// Rotate intersections according the first incoming street
 	float fOptimalPan = 0;
-	if (list_get_count(_intersection->incomingAngles) > 0) {
+	if (list_get_count(_intersection->incomingConnections) > 0) {
 		
 		// Sort incoming angles
-		list_sort(_intersection->incomingAngles, pan_angle_compare);	
+		list_sort(_intersection->incomingConnections, pan_angle_compare);	
 			
 		fOptimalPan = optimal_intersection_rotation(_intersection);
 	}	
@@ -245,6 +259,11 @@ ENTITY *build_intersection(Intersection *_intersection)
 			D3DVERTEX *v4 = create_vertex(0 + 7.5, 0, 0 + 2.5,  0, 1, 0,   1,    0.66);
 			D3DVERTEX *v5 = create_vertex(0 + 7.5, 0, 0 - 2.5,  0, 1, 0,   1,    0.33);
 			D3DVERTEX *v6 = create_vertex(0 + 2.5, 0, 0 - 10,   0, 1, 0,   0.66, 0);
+			
+			// Store the middle of the end that should be connected to a street
+			IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
+			ic->pos = sys_malloc(sizeof(VECTOR));
+			vec_set(ic->pos, vector(-10,0,0));
 			
 			/*D3DVERTEX *v1 = create_vertex(0 - 10,  0-10, 0,   0, 1, 0,   0,    0);
 			D3DVERTEX *v2 = create_vertex(0 - 10,  0+10, 0,   0, 1, 0,   0,    1);
@@ -271,6 +290,8 @@ ENTITY *build_intersection(Intersection *_intersection)
 		
 		// A simple connection
 		case 2:
+		
+			// Todo: Make it a square!
 			model->skin[0] = bmapStreetIntersection2;
 			
 			D3DVERTEX *v1 = create_vertex(-10 - PROC_INTERSECTION_EXTREMITIES, 0, -10, 0, 1, 0, 0,    0.33);
@@ -290,6 +311,15 @@ ENTITY *build_intersection(Intersection *_intersection)
 			int i6 = dmdl_add_vertex(model, v6);
 			int i7 = dmdl_add_vertex(model, v7);
 			int i8 = dmdl_add_vertex(model, v8);
+			
+			// Store the middle of the end that should be connected to a street
+			/*IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
+			ic1->pos = sys_malloc(sizeof(VECTOR));
+			vec_set(ic1->pos, vector(-10,0,0));
+			
+			IntersectionConnection *ic2 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 1);
+			ic2->pos = sys_malloc(sizeof(VECTOR));
+			vec_set(ic2->pos, vector(-10,0,0));		*/
 			
 			dmdl_connect_vertices(model, i1, i3, i2);
 			dmdl_connect_vertices(model, i2, i3, i4);

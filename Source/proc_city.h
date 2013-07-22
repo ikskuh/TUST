@@ -103,9 +103,16 @@ typedef struct Street
 typedef struct {
 	VECTOR *pos;
 	int incomingStreets;
-	List *incomingAngles;
+	List *incomingConnections; // Typ: IntersectionConnection
 	int source;
 } Intersection;
+
+typedef struct {
+	ANGLE *incomingAngle;
+	VECTOR *pos;
+	int id;
+	float angle;
+} IntersectionConnection;
 
 
 /**
