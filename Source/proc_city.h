@@ -112,6 +112,10 @@ typedef struct {
 typedef struct {
 	ANGLE *incomingAngle;
 	VECTOR *pos;
+	VECTOR *leftVertexPos;
+	VECTOR *rightVertexPos;
+	int leftVertex;
+	int rightVertex;
 	int id;
 	float angle;
 } IntersectionConnection;

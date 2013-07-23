@@ -266,7 +266,13 @@ ENTITY *build_intersection(Intersection *_intersection)
 			if (list_get_count(_intersection->incomingConnections) > 0) {
 				IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
 				ic->pos = sys_malloc(sizeof(VECTOR));
+				ic->leftVertexPos   = sys_malloc(sizeof(VECTOR));
+				ic->rightVertexPos  = sys_malloc(sizeof(VECTOR));
 				vec_set(ic->pos, vector(-10,0,0));
+				vec_set(ic->leftVertexPos, vector(-10,0,-10));
+				vec_set(ic->rightVertexPos, vector(-10,0,10));
+				ic->leftVertex = 1;
+				ic->rightVertex = 2;
 			}
 			
 			/*D3DVERTEX *v1 = create_vertex(0 - 10,  0-10, 0,   0, 1, 0,   0,    0);
@@ -296,42 +302,73 @@ ENTITY *build_intersection(Intersection *_intersection)
 		// A simple connection
 		case 2:
 		
-			// Todo: Make it a square!
-			model->skin[0] = bmapStreetIntersection2_1;
+			// Calculate the angle difference
+			if (list_get_count(_intersection->incomingConnections) > 0) {
+				
+				
+				// Set the right skin
+				IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
+				IntersectionConnection *ic2 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 1);
+				
+				ic1->pos            = sys_malloc(sizeof(VECTOR));
+				ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				ic2->pos            = sys_malloc(sizeof(VECTOR));
+				ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));				
+				vec_set(ic1->pos, vector(-10,0,0));
+				ic1->leftVertex  = 1;
+				ic1->rightVertex = 2;				
+				
+				float difference;
+				if (ic1->incomingAngle->pan >= ic2->incomingAngle->pan) {
+					difference = ic1->incomingAngle->pan - ic2->incomingAngle->pan;
+				} else {
+					difference = ic2->incomingAngle->pan - ic1->incomingAngle->pan;
+				}
+				
+				if (difference < 270) {
+					model->skin[0] = bmapStreetIntersection2_2;
+					vec_set(ic2->pos, vector(0,0,10));
+					vec_set(ic2->leftVertexPos, vector(-10,0,10));
+					vec_set(ic2->rightVertexPos, vector(10,0,10));
+					ic2->leftVertex = 2;
+					ic2->rightVertex = 4;
+				}
+				if (difference < 180) {
+					model->skin[0] = bmapStreetIntersection2_1;
+					vec_set(ic2->pos, vector(10,0,0));
+					vec_set(ic2->leftVertexPos, vector(10,0,10));
+					vec_set(ic2->rightVertexPos, vector(10,0,-10));					
+					ic2->leftVertex = 4;
+					ic2->rightVertex = 3;					
+				}	
+				if (difference < 90) {
+					model->skin[0] = bmapStreetIntersection2_3;
+					vec_set(ic2->pos, vector(0,0,-10));
+					vec_set(ic2->leftVertexPos, vector(10,0,-10));
+					vec_set(ic2->rightVertexPos, vector(-10,0,-10));										
+					ic2->leftVertex = 3;
+					ic2->rightVertex = 1;				
+				}
+				
+			} else {
+				model->skin[0] = bmapStreetIntersection2_1;
+			}
 			
-			//D3DVERTEX *v1 = create_vertex(-10 - PROC_INTERSECTION_EXTREMITIES, 0, -10, 0, 1, 0, 0,    0.33);
-			D3DVERTEX *v2 = create_vertex(-10,                                 0, -10, 0, 1, 0, 0.33, 0.33);
-			//D3DVERTEX *v3 = create_vertex(-10 - PROC_INTERSECTION_EXTREMITIES, 0,  10, 0, 1, 0, 0,    0.66);
-			D3DVERTEX *v4 = create_vertex(-10,                                 0,  10, 0, 1, 0, 0.33, 0.66);
-			D3DVERTEX *v5 = create_vertex( 10,                                 0, -10, 0, 1, 0, 0.66, 0.33);
-			D3DVERTEX *v6 = create_vertex( 10,                                 0,  10, 0, 1, 0, 0.66, 0.66);
-			//D3DVERTEX *v7 = create_vertex( 10 + PROC_INTERSECTION_EXTREMITIES, 0, -10, 0, 1, 0, 1,    0.33);
-			//D3DVERTEX *v8 = create_vertex( 10 + PROC_INTERSECTION_EXTREMITIES, 0,  10, 0, 1, 0, 1,    0.66);
+			
+			D3DVERTEX *v1 = create_vertex(-10,                                 0, -10, 0, 1, 0, 0.33, 0.33);
+			D3DVERTEX *v2 = create_vertex(-10,                                 0,  10, 0, 1, 0, 0.33, 0.66);
+			D3DVERTEX *v3 = create_vertex( 10,                                 0, -10, 0, 1, 0, 0.66, 0.33);
+			D3DVERTEX *v4 = create_vertex( 10,                                 0,  10, 0, 1, 0, 0.66, 0.66);
 		
-			//int i1 = dmdl_add_vertex(model, v1);
+			int i1 = dmdl_add_vertex(model, v1);
 			int i2 = dmdl_add_vertex(model, v2);
-			//int i3 = dmdl_add_vertex(model, v3);
+			int i3 = dmdl_add_vertex(model, v3);
 			int i4 = dmdl_add_vertex(model, v4);
-			int i5 = dmdl_add_vertex(model, v5);
-			int i6 = dmdl_add_vertex(model, v6);
-			//int i7 = dmdl_add_vertex(model, v7);
-			//int i8 = dmdl_add_vertex(model, v8);
 			
-			// Store the middle of the end that should be connected to a street
-			/*IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
-			ic1->pos = sys_malloc(sizeof(VECTOR));
-			vec_set(ic1->pos, vector(-10,0,0));
-			
-			IntersectionConnection *ic2 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 1);
-			ic2->pos = sys_malloc(sizeof(VECTOR));
-			vec_set(ic2->pos, vector(-10,0,0));		*/
-			
-			//dmdl_connect_vertices(model, i1, i3, i2);
-			//dmdl_connect_vertices(model, i2, i3, i4);
-			dmdl_connect_vertices(model, i2, i4, i5);
-			dmdl_connect_vertices(model, i5, i4, i6);
-			//dmdl_connect_vertices(model, i7, i5, i6);
-			//dmdl_connect_vertices(model, i7, i6, i8);	
+			dmdl_connect_vertices(model, i1, i2, i3);
+			dmdl_connect_vertices(model, i3, i2, i4);
 		break;
 		
 		// Three incoming streets
