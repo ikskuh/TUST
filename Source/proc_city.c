@@ -251,6 +251,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 		
 		// Street ending
 		case 1:
+		
 			model->skin[0] = bmapStreetIntersection1;
 			// y == z
 			D3DVERTEX *v1 = create_vertex(0 - 10,  0, 0 - 10,   0, 1, 0,   0,    0);
@@ -260,10 +261,13 @@ ENTITY *build_intersection(Intersection *_intersection)
 			D3DVERTEX *v5 = create_vertex(0 + 7.5, 0, 0 - 2.5,  0, 1, 0,   1,    0.33);
 			D3DVERTEX *v6 = create_vertex(0 + 2.5, 0, 0 - 10,   0, 1, 0,   0.66, 0);
 			
+			
 			// Store the middle of the end that should be connected to a street
-			IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
-			ic->pos = sys_malloc(sizeof(VECTOR));
-			vec_set(ic->pos, vector(-10,0,0));
+			if (list_get_count(_intersection->incomingConnections) > 0) {
+				IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
+				ic->pos = sys_malloc(sizeof(VECTOR));
+				vec_set(ic->pos, vector(-10,0,0));
+			}
 			
 			/*D3DVERTEX *v1 = create_vertex(0 - 10,  0-10, 0,   0, 1, 0,   0,    0);
 			D3DVERTEX *v2 = create_vertex(0 - 10,  0+10, 0,   0, 1, 0,   0,    1);
@@ -271,6 +275,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 			D3DVERTEX *v4 = create_vertex(0 + 7.5, 0+2.5, 0,  0, 1, 0,   1,    0.66);
 			D3DVERTEX *v5 = create_vertex(0 + 7.5, 0-2.5, 0,  0, 1, 0,   1,    0.33);
 			D3DVERTEX *v6 = create_vertex(0 + 2.5, 0-10, 0,   0, 1, 0,   0.66, 0);*/
+			
 			
 			int i1 = dmdl_add_vertex(model, v1);
 			int i2 = dmdl_add_vertex(model, v2);
@@ -284,33 +289,33 @@ ENTITY *build_intersection(Intersection *_intersection)
 			dmdl_connect_vertices(model, i4, i2, i3);
 			dmdl_connect_vertices(model, i1, i5, i6);
 			
-			dmdl_save(model, "inter1.x");
-			bmap_save(bmapStreetIntersection1, "test.bmp");
+			//dmdl_save(model, "inter1.x");
+			//bmap_save(bmapStreetIntersection1, "test.bmp");
 		break;
 		
 		// A simple connection
 		case 2:
 		
 			// Todo: Make it a square!
-			model->skin[0] = bmapStreetIntersection2;
+			model->skin[0] = bmapStreetIntersection2_1;
 			
-			D3DVERTEX *v1 = create_vertex(-10 - PROC_INTERSECTION_EXTREMITIES, 0, -10, 0, 1, 0, 0,    0.33);
+			//D3DVERTEX *v1 = create_vertex(-10 - PROC_INTERSECTION_EXTREMITIES, 0, -10, 0, 1, 0, 0,    0.33);
 			D3DVERTEX *v2 = create_vertex(-10,                                 0, -10, 0, 1, 0, 0.33, 0.33);
-			D3DVERTEX *v3 = create_vertex(-10 - PROC_INTERSECTION_EXTREMITIES, 0,  10, 0, 1, 0, 0,    0.66);
+			//D3DVERTEX *v3 = create_vertex(-10 - PROC_INTERSECTION_EXTREMITIES, 0,  10, 0, 1, 0, 0,    0.66);
 			D3DVERTEX *v4 = create_vertex(-10,                                 0,  10, 0, 1, 0, 0.33, 0.66);
 			D3DVERTEX *v5 = create_vertex( 10,                                 0, -10, 0, 1, 0, 0.66, 0.33);
 			D3DVERTEX *v6 = create_vertex( 10,                                 0,  10, 0, 1, 0, 0.66, 0.66);
-			D3DVERTEX *v7 = create_vertex( 10 + PROC_INTERSECTION_EXTREMITIES, 0, -10, 0, 1, 0, 1,    0.33);
-			D3DVERTEX *v8 = create_vertex( 10 + PROC_INTERSECTION_EXTREMITIES, 0,  10, 0, 1, 0, 1,    0.66);
-			
-			int i1 = dmdl_add_vertex(model, v1);
+			//D3DVERTEX *v7 = create_vertex( 10 + PROC_INTERSECTION_EXTREMITIES, 0, -10, 0, 1, 0, 1,    0.33);
+			//D3DVERTEX *v8 = create_vertex( 10 + PROC_INTERSECTION_EXTREMITIES, 0,  10, 0, 1, 0, 1,    0.66);
+		
+			//int i1 = dmdl_add_vertex(model, v1);
 			int i2 = dmdl_add_vertex(model, v2);
-			int i3 = dmdl_add_vertex(model, v3);
+			//int i3 = dmdl_add_vertex(model, v3);
 			int i4 = dmdl_add_vertex(model, v4);
 			int i5 = dmdl_add_vertex(model, v5);
 			int i6 = dmdl_add_vertex(model, v6);
-			int i7 = dmdl_add_vertex(model, v7);
-			int i8 = dmdl_add_vertex(model, v8);
+			//int i7 = dmdl_add_vertex(model, v7);
+			//int i8 = dmdl_add_vertex(model, v8);
 			
 			// Store the middle of the end that should be connected to a street
 			/*IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
@@ -321,12 +326,12 @@ ENTITY *build_intersection(Intersection *_intersection)
 			ic2->pos = sys_malloc(sizeof(VECTOR));
 			vec_set(ic2->pos, vector(-10,0,0));		*/
 			
-			dmdl_connect_vertices(model, i1, i3, i2);
-			dmdl_connect_vertices(model, i2, i3, i4);
+			//dmdl_connect_vertices(model, i1, i3, i2);
+			//dmdl_connect_vertices(model, i2, i3, i4);
 			dmdl_connect_vertices(model, i2, i4, i5);
 			dmdl_connect_vertices(model, i5, i4, i6);
-			dmdl_connect_vertices(model, i7, i5, i6);
-			dmdl_connect_vertices(model, i7, i6, i8);	
+			//dmdl_connect_vertices(model, i7, i5, i6);
+			//dmdl_connect_vertices(model, i7, i6, i8);	
 		break;
 		
 		// Three incoming streets
@@ -442,6 +447,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 	}
 	
 	ENTITY *ent = dmdl_create_instance(model, vector(_intersection->pos->x, _intersection->pos->z, _intersection->pos->y), inter_info);
+	
 	ent->skill1 = _intersection;
 	
 	ent->pan = fOptimalPan;
@@ -695,21 +701,23 @@ void proc_city_create_skins() {
 	// -----------------------------------
 	// Intersection 2 - street connection
 	// -----------------------------------
-	bmapStreetIntersection2 = bmap_createblack(PROC_TEXT_RES, PROC_TEXT_RES, 32);
 	
-	bmapStreetIntersection2 = bmap_draw_rectangle_filled(bmapStreetIntersection2,
-		0,             PROC_TEXT_RES / 3,
-		PROC_TEXT_RES, (PROC_TEXT_RES / 3) * 2,
+	// Version 1 - straight
+	bmapStreetIntersection2_1 = bmap_createblack(PROC_TEXT_RES, PROC_TEXT_RES, 32);
+	
+	bmapStreetIntersection2_1 = bmap_draw_rectangle_filled(bmapStreetIntersection2_1,
+		PROC_TEXT_RES / 3,       PROC_TEXT_RES / 3,
+		(PROC_TEXT_RES / 3) * 2, (PROC_TEXT_RES / 3) * 2,
 		colStreet, 100
 	);
 	
 	// Lines at the border
-	bmapStreetIntersection2 = bmap_draw_line(bmapStreetIntersection2,
+	bmapStreetIntersection2_1 = bmap_draw_line(bmapStreetIntersection2_1,
 		0,             (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
 		PROC_TEXT_RES, (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
 		colStreetMarker, 100
 	);
-	bmapStreetIntersection2 = bmap_draw_line(bmapStreetIntersection2,
+	bmapStreetIntersection2_1 = bmap_draw_line(bmapStreetIntersection2_1,
 		0,             (PROC_TEXT_RES / 3) * 2 - (PROC_TEXT_RES / 51),
 		PROC_TEXT_RES, (PROC_TEXT_RES / 3) * 2 - (PROC_TEXT_RES / 51),
 		colStreetMarker, 100
@@ -718,12 +726,122 @@ void proc_city_create_skins() {
 	// Lines in the middle
 	i = PROC_TEXT_RES / 36;
 	while(i < PROC_TEXT_RES) {
-		bmapStreetIntersection2 = bmap_draw_line(bmapStreetIntersection2,
+		bmapStreetIntersection2_1 = bmap_draw_line(bmapStreetIntersection2_1,
 			i,                      PROC_TEXT_RES / 2,
 			i+(PROC_TEXT_RES / 17), PROC_TEXT_RES / 2,
 			colStreetMarker, 100
 		);
 		i +=PROC_TEXT_RES / 10.2;
+	}
+	
+	
+	
+	// Version 2 - left
+	bmapStreetIntersection2_2 = bmap_createblack(PROC_TEXT_RES, PROC_TEXT_RES, 32);
+	
+	bmapStreetIntersection2_2 = bmap_draw_rectangle_filled(bmapStreetIntersection2_2,
+		PROC_TEXT_RES / 3,       PROC_TEXT_RES / 3,
+		(PROC_TEXT_RES / 3) * 2, (PROC_TEXT_RES / 3) * 2,
+		colStreet, 100
+	);
+	
+	// Lines at the border
+	bmapStreetIntersection2_2 = bmap_draw_line(bmapStreetIntersection2_2,
+		(PROC_TEXT_RES / 3),                        (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		(PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);
+	bmapStreetIntersection2_2 = bmap_draw_line(bmapStreetIntersection2_2,
+		(PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		(PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3),
+		colStreetMarker, 100
+	);
+	
+	bmapStreetIntersection2_2 = bmap_draw_line(bmapStreetIntersection2_2,
+		(PROC_TEXT_RES / 3),                          (PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51),
+		(PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);
+	bmapStreetIntersection2_2 = bmap_draw_line(bmapStreetIntersection2_2,
+		(PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51),
+		(PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3),
+		colStreetMarker, 100
+	);	
+	
+	// Lines in the middle
+	i = (PROC_TEXT_RES / 3);
+	while(i < (PROC_TEXT_RES / 2)) {
+		bmapStreetIntersection2_2 = bmap_draw_line(bmapStreetIntersection2_2,
+			i,                      PROC_TEXT_RES / 2,
+			i+(PROC_TEXT_RES / 17), PROC_TEXT_RES / 2,
+			colStreetMarker, 100
+		);
+		
+		bmapStreetIntersection2_2 = bmap_draw_line(bmapStreetIntersection2_2,
+			PROC_TEXT_RES / 2, i,
+			PROC_TEXT_RES / 2, i+(PROC_TEXT_RES / 17),
+			colStreetMarker, 100
+		);
+				
+		i +=PROC_TEXT_RES / 10.2;
+	}
+	
+	
+	
+	
+	
+	
+	// Version 3 - right
+	bmapStreetIntersection2_3 = bmap_createblack(PROC_TEXT_RES, PROC_TEXT_RES, 32);
+	
+	bmapStreetIntersection2_3 = bmap_draw_rectangle_filled(bmapStreetIntersection2_3,
+		PROC_TEXT_RES / 3,       PROC_TEXT_RES / 3,
+		(PROC_TEXT_RES / 3) * 2, (PROC_TEXT_RES / 3) * 2,
+		colStreet, 100
+	);
+	
+	// Lines at the border
+	bmapStreetIntersection2_3 = bmap_draw_line(bmapStreetIntersection2_3,
+		(PROC_TEXT_RES / 3),                        (PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51),
+		(PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);
+	bmapStreetIntersection2_3 = bmap_draw_line(bmapStreetIntersection2_3,
+		(PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51),
+		(PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3)*2,
+		colStreetMarker, 100
+	);
+	
+	bmapStreetIntersection2_3 = bmap_draw_line(bmapStreetIntersection2_3,
+		(PROC_TEXT_RES / 3),                          (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		(PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);
+	bmapStreetIntersection2_3 = bmap_draw_line(bmapStreetIntersection2_3,
+		(PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		(PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3)*2,
+		colStreetMarker, 100
+	);	
+	
+	// Lines in the middle
+	i = (PROC_TEXT_RES / 3);
+	while(i < (PROC_TEXT_RES / 2)) {
+		bmapStreetIntersection2_3 = bmap_draw_line(bmapStreetIntersection2_3,
+			i,                      PROC_TEXT_RES / 2,
+			i+(PROC_TEXT_RES / 17), PROC_TEXT_RES / 2,
+			colStreetMarker, 100
+		);
+		i +=PROC_TEXT_RES / 10.2;
+	}	
+	
+	i = (PROC_TEXT_RES / 3)*2;
+	while(i > (PROC_TEXT_RES / 2)) {
+		bmapStreetIntersection2_3 = bmap_draw_line(bmapStreetIntersection2_3,
+			PROC_TEXT_RES / 2, i,
+			PROC_TEXT_RES / 2, i  - (PROC_TEXT_RES / 17),
+			colStreetMarker, 100
+		);
+		i -=PROC_TEXT_RES / 10.2;
 	}
 	
 

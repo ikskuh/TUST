@@ -85,11 +85,13 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 
 #define PROC_TEXT_RES 256
 
-BMAP* bmapStreetIntersection1 = NULL;
-BMAP* bmapStreetIntersection2 = NULL;
-BMAP* bmapStreetIntersection3 = NULL;
-BMAP* bmapStreetIntersection4 = NULL;
-BMAP* bmapStreetIntersection5 = NULL;
+BMAP* bmapStreetIntersection1   = NULL;
+BMAP* bmapStreetIntersection2_1 = NULL;
+BMAP* bmapStreetIntersection2_2 = NULL;
+BMAP* bmapStreetIntersection2_3 = NULL;
+BMAP* bmapStreetIntersection3   = NULL;
+BMAP* bmapStreetIntersection4   = NULL;
+BMAP* bmapStreetIntersection5   = NULL;
 
 typedef struct Street
 {

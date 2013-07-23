@@ -346,6 +346,11 @@ void main() {
 
 	//draw_voronoi();
 	//create_small_streets();
-	//create_intersections();
-	create_random_streets();
+	create_intersections();
+	
+	while(1) {
+		DEBUG_BMAP(bmapStreetIntersection2_3, 1, 1);
+		wait(1);
+	}
+	//create_random_streets();
 }
