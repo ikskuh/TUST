@@ -172,28 +172,59 @@ action inter_info() {
 	Intersection* i1 = my.skill1;
 	while(me) {
 		if(mouse_ent == me) {
+			ENTITY *entTemp = mouse_ent;
 			for(i=0; i<list_get_count(i1->incomingConnections); i++) {
 				
 				IntersectionConnection *ic = (IntersectionConnection*)list_item_at(i1->incomingConnections, i);
 				VECTOR* vecCurrentAng;
 				vec_set(vecCurrentAng, ic->incomingAngle->pan);
 				
-				draw_text("Inc. street", 0, i*20, COLOR_GREEN);
+				draw_text("Inc. street:     Pos:", 0, i*20, COLOR_GREEN);
 				draw_text(str_for_int(NULL, i), 50, i*20, COLOR_GREEN);
-				draw_text(str_for_num(NULL, vecCurrentAng->x), 075, i*20, COLOR_RED);
+				draw_text(str_for_num(NULL, vecCurrentAng->x), 095, i*20, COLOR_RED);
 				draw_text(str_for_num(NULL, vecCurrentAng->y), 155, i*20, COLOR_RED);
-				draw_text(str_for_num(NULL, vecCurrentAng->z), 235, i*20, COLOR_RED);
+				draw_text(str_for_num(NULL, vecCurrentAng->z), 215, i*20, COLOR_RED);
+				
+				draw_text("Connection Vertices:", 300, i*20, COLOR_GREEN);
+				draw_text(str_for_int(NULL, ic->leftVertex), 410, i*20, COLOR_RED);
+				draw_text(str_for_int(NULL, ic->rightVertex), 440, i*20, COLOR_RED);	
+				
+				if (ic->leftVertexPos != NULL) {
+					draw_text("Left: ", 480, i*20, COLOR_GREEN);
+					draw_text(str_for_int(NULL, my.x+ic->leftVertexPos->x), 520, i*20, COLOR_RED);
+					draw_text(str_for_int(NULL, my.y+ic->leftVertexPos->y), 560, i*20, COLOR_RED);
+					draw_text(str_for_int(NULL, my.z+ic->leftVertexPos->z), 600, i*20, COLOR_RED);
+					
+					draw_text("Right: ", 640, i*20, COLOR_GREEN);
+					draw_text(str_for_int(NULL, my.x+ic->rightVertexPos->x), 680, i*20, COLOR_RED);
+					draw_text(str_for_int(NULL, my.y+ic->rightVertexPos->y), 720, i*20, COLOR_RED);
+					draw_text(str_for_int(NULL, my.z+ic->rightVertexPos->z), 760, i*20, COLOR_RED);
+					
+					if (key_r) {
+						while(key_r) wait(1);						
+						CONTACT* c = ent_getvertex(entTemp, NULL, ic->leftVertex);
+						VECTOR* vecVert1 = vector(0,0,0);
+						vec_set(vecVert1, vector(c->v->x, c->v->z, c->v->y));
+						vec_mul(vecVert1, entTemp.scale_x);
+						vec_rotate(vecVert1, entTemp.pan);
+						vec_add(vecVert1, entTemp.x);
+						printf("1: %.2f %.2f %.2f", (double)vecVert1.x, (double)vecVert1.y, (double)vecVert1.z);
+					}
+				}
 			}
-			draw_text("My pan:", 0, (i+1)*20, COLOR_GREEN);
-			draw_text(str_for_num(NULL, my.pan), 50, (i+1)*20, COLOR_RED);
 			
-			draw_text("Src:", 0, (i+2)*20, COLOR_GREEN);
-			draw_text(str_for_int(NULL, i1->source), 50, (i+2)*20, COLOR_RED);
+
+				
+			draw_text("My pan:", 0, (i+3)*20, COLOR_GREEN);
+			draw_text(str_for_num(NULL, my.pan), 50, (i+3)*20, COLOR_RED);
 			
-			draw_text("Pos", 0, (i+3)*20, COLOR_GREEN);
-			draw_text(str_for_num(NULL, i1->pos->x), 075, (i+3)*20, COLOR_RED);
-			draw_text(str_for_num(NULL, i1->pos->y), 155, (i+3)*20, COLOR_RED);
-			draw_text(str_for_num(NULL, i1->pos->z), 235, (i+3)*20, COLOR_RED);
+			draw_text("Src:", 0, (i+4)*20, COLOR_GREEN);
+			draw_text(str_for_int(NULL, i1->source), 50, (i+4)*20, COLOR_RED);
+			
+			draw_text("Pos", 0, (i+5)*20, COLOR_GREEN);
+			draw_text(str_for_num(NULL, i1->pos->x), 075, (i+5)*20, COLOR_RED);
+			draw_text(str_for_num(NULL, i1->pos->y), 155, (i+5)*20, COLOR_RED);
+			draw_text(str_for_num(NULL, i1->pos->z), 235, (i+5)*20, COLOR_RED);
 			
 			if (key_q) {
 				my.pan +=10 * time_step;
@@ -273,15 +304,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 				vec_set(ic->rightVertexPos, vector(-10,0,10));
 				ic->leftVertex = 1;
 				ic->rightVertex = 2;
-			}
-			
-			/*D3DVERTEX *v1 = create_vertex(0 - 10,  0-10, 0,   0, 1, 0,   0,    0);
-			D3DVERTEX *v2 = create_vertex(0 - 10,  0+10, 0,   0, 1, 0,   0,    1);
-			D3DVERTEX *v3 = create_vertex(0 + 2.5, 0+10, 0,   0, 1, 0,   0.66, 1);
-			D3DVERTEX *v4 = create_vertex(0 + 7.5, 0+2.5, 0,  0, 1, 0,   1,    0.66);
-			D3DVERTEX *v5 = create_vertex(0 + 7.5, 0-2.5, 0,  0, 1, 0,   1,    0.33);
-			D3DVERTEX *v6 = create_vertex(0 + 2.5, 0-10, 0,   0, 1, 0,   0.66, 0);*/
-			
+			}	
 			
 			int i1 = dmdl_add_vertex(model, v1);
 			int i2 = dmdl_add_vertex(model, v2);

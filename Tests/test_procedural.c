@@ -317,7 +317,7 @@ void create_intersections() {
 	
 	Intersection *i1 = intersection_create(vector(-200,0,0));
 	i1->incomingStreets +=5;
-	build_intersection(i1);
+	ENTITY* e1 = build_intersection(i1);
 	
 	Intersection *i2 = intersection_create(vector(-125,0,0));
 	i2->incomingStreets +=4;
@@ -337,7 +337,7 @@ void create_intersections() {
 }
 
 void main() {
-	video_mode = 7;
+	video_mode = 8;
 	mouse_mode = 4;
 	
 	while(total_frames < 1) wait(1);
@@ -348,4 +348,9 @@ void main() {
 	//create_small_streets();
 	//create_intersections();
 	create_random_streets();
+	
+	/*ENTITY* e1 = ent_create(CUBE_MDL, vector(200,0,0), NULL);
+	VECTOR* v1Temp = vector(0,0,0);
+	vec_for_vertex(v1Temp, e1, 0);
+	printf("%.2f %.2f %.2f", (double)v1Temp->x,(double)v1Temp->y,(double)v1Temp->z);*/
 }
