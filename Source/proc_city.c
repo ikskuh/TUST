@@ -396,6 +396,37 @@ ENTITY *build_intersection(Intersection *_intersection)
 		
 		// Three incoming streets
 		case 3:
+		
+			// Set the connection points
+			if (list_get_count(_intersection->incomingConnections) > 0) {
+				
+				
+				// Set the right skin
+				IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
+				IntersectionConnection *ic2 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 1);
+				IntersectionConnection *ic3 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 2);
+				
+				ic1->pos            = sys_malloc(sizeof(VECTOR));
+				ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				ic2->pos            = sys_malloc(sizeof(VECTOR));
+				ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				ic3->pos            = sys_malloc(sizeof(VECTOR));
+				ic3->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				ic3->rightVertexPos = sys_malloc(sizeof(VECTOR));							
+				vec_set(ic1->pos, vector(-10,0,0));
+				ic1->leftVertex  = 1;
+				ic1->rightVertex = 2;
+				
+				// Todo: FIX
+				vec_set(ic2->pos, vector(-10,0,0));
+				ic2->leftVertex  = 1;
+				ic2->rightVertex = 2;				
+				vec_set(ic3->pos, vector(-10,0,0));
+				ic3->leftVertex  = 1;
+				ic3->rightVertex = 2;				
+			}
 			model->skin[0] = bmapStreetIntersection3;
 			
 			D3DVERTEX *v1  = create_vertex(0 - 30, 0, 0 - 10, 0, 1, 0, 0,    0.33);
@@ -432,6 +463,41 @@ ENTITY *build_intersection(Intersection *_intersection)
 		
 		// A cross
 		case 4:
+			// Set the connection points
+			if (list_get_count(_intersection->incomingConnections) > 0) {
+				
+				IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
+				IntersectionConnection *ic2 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 1);
+				IntersectionConnection *ic3 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 2);
+				IntersectionConnection *ic4 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 3);
+				
+				ic1->pos            = sys_malloc(sizeof(VECTOR));
+				ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				ic2->pos            = sys_malloc(sizeof(VECTOR));
+				ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				ic3->pos            = sys_malloc(sizeof(VECTOR));
+				ic3->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				ic3->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				ic4->pos            = sys_malloc(sizeof(VECTOR));
+				ic4->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				ic4->rightVertexPos = sys_malloc(sizeof(VECTOR));												
+				vec_set(ic1->pos, vector(-10,0,0));
+				ic1->leftVertex  = 1;
+				ic1->rightVertex = 2;
+				
+				// Todo: FIX
+				vec_set(ic2->pos, vector(-10,0,0));
+				ic2->leftVertex  = 1;
+				ic2->rightVertex = 2;				
+				vec_set(ic3->pos, vector(-10,0,0));
+				ic3->leftVertex  = 1;
+				ic3->rightVertex = 2;
+				vec_set(ic4->pos, vector(-10,0,0));
+				ic4->leftVertex  = 1;
+				ic4->rightVertex = 2;								
+			}		
 			model->skin[0] = bmapStreetIntersection4;
 			
 			D3DVERTEX *v1  = create_vertex(0 - 30, 0, 0 - 10, 0, 1, 0, 0,    0.33);
@@ -474,6 +540,29 @@ ENTITY *build_intersection(Intersection *_intersection)
 		
 		// A circle
 		default:
+		
+			// Set the connection points
+			if (list_get_count(_intersection->incomingConnections) > 0) {
+				
+				// Todo For Loop
+				int i;
+				for(i=0; i<list_get_count(_intersection->incomingConnections); i++) {
+					IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, i);
+					ic1->pos            = sys_malloc(sizeof(VECTOR));
+					ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+					ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
+					vec_set(ic1->pos, vector(-10,0,0));
+					ic1->leftVertex  = 1;
+					ic1->rightVertex = 2;
+				}
+
+				// Calculate regular polygon
+				// pointX[i] = ( sin( i / n * 2 * PI ) * radius ) + xOffset;
+				// pointY[i] = ( cos( i / n * 2 * PI ) * radius ) + yOffset;
+				
+				// Breite / sin(Mitt-Winkel) = radius
+			}
+
 			model->skin[0] = bmapStreetIntersection5;
 			D3DVERTEX *v1  = create_vertex(0 + 00, 0, 0 + 00, 0, 1, 0, 0.5,   0.5);
 			D3DVERTEX *v2  = create_vertex(0 + 00, 0, 0 - 30, 0, 1, 0, 0.5,   0);
