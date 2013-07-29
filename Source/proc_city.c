@@ -560,10 +560,8 @@ ENTITY *build_intersection(Intersection *_intersection)
 				var vNewUVX = 0.5 + (1 / (2*polyRadius) * vNewX);
 				var vNewUVY = 0.5 + (1 / (2*polyRadius) * vNewY);
 				D3DVERTEX *v1  = create_vertex(vNewX, 0, vNewY, 0, 1, 0, vNewUVX, vNewUVY);
-				//printf("newx %.2f %.2f", (double)vNewUVX, (double)vNewUVY);
 				int i1  = dmdl_add_vertex(model, v1);							
 				
-				// HERE
 				int i;
 				int iNewVertex = 0;
 				int iLastVertex = i1;
@@ -580,7 +578,6 @@ ENTITY *build_intersection(Intersection *_intersection)
 					vNewY = cos(fAngle) * polyRadius;
 					vNewUVX = 0.5 + (1 / (2*polyRadius) * vNewX);
 					vNewUVY = 0.5 + (1 / (2*polyRadius) * vNewY);
-					//printf("newx %.2f %.2f", (double)vNewUVX, (double)vNewUVY);					
 					D3DVERTEX *v2  = create_vertex(vNewX, 0, vNewY, 0, 1, 0, vNewUVX,   vNewUVY);
 					iNewVertex  = dmdl_add_vertex(model, v2);
 					
@@ -597,35 +594,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 				dmdl_connect_vertices(model, iMiddle, iLastVertex, i1);
 			}
 				
-			model->skin[0] = bmapStreetIntersection5;
-			/*D3DVERTEX *v1  = create_vertex(0 + 00, 0, 0 + 00, 0, 1, 0, 0.5,   0.5);
-			D3DVERTEX *v2  = create_vertex(0 + 00, 0, 0 - 30, 0, 1, 0, 0.5,   0);
-			D3DVERTEX *v3  = create_vertex(0 + 20, 0, 0 - 20, 0, 1, 0, 0.875, 0.125);
-			D3DVERTEX *v4  = create_vertex(0 + 30, 0, 0 + 00, 0, 1, 0, 1,     0.5);
-			D3DVERTEX *v5  = create_vertex(0 + 20, 0, 0 + 20, 0, 1, 0, 0.875, 0.875);
-			D3DVERTEX *v6  = create_vertex(0 + 00, 0, 0 + 30, 0, 1, 0, 0.5,   1);
-			D3DVERTEX *v7  = create_vertex(0 - 20, 0, 0 + 20, 0, 1, 0, 0.125, 0.875);
-			D3DVERTEX *v8  = create_vertex(0 - 30, 0, 0 + 00, 0, 1, 0, 0,     0.5);
-			D3DVERTEX *v9  = create_vertex(0 - 20, 0, 0 - 20, 0, 1, 0, 0.125, 0.125);
-			
-			int i1  = dmdl_add_vertex(model, v1);
-			int i2  = dmdl_add_vertex(model, v2);
-			int i3  = dmdl_add_vertex(model, v3);
-			int i4  = dmdl_add_vertex(model, v4);
-			int i5  = dmdl_add_vertex(model, v5);
-			int i6  = dmdl_add_vertex(model, v6);
-			int i7  = dmdl_add_vertex(model, v7);
-			int i8  = dmdl_add_vertex(model, v8);
-			int i9  = dmdl_add_vertex(model, v9);
-			
-			dmdl_connect_vertices(model, i1, i3, i2);
-			dmdl_connect_vertices(model, i1, i4, i3);
-			dmdl_connect_vertices(model, i1, i5, i4);
-			dmdl_connect_vertices(model, i1, i6, i5);
-			dmdl_connect_vertices(model, i1, i7, i6);
-			dmdl_connect_vertices(model, i1, i8, i7);
-			dmdl_connect_vertices(model, i1, i9, i8);
-			dmdl_connect_vertices(model, i1, i2, i9);*/	
+			model->skin[0] = bmapStreetIntersection5;	
 		break;
 	}
 	
@@ -633,7 +602,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 	
 	ent->skill1 = _intersection;
 	
-	//ent->pan = fOptimalPan;
+	ent->pan = fOptimalPan;
 	
 	dmdl_delete(model);
 	return ent;	
@@ -1218,104 +1187,6 @@ void proc_city_create_skins() {
 	
 	// Inner circle
 	bmapStreetIntersection5 = bmap_draw_circle(bmapStreetIntersection5, PROC_TEXT_RES / 2, PROC_TEXT_RES / 2, 20, colStreetMarker, 100);
-	
-	// Large, outer circle
-	/*bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5, 
-		PROC_TEXT_RES / 2,       0,
-		(PROC_TEXT_RES / 8) * 7, PROC_TEXT_RES / 8,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		(PROC_TEXT_RES / 8) * 7, PROC_TEXT_RES / 8,
-		PROC_TEXT_RES,           PROC_TEXT_RES / 2,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		PROC_TEXT_RES,           PROC_TEXT_RES / 2,
-		(PROC_TEXT_RES / 8) * 7, (PROC_TEXT_RES / 8) * 7,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		(PROC_TEXT_RES / 8) * 7, (PROC_TEXT_RES / 8) * 7,
-		PROC_TEXT_RES / 2,       PROC_TEXT_RES,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		PROC_TEXT_RES / 2, PROC_TEXT_RES,
-		PROC_TEXT_RES / 8, (PROC_TEXT_RES / 8) * 7,
-		colStreetMarker, 100
-	);
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		PROC_TEXT_RES / 8, (PROC_TEXT_RES / 8) * 7,
-		0,                 PROC_TEXT_RES / 2,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		0,                 PROC_TEXT_RES / 2,
-		PROC_TEXT_RES / 8, PROC_TEXT_RES / 8,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		PROC_TEXT_RES / 8, PROC_TEXT_RES / 8,
-		PROC_TEXT_RES / 2, 0,
-		colStreetMarker, 100
-	);
-	
-	
-	// Small, inner circle
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		(PROC_TEXT_RES / 8) * 3, (PROC_TEXT_RES / 8) * 3,
-		PROC_TEXT_RES / 2,       (PROC_TEXT_RES / 8) * 2.8,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		PROC_TEXT_RES / 2,       (PROC_TEXT_RES / 8) * 2.8,
-		(PROC_TEXT_RES / 8) * 5, (PROC_TEXT_RES / 8) * 3,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		(PROC_TEXT_RES / 8) * 5, (PROC_TEXT_RES / 8) * 3,
-		(PROC_TEXT_RES / 8) * 5.2, PROC_TEXT_RES / 2,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		(PROC_TEXT_RES / 8) * 5.2, PROC_TEXT_RES / 2,
-		(PROC_TEXT_RES / 8) * 5,   (PROC_TEXT_RES / 8) * 5,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		(PROC_TEXT_RES / 8) * 5, (PROC_TEXT_RES / 8) * 5,
-		PROC_TEXT_RES / 2,       (PROC_TEXT_RES / 8) * 5.2,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		PROC_TEXT_RES / 2, (PROC_TEXT_RES / 8) * 5.2,
-		(PROC_TEXT_RES / 8) * 3, (PROC_TEXT_RES / 8) * 5,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		(PROC_TEXT_RES / 8) * 3,   (PROC_TEXT_RES / 8) * 5,
-		(PROC_TEXT_RES / 8) * 2.8, PROC_TEXT_RES / 2,
-		colStreetMarker, 100
-	);
-	
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
-		(PROC_TEXT_RES / 8) * 2.8,  PROC_TEXT_RES / 2,
-		(PROC_TEXT_RES / 8) * 3,    (PROC_TEXT_RES / 8) * 3,
-		colStreetMarker, 100
-	);*/
 }
 
 #endif

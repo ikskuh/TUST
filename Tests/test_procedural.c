@@ -358,8 +358,8 @@ void main() {
 
 	//draw_voronoi();
 	//create_small_streets();
-	create_intersections();
-	//create_random_streets();
+	//create_intersections();
+	create_random_streets();
 	
 	/*ENTITY* e1 = ent_create(CUBE_MDL, vector(200,0,0), NULL);
 	VECTOR* v1Temp = vector(0,0,0);
