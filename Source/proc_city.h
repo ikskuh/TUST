@@ -117,6 +117,7 @@ typedef struct {
 	int leftVertex;
 	int rightVertex;
 	int id;
+	int isConnected;
 	float angle;
 } IntersectionConnection;
 

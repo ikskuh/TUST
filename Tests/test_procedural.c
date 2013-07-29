@@ -105,7 +105,7 @@ void create_small_streets()
 // Example 3: Draws a complex road network based on a voronoi diagram
 void create_random_streets()
 {
-	int i, j, k;
+	int i, j, k, l;
 	
 	level_load("");
 	vec_set(camera.x, vector(41, 2328, 1658));
@@ -194,6 +194,7 @@ void create_random_streets()
 				IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
 				ic->incomingAngle = vecNewAngle;
 				ic->id = i;
+				ic->isConnected = 0;
 				
 				list_add(tempInter->incomingConnections, ic);
 			}
@@ -214,6 +215,7 @@ void create_random_streets()
 			IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
 			ic->incomingAngle = vecNewAngle;
 			ic->id = i;
+			ic->isConnected = 0;
 			
 			list_add(newInter->incomingConnections, ic);
 			
@@ -245,6 +247,7 @@ void create_random_streets()
 				IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
 				ic->incomingAngle = vecNewAngle;
 				ic->id = i;
+				ic->isConnected = 0;
 				
 				list_add(tempInter->incomingConnections, ic);
 			}
@@ -265,6 +268,7 @@ void create_random_streets()
 			IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
 			ic->incomingAngle = vecNewAngle;
 			ic->id = i;
+			ic->isConnected = 0;
 			
 			list_add(newInter->incomingConnections, ic);
 
@@ -283,8 +287,67 @@ void create_random_streets()
 		Intersection* tempInter = list_item_at(intersections, i);
 		ENTITY* entInter = build_intersection(tempInter);
 	}
+	
+	// Build streets between intersections
+	for(i=0; i<list_get_count(intersections); i++) {
+		Intersection* tempInter = list_item_at(intersections, i);
 		
-	while(!key_esc) {
+		for(j=0; j<list_get_count(tempInter->incomingConnections); j++) {
+			
+			IntersectionConnection *tempCon = (IntersectionConnection*)list_item_at(tempInter->incomingConnections, j);
+			
+			if(tempCon->isConnected == 0) {
+				
+				for(k=0; k<list_get_count(intersections); k++) {
+					Intersection* tempInter2 = list_item_at(intersections, k);
+					
+					if (tempInter2 != tempInter) {
+					
+						for(l=0; l<list_get_count(tempInter2->incomingConnections); l++) {
+							
+							IntersectionConnection *tempCon2 = (IntersectionConnection*)list_item_at(tempInter2->incomingConnections, l);
+							
+							if ((tempCon2->isConnected == 0) && (tempCon->id == tempCon2->id)) {
+								
+								// Create Street	
+								Street *s1 = street_create(25, 5);
+	
+								// Add street positions	
+								VECTOR* vecTemp1 = sys_malloc(sizeof(VECTOR));
+								vec_set(vecTemp1, vector(tempInter->pos->x, tempInter->pos->z, tempInter->pos->y));
+								vec_add(vecTemp1, vector(tempCon->pos->x, tempCon->pos->z, tempCon->pos->y));
+								
+								VECTOR* vecTemp2 = sys_malloc(sizeof(VECTOR));
+								vec_set(vecTemp2, vector(tempInter2->pos->x, tempInter2->pos->z, tempInter2->pos->y));
+								vec_add(vecTemp2, vector(tempCon2->pos->x, tempCon2->pos->z, tempCon2->pos->y));
+								
+								VECTOR* vecTemp3 = sys_malloc(sizeof(VECTOR));
+								vec_lerp(vecTemp3, vecTemp2, vecTemp1, 0.3);
+								
+								VECTOR* vecTemp4 = sys_malloc(sizeof(VECTOR));
+								vec_lerp(vecTemp4, vecTemp2, vecTemp1, 0.6);								
+								
+								street_addpos(s1, vecTemp2);
+								street_addpos(s1, vecTemp3);
+								street_addpos(s1, vecTemp4);
+								street_addpos(s1, vecTemp1);
+							
+								// "Draw" streets
+								ENTITY *street = street_build(s1, bmapStreetTexture, false);
+								//place_street_on_ground(s1, 3);
+								
+								//Mark connections as "connected"
+								tempCon2->isConnected = 1;
+								tempCon->isConnected = 1;
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+		
+	/*while(!key_esc) {
 		// Draw diagram
 		for(i=0; i<nResults; i++) {
 			vo_get_result_at(i, &x1, &y1, &x2, &y2);
@@ -304,7 +367,7 @@ void create_random_streets()
 	for(tempStreet = list_iterate(it); it->hasNext; tempStreet = list_iterate(it))
 	{
 		street_build(tempStreet, bmapStreetTexture, true);
-	}
+	}*/
 }
 
 // Example 4: Create intersections

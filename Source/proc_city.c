@@ -4,7 +4,7 @@
 #include "math.h"
 #include "bmap.h" // Needs "BmapGS.dll"
 
-#define PROC_DEBUG
+//#define PROC_DEBUG
 
 #define PROC_INTERSECTION_EXTREMITIES 5
 
@@ -415,17 +415,17 @@ ENTITY *build_intersection(Intersection *_intersection)
 				ic3->pos            = sys_malloc(sizeof(VECTOR));
 				ic3->leftVertexPos  = sys_malloc(sizeof(VECTOR));
 				ic3->rightVertexPos = sys_malloc(sizeof(VECTOR));							
-				vec_set(ic1->pos, vector(-10,0,0));
-				ic1->leftVertex  = 1;
-				ic1->rightVertex = 2;
+				vec_set(ic1->pos, vector(30,0,0));
+				ic1->leftVertex  = 8;
+				ic1->rightVertex = 7;
 				
 				// Todo: FIX
-				vec_set(ic2->pos, vector(-10,0,0));
-				ic2->leftVertex  = 1;
-				ic2->rightVertex = 2;				
-				vec_set(ic3->pos, vector(-10,0,0));
+				vec_set(ic2->pos, vector(0,0,30));
+				ic2->leftVertex  = 10;
+				ic2->rightVertex = 9;				
+				vec_set(ic3->pos, vector(-30,0,0));
 				ic3->leftVertex  = 1;
-				ic3->rightVertex = 2;				
+				ic3->rightVertex = 9;				
 			}
 			model->skin[0] = bmapStreetIntersection3;
 			
@@ -483,20 +483,20 @@ ENTITY *build_intersection(Intersection *_intersection)
 				ic4->pos            = sys_malloc(sizeof(VECTOR));
 				ic4->leftVertexPos  = sys_malloc(sizeof(VECTOR));
 				ic4->rightVertexPos = sys_malloc(sizeof(VECTOR));												
-				vec_set(ic1->pos, vector(-10,0,0));
-				ic1->leftVertex  = 1;
-				ic1->rightVertex = 2;
+				vec_set(ic1->pos, vector(30,0,0));
+				ic1->leftVertex  = 8;
+				ic1->rightVertex = 7;
 				
 				// Todo: FIX
-				vec_set(ic2->pos, vector(-10,0,0));
-				ic2->leftVertex  = 1;
-				ic2->rightVertex = 2;				
-				vec_set(ic3->pos, vector(-10,0,0));
+				vec_set(ic2->pos, vector(0,0,30));
+				ic2->leftVertex  = 10;
+				ic2->rightVertex = 9;				
+				vec_set(ic3->pos, vector(-30,0,0));
 				ic3->leftVertex  = 1;
-				ic3->rightVertex = 2;
-				vec_set(ic4->pos, vector(-10,0,0));
-				ic4->leftVertex  = 1;
-				ic4->rightVertex = 2;								
+				ic3->rightVertex = 9;
+				vec_set(ic4->pos, vector(0,0,-30));
+				ic4->leftVertex  = 12;
+				ic4->rightVertex = 11;								
 			}		
 			model->skin[0] = bmapStreetIntersection4;
 			
@@ -561,6 +561,10 @@ ENTITY *build_intersection(Intersection *_intersection)
 				var vNewUVY = 0.5 + (1 / (2*polyRadius) * vNewY);
 				D3DVERTEX *v1  = create_vertex(vNewX, 0, vNewY, 0, 1, 0, vNewUVX, vNewUVY);
 				int i1  = dmdl_add_vertex(model, v1);							
+
+				// Needed to calculate connection positions
+				var vOldX = vNewX;
+				var vOldY = vNewY;
 				
 				int i;
 				int iNewVertex = 0;
@@ -581,9 +585,13 @@ ENTITY *build_intersection(Intersection *_intersection)
 					D3DVERTEX *v2  = create_vertex(vNewX, 0, vNewY, 0, 1, 0, vNewUVX,   vNewUVY);
 					iNewVertex  = dmdl_add_vertex(model, v2);
 					
-					vec_set(ic1->pos, vector(vNewX,0,vNewY));
+					//vec_set(ic1->pos, vector(vNewX,0,vNewY));
+					vec_lerp(ic1->pos, vector(vNewX, 0, vNewY), vector(vOldX, 0, vOldY), 0.5);
 					ic1->leftVertex  = iLastVertex;
 					ic1->rightVertex = iNewVertex;
+					
+					vOldX = vNewX;
+					vOldY = vNewY;
 					
 					dmdl_connect_vertices(model, iMiddle, iLastVertex, iNewVertex);
 					
