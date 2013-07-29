@@ -541,30 +541,64 @@ ENTITY *build_intersection(Intersection *_intersection)
 		// A circle
 		default:
 		
+			model->skin[0] = bmapStreetIntersection5;
+			
 			// Set the connection points
-			if (list_get_count(_intersection->incomingConnections) > 0) {
+			var vNumConnections = list_get_count(_intersection->incomingConnections);
+			if (vNumConnections > 0) {
 				
-				// Todo For Loop
+				// Calculate regular polygon radius
+				var polyRadius = 20 / sinv(360 / vNumConnections);				
+				
+				// Create vertex in the middle
+				D3DVERTEX *v0  = create_vertex(0, 0, 0, 0, 1, 0, 0.5, 0.5);
+				int iMiddle  = dmdl_add_vertex(model, v0);
+				
+				// Create vertex on top
+				var vNewX = sin(0) * polyRadius;
+				var vNewY = cos(0) * polyRadius;
+				var vNewUVX = 0.5 + (1 / (2*polyRadius) * vNewX);
+				var vNewUVY = 0.5 + (1 / (2*polyRadius) * vNewY);
+				D3DVERTEX *v1  = create_vertex(vNewX, 0, vNewY, 0, 1, 0, vNewUVX, vNewUVY);
+				//printf("newx %.2f %.2f", (double)vNewUVX, (double)vNewUVY);
+				int i1  = dmdl_add_vertex(model, v1);							
+				
+				// HERE
 				int i;
-				for(i=0; i<list_get_count(_intersection->incomingConnections); i++) {
-					IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, i);
+				int iNewVertex = 0;
+				int iLastVertex = i1;
+				
+				for(i=1; i<vNumConnections; i++) {
+					IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, i-1);
 					ic1->pos            = sys_malloc(sizeof(VECTOR));
 					ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
 					ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
-					vec_set(ic1->pos, vector(-10,0,0));
-					ic1->leftVertex  = 1;
-					ic1->rightVertex = 2;
+					
+					// Calculate new vertex position
+					double fAngle = i / vNumConnections * 2 * PI;
+					vNewX = sin(fAngle) * polyRadius;
+					vNewY = cos(fAngle) * polyRadius;
+					vNewUVX = 0.5 + (1 / (2*polyRadius) * vNewX);
+					vNewUVY = 0.5 + (1 / (2*polyRadius) * vNewY);
+					//printf("newx %.2f %.2f", (double)vNewUVX, (double)vNewUVY);					
+					D3DVERTEX *v2  = create_vertex(vNewX, 0, vNewY, 0, 1, 0, vNewUVX,   vNewUVY);
+					iNewVertex  = dmdl_add_vertex(model, v2);
+					
+					vec_set(ic1->pos, vector(vNewX,0,vNewY));
+					ic1->leftVertex  = iLastVertex;
+					ic1->rightVertex = iNewVertex;
+					
+					dmdl_connect_vertices(model, iMiddle, iLastVertex, iNewVertex);
+					
+					iLastVertex = iNewVertex;
 				}
-
-				// Calculate regular polygon
-				// pointX[i] = ( sin( i / n * 2 * PI ) * radius ) + xOffset;
-				// pointY[i] = ( cos( i / n * 2 * PI ) * radius ) + yOffset;
 				
-				// Breite / sin(Mitt-Winkel) = radius
+				// Closing vertex
+				dmdl_connect_vertices(model, iMiddle, iLastVertex, i1);
 			}
-
+				
 			model->skin[0] = bmapStreetIntersection5;
-			D3DVERTEX *v1  = create_vertex(0 + 00, 0, 0 + 00, 0, 1, 0, 0.5,   0.5);
+			/*D3DVERTEX *v1  = create_vertex(0 + 00, 0, 0 + 00, 0, 1, 0, 0.5,   0.5);
 			D3DVERTEX *v2  = create_vertex(0 + 00, 0, 0 - 30, 0, 1, 0, 0.5,   0);
 			D3DVERTEX *v3  = create_vertex(0 + 20, 0, 0 - 20, 0, 1, 0, 0.875, 0.125);
 			D3DVERTEX *v4  = create_vertex(0 + 30, 0, 0 + 00, 0, 1, 0, 1,     0.5);
@@ -572,7 +606,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 			D3DVERTEX *v6  = create_vertex(0 + 00, 0, 0 + 30, 0, 1, 0, 0.5,   1);
 			D3DVERTEX *v7  = create_vertex(0 - 20, 0, 0 + 20, 0, 1, 0, 0.125, 0.875);
 			D3DVERTEX *v8  = create_vertex(0 - 30, 0, 0 + 00, 0, 1, 0, 0,     0.5);
-			D3DVERTEX *v9  = create_vertex(0 - 20, 0, 0 - 20, 0, 1, 0, 0.125, 0.125);			
+			D3DVERTEX *v9  = create_vertex(0 - 20, 0, 0 - 20, 0, 1, 0, 0.125, 0.125);
 			
 			int i1  = dmdl_add_vertex(model, v1);
 			int i2  = dmdl_add_vertex(model, v2);
@@ -591,7 +625,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 			dmdl_connect_vertices(model, i1, i7, i6);
 			dmdl_connect_vertices(model, i1, i8, i7);
 			dmdl_connect_vertices(model, i1, i9, i8);
-			dmdl_connect_vertices(model, i1, i2, i9);	
+			dmdl_connect_vertices(model, i1, i2, i9);*/	
 		break;
 	}
 	
@@ -599,7 +633,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 	
 	ent->skill1 = _intersection;
 	
-	ent->pan = fOptimalPan;
+	//ent->pan = fOptimalPan;
 	
 	dmdl_delete(model);
 	return ent;	
@@ -1177,12 +1211,16 @@ void proc_city_create_skins() {
 	// Intersection 5 - Circle
 	// -----------------------------------
 	bmapStreetIntersection5 = bmap_createblack(PROC_TEXT_RES, PROC_TEXT_RES, 32);
-	
 	bmapStreetIntersection5 = bmap_draw_rectangle_filled(bmapStreetIntersection5, 0, 0, PROC_TEXT_RES, PROC_TEXT_RES, colStreet, 100);
 	
+	// Outer circle
+	bmapStreetIntersection5 = bmap_draw_circle(bmapStreetIntersection5, PROC_TEXT_RES / 2, PROC_TEXT_RES / 2, (PROC_TEXT_RES / 2) - 30, colStreetMarker, 100);
+	
+	// Inner circle
+	bmapStreetIntersection5 = bmap_draw_circle(bmapStreetIntersection5, PROC_TEXT_RES / 2, PROC_TEXT_RES / 2, 20, colStreetMarker, 100);
 	
 	// Large, outer circle
-	bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5,
+	/*bmapStreetIntersection5 = bmap_draw_line(bmapStreetIntersection5, 
 		PROC_TEXT_RES / 2,       0,
 		(PROC_TEXT_RES / 8) * 7, PROC_TEXT_RES / 8,
 		colStreetMarker, 100
@@ -1277,7 +1315,7 @@ void proc_city_create_skins() {
 		(PROC_TEXT_RES / 8) * 2.8,  PROC_TEXT_RES / 2,
 		(PROC_TEXT_RES / 8) * 3,    (PROC_TEXT_RES / 8) * 3,
 		colStreetMarker, 100
-	);
+	);*/
 }
 
 #endif

@@ -2,6 +2,7 @@
 #include <default.c>
 #include <d3d9.h>
 
+#include "..\\Source\\math.h"
 #include "..\\Source\\proc_city.h"
 #include "..\\Source\\DynamicModels.h"
 #include "..\\Source\\tust.h"
@@ -261,11 +262,11 @@ void create_random_streets()
 			vec_to_angle(vecNewAngle, vecTemp2);
 			ang_normalize(vecNewAngle);
 
-				IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
-				ic->incomingAngle = vecNewAngle;
-				ic->id = i;
-				
-				list_add(newInter->incomingConnections, ic);
+			IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
+			ic->incomingAngle = vecNewAngle;
+			ic->id = i;
+			
+			list_add(newInter->incomingConnections, ic);
 
 			list_add(intersections, newInter);
 			#ifdef PROCEDURAL_DEBUG
@@ -309,6 +310,8 @@ void create_random_streets()
 // Example 4: Create intersections
 void create_intersections() {
 	
+	int i=0;
+	
 	level_load("");
 	vec_set(camera.x, vector(-11, -500, 228));
 	vec_set(camera.pan, vector(87, -28, 0));
@@ -317,7 +320,16 @@ void create_intersections() {
 	
 	Intersection *i1 = intersection_create(vector(-200,0,0));
 	i1->incomingStreets +=5;
+	
+	for(i=0; i<10; i++) {
+		VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
+		vec_set(vecNewAngle, vector(360/(i+1), 0, 0));
+		IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
+		ic->incomingAngle = vecNewAngle;
+		list_add(i1->incomingConnections, ic);
+	}
 	ENTITY* e1 = build_intersection(i1);
+
 	
 	Intersection *i2 = intersection_create(vector(-125,0,0));
 	i2->incomingStreets +=4;
@@ -346,8 +358,8 @@ void main() {
 
 	//draw_voronoi();
 	//create_small_streets();
-	//create_intersections();
-	create_random_streets();
+	create_intersections();
+	//create_random_streets();
 	
 	/*ENTITY* e1 = ent_create(CUBE_MDL, vector(200,0,0), NULL);
 	VECTOR* v1Temp = vector(0,0,0);
