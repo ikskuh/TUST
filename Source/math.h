@@ -9,6 +9,10 @@
 
 #include "list.h"
 
+
+
+#define PI 3.14159265
+
 /**
  * \brief   Interpolates a single angle.
  * \param	a1	The first angle.
