@@ -11,6 +11,8 @@
 #ifndef _COMPACT_MENU_H_
 #define _COMPACT_MENU_H_
 
+#define PRAGMA_PATH "..\\compact_menu"
+
 /**
  * \defgroup  CompactMenuModule Compact Menu
  * \ingroup   GenericScriptLibrary

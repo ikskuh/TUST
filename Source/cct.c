@@ -39,51 +39,30 @@ void cct_go_crawl(CCT *cct)
 	// if we press ctrl:
 	if(cct->input[CCT_CRAWL])
 	{
-		// if we need to lower the camera:
-		if(cct->crawlTimer > -45)
+		// if we need to change the size:
+		if(cct->physBody->scale_z > cct->crawlSize.z)
 		{
-			// decrease camera offset:
-			cct->crawlTimer -= cct->goCrawlSpeed * time_step;
+			// change the visual capsule size:
+			vec_set(&cct->physBody->scale_x, &cct->crawlSize);
+			// change the size of the cct to crawl:
+			pX3ent_resizechar(cct->physBody, 0);
+			// update bbox:
+			c_setminmax(cct->physBody);
 		}
-		else
-		{
-			// if we need to change the size:
-			if(cct->physBody->scale_z > cct->crawlSize.z)
-			{
-				// change the visual capsule size:
-				vec_set(&cct->physBody->scale_x, &cct->crawlSize);
-				// change the size of the cct to crawl:
-				pX3ent_resizechar(cct->physBody, 0);
-				// update bbox:
-				c_setminmax(cct->physBody);
-			}
-		}
-		
 		// we are crawling:
 		cct->crawlOn = 1;
 	}
 	else
 	{
-		// if we need to stand up:
-		if(cct->crawlTimer < 0)
+		if(cct->crawlOn)
 		{
 			// and there is no celling above the head (20 - are min/max_x and 40 - are min/max_z values):
 			if(cct_check_collision(cct->physBody, 20, 20, 40, 40) == 0)
 			{
-				// increase camera offset:
-				cct->crawlTimer += cct->goCrawlSpeed * time_step;
-			}
-			else
-			{
-				// if we need to lower the camera:
-				if(cct->crawlTimer > -45)
-				{
-					// decrease camera offset:
-					cct->crawlTimer -= cct->goCrawlSpeed * time_step;
-				}
+				cct->crawlOn = 0;
 			}
 		}
-		else
+		if(!cct->crawlOn)
 		{
 			// if we need to change the size:
 			if(cct->physBody->scale_z < cct->standSize.z)
@@ -137,7 +116,7 @@ CCT *cct_create(VECTOR *spawnPoint, VECTOR *boundingBox)
 	vec_set(&cct->boundingBox, boundingBox);
 	
 	cct->physBody = ent_create(CUBE_MDL, spawnPoint, NULL);
-	//cct->physBody->flags = INVISIBLE;
+	cct->physBody->flags = INVISIBLE | PASSABLE;
 	
 	// standing and crouching size's of cct:
 	var cct_radius = cct->boundingBox.x;
@@ -170,18 +149,27 @@ void cct_update(CCT *cct)
 			cct->force.z = 25;
 			// jumping switch on:
 			cct->jump_time = 1;
+			cct->state = CCT_JUMPING; // Enter jumping state
 		}
 	}
-	// if we unpress the space key:
+	// if we release the space key:
 	if(!cct->input[CCT_JUMP])
 	{
 		// if we need to reset the jump switch:
-		if(cct->jump_time != 0)
+		if(cct->jump_time)
 		{
 			// reset it:
 			cct->jump_time = 0; 
-		} 
+		}
 	}
+	
+	// If we are jumping and standing on the ground and don't go upwards,
+	if(cct->state == CCT_JUMPING && pX3ent_ischargrounded(cct->physBody) && cct->force.z <= 0)
+	{
+		// then reset to standing, because we landed.
+		cct->state = CCT_STANDING;
+	}
+	
 	// if movement speed is more that allowed movement speed:
 	if(vec_length(vector(cct->force.x, cct->force.y, 0)) > 15)
 	{
@@ -191,7 +179,7 @@ void cct_update(CCT *cct)
 		cct->force.y *= 15 / len;
 	}
 	// if we are crawling:
-	if(cct->crawlOn == 1)
+	if(cct->crawlOn)
 	{
 		// then crawl:
 		cct->force.x *= cct->crawlSpeed;
@@ -244,6 +232,27 @@ void cct_update(CCT *cct)
 		// we are on ground:
 		cct->force.z = cctGravity;
 	}
+	
+	// Switch state if we are NOT jumping
+	if(cct->state != CCT_JUMPING)
+	{
+		if(vec_length(&cct->dist) < 0.5)
+		{
+			if(cct->crawlOn)
+				cct->state = CCT_CROUCHING;
+			else
+				cct->state = CCT_STANDING;
+		}
+		else
+		{
+			if(cct->crawlOn)
+				cct->state = CCT_CRAWLING;
+			else if(cct->input[CCT_SPRINT])
+				cct->state = CCT_RUNNING;
+			else
+				cct->state = CCT_WALKING;
+		}
+	}
 }
 
 void cct_get_position(CCT *cct, VECTOR *position)
@@ -256,4 +265,10 @@ void cct_set_rotation(CCT *cct, var rotation)
 {
 	if(cct == NULL) return;
 	cct->rotation = rotation;
+}
+
+int cct_get_state(CCT *cct)
+{
+	if(cct == NULL) return -1;
+	return cct->state;
 }

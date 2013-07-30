@@ -182,9 +182,10 @@ void draw_font(STRING* text, var x, var y, COLOR* color, FONT *font, int flags, 
 #include "lvector.h"
 #include "state_machine.h"
 #include "nodemesh.h"
-#include "compact_menu.h"
+//#include "compact_menu.h"
 #include "trash.h"
 #include "function_timer.h"
+#include "animator.h"
 
 #ifdef _TEMPLATE_H_
 	#error Template include guard still exists!

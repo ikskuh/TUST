@@ -15,6 +15,15 @@
 #define CCT_CRAWL 3
 #define CCT_SPRINT 4
 
+#define CCT_STANDING 0
+#define CCT_CROUCHING 1
+
+#define CCT_CRAWLING 2
+#define CCT_WALKING 3
+#define CCT_RUNNING 4
+
+#define CCT_JUMPING 5
+
 typedef struct CCT
 {
 	// Movement speeds
@@ -40,6 +49,8 @@ typedef struct CCT
 	
 	// Physic body
 	ENTITY *physBody;
+	
+	int state;
 } CCT;
 
 CCT *cct_create(VECTOR *spawnPoint, VECTOR *boundingBox);
@@ -51,6 +62,8 @@ void cct_set_rotation(CCT *cct, var rotation);
 void cct_update(CCT *cct);
 
 void cct_get_position(CCT *cct, VECTOR *result);
+
+int cct_get_state(CCT *cct);
 
 // include cct template:
 #include "cct.c"

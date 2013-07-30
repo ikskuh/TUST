@@ -2,6 +2,7 @@
 #include <default.c>
 #include "..\\..\\Source\\tust.h"
 #include "..\\..\\Source\\cct.h"
+#include "..\\..\\Source\\animator.h"
 
 // Global ressources
 #define PRAGMA_PATH "..\\..\\Ressources\\Models\\Characters"
@@ -41,7 +42,19 @@ action player_func()
 	cam_set_mode(CAMERA_THIRD_PERSON); // Enable third person camera
 	
 	// Setup the CCT
-	CCT *cct = cct_create(my.x, vector(10, 16, 46));
+	CCT *cct = cct_create(my.x, vector(10, 16, 52));
+	
+	// Setup the animations system
+	Animator *anim = animator_attach(me, 6);
+	animator_set(anim, CCT_STANDING, "stand", 5.0, true);
+	animator_set(anim, CCT_CROUCHING, "duck", 5.0, true);
+	
+	animator_set(anim, CCT_CRAWLING, "crawl", 5.0, true);
+	animator_set(anim, CCT_WALKING, "walk", 5.0, true);
+	animator_set(anim, CCT_RUNNING, "run", 5.0, true);
+	
+	animator_set(anim, CCT_JUMPING, "jump", 10.0, false);
+	
 	while(1)
 	{
 		cam_update(); // Update the camera each frame
@@ -57,6 +70,10 @@ action player_func()
 		cct_update(cct); // Update the character controller
 		
 		cct_get_position(cct, &my->x); // Get the position of the character
+		my.z -= 2; // Move the char a little bit down so we stand on the ground (CCT and Model don't have the same origin)
+		
+		animator_play(anim, cct_get_state(cct), false); // Switch to the fitting animation, don't force any animation reset
+		animator_update(anim); // Animate our model
 		
 		wait(1);
 	}
