@@ -279,6 +279,17 @@ VECTOR* math_get_spline(VECTOR* points, int pointcount, float pos);
  */
 VECTOR *vec_to_bezier(VECTOR *pos, VECTOR *points, int count, float p);
 
+
+/**
+ * Calculates a position on a catmull courve
+ * \param	pos         Vector to store result in.
+ * \param	points      Pointer to a vector array that stores all points for the bezier courve.
+ * \param	count       Number of vectors in the points array.
+ * \param	p           Interpolation factor, between 0 and 1.
+ * \return	            Point on the catmull courve.
+ */
+VECTOR *vec_to_catmull(VECTOR *pos, VECTOR *v0, VECTOR *v1, VECTOR *v2, VECTOR *v3, float s);
+
 #include "math.c"
 
 #endif

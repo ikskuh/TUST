@@ -373,3 +373,50 @@ VECTOR *vec_to_bezier(VECTOR *pos, VECTOR *points, int count, float p)
 	vec_set(pos, &vec_to_bezierBuffer[0]);
 	return pos;
 }
+
+
+
+int vec_to_catmullBufferSize = 0;
+VECTOR *vec_to_catmullBuffer = NULL;
+
+VECTOR *vec_to_catmull(VECTOR *pos, VECTOR *v0, VECTOR *v1, VECTOR *v2, VECTOR *v3, float s)
+{
+	// Get position within the segment
+	/*var dist = vec_dist(v0, v1) + vec_dist(v1, v2) + vec_dist(v2, v3);
+	var t = dist * s;
+	float s1 = 0;
+	var vMax = 0;
+	var vMin = 0;
+	
+	if (t>vec_dist(v0, v1)+vec_dist(v1, v2)) {
+		vMin = vec_dist(v0, v1)+vec_dist(v1, v2);
+		vMax = dist;
+	} else {
+		if (t>vec_dist(v0, v1)) {
+			vMin = vec_dist(v0, v1);
+			vMax = vec_dist(v0, v1)+vec_dist(v1, v2);
+		} else {
+			vMin = 0;
+			vMax = vec_dist(v0, v1);
+		}
+	}
+	
+	s1 = (t - vMin) / (vMax - vMin);
+	var vMin2 = ((100 / dist) * vMin) / 100;
+	var vMax2 = ((100 / dist) * vMax) / 100;
+	
+	var t1 = s1 * (vMax2 - vMin2) + vMin2;
+
+	if (s>0.9) {
+	printf("s1 %.2f t1 %.2f", (double)s1, (double)t1);
+	return;
+	sys_exit("");
+	}
+	s = t1;*/
+	
+	//if (s>0.9) draw_text(str_for_num(NULL, s), 10, -900+s*1000, COLOR_RED);
+	pos->x = 0.5 * (2 * v1->x + (v2->x - v0->x) *s + (2 *v0->x - 5 * v1->x + 4 * v2->x - v3->x) * s * s + (v3->x -3 * v2->x + 3 * v1->x - v0->x) * s * s * s);
+	pos->y = 0.5 * (2 * v1->y + (v2->y - v0->y) *s + (2 *v0->y - 5 * v1->y + 4 * v2->y - v3->y) * s * s + (v3->y -3 * v2->y + 3 * v1->y - v0->y) * s * s * s);
+	pos->z = 0.5 * (2 * v1->z + (v2->z - v0->z) *s + (2 *v0->z - 5 * v1->z + 4 * v2->z - v3->z) * s * s + (v3->z -3 * v2->z + 3 * v1->z - v0->z) * s * s * s);
+	return pos;
+}
