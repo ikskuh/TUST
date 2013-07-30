@@ -37,7 +37,7 @@ function main()
 	while(1)
 	{
 		draw_line(&pt[0], NULL, 100);
-		for(i = 0; i < POINT_COUNT; i++)
+		for(i = 1; i < POINT_COUNT; i++)
 		{
 			draw_line(&pt[i], COLOR_BLUE, 100);
 		}

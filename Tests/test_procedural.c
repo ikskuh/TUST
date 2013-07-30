@@ -46,7 +46,6 @@ void draw_voronoi() {
 			
 			draw_line(vector(x1, y1, 0), NULL, 100);
 			draw_line(vector(x2, y2, 0), COLOR_RED, 100);
-			
 		}
 		
 		for(i=0; i<nPoints; i++) {
@@ -92,7 +91,7 @@ void create_small_streets()
 	street_addpos(editorStreet, vector( 200,   0,0));*/
 
 	// "Draw" streets
-	ENTITY *street = street_build(editorStreet, bmapStreetTexture, false);
+	ENTITY *street = street_build(editorStreet, bmapStreetTexture, false, 0.01);
 	place_street_on_ground(street, 3);
 }
 
@@ -289,6 +288,7 @@ void create_random_streets()
 	}
 	
 	// Build streets between intersections
+	VECTOR vecTemp5, vecTemp6;
 	for(i=0; i<list_get_count(intersections); i++) {
 		Intersection* tempInter = list_item_at(intersections, i);
 		
@@ -310,30 +310,48 @@ void create_random_streets()
 							if ((tempCon2->isConnected == 0) && (tempCon->id == tempCon2->id)) {
 								
 								// Create Street	
-								Street *s1 = street_create(25, 5);
+								Street *s1 = street_create(25, 0);
 	
 								// Add street positions	
 								VECTOR* vecTemp1 = sys_malloc(sizeof(VECTOR));
 								vec_set(vecTemp1, vector(tempInter->pos->x, tempInter->pos->z, tempInter->pos->y));
-								vec_add(vecTemp1, vector(tempCon->pos->x, tempCon->pos->z, tempCon->pos->y));
+								vec_set(vecTemp5, vector(tempCon->pos->x, tempCon->pos->z, tempCon->pos->y));
+								vec_mul(vecTemp5, vector(tempInter->ent->scale_x, tempInter->ent->scale_y, tempInter->ent->scale_z));
+								vec_rotate(vecTemp5, tempInter->ent->pan);
+								vec_add(vecTemp1, vecTemp5);
 								
 								VECTOR* vecTemp2 = sys_malloc(sizeof(VECTOR));
 								vec_set(vecTemp2, vector(tempInter2->pos->x, tempInter2->pos->z, tempInter2->pos->y));
-								vec_add(vecTemp2, vector(tempCon2->pos->x, tempCon2->pos->z, tempCon2->pos->y));
+								vec_set(vecTemp6, vector(tempCon2->pos->x, tempCon2->pos->z, tempCon2->pos->y));
+								vec_mul(vecTemp6, vector(tempInter2->ent->scale_x, tempInter2->ent->scale_y, tempInter2->ent->scale_z));
+								vec_rotate(vecTemp6, tempInter2->ent->pan);
+								vec_add(vecTemp2, vecTemp6);
 								
+								// 3 and 4 have to be an extension to the intersection endings
 								VECTOR* vecTemp3 = sys_malloc(sizeof(VECTOR));
-								vec_lerp(vecTemp3, vecTemp2, vecTemp1, 0.3);
+								vec_diff(vecTemp3, vector(tempInter2->pos->x, tempInter2->pos->z, tempInter2->pos->y), vecTemp2);
+								vec_add(vecTemp3, vector(tempInter2->pos->x, tempInter2->pos->z, tempInter2->pos->y));
+								//vec_scale(vecTemp3, 1.5);
+
+								//vec_lerp(vecTemp3, vecTemp2, vecTemp1, 0.3);
 								
 								VECTOR* vecTemp4 = sys_malloc(sizeof(VECTOR));
-								vec_lerp(vecTemp4, vecTemp2, vecTemp1, 0.6);								
+								vec_diff(vecTemp4, vector(tempInter->pos->x, tempInter->pos->z, tempInter->pos->y), vecTemp1);
+								vec_add(vecTemp4, vector(tempInter->pos->x, tempInter->pos->z, tempInter->pos->y));
+								//vec_scale(vecTemp4, 1.5);
+
+								//vec_lerp(vecTemp4, vecTemp2, vecTemp1, 0.6);								
 								
 								street_addpos(s1, vecTemp2);
 								street_addpos(s1, vecTemp3);
 								street_addpos(s1, vecTemp4);
 								street_addpos(s1, vecTemp1);
+								
+								ent_create(CUBE_MDL, vecTemp3, NULL);
+								ent_create(CUBE_MDL, vecTemp4, NULL);
 							
 								// "Draw" streets
-								ENTITY *street = street_build(s1, bmapStreetTexture, false);
+								ENTITY *street = street_build(s1, bmapStreetTexture, false, 0.01);
 								//place_street_on_ground(s1, 3);
 								
 								//Mark connections as "connected"
@@ -347,7 +365,7 @@ void create_random_streets()
 		}
 	}	
 		
-	/*while(!key_esc) {
+	while(!key_esc) {
 		// Draw diagram
 		for(i=0; i<nResults; i++) {
 			vo_get_result_at(i, &x1, &y1, &x2, &y2);
@@ -358,7 +376,7 @@ void create_random_streets()
 		wait(1);
 	}
 
-	vo_free();		
+	/*vo_free();		
 
 	// "Draw" all streets
 	
@@ -366,7 +384,7 @@ void create_random_streets()
 	Street* tempStreet;
 	for(tempStreet = list_iterate(it); it->hasNext; tempStreet = list_iterate(it))
 	{
-		street_build(tempStreet, bmapStreetTexture, true);
+		street_build(tempStreet, bmapStreetTexture, true, 0.01);
 	}*/
 }
 
@@ -374,6 +392,8 @@ void create_random_streets()
 void create_intersections() {
 	
 	int i=0;
+	
+	random_seed(0);
 	
 	level_load("");
 	vec_set(camera.x, vector(-11, -500, 228));

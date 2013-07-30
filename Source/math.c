@@ -373,3 +373,17 @@ VECTOR *vec_to_bezier(VECTOR *pos, VECTOR *points, int count, float p)
 	vec_set(pos, &vec_to_bezierBuffer[0]);
 	return pos;
 }
+
+
+
+int vec_to_catmullBufferSize = 0;
+VECTOR *vec_to_catmullBuffer = NULL;
+
+VECTOR *vec_to_catmull(VECTOR *pos, VECTOR *v0, VECTOR *v1, VECTOR *v2, VECTOR *v3, float s)
+{
+	var s1 = s;
+	pos->x = 0.5 * (2 * v1->x + (v2->x - v0->x) *s1 + (2 *v0->x - 5 * v1->x + 4 * v2->x - v3->x) * s1 * s1 + (v3->x -3 * v2->x + 3 * v1->x - v0->x) * s1 * s1 * s1);
+	pos->y = 0.5 * (2 * v1->y + (v2->y - v0->y) *s1 + (2 *v0->y - 5 * v1->y + 4 * v2->y - v3->y) * s1 * s1 + (v3->y -3 * v2->y + 3 * v1->y - v0->y) * s1 * s1 * s1);
+	pos->z = 0.5 * (2 * v1->z + (v2->z - v0->z) *s1 + (2 *v0->z - 5 * v1->z + 4 * v2->z - v3->z) * s1 * s1 + (v3->z -3 * v2->z + 3 * v1->z - v0->z) * s1 * s1 * s1);
+	return pos;
+}
