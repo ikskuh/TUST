@@ -18,6 +18,7 @@ Intersection *intersection_create(VECTOR* _pos)
 	newInter->incomingConnections = list_create();
 	newInter->pos = sys_malloc(sizeof(VECTOR));
 	vec_set(newInter->pos, _pos);
+	newInter->ent = NULL;
 	return newInter;
 }
 
@@ -121,6 +122,8 @@ float optimal_intersection_rotation(Intersection* _inter) {
 		case 4:
 		
 			int j,k,tempPan, resultPan;
+			var i;
+			var tempPan2;
 			VECTOR currentPan, currentPan2;
 			float bestPan = list_get_count(_inter->incomingConnections) * 360;
 			
@@ -131,7 +134,7 @@ float optimal_intersection_rotation(Intersection* _inter) {
 				
 				
 				vec_set(currentPan, ic->incomingAngle->pan);
-				tempPan = currentPan.x;
+				tempPan = cycle(currentPan.x, 0, 360);
 				
 				for(k=0; k<list_get_count(_inter->incomingConnections); k++) {
 					
@@ -139,16 +142,17 @@ float optimal_intersection_rotation(Intersection* _inter) {
 					
 					
 					vec_set(currentPan2, ic2->incomingAngle->pan);
-					if (tempPan > currentPan2.x) {
-						newPan += tempPan - currentPan2.x;
+					tempPan2 = cycle(currentPan2.x, 0, 360);
+					if (tempPan > tempPan2) {
+						newPan += tempPan - tempPan2;
 					} else {
-						newPan += currentPan2.x - tempPan;
+						newPan += tempPan2 - tempPan;
 					}
 				}
 				
 				if (newPan<bestPan) {
 					bestPan = newPan;
-					resultPan = currentPan.x;
+					resultPan = tempPan2;
 				}
 			}
 			return resultPan;				
@@ -230,7 +234,7 @@ action inter_info() {
 				my.pan +=10 * time_step;
 			}
 			if (key_e) {
-				my.pan -=2 * time_step;
+				my.pan -=10 * time_step;
 			}
 		}
 		wait(1);
@@ -243,7 +247,7 @@ int pan_angle_compare(ListData *left, ListData *right) { //and returns 1 if left
 	IntersectionConnection *icRight = (IntersectionConnection*)right;
 	
 	if (((ANGLE*)icLeft->incomingAngle)->pan > ((ANGLE*)icRight->incomingAngle)->pan) {
-		return 1;
+		return -1; // Todo 1
 	}
 	
 	if (((ANGLE*)icLeft->incomingAngle)->pan == ((ANGLE*)icRight->incomingAngle)->pan) {
@@ -251,7 +255,7 @@ int pan_angle_compare(ListData *left, ListData *right) { //and returns 1 if left
 	}
 	
 	if (((ANGLE*)icLeft->incomingAngle)->pan < ((ANGLE*)icRight->incomingAngle)->pan) {
-		return -1;
+		return 1; // Todo -1
 	}	
 }
 
@@ -420,7 +424,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 				ic1->rightVertex = 7;
 				
 				// Todo: FIX
-				vec_set(ic2->pos, vector(0,0,30));
+				vec_set(ic2->pos, vector(0,0,-30));
 				ic2->leftVertex  = 10;
 				ic2->rightVertex = 9;				
 				vec_set(ic3->pos, vector(-30,0,0));
@@ -609,6 +613,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 	ENTITY *ent = dmdl_create_instance(model, vector(_intersection->pos->x, _intersection->pos->z, _intersection->pos->y), inter_info);
 	
 	ent->skill1 = _intersection;
+	_intersection->ent = ent;
 	
 	ent->pan = fOptimalPan;
 	
@@ -638,7 +643,7 @@ void place_street_on_ground(ENTITY* _street, int _dist) {
 }
 
 // Start and end segments are no longer spline aligned!
-ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround)
+ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details)
 {
 	int iPointCount = list_get_count(street->points);
 	
@@ -672,7 +677,7 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround)
 	//VECTOR vecStartPosition;
 	
 	var dist = 0;
-	for(dist = 0; dist <= 1.0; dist += 0.01)
+	for(dist = 0; dist <= 1.0; dist += _details)
 	{
 		VECTOR startSegment, endSegment, dir;		
 

@@ -107,6 +107,7 @@ typedef struct {
 	int incomingStreets;
 	List *incomingConnections; // Typ: IntersectionConnection
 	int source;
+	ENTITY* ent; // The built entity
 } Intersection;
 
 typedef struct {
@@ -166,7 +167,7 @@ void street_addpos(Street *street, VECTOR *pos);
  * \param   _placeOnGround  Align street to ground?
  * \return                  The ENTITY* build from the street.
  */
-ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround);
+ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details);
 
 /**
  * Places a street or another flat model on the ground
