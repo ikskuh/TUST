@@ -84,7 +84,7 @@ void cam_update(void)
 			
 			break;
 		case CAMERA_OBSERVATION:
-					
+			
 			// Any obersation cameras defined?
 			if (observationCameras != NULL) {
 				

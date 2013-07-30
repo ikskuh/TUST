@@ -1,45 +1,58 @@
 #ifndef _CCT_H_
-	#define _CCT_H_
+#define _CCT_H_
+
+#include "tust.h"
+#include "physX3\\ackphysX3.h"
+
+/**
+ * \file cct.h
+ * Physics based player movement
+ */
+
+#define CCT_FORWARD 0
+#define CCT_SIDEWARD 1
+#define CCT_JUMP 2
+#define CCT_CRAWL 3
+#define CCT_SPRINT 4
+
+typedef struct CCT
+{
+	// Movement speeds
+	var crawlSpeed;
+	var walkSpeed;
+	var runSpeed;
 	
-	/**
-	 * \file cct.h
-	 * Physics based player movement
-	 */
+	// Input values
+	var input[5];
+	var rotation;
 	
-	// Global skills: // Todo Put those to ONE player definition file
-	#define HEALT							skill20
-	#define ALLOW_MOVE					skill21
-	#define ALLOW_ROTATE					skill22
+	VECTOR boundingBox;
+
+	VECTOR dist;
+	VECTOR force;
 	
-	// cct skills:
-	#define STANDING_SIZE				skill40
-	#define CROUCING_SIZE				skill41
-	#define HALF_STANDING_SIZE			skill42
-	#define HALF_CROUCHING_SIZE		skill43
-	#define CCT_RADIUS					skill44
-	// cct size (stand):
-	#define	STAND_SIZE_X				skill45
-	//#define	STAND_SIZE_Y			skill46
-	#define	STAND_SIZE_Z				skill47
-	// cct size (crawl):
-	#define	CRAWL_SIZE_X				skill48
-	//#define	CRAWL_SIZE_Y			skill49
-	#define	CRAWL_SIZE_Z				skill50
+	VECTOR standSize;
+	VECTOR crawlSize;
+	var jump_time;
+	var crawlTimer;
+	var crawlOn;
+	var goCrawlSpeed;
 	
-	// collusion groups:
-	#define PLAYER_GROUP					3
-	
-	// movement speed:
-	#define CRAWL_SPEED					0.3
-	#define WALK_SPEED					0.6
-	#define RUN_SPEED						1
-	
-	/**
-	 * Action for the player.
-	 */
-	void actHero();
-	
-	// include cct template:
-	#include "cct.c"
+	// Physic body
+	ENTITY *physBody;
+} CCT;
+
+CCT *cct_create(VECTOR *spawnPoint, VECTOR *boundingBox);
+
+void cct_set_input(CCT *cct, int inputID, var value);
+
+void cct_set_rotation(CCT *cct, var rotation);
+
+void cct_update(CCT *cct);
+
+void cct_get_position(CCT *cct, VECTOR *result);
+
+// include cct template:
+#include "cct.c"
 	
 #endif
