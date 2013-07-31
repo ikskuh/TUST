@@ -92,4 +92,18 @@ void ang_normalize(ANGLE* _ang) {
 	_ang->roll = cycle(_ang->roll, 0, 360);
 }
 
+VECTOR* vec_for_ent_ext(VECTOR* _target, ENTITY* _ent, int _vertexNumber) {
+	CONTACT* c = ent_getvertex(_ent, NULL, _vertexNumber);
+	if (c != NULL) {
+		vec_set(_target, vector(c->v->x, c->v->z, c->v->y));
+		vec_mul(_target, vector(_ent.scale_x, _ent.scale_y, _ent.scale_z));
+		vec_rotate(_target, _ent.pan);
+		vec_add(_target, _ent.x);
+		//printf("Ent pos: (%i,%i,%i), new pos: (%i,%i,%i)", (long)_ent->x, (long)_ent->y, (long)_ent->z, (long)_target->x, (long)_target->y, (long)_target->z);
+		return _target;
+	} else {
+		return NULL;
+	}
+}
+
 

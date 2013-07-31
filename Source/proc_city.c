@@ -193,7 +193,7 @@ action inter_info() {
 				draw_text(str_for_int(NULL, ic->leftVertex), 410, i*20, COLOR_RED);
 				draw_text(str_for_int(NULL, ic->rightVertex), 440, i*20, COLOR_RED);	
 				
-				if (ic->leftVertexPos != NULL) {
+				/*if (ic->leftVertexPos != NULL) {
 					draw_text("Left: ", 480, i*20, COLOR_GREEN);
 					draw_text(str_for_int(NULL, my.x+ic->leftVertexPos->x), 520, i*20, COLOR_RED);
 					draw_text(str_for_int(NULL, my.y+ic->leftVertexPos->y), 560, i*20, COLOR_RED);
@@ -203,18 +203,18 @@ action inter_info() {
 					draw_text(str_for_int(NULL, my.x+ic->rightVertexPos->x), 680, i*20, COLOR_RED);
 					draw_text(str_for_int(NULL, my.y+ic->rightVertexPos->y), 720, i*20, COLOR_RED);
 					draw_text(str_for_int(NULL, my.z+ic->rightVertexPos->z), 760, i*20, COLOR_RED);
-					
-					if (key_r) {
-						while(key_r) wait(1);						
-						CONTACT* c = ent_getvertex(entTemp, NULL, ic->leftVertex);
-						VECTOR* vecVert1 = vector(0,0,0);
-						vec_set(vecVert1, vector(c->v->x, c->v->z, c->v->y));
-						vec_mul(vecVert1, entTemp.scale_x);
-						vec_rotate(vecVert1, entTemp.pan);
-						vec_add(vecVert1, entTemp.x);
-						printf("1: %.2f %.2f %.2f", (double)vecVert1.x, (double)vecVert1.y, (double)vecVert1.z);
-					}
-				}
+				}*/
+				
+				if (key_r) {
+					while(key_r) wait(1);						
+					CONTACT* c = ent_getvertex(entTemp, NULL, ic->leftVertex);
+					VECTOR* vecVert1 = vector(0,0,0);
+					vec_set(vecVert1, vector(c->v->x, c->v->z, c->v->y));
+					vec_mul(vecVert1, entTemp.scale_x);
+					vec_rotate(vecVert1, entTemp.pan);
+					vec_add(vecVert1, entTemp.x);
+					printf("1: %.2f %.2f %.2f", (double)vecVert1.x, (double)vecVert1.y, (double)vecVert1.z);
+				}				
 			}
 			
 
@@ -301,11 +301,11 @@ ENTITY *build_intersection(Intersection *_intersection)
 			if (list_get_count(_intersection->incomingConnections) > 0) {
 				IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 0);
 				ic->pos = sys_malloc(sizeof(VECTOR));
-				ic->leftVertexPos   = sys_malloc(sizeof(VECTOR));
-				ic->rightVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic->leftVertexPos   = sys_malloc(sizeof(VECTOR));
+				//ic->rightVertexPos  = sys_malloc(sizeof(VECTOR));
 				vec_set(ic->pos, vector(-10,0,0));
-				vec_set(ic->leftVertexPos, vector(-10,0,-10));
-				vec_set(ic->rightVertexPos, vector(-10,0,10));
+				//vec_set(ic->leftVertexPos, vector(-10,0,-10));
+				//vec_set(ic->rightVertexPos, vector(-10,0,10));
 				ic->leftVertex = 1;
 				ic->rightVertex = 2;
 			}	
@@ -338,11 +338,11 @@ ENTITY *build_intersection(Intersection *_intersection)
 				IntersectionConnection *ic2 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 1);
 				
 				ic1->pos            = sys_malloc(sizeof(VECTOR));
-				ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				//ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic2->pos            = sys_malloc(sizeof(VECTOR));
-				ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));				
+				//ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));				
 				vec_set(ic1->pos, vector(-10,0,0));
 				ic1->leftVertex  = 1;
 				ic1->rightVertex = 2;				
@@ -357,24 +357,24 @@ ENTITY *build_intersection(Intersection *_intersection)
 				if (difference < 270) {
 					model->skin[0] = bmapStreetIntersection2_2;
 					vec_set(ic2->pos, vector(0,0,10));
-					vec_set(ic2->leftVertexPos, vector(-10,0,10));
-					vec_set(ic2->rightVertexPos, vector(10,0,10));
+					//vec_set(ic2->leftVertexPos, vector(-10,0,10));
+					//vec_set(ic2->rightVertexPos, vector(10,0,10));
 					ic2->leftVertex = 2;
 					ic2->rightVertex = 4;
 				}
 				if (difference < 180) {
 					model->skin[0] = bmapStreetIntersection2_1;
 					vec_set(ic2->pos, vector(10,0,0));
-					vec_set(ic2->leftVertexPos, vector(10,0,10));
-					vec_set(ic2->rightVertexPos, vector(10,0,-10));					
+					//vec_set(ic2->leftVertexPos, vector(10,0,10));
+					//vec_set(ic2->rightVertexPos, vector(10,0,-10));					
 					ic2->leftVertex = 4;
 					ic2->rightVertex = 3;					
 				}	
 				if (difference < 90) {
 					model->skin[0] = bmapStreetIntersection2_3;
 					vec_set(ic2->pos, vector(0,0,-10));
-					vec_set(ic2->leftVertexPos, vector(10,0,-10));
-					vec_set(ic2->rightVertexPos, vector(-10,0,-10));										
+					//vec_set(ic2->leftVertexPos, vector(10,0,-10));
+					//vec_set(ic2->rightVertexPos, vector(-10,0,-10));										
 					ic2->leftVertex = 3;
 					ic2->rightVertex = 1;				
 				}
@@ -411,25 +411,24 @@ ENTITY *build_intersection(Intersection *_intersection)
 				IntersectionConnection *ic3 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 2);
 				
 				ic1->pos            = sys_malloc(sizeof(VECTOR));
-				ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				//ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic2->pos            = sys_malloc(sizeof(VECTOR));
-				ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				//ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic3->pos            = sys_malloc(sizeof(VECTOR));
-				ic3->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				ic3->rightVertexPos = sys_malloc(sizeof(VECTOR));							
+				//ic3->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic3->rightVertexPos = sys_malloc(sizeof(VECTOR));							
 				vec_set(ic1->pos, vector(30,0,0));
 				ic1->leftVertex  = 8;
 				ic1->rightVertex = 7;
 				
-				// Todo: FIX
 				vec_set(ic2->pos, vector(0,0,-30));
 				ic2->leftVertex  = 10;
 				ic2->rightVertex = 9;				
 				vec_set(ic3->pos, vector(-30,0,0));
 				ic3->leftVertex  = 1;
-				ic3->rightVertex = 9;				
+				ic3->rightVertex = 3;				
 			}
 			model->skin[0] = bmapStreetIntersection3;
 			
@@ -476,31 +475,30 @@ ENTITY *build_intersection(Intersection *_intersection)
 				IntersectionConnection *ic4 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 3);
 				
 				ic1->pos            = sys_malloc(sizeof(VECTOR));
-				ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				//ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic2->pos            = sys_malloc(sizeof(VECTOR));
-				ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				//ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic3->pos            = sys_malloc(sizeof(VECTOR));
-				ic3->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				ic3->rightVertexPos = sys_malloc(sizeof(VECTOR));
+				//ic3->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic3->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic4->pos            = sys_malloc(sizeof(VECTOR));
-				ic4->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				ic4->rightVertexPos = sys_malloc(sizeof(VECTOR));												
+				//ic4->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+				//ic4->rightVertexPos = sys_malloc(sizeof(VECTOR));												
 				vec_set(ic1->pos, vector(30,0,0));
 				ic1->leftVertex  = 8;
 				ic1->rightVertex = 7;
 				
-				// Todo: FIX
 				vec_set(ic2->pos, vector(0,0,30));
 				ic2->leftVertex  = 10;
 				ic2->rightVertex = 9;				
-				vec_set(ic3->pos, vector(-30,0,0));
-				ic3->leftVertex  = 1;
-				ic3->rightVertex = 9;
+				vec_set(ic3->pos, vector(-30,0,0)); // Todo left right may be wrong
+				ic3->leftVertex  = 12;
+				ic3->rightVertex = 11;
 				vec_set(ic4->pos, vector(0,0,-30));
-				ic4->leftVertex  = 12;
-				ic4->rightVertex = 11;								
+				ic4->leftVertex  = 1;
+				ic4->rightVertex = 3;								
 			}		
 			model->skin[0] = bmapStreetIntersection4;
 			
@@ -577,8 +575,8 @@ ENTITY *build_intersection(Intersection *_intersection)
 				for(i=1; i<vNumConnections; i++) {
 					IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, i-1);
 					ic1->pos            = sys_malloc(sizeof(VECTOR));
-					ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-					ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
+					//ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
+					//ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
 					
 					// Calculate new vertex position
 					double fAngle = i / vNumConnections * 2 * PI;
@@ -642,8 +640,12 @@ void place_street_on_ground(ENTITY* _street, int _dist) {
 	}
 }
 
+ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details) {
+	street_build_ext(street, _streetTexture, _placeOnGround, _details, NULL, NULL, NULL, NULL);
+}
+
 // Start and end segments are no longer spline aligned!
-ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details)
+ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details, VECTOR* _v1_1, VECTOR* _v1_2, VECTOR* _v2_1, VECTOR* _v2_2)
 {
 	int iPointCount = list_get_count(street->points);
 	
@@ -739,17 +741,44 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, 
 		/************************************************************************************************/
 		
 		// Setup left vertex
-		left.x = startSegment.x + offset.x;
-		left.y = zStartLeft;
-		left.z = startSegment.y + offset.y;
+		// First element and _v1_1 defined?
+		if ((dist == 0) && (_v1_1 != NULL)) {
+			left.x = _v1_1.x;
+			left.y = _v1_1.z;
+			left.z = _v1_1.y;
+		} else {
+			// Last element and _v2_1 defined?
+			if ((dist > 0.98) && (_v2_1 != NULL)) {
+				left.x = _v2_2.x;
+				left.y = _v2_2.z;
+				left.z = _v2_2.y;
+			} else {
+				left.x = startSegment.x + offset.x;
+				left.y = zStartLeft;
+				left.z = startSegment.y + offset.y;	
+			}
+		}
 		left.nx = 0; left.ny = 1; left.nz = 0;
 		left.u1 = 0;
 		left.v1 = 15 * dist;
 		
 		// Setup right vertex
-		right.x = startSegment.x - offset.x;
-		right.y = zStartRight;
-		right.z = startSegment.y - offset.y;
+		if ((dist == 0) && (_v1_2 != NULL)) {
+			right.x = _v1_2.x;
+			right.y = _v1_2.z;
+			right.z = _v1_2.y;			
+		} else {
+		
+			if ((dist > 0.98) && (_v2_2 != NULL)) {
+				right.x = _v2_1.x;
+				right.y = _v2_1.z;
+				right.z = _v2_1.y;
+			} else {
+				right.x = startSegment.x - offset.x;
+				right.y = zStartRight;
+				right.z = startSegment.y - offset.y;
+			}
+		}
 		right.nx = 0; right.ny = 1; right.nz = 0;
 		right.u1 = 1;
 		right.v1 = 15 * dist;
@@ -778,7 +807,6 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, 
 	// Create the entity
 	ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
 	//ENTITY *ent = dmdl_create_instance(model, vecStartPosition, NULL);
-	dmdl_save(model, "C:\\Users\\padmalcom\\test.x");
 	
 	// Free data
 	dmdl_delete(model);

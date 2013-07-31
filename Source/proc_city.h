@@ -113,8 +113,8 @@ typedef struct {
 typedef struct {
 	ANGLE *incomingAngle;
 	VECTOR *pos;
-	VECTOR *leftVertexPos;
-	VECTOR *rightVertexPos;
+	//VECTOR *leftVertexPos;
+	//VECTOR *rightVertexPos;
 	int leftVertex;
 	int rightVertex;
 	int id;
@@ -165,9 +165,24 @@ void street_addpos(Street *street, VECTOR *pos);
  * \param   street          The street to be built.
  * \param   _streetTexture  The texture of the street. Should be tilable in y direction.
  * \param   _placeOnGround  Align street to ground?
+ * \param   _details        How detailed should the road be?
  * \return                  The ENTITY* build from the street.
  */
 ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details);
+
+/**
+ * Builds a mesh and ENTITY* from a given street object and connects the end vertices to certain points
+ * \param   street          The street to be built.
+ * \param   _streetTexture  The texture of the street. Should be tilable in y direction.
+ * \param   _placeOnGround  Align street to ground?
+ * \param   _details        How detailed should the road be?
+ * \param   _v1_1           First vertex position of the first end
+ * \param   _v1_2           Second vertex position of the first end
+ * \param   _v2_1           First vertex position of the second end
+ * \param   _v2_2           Second vertex position of the second end
+ * \return                  The ENTITY* build from the street.
+ */
+ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details, VECTOR* _v1_1, VECTOR* _v1_2, VECTOR* _v2_1, VECTOR* _v2_2);
 
 /**
  * Places a street or another flat model on the ground

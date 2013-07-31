@@ -289,6 +289,7 @@ void create_random_streets()
 	
 	// Build streets between intersections
 	VECTOR vecTemp5, vecTemp6;
+	VECTOR vx1, vx2, vx3, vx4;
 	for(i=0; i<list_get_count(intersections); i++) {
 		Intersection* tempInter = list_item_at(intersections, i);
 		
@@ -310,7 +311,7 @@ void create_random_streets()
 							if ((tempCon2->isConnected == 0) && (tempCon->id == tempCon2->id)) {
 								
 								// Create Street	
-								Street *s1 = street_create(25, 0);
+								Street *s1 = street_create(20, 0);
 	
 								// Add street positions	
 								VECTOR* vecTemp1 = sys_malloc(sizeof(VECTOR));
@@ -329,30 +330,28 @@ void create_random_streets()
 								
 								// 3 and 4 have to be an extension to the intersection endings
 								VECTOR* vecTemp3 = sys_malloc(sizeof(VECTOR));
-								vec_diff(vecTemp3, vector(tempInter2->pos->x, tempInter2->pos->z, tempInter2->pos->y), vecTemp2);
+								vec_diff(vecTemp3, vecTemp2, vector(tempInter2->pos->x, tempInter2->pos->z, tempInter2->pos->y));
+								vec_scale(vecTemp3, 4);
 								vec_add(vecTemp3, vector(tempInter2->pos->x, tempInter2->pos->z, tempInter2->pos->y));
-								//vec_scale(vecTemp3, 1.5);
-
-								//vec_lerp(vecTemp3, vecTemp2, vecTemp1, 0.3);
 								
 								VECTOR* vecTemp4 = sys_malloc(sizeof(VECTOR));
-								vec_diff(vecTemp4, vector(tempInter->pos->x, tempInter->pos->z, tempInter->pos->y), vecTemp1);
+								vec_diff(vecTemp4, vecTemp1, vector(tempInter->pos->x, tempInter->pos->z, tempInter->pos->y));
+								vec_scale(vecTemp4, 4);
 								vec_add(vecTemp4, vector(tempInter->pos->x, tempInter->pos->z, tempInter->pos->y));
-								//vec_scale(vecTemp4, 1.5);
-
-								//vec_lerp(vecTemp4, vecTemp2, vecTemp1, 0.6);								
 								
 								street_addpos(s1, vecTemp2);
 								street_addpos(s1, vecTemp3);
 								street_addpos(s1, vecTemp4);
 								street_addpos(s1, vecTemp1);
 								
-								ent_create(CUBE_MDL, vecTemp3, NULL);
-								ent_create(CUBE_MDL, vecTemp4, NULL);
-							
+								// Calculate intersection <-> street connections
+								vec_for_ent_ext(&vx1, tempInter->ent, tempCon->leftVertex);
+								vec_for_ent_ext(&vx2, tempInter->ent, tempCon->rightVertex);
+								vec_for_ent_ext(&vx3, tempInter2->ent, tempCon2->leftVertex);
+								vec_for_ent_ext(&vx4, tempInter2->ent, tempCon2->rightVertex);
+								
 								// "Draw" streets
-								ENTITY *street = street_build(s1, bmapStreetTexture, false, 0.01);
-								//place_street_on_ground(s1, 3);
+								ENTITY *street = street_build_ext(s1, bmapStreetTexture, false, 0.01, vx3, vx4, vx1, vx2);
 								
 								//Mark connections as "connected"
 								tempCon2->isConnected = 1;
@@ -365,7 +364,7 @@ void create_random_streets()
 		}
 	}	
 		
-	while(!key_esc) {
+	/*while(!key_esc) {
 		// Draw diagram
 		for(i=0; i<nResults; i++) {
 			vo_get_result_at(i, &x1, &y1, &x2, &y2);
@@ -376,7 +375,7 @@ void create_random_streets()
 		wait(1);
 	}
 
-	/*vo_free();		
+	vo_free();		
 
 	// "Draw" all streets
 	
