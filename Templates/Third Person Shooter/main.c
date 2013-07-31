@@ -3,6 +3,7 @@
 #include "..\\..\\Source\\tust.h"
 #include "..\\..\\Source\\cct.h"
 #include "..\\..\\Source\\animator.h"
+#include "..\\..\\Source\\input.h"
 
 // Global ressources
 #define PRAGMA_PATH "..\\..\\Ressources\\Models\\Characters"
@@ -61,11 +62,11 @@ action player_func()
 		my->pan = camera->pan; // We sync the entity rotation with the camera
 		
 		// Setup the cct input
-		cct_set_input(cct, CCT_FORWARD, key_w - key_s);
-		cct_set_input(cct, CCT_SIDEWARD, key_a - key_d);
-		cct_set_input(cct, CCT_JUMP, key_space);
-		cct_set_input(cct, CCT_CRAWL, key_ctrl);
-		cct_set_input(cct, CCT_SPRINT, key_shift);
+		cct_set_input(cct, CCT_FORWARD, input_get("forward"));
+		cct_set_input(cct, CCT_SIDEWARD, input_get("sideward"));
+		cct_set_input(cct, CCT_JUMP, input_get("jump"));
+		cct_set_input(cct, CCT_CRAWL, input_get("crouch"));
+		cct_set_input(cct, CCT_SPRINT, input_get("sprint"));
 		cct_set_rotation(cct, my->pan);
 		cct_update(cct); // Update the character controller
 		
@@ -83,9 +84,28 @@ function main()
 {
 	fps_max = 60; // Limit fps to 60
 	video_set(1024, 768, 32, 2); // Setup some screen params
-	cam_init(); // Initializes the camera system
+	cam_init(); // Initialize the camera system
+	input_init(); // Initialize the input system
 	physX3_open(); // Open PhysX 3
-	level_load("basic.wmb"); //Load our level
 	
-	ent_create("soldier.mdl", spawnPoint, player_func);
+	// Setup controls
+	input_set_buttons("forward", key_for_str("w"), key_for_str("s"));
+	input_set_axis("forward", key_force.y, 1, 0.01);
+
+	input_set_buttons("sideward", key_for_str("a"), key_for_str("d"));
+	input_set_axis("sideward", key_force.x, -1, 0.01); // Invert X-Axis to get proper left-right movement
+
+	input_set_button("jump", key_for_str("space"));
+	input_set_button("crouch", 29); // ctrl
+	input_set_button("sprint", key_for_str("shiftl"));
+	
+	level_load("basic.wmb"); //Load our level
+	ent_create("soldier.mdl", spawnPoint, player_func); // Spawn the player
+	
+	proc_mode = PROC_EARLY; // This function should be scheduled before any other function.
+	while(1)
+	{
+		input_update();
+		wait(1);
+	}
 }

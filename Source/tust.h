@@ -186,6 +186,7 @@ void draw_font(STRING* text, var x, var y, COLOR* color, FONT *font, int flags, 
 #include "trash.h"
 #include "function_timer.h"
 #include "animator.h"
+#include "input.h"
 
 #ifdef _TEMPLATE_H_
 	#error Template include guard still exists!
