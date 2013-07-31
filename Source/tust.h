@@ -152,6 +152,16 @@ VECTOR *vec_create(var x, var y, var z);
 void ang_normalize(ANGLE* _ang);
 
 /**
+ * \brief Calculates a vertex position of an entity in world space.
+ *
+ * \param   _target         A vector to store the result in.
+ * \param	_ent				 The entity.
+ * \param	_vertexNumber   The vertex number
+ * \return                  _target VECTOR.
+ */
+VECTOR* vec_for_ent_ext(VECTOR* _target, ENTITY* _ent, int _vertexNumber);
+
+/**
  * \brief Writes a string at the given XY screen position in the current frame, using a Gamestudio FONT.
  * \param text  The string to be written
  * \param x     The screen position in pixels from the left border
