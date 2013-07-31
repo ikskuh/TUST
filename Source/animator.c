@@ -26,6 +26,11 @@ void animator_update(Animator *animator)
 		mode = ANM_CYCLE;
 	
 	ent_animate(animator->target, (animator->animations)[animator->current].scene, animator->progress, mode);
+	if(animator->blend > 0 && animator->previous > 0)
+	{
+		ent_blendframe(animator->target, animator->target, (animator->animations)[animator->previous].scene, animator->progress, animator->blend); 
+		animator->blend -= animator->blendSpeed * time_step;
+	}
 	
 	animator->progress += (animator->animations)[animator->current].speed * time_step;
 }
@@ -49,6 +54,18 @@ void animator_play(Animator *animator, int animation, bool forceReset)
 	if(animator->current != animation || forceReset)
 		animator->progress = 0;
 
+	animator->current = animation;
+}
+
+void animator_blend(Animator *animator, int animation, var ticks)
+{
+	if(animator == NULL) return;
+	if(animation < 0 || animation >= animator->size) return;
+	if(animation == animator->current) return;
+	
+	animator->previous = animator->current;
+	animator->blend = 100;
+	animator->blendSpeed = 100 / ticks;
 	animator->current = animation;
 }
 

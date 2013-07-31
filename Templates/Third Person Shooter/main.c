@@ -73,7 +73,16 @@ action player_func()
 		cct_get_position(cct, &my->x); // Get the position of the character
 		my.z -= 2; // Move the char a little bit down so we stand on the ground (CCT and Model don't have the same origin)
 		
-		animator_play(anim, cct_get_state(cct), false); // Switch to the fitting animation, don't force any animation reset
+		int cctState = cct_get_state(cct);
+		switch(cctState)
+		{
+			case CCT_JUMPING:
+				animator_play(anim, CCT_JUMPING, false); // Switch to the jump animation, don't force any animation reset
+				break;
+			default:
+				animator_blend(anim, cctState, 3.0); // Blend to the fitting animation in 5 ticks
+				break;
+		}
 		animator_update(anim); // Animate our model
 		
 		wait(1);
