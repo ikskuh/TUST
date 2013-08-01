@@ -2,8 +2,8 @@
 #include <default.c>
 #include "..\\..\\Source\\tust.h"
 #include "..\\..\\Source\\cct.h"
-#include "..\\..\\Source\\animator.h"
-#include "..\\..\\Source\\input.h"
+#include "..\\..\\Source\\hitbox.h"
+#include "..\\..\\Source\\attachment.h"
 
 // Global ressources
 #define PRAGMA_PATH "..\\..\\Ressources\\Models\\Characters"
@@ -49,12 +49,25 @@ action player_func()
 	Animator *anim = animator_attach(me, 6);
 	animator_set(anim, CCT_STANDING, "stand", 5.0, true);
 	animator_set(anim, CCT_CROUCHING, "duck", 5.0, true);
-	
 	animator_set(anim, CCT_CRAWLING, "crawl", 5.0, true);
 	animator_set(anim, CCT_WALKING, "walk", 5.0, true);
 	animator_set(anim, CCT_RUNNING, "run", 5.0, true);
-	
 	animator_set(anim, CCT_JUMPING, "jump", 10.0, false);
+	
+	ENTITY *box;
+	CharacterShape *shape = charshape_attach(me);
+	box = charshape_add(shape, "cylinderShape.mdl", 53, 57, 36, 39); box->scale_y = box->scale_z = 0.5;
+	box = charshape_add(shape, "cylinderShape.mdl", 273, 291, 312, 313); box->scale_y = box->scale_z = 0.5;
+	box = charshape_add(shape, "cylinderShape.mdl", 273, 291, 53, 57); box->scale_y = box->scale_z = 0.6;
+	box = charshape_add(shape, "cylinderShape.mdl", 156, 73, 72, 131); box->scale_y = box->scale_z = 0.75;
+	box = charshape_add(shape, "cylinderShape.mdl", 156, 290, 303, 197); box->scale_y = box->scale_z = 0.75;
+	box = charshape_add(shape, "cylinderShape.mdl", 303, 197, 217, 265); box->scale_y = box->scale_z = 0.75;
+	box = charshape_add(shape, "cylinderShape.mdl", 72, 131, 116, 71); box->scale_y = box->scale_z = 0.75;
+	box = charshape_add(shape, "cylinderShape.mdl", 85, 126, 133, 64); box->scale_y = box->scale_z = 0.4;
+	box = charshape_add(shape, "cylinderShape.mdl", 278, 209, 272, 232); box->scale_y = box->scale_z = 0.4;
+	box = charshape_add(shape, "cylinderShape.mdl", 159, 184, 177, 188); box->scale_y = box->scale_z = 1.2;
+	box = charshape_add(shape, "cylinderShape.mdl", 177, 188, 183, 183); box->scale_y = box->scale_z = 0.6;
+	set(me, PASSABLE); // We can make our character passable, we have bounding boxes for it.
 	
 	while(1)
 	{
@@ -85,9 +98,29 @@ action player_func()
 		}
 		animator_update(anim); // Animate our model
 		
+		charshape_update(shape);
+		
 		wait(1);
 	}
 }
+
+/*
+// Init
+int swordDrawn = 0;
+ENTITY *sword = ent_create("katana.mdl", vector(0, 0, 0), NULL); // Create a katana
+vec_fill(&sword->scale_x, 0.05);
+//attach_entity(sword, me, vector(-6, -4, 24), vector(0, 0, 20));
+//attach_entity_to_vertex(sword, me, 158, vector(-2, -4, 4), vector(0, -5, 15));
+
+// Loop
+if(input_hit("draw"))
+	swordDrawn = !swordDrawn;
+
+if(swordDrawn) // Attach sword to hand
+	attach_entity_to_vertices(sword, me, 7, 8, vector(0, 0, 0), vector(0, -90, 0));
+else // Attach sword to backpack
+	attach_entity_to_vertices(sword, me, 158, 157, vector(-2, -4, 4), vector(0, 90, 0));
+*/
 
 function main()
 {
@@ -107,6 +140,7 @@ function main()
 	input_set_button("jump", key_for_str("space"));
 	input_set_button("crouch", 29); // ctrl
 	input_set_button("sprint", key_for_str("shiftl"));
+	input_set_button("draw", key_for_str("f"));
 	
 	level_load("basic.wmb"); //Load our level
 	ent_create("soldier.mdl", spawnPoint, player_func); // Spawn the player

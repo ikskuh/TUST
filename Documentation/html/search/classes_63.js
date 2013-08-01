@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['cct',['CCT',['../struct_c_c_t.html',1,'']]],
   ['cimg',['CImg',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
   ['cimg_3c_20chart_20_3e',['CImg&lt; charT &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
   ['cimg_3c_20doublet_20_3e',['CImg&lt; doubleT &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],

@@ -110,8 +110,8 @@ CCT *cct_create(VECTOR *spawnPoint, VECTOR *boundingBox)
 	cct->crawlSpeed = 0.3;
 	cct->walkSpeed = 0.6;
 	cct->runSpeed = 1.0;
-	
-	cct->goCrawlSpeed = 10;
+	cct->baseSpeed = 15;
+	cct->jumpForce = 25;
 	
 	vec_set(&cct->boundingBox, boundingBox);
 	
@@ -137,8 +137,8 @@ void cct_update(CCT *cct)
 	cct_go_crawl(cct);
 	
 	// get input:
-	cct->force.x = 15 * cct->input[CCT_FORWARD];
-	cct->force.y = 15 * cct->input[CCT_SIDEWARD];
+	cct->force.x = cct->baseSpeed * cct->input[CCT_FORWARD];
+	cct->force.y = cct->baseSpeed * cct->input[CCT_SIDEWARD];
 	// if pressed space key (and switch is set to - zero):
 	if(cct->input[CCT_JUMP] && cct->jump_time == 0)
 	{
@@ -146,7 +146,7 @@ void cct_update(CCT *cct)
 		if(pX3ent_ischargrounded(cct->physBody))
 		{
 			// then jump:
-			cct->force.z = 25;
+			cct->force.z = cct->jumpForce;
 			// jumping switch on:
 			cct->jump_time = 1;
 			cct->state = CCT_JUMPING; // Enter jumping state

@@ -27,6 +27,7 @@ typedef struct InputDevice
 {
 	char name[100];
 	var value;
+	int pressed;
 	List *controllerList;
 } InputDevice;
 
@@ -44,7 +45,7 @@ void input_update()
 	InputDevice *dev;
 	for(dev = list_iterate(it); dev != NULL; dev = list_iterate(it))
 	{
-	    dev->value = 0;
+	    int value = 0;
 		if(dev->controllerList == NULL) continue;
 		ListIterator *itController = list_begin_iterate(dev->controllerList);
 		InputController *ctrl;
@@ -54,9 +55,17 @@ void input_update()
 			getValue = ctrl->getValue;
 			if(getValue == NULL) continue;
 			var v = getValue(ctrl);
-			dev->value += v;
+			value += v;
 		}
 		list_end_iterate(itController);
+		
+		dev->pressed = 0;
+		if(dev->value != value)
+		{
+			if(dev->value != 0) // This will cause problems with axis, but for buttons it works well
+				dev->pressed = 1;
+		}
+		dev->value = value;
 	}
 	list_end_iterate(it);
 }
@@ -95,6 +104,13 @@ var input_get(STRING *name)
 	InputDevice *dev = input_find_device(name, false);
 	if(dev == NULL) return 0;
 	return dev->value;
+}
+
+var input_hit(STRING *name)
+{
+	InputDevice *dev = input_find_device(name, false);
+	if(dev == NULL) return 0;
+	return dev->pressed;
 }
 
 void input_set_button(STRING *name, int key)
