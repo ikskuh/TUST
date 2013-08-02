@@ -80,7 +80,7 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 
 
 // ----------------------------------------------------------------------------------------
-// Street tool
+// Road networks
 // ----------------------------------------------------------------------------------------
 
 #define PROC_TEXT_RES 256
@@ -113,14 +113,43 @@ typedef struct {
 typedef struct {
 	ANGLE *incomingAngle;
 	VECTOR *pos;
-	//VECTOR *leftVertexPos;
-	//VECTOR *rightVertexPos;
 	int leftVertex;
 	int rightVertex;
 	int id;
 	int isConnected;
 	float angle;
 } IntersectionConnection;
+
+
+/**
+ * Builds a roadnetwork from a set of intersections
+ * \param   _intersections  Intersection list
+ */
+void roadnetwork_build(List *_intersections);
+
+/**
+ * Generate a random road network using voronoi
+ * \param   _intersections  Target list
+ * \param   _pointCount     Number of points for the voronoi elements.
+ * \param   _minX           Min x value of the network borders.
+ * \param   _minY           Min y value of the network borders.
+ * \param   _maxX           Max x value of the network borders.
+ * \param   _maxY           Max y value of the network borders.
+ * \return                  Pointer to _intersections
+ */
+List *roadnetwork_from_voronoi(List *_intersections, int _pointCount, int _minX, int _minY, int _maxX, int _maxY);
+
+
+/**
+ * Generate a random road network using a quadtree
+ * \param   _intersections  Target list
+ * \param   _minX           Min x value of the network borders.
+ * \param   _minY           Min y value of the network borders.
+ * \param   _maxX           Max x value of the network borders.
+ * \param   _maxY           Max y value of the network borders.
+ * \return                  Pointer to _intersections
+ */
+List *roadnetwork_from_quadtree(List *_intersections, int _minX, int _minY, int _maxX, int _maxY, int _depth);
 
 
 /**
