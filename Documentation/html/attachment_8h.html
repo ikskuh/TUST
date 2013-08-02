@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,194 +90,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">attachment.h File Reference</div>  </div>
+<div class="title">attachment.h File Reference<div class="ingroups"><a class="el" href="group___attachment_module.html">Attachments</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;attachment.c&quot;</code><br/>
+
+<p>Header of the module to attach entities to another entity.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="attachment_8c.html">attachment.c</a>&quot;</code><br/>
 </div>
 <p><a href="attachment_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7dacecb66b38183e51dcd24299b1c3c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="attachment_8h.html#a7dacecb66b38183e51dcd24299b1c3c4">attach_entity</a> (<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent, <a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *target, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *offset, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *angularOffset)</td></tr>
-<tr class="separator:a7dacecb66b38183e51dcd24299b1c3c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afad2b406c41bed552979a5483a86c913"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="attachment_8h.html#afad2b406c41bed552979a5483a86c913">attach_entity_to_vertex</a> (<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent, <a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *_target, int vertexID, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *offset, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *angularOffset)</td></tr>
-<tr class="separator:afad2b406c41bed552979a5483a86c913"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1f43cbaeabb9b81765b735716b2cbc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="attachment_8h.html#af1f43cbaeabb9b81765b735716b2cbc5">attach_entity_to_vertices</a> (<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent, <a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *_target, int vertexPosID, int vertexAngID, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *offset, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *angularOffset)</td></tr>
-<tr class="separator:af1f43cbaeabb9b81765b735716b2cbc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7dacecb66b38183e51dcd24299b1c3c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___attachment_module.html#ga7dacecb66b38183e51dcd24299b1c3c4">attach_entity</a> (<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent, <a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *target, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *offset, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *angularOffset)</td></tr>
+<tr class="memdesc:ga7dacecb66b38183e51dcd24299b1c3c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches an entity to a parent entity.  <a href="group___attachment_module.html#ga7dacecb66b38183e51dcd24299b1c3c4">More...</a><br/></td></tr>
+<tr class="separator:ga7dacecb66b38183e51dcd24299b1c3c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafad2b406c41bed552979a5483a86c913"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___attachment_module.html#gafad2b406c41bed552979a5483a86c913">attach_entity_to_vertex</a> (<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent, <a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *_target, int vertexID, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *offset, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *angularOffset)</td></tr>
+<tr class="memdesc:gafad2b406c41bed552979a5483a86c913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches an entity to a parent entity by a vertex position.  <a href="group___attachment_module.html#gafad2b406c41bed552979a5483a86c913">More...</a><br/></td></tr>
+<tr class="separator:gafad2b406c41bed552979a5483a86c913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf1f43cbaeabb9b81765b735716b2cbc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___attachment_module.html#gaf1f43cbaeabb9b81765b735716b2cbc5">attach_entity_to_vertices</a> (<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent, <a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *_target, int vertexPosID, int vertexAngID, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *offset, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *angularOffset)</td></tr>
+<tr class="memdesc:gaf1f43cbaeabb9b81765b735716b2cbc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches an entity to a parent entity by a vertex position and a second vertex for rotation.  <a href="group___attachment_module.html#gaf1f43cbaeabb9b81765b735716b2cbc5">More...</a><br/></td></tr>
+<tr class="separator:gaf1f43cbaeabb9b81765b735716b2cbc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides functions to attach entities to other entities </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a7dacecb66b38183e51dcd24299b1c3c4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void attach_entity </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td>
-          <td class="paramname"><em>ent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td>
-          <td class="paramname"><em>target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
-          <td class="paramname"><em>offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *&#160;</td>
-          <td class="paramname"><em>angularOffset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Attaches an entity to a parent entity. This function is a single action, to get continous attachments you need to call this function every frame. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ent</td><td>The entity to be attached. </td></tr>
-    <tr><td class="paramname">target</td><td>The entity where ent should be attached. </td></tr>
-    <tr><td class="paramname">offset</td><td>The attachments position offset. </td></tr>
-    <tr><td class="paramname">angularOffset</td><td>The attachments rotation offset. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="afad2b406c41bed552979a5483a86c913"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void attach_entity_to_vertex </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td>
-          <td class="paramname"><em>ent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td>
-          <td class="paramname"><em>_target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vertexID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
-          <td class="paramname"><em>offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *&#160;</td>
-          <td class="paramname"><em>angularOffset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Attaches an entity to a parent entity by a vertex position. This function is a single action, to get continous attachments you need to call this function every frame. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ent</td><td>The entity to be attached. </td></tr>
-    <tr><td class="paramname">target</td><td>The entity where ent should be attached. </td></tr>
-    <tr><td class="paramname">vertexID</td><td>The vertex in the parent entity where ent should be attached. </td></tr>
-    <tr><td class="paramname">offset</td><td>The attachments position offset. </td></tr>
-    <tr><td class="paramname">angularOffset</td><td>The attachments rotation offset. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="af1f43cbaeabb9b81765b735716b2cbc5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void attach_entity_to_vertices </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td>
-          <td class="paramname"><em>ent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td>
-          <td class="paramname"><em>_target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vertexPosID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vertexAngID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
-          <td class="paramname"><em>offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *&#160;</td>
-          <td class="paramname"><em>angularOffset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Attaches an entity to a parent entity by a vertex position and a second vertex for rotation. This function is a single action, to get continous attachments you need to call this function every frame. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ent</td><td>The entity to be attached. </td></tr>
-    <tr><td class="paramname">target</td><td>The entity where ent should be attached. </td></tr>
-    <tr><td class="paramname">vertexPosID</td><td>The vertex in the parent entity where ent should be attached. </td></tr>
-    <tr><td class="paramname">vertexAngID</td><td>The vertex in the parent entity to which ent should be rotated. </td></tr>
-    <tr><td class="paramname">offset</td><td>The attachments position offset. </td></tr>
-    <tr><td class="paramname">angularOffset</td><td>The attachments rotation offset. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-</div><!-- contents -->
+<div class="textblock"><p>Header of the module to attach entities to another entity. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 1 2013 16:12:45 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 2 2013 15:50:44 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

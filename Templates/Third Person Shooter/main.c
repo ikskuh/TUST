@@ -96,10 +96,9 @@ action player_func()
 				animator_blend(anim, cctState, 3.0); // Blend to the fitting animation in 5 ticks
 				break;
 		}
+		
 		animator_update(anim); // Animate our model
-		
-		charshape_update(shape);
-		
+		charshape_update(shape); // Update the hitboxes
 		wait(1);
 	}
 }

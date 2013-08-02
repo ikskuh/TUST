@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,533 +93,128 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">DynamicModels.h File Reference</div>  </div>
+<div class="title">DynamicModels.h File Reference<div class="ingroups"><a class="el" href="group___dynamic_models_module.html">Dynamic Models</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Library for dynamic model creation.  
+<p>Header of the module to create models at runtime.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;acknex.h&gt;</code><br/>
 <code>#include &lt;d3d9.h&gt;</code><br/>
-<code>#include &quot;DynamicModels.c&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_dynamic_models_8c.html">DynamicModels.c</a>&quot;</code><br/>
 </div>
 <p><a href="_dynamic_models_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_y_n_a_m_i_c___f_a_c_e.html">DYNAMIC_FACE</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_y_n_a_m_i_c___q_u_a_d.html">DYNAMIC_QUAD</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_dynamic_model.html">DynamicModel</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_d_y_n_a_m_i_c___f_a_c_e"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#struct_d_y_n_a_m_i_c___f_a_c_e">DYNAMIC_FACE</a></td></tr>
+<tr class="memdesc:struct_d_y_n_a_m_i_c___f_a_c_e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single face definition of a dynamic model.  <a href="group___dynamic_models_module.html#struct_d_y_n_a_m_i_c___f_a_c_e">More...</a><br/></td></tr>
+<tr class="separator:struct_d_y_n_a_m_i_c___f_a_c_e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_d_y_n_a_m_i_c___q_u_a_d"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#struct_d_y_n_a_m_i_c___q_u_a_d">DYNAMIC_QUAD</a></td></tr>
+<tr class="memdesc:struct_d_y_n_a_m_i_c___q_u_a_d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A two-faced quad definition of a dynamic model.  <a href="group___dynamic_models_module.html#struct_d_y_n_a_m_i_c___q_u_a_d">More...</a><br/></td></tr>
+<tr class="separator:struct_d_y_n_a_m_i_c___q_u_a_d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_dynamic_model"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a></td></tr>
+<tr class="memdesc:struct_dynamic_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamic model. It contains all data to build a mesh from it.  <a href="group___dynamic_models_module.html#struct_dynamic_model">More...</a><br/></td></tr>
+<tr class="separator:struct_dynamic_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_dynamic_model_settings"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#struct_dynamic_model_settings">DynamicModelSettings</a></td></tr>
+<tr class="memdesc:struct_dynamic_model_settings"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains global settings for dynamic models.  <a href="group___dynamic_models_module.html#struct_dynamic_model_settings">More...</a><br/></td></tr>
+<tr class="separator:struct_dynamic_model_settings"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a0b02eb1c8a69f990b0458d8b208d0521"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a0b02eb1c8a69f990b0458d8b208d0521">DMDL_MAX_VERTEXCOUNT</a>&#160;&#160;&#160;65536</td></tr>
-<tr class="separator:a0b02eb1c8a69f990b0458d8b208d0521"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c40cc986afe47a8b3eb94324417b957"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a0c40cc986afe47a8b3eb94324417b957">DMDL_MAX_INDEXCOUNT</a>&#160;&#160;&#160;128000</td></tr>
-<tr class="separator:a0c40cc986afe47a8b3eb94324417b957"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af22f8f9173293fd484bfa46a8f15d7e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#af22f8f9173293fd484bfa46a8f15d7e7">DMDL_FIXNORMALS</a>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
-<tr class="separator:af22f8f9173293fd484bfa46a8f15d7e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b9c1b4f30d4cefd002de48ceba491d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a9b9c1b4f30d4cefd002de48ceba491d8">DMDL_OPTIMIZE</a>&#160;&#160;&#160;(1&lt;&lt;1)</td></tr>
-<tr class="separator:a9b9c1b4f30d4cefd002de48ceba491d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23d3c85a98c0823fbd6972919989be17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a23d3c85a98c0823fbd6972919989be17">DMDL_CLONE_TEX</a>&#160;&#160;&#160;(1&lt;&lt;2)</td></tr>
-<tr class="separator:a23d3c85a98c0823fbd6972919989be17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76601bb57f8ea4927c3f4a5dbc048899"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a76601bb57f8ea4927c3f4a5dbc048899">D3DXF_FILEFORMAT_BINARY</a>&#160;&#160;&#160;0</td></tr>
-<tr class="separator:a76601bb57f8ea4927c3f4a5dbc048899"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd674c6193c26a5371ec569fa2d480ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#afd674c6193c26a5371ec569fa2d480ba">D3DXF_FILEFORMAT_TEXT</a>&#160;&#160;&#160;1</td></tr>
-<tr class="separator:afd674c6193c26a5371ec569fa2d480ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbe8b3a7228fc51fe655dcc25a3820d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#abbe8b3a7228fc51fe655dcc25a3820d4">D3DXF_FILEFORMAT_COMPRESSED</a>&#160;&#160;&#160;2</td></tr>
-<tr class="separator:abbe8b3a7228fc51fe655dcc25a3820d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0b02eb1c8a69f990b0458d8b208d0521"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0b02eb1c8a69f990b0458d8b208d0521"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga0b02eb1c8a69f990b0458d8b208d0521">DMDL_MAX_VERTEXCOUNT</a>&#160;&#160;&#160;65536</td></tr>
+<tr class="memdesc:ga0b02eb1c8a69f990b0458d8b208d0521"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum vertex count of a dynamic model. <br/></td></tr>
+<tr class="separator:ga0b02eb1c8a69f990b0458d8b208d0521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c40cc986afe47a8b3eb94324417b957"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0c40cc986afe47a8b3eb94324417b957"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga0c40cc986afe47a8b3eb94324417b957">DMDL_MAX_INDEXCOUNT</a>&#160;&#160;&#160;128000</td></tr>
+<tr class="memdesc:ga0c40cc986afe47a8b3eb94324417b957"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum index count of a dynamic model. <br/></td></tr>
+<tr class="separator:ga0c40cc986afe47a8b3eb94324417b957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf22f8f9173293fd484bfa46a8f15d7e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf22f8f9173293fd484bfa46a8f15d7e7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#gaf22f8f9173293fd484bfa46a8f15d7e7">DMDL_FIXNORMALS</a>&#160;&#160;&#160;(1&lt;&lt;0)</td></tr>
+<tr class="memdesc:gaf22f8f9173293fd484bfa46a8f15d7e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activates normal fixing when creating the mesh. Normals will be smoothed out and calculated correctly for each vertex. <br/></td></tr>
+<tr class="separator:gaf22f8f9173293fd484bfa46a8f15d7e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b9c1b4f30d4cefd002de48ceba491d8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga9b9c1b4f30d4cefd002de48ceba491d8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga9b9c1b4f30d4cefd002de48ceba491d8">DMDL_OPTIMIZE</a>&#160;&#160;&#160;(1&lt;&lt;1)</td></tr>
+<tr class="memdesc:ga9b9c1b4f30d4cefd002de48ceba491d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activates mesh optimizations when creating the mesh. Vertices will be welded if they are close together and enables a smoother lighting and faster rendering. <br/></td></tr>
+<tr class="separator:ga9b9c1b4f30d4cefd002de48ceba491d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga23d3c85a98c0823fbd6972919989be17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga23d3c85a98c0823fbd6972919989be17"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga23d3c85a98c0823fbd6972919989be17">DMDL_CLONE_TEX</a>&#160;&#160;&#160;(1&lt;&lt;2)</td></tr>
+<tr class="memdesc:ga23d3c85a98c0823fbd6972919989be17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clones the textures of a newly created entity from the original ones. <br/></td></tr>
+<tr class="separator:ga23d3c85a98c0823fbd6972919989be17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga76601bb57f8ea4927c3f4a5dbc048899"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga76601bb57f8ea4927c3f4a5dbc048899"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga76601bb57f8ea4927c3f4a5dbc048899">D3DXF_FILEFORMAT_BINARY</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:ga76601bb57f8ea4927c3f4a5dbc048899"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save dynamic models in a binary x format. <br/></td></tr>
+<tr class="separator:ga76601bb57f8ea4927c3f4a5dbc048899"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd674c6193c26a5371ec569fa2d480ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gafd674c6193c26a5371ec569fa2d480ba"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#gafd674c6193c26a5371ec569fa2d480ba">D3DXF_FILEFORMAT_TEXT</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:gafd674c6193c26a5371ec569fa2d480ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save dynamic models in a text x format. <br/></td></tr>
+<tr class="separator:gafd674c6193c26a5371ec569fa2d480ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabbe8b3a7228fc51fe655dcc25a3820d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gabbe8b3a7228fc51fe655dcc25a3820d4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#gabbe8b3a7228fc51fe655dcc25a3820d4">D3DXF_FILEFORMAT_COMPRESSED</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:gabbe8b3a7228fc51fe655dcc25a3820d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save dynamic models in a compressed x format. <br/></td></tr>
+<tr class="separator:gabbe8b3a7228fc51fe655dcc25a3820d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3d911a62c6beeffb53f2b02a41563c5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a3d911a62c6beeffb53f2b02a41563c5f">dmdl_vertex_equals</a> (<a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *v1, <a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *v2)</td></tr>
-<tr class="separator:a3d911a62c6beeffb53f2b02a41563c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a435580d6f97e63bb5a97d476fcab1da6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a435580d6f97e63bb5a97d476fcab1da6">dmdl_create</a> ()</td></tr>
-<tr class="separator:a435580d6f97e63bb5a97d476fcab1da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc2870ec7beff08969aa6f7e5d36654c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#adc2870ec7beff08969aa6f7e5d36654c">dmdl_create_instance</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *model, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *pos, <a class="el" href="class_e_v_e_n_t.html">EVENT</a> act)</td></tr>
-<tr class="separator:adc2870ec7beff08969aa6f7e5d36654c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacc1471aa3ce6f1da40f3640344c5a96"><td class="memItemLeft" align="right" valign="top">LPD3DXMESH&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#aacc1471aa3ce6f1da40f3640344c5a96">dmdl_create_mesh</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *model)</td></tr>
-<tr class="separator:aacc1471aa3ce6f1da40f3640344c5a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62ec435844a25e640380e3f06d5195c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a62ec435844a25e640380e3f06d5195c0">dmdl_delete</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *model)</td></tr>
-<tr class="separator:a62ec435844a25e640380e3f06d5195c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b47669cfd2dced953fa33cdf4748a0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a1b47669cfd2dced953fa33cdf4748a0d">dmdl_add_face</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *model, <a class="el" href="struct_d_y_n_a_m_i_c___f_a_c_e.html">DYNAMIC_FACE</a> *face)</td></tr>
-<tr class="separator:a1b47669cfd2dced953fa33cdf4748a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab990cfa6c0aa4359d1b8b0670621b61a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#ab990cfa6c0aa4359d1b8b0670621b61a">dmdl_add_entity</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *model, <a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent)</td></tr>
-<tr class="separator:ab990cfa6c0aa4359d1b8b0670621b61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08163574f2b5e313f6a4bb0f3d3e1fde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a08163574f2b5e313f6a4bb0f3d3e1fde">dmdl_add_mesh</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *model, LPD3DXMESH mesh)</td></tr>
-<tr class="separator:a08163574f2b5e313f6a4bb0f3d3e1fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a431ebd5fcd37b48a1bc865472e248e9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a431ebd5fcd37b48a1bc865472e248e9b">dmdl_add_quad</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *model, <a class="el" href="struct_d_y_n_a_m_i_c___q_u_a_d.html">DYNAMIC_QUAD</a> *quad)</td></tr>
-<tr class="separator:a431ebd5fcd37b48a1bc865472e248e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab497feb50e2b5e61747886f045a58b65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#ab497feb50e2b5e61747886f045a58b65">dmdl_save</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *model, char *filename)</td></tr>
-<tr class="separator:ab497feb50e2b5e61747886f045a58b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a228e30b9727d9d6e88b19b697d281b57"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a228e30b9727d9d6e88b19b697d281b57">dmdl_add_vertex</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *_model, <a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *_v)</td></tr>
-<tr class="separator:a228e30b9727d9d6e88b19b697d281b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5300cc41fe89575ee9d92b91d7871b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#a5300cc41fe89575ee9d92b91d7871b99">dmdl_connect_vertices</a> (<a class="el" href="struct_dynamic_model.html">DynamicModel</a> *_model, int _v1, int _v2, int _v3)</td></tr>
-<tr class="separator:a5300cc41fe89575ee9d92b91d7871b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3d911a62c6beeffb53f2b02a41563c5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga3d911a62c6beeffb53f2b02a41563c5f">dmdl_vertex_equals</a> (<a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *v1, <a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *v2)</td></tr>
+<tr class="memdesc:ga3d911a62c6beeffb53f2b02a41563c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two vertices.  <a href="group___dynamic_models_module.html#ga3d911a62c6beeffb53f2b02a41563c5f">More...</a><br/></td></tr>
+<tr class="separator:ga3d911a62c6beeffb53f2b02a41563c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga435580d6f97e63bb5a97d476fcab1da6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga435580d6f97e63bb5a97d476fcab1da6">dmdl_create</a> ()</td></tr>
+<tr class="memdesc:ga435580d6f97e63bb5a97d476fcab1da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new dynamic model.  <a href="group___dynamic_models_module.html#ga435580d6f97e63bb5a97d476fcab1da6">More...</a><br/></td></tr>
+<tr class="separator:ga435580d6f97e63bb5a97d476fcab1da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadc2870ec7beff08969aa6f7e5d36654c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#gadc2870ec7beff08969aa6f7e5d36654c">dmdl_create_instance</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *pos, <a class="el" href="class_e_v_e_n_t.html">EVENT</a> act)</td></tr>
+<tr class="memdesc:gadc2870ec7beff08969aa6f7e5d36654c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a dynamic model.  <a href="group___dynamic_models_module.html#gadc2870ec7beff08969aa6f7e5d36654c">More...</a><br/></td></tr>
+<tr class="separator:gadc2870ec7beff08969aa6f7e5d36654c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaacc1471aa3ce6f1da40f3640344c5a96"><td class="memItemLeft" align="right" valign="top">LPD3DXMESH&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#gaacc1471aa3ce6f1da40f3640344c5a96">dmdl_create_mesh</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model)</td></tr>
+<tr class="memdesc:gaacc1471aa3ce6f1da40f3640344c5a96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new DirectX mesh for the dynamic model.  <a href="group___dynamic_models_module.html#gaacc1471aa3ce6f1da40f3640344c5a96">More...</a><br/></td></tr>
+<tr class="separator:gaacc1471aa3ce6f1da40f3640344c5a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga62ec435844a25e640380e3f06d5195c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga62ec435844a25e640380e3f06d5195c0">dmdl_delete</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model)</td></tr>
+<tr class="memdesc:ga62ec435844a25e640380e3f06d5195c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the memory allocated by the dynamic model.  <a href="group___dynamic_models_module.html#ga62ec435844a25e640380e3f06d5195c0">More...</a><br/></td></tr>
+<tr class="separator:ga62ec435844a25e640380e3f06d5195c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b47669cfd2dced953fa33cdf4748a0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga1b47669cfd2dced953fa33cdf4748a0d">dmdl_add_face</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model, <a class="el" href="group___dynamic_models_module.html#struct_d_y_n_a_m_i_c___f_a_c_e">DYNAMIC_FACE</a> *face)</td></tr>
+<tr class="memdesc:ga1b47669cfd2dced953fa33cdf4748a0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new polygon to the dynamic model.  <a href="group___dynamic_models_module.html#ga1b47669cfd2dced953fa33cdf4748a0d">More...</a><br/></td></tr>
+<tr class="separator:ga1b47669cfd2dced953fa33cdf4748a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga431ebd5fcd37b48a1bc865472e248e9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga431ebd5fcd37b48a1bc865472e248e9b">dmdl_add_quad</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model, <a class="el" href="group___dynamic_models_module.html#struct_d_y_n_a_m_i_c___q_u_a_d">DYNAMIC_QUAD</a> *quad)</td></tr>
+<tr class="memdesc:ga431ebd5fcd37b48a1bc865472e248e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new polygon to the dynamic model.  <a href="group___dynamic_models_module.html#ga431ebd5fcd37b48a1bc865472e248e9b">More...</a><br/></td></tr>
+<tr class="separator:ga431ebd5fcd37b48a1bc865472e248e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab990cfa6c0aa4359d1b8b0670621b61a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#gab990cfa6c0aa4359d1b8b0670621b61a">dmdl_add_entity</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model, <a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent)</td></tr>
+<tr class="memdesc:gab990cfa6c0aa4359d1b8b0670621b61a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an existing <a class="el" href="class_e_n_t_i_t_y.html" title="The ENTITY struct is defined in GStudio8\include\atypes.h.">ENTITY</a> to the dynamic model.  <a href="group___dynamic_models_module.html#gab990cfa6c0aa4359d1b8b0670621b61a">More...</a><br/></td></tr>
+<tr class="separator:gab990cfa6c0aa4359d1b8b0670621b61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga08163574f2b5e313f6a4bb0f3d3e1fde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga08163574f2b5e313f6a4bb0f3d3e1fde">dmdl_add_mesh</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model, LPD3DXMESH mesh)</td></tr>
+<tr class="memdesc:ga08163574f2b5e313f6a4bb0f3d3e1fde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an existing DirectX mesh to the dynamic model.  <a href="group___dynamic_models_module.html#ga08163574f2b5e313f6a4bb0f3d3e1fde">More...</a><br/></td></tr>
+<tr class="separator:ga08163574f2b5e313f6a4bb0f3d3e1fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8848b88537a20597fc6b5fb7199acc5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga8848b88537a20597fc6b5fb7199acc5f">dmdl_add_mesh</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model, LPD3DXMESH mesh, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *offset)</td></tr>
+<tr class="memdesc:ga8848b88537a20597fc6b5fb7199acc5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an existing DirectX mesh to the dynamic model.  <a href="group___dynamic_models_module.html#ga8848b88537a20597fc6b5fb7199acc5f">More...</a><br/></td></tr>
+<tr class="separator:ga8848b88537a20597fc6b5fb7199acc5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c2030de9ea5737e660f714f0bab846e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga1c2030de9ea5737e660f714f0bab846e">dmdl_add_mesh</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model, LPD3DXMESH mesh, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *offset, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *rotation)</td></tr>
+<tr class="memdesc:ga1c2030de9ea5737e660f714f0bab846e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an existing DirectX mesh to the dynamic model.  <a href="group___dynamic_models_module.html#ga1c2030de9ea5737e660f714f0bab846e">More...</a><br/></td></tr>
+<tr class="separator:ga1c2030de9ea5737e660f714f0bab846e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf7737562fc5d4b5d720cca85679c19c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#gaf7737562fc5d4b5d720cca85679c19c4">dmdl_add_mesh</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model, LPD3DXMESH mesh, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *offset, <a class="el" href="class_a_n_g_l_e.html">ANGLE</a> *rotation, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *scale)</td></tr>
+<tr class="memdesc:gaf7737562fc5d4b5d720cca85679c19c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an existing DirectX mesh to the dynamic model.  <a href="group___dynamic_models_module.html#gaf7737562fc5d4b5d720cca85679c19c4">More...</a><br/></td></tr>
+<tr class="separator:gaf7737562fc5d4b5d720cca85679c19c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab497feb50e2b5e61747886f045a58b65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#gab497feb50e2b5e61747886f045a58b65">dmdl_save</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *model, char *filename)</td></tr>
+<tr class="memdesc:gab497feb50e2b5e61747886f045a58b65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a dynamic model into a DirectX x file.  <a href="group___dynamic_models_module.html#gab497feb50e2b5e61747886f045a58b65">More...</a><br/></td></tr>
+<tr class="separator:gab497feb50e2b5e61747886f045a58b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga228e30b9727d9d6e88b19b697d281b57"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga228e30b9727d9d6e88b19b697d281b57">dmdl_add_vertex</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *_model, <a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *_v)</td></tr>
+<tr class="memdesc:ga228e30b9727d9d6e88b19b697d281b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a vertex to a model.  <a href="group___dynamic_models_module.html#ga228e30b9727d9d6e88b19b697d281b57">More...</a><br/></td></tr>
+<tr class="separator:ga228e30b9727d9d6e88b19b697d281b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5300cc41fe89575ee9d92b91d7871b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#ga5300cc41fe89575ee9d92b91d7871b99">dmdl_connect_vertices</a> (<a class="el" href="group___dynamic_models_module.html#struct_dynamic_model">DynamicModel</a> *_model, int _v1, int _v2, int _v3)</td></tr>
+<tr class="memdesc:ga5300cc41fe89575ee9d92b91d7871b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects 3 vertices to a face.  <a href="group___dynamic_models_module.html#ga5300cc41fe89575ee9d92b91d7871b99">More...</a><br/></td></tr>
+<tr class="separator:ga5300cc41fe89575ee9d92b91d7871b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ac0d064ca5f7b8d21d5f61b53ebf2b31a"><td class="memItemLeft" align="right" valign="top">DynamicModelSettings&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_dynamic_models_8h.html#ac0d064ca5f7b8d21d5f61b53ebf2b31a">DMDLSettings</a></td></tr>
-<tr class="separator:ac0d064ca5f7b8d21d5f61b53ebf2b31a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac0d064ca5f7b8d21d5f61b53ebf2b31a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___dynamic_models_module.html#struct_dynamic_model_settings">DynamicModelSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___dynamic_models_module.html#gac0d064ca5f7b8d21d5f61b53ebf2b31a">DMDLSettings</a></td></tr>
+<tr class="memdesc:gac0d064ca5f7b8d21d5f61b53ebf2b31a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global dynamic models setting.  <a href="group___dynamic_models_module.html#gac0d064ca5f7b8d21d5f61b53ebf2b31a">More...</a><br/></td></tr>
+<tr class="separator:gac0d064ca5f7b8d21d5f61b53ebf2b31a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Library for dynamic model creation. </p>
-<p><a class="el" href="_dynamic_models_8h.html" title="Library for dynamic model creation.">DynamicModels.h</a> allows you to create new models at runtime. </p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a76601bb57f8ea4927c3f4a5dbc048899"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define D3DXF_FILEFORMAT_BINARY&#160;&#160;&#160;0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Save dynamic models in a binary x format. </p>
-
-</div>
-</div>
-<a class="anchor" id="abbe8b3a7228fc51fe655dcc25a3820d4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define D3DXF_FILEFORMAT_COMPRESSED&#160;&#160;&#160;2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Save dynamic models in a compressed x format. </p>
-
-</div>
-</div>
-<a class="anchor" id="afd674c6193c26a5371ec569fa2d480ba"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define D3DXF_FILEFORMAT_TEXT&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Save dynamic models in a text x format. </p>
-
-</div>
-</div>
-<a class="anchor" id="a23d3c85a98c0823fbd6972919989be17"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DMDL_CLONE_TEX&#160;&#160;&#160;(1&lt;&lt;2)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>DynamicModels System Flag. Clones the textures of a newly created entity from the original ones. </p>
-
-</div>
-</div>
-<a class="anchor" id="af22f8f9173293fd484bfa46a8f15d7e7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DMDL_FIXNORMALS&#160;&#160;&#160;(1&lt;&lt;0)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>DynamicModels System Flag. Activates normal fixing when creating the mesh. Normals will be smoothed out and calculated correctly for each vertex. </p>
-
-</div>
-</div>
-<a class="anchor" id="a0c40cc986afe47a8b3eb94324417b957"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DMDL_MAX_INDEXCOUNT&#160;&#160;&#160;128000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Maximum index count of a dynamic model. </p>
-
-</div>
-</div>
-<a class="anchor" id="a0b02eb1c8a69f990b0458d8b208d0521"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DMDL_MAX_VERTEXCOUNT&#160;&#160;&#160;65536</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Maximum vertex count of a dynamic model. </p>
-
-</div>
-</div>
-<a class="anchor" id="a9b9c1b4f30d4cefd002de48ceba491d8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DMDL_OPTIMIZE&#160;&#160;&#160;(1&lt;&lt;1)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>DynamicModels System Flag. Activates mesh optimizations when creating the mesh. Vertices will be welded if they are close together and enables a smoother lighting and faster rendering. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ab990cfa6c0aa4359d1b8b0670621b61a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void dmdl_add_entity </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td>
-          <td class="paramname"><em>ent</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds an existing entity to the dynamic model </p>
-
-</div>
-</div>
-<a class="anchor" id="a1b47669cfd2dced953fa33cdf4748a0d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void dmdl_add_face </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_d_y_n_a_m_i_c___f_a_c_e.html">DYNAMIC_FACE</a> *&#160;</td>
-          <td class="paramname"><em>face</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds a new polygon to the dynamic model </p>
-
-</div>
-</div>
-<a class="anchor" id="a08163574f2b5e313f6a4bb0f3d3e1fde"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void dmdl_add_mesh </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">LPD3DXMESH&#160;</td>
-          <td class="paramname"><em>mesh</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds an existing mesh to the dynamic model </p>
-
-</div>
-</div>
-<a class="anchor" id="a431ebd5fcd37b48a1bc865472e248e9b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void dmdl_add_quad </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_d_y_n_a_m_i_c___q_u_a_d.html">DYNAMIC_QUAD</a> *&#160;</td>
-          <td class="paramname"><em>quad</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds a new quad to the dynamic model </p>
-
-</div>
-</div>
-<a class="anchor" id="a228e30b9727d9d6e88b19b697d281b57"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int dmdl_add_vertex </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>_model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *&#160;</td>
-          <td class="paramname"><em>_v</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds a vertex to a model </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_model</td><td>The model </td></tr>
-    <tr><td class="paramname">_v</td><td>The new vertex </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Index of the new vertex in the vertex buffer </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a5300cc41fe89575ee9d92b91d7871b99"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void dmdl_connect_vertices </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>_model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>_v1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>_v2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>_v3</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Connects 3 vertices to a face </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_model</td><td>The model </td></tr>
-    <tr><td class="paramname">_v1</td><td>First vertex (index) </td></tr>
-    <tr><td class="paramname">_v2</td><td>Second vertex (index) </td></tr>
-    <tr><td class="paramname">_v3</td><td>Third vertex (index) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a435580d6f97e63bb5a97d476fcab1da6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_dynamic_model.html">DynamicModel</a>* dmdl_create </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Creates a new dynamic model </p>
-
-</div>
-</div>
-<a class="anchor" id="adc2870ec7beff08969aa6f7e5d36654c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a>* dmdl_create_instance </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td>
-          <td class="paramname"><em>pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_e_v_e_n_t.html">EVENT</a>&#160;</td>
-          <td class="paramname"><em>act</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Creates a new instance(ENTITY) of the dynamic model </p>
-
-</div>
-</div>
-<a class="anchor" id="aacc1471aa3ce6f1da40f3640344c5a96"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">LPD3DXMESH dmdl_create_mesh </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>model</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Creates a new DirectX mesh for the dynamic model </p>
-
-</div>
-</div>
-<a class="anchor" id="a62ec435844a25e640380e3f06d5195c0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void dmdl_delete </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>model</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Frees the memory allocated by the whole dynamic model </p>
-
-</div>
-</div>
-<a class="anchor" id="ab497feb50e2b5e61747886f045a58b65"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void dmdl_save </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_dynamic_model.html">DynamicModel</a> *&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>filename</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Saves a dynamic model into a DirectX x file </p>
-
-</div>
-</div>
-<a class="anchor" id="a3d911a62c6beeffb53f2b02a41563c5f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int dmdl_vertex_equals </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *&#160;</td>
-          <td class="paramname"><em>v1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_d3_d_v_e_r_t_e_x.html">D3DVERTEX</a> *&#160;</td>
-          <td class="paramname"><em>v2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Returns 0 if the both vertices aren't equal </p>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="ac0d064ca5f7b8d21d5f61b53ebf2b31a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">DynamicModelSettings DMDLSettings</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>All settings of DynamicModels can be setup in this variable </p>
-
-</div>
-</div>
-</div><!-- contents -->
+<div class="textblock"><p>Header of the module to create models at runtime. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 1 2013 16:12:45 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 2 2013 15:50:44 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

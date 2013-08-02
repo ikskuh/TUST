@@ -1,6 +1,24 @@
 #include <acknex.h>
 #include "hitbox.h"
 
+typedef struct HitboxAttachment
+{
+	void getPosition(struct HitboxAttachment *attachment, ENTITY *ent, VECTOR *pos);
+} HitboxAttachment;
+
+typedef struct HitboxVertexAttachment
+{
+	void getPosition(struct HitboxVertexAttachment *attachment, ENTITY *ent, VECTOR *pos);
+	int v1, v2;
+} HitboxVertexAttachment;
+
+typedef struct Hitbox
+{
+	ENTITY *box;
+	HitboxAttachment *start;
+	HitboxAttachment *end;
+} Hitbox;
+
 CharacterShape *charshape_attach(ENTITY *ent)
 {
 	CharacterShape *shape = sys_nxalloc(sizeof(CharacterShape));

@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,193 +88,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">hitbox.h File Reference</div>  </div>
+<div class="title">hitbox.h File Reference<div class="ingroups"><a class="el" href="group___hitboxt_module.html">Hitbox System</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Header of the hitbox module.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="list_8h_source.html">list.h</a>&quot;</code><br/>
-<code>#include &quot;hitbox.c&quot;</code><br/>
+<code>#include &quot;<a class="el" href="hitbox_8c.html">hitbox.c</a>&quot;</code><br/>
 </div>
 <p><a href="hitbox_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:struct_character_shape"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___hitboxt_module.html#struct_character_shape">CharacterShape</a></td></tr>
+<tr class="memdesc:struct_character_shape"><td class="mdescLeft">&#160;</td><td class="mdescRight">The shape of a character.  <a href="group___hitboxt_module.html#struct_character_shape">More...</a><br/></td></tr>
+<tr class="separator:struct_character_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gaead9b69d05ccb05519bc4c3306373ee6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="group___hitboxt_module.html#struct_character_shape">CharacterShape</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___hitboxt_module.html#gaead9b69d05ccb05519bc4c3306373ee6">CharacterShape</a></td></tr>
+<tr class="memdesc:gaead9b69d05ccb05519bc4c3306373ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The shape of a character.  <a href="group___hitboxt_module.html#gaead9b69d05ccb05519bc4c3306373ee6">More...</a><br/></td></tr>
+<tr class="separator:gaead9b69d05ccb05519bc4c3306373ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9b2f840cb9c905c2e146e961b7859e0c"><td class="memItemLeft" align="right" valign="top">CharacterShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hitbox_8h.html#a9b2f840cb9c905c2e146e961b7859e0c">charshape_attach</a> (<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent)</td></tr>
-<tr class="separator:a9b2f840cb9c905c2e146e961b7859e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94e4521fab29b885687355536c6ee343"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hitbox_8h.html#a94e4521fab29b885687355536c6ee343">charshape_update</a> (CharacterShape *shape)</td></tr>
-<tr class="separator:a94e4521fab29b885687355536c6ee343"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90853f4ee5cf1074c30e6f6d6be127ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hitbox_8h.html#a90853f4ee5cf1074c30e6f6d6be127ae">charshape_add</a> (CharacterShape *shape, <a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *model, int vertexStart, int vertexEnd)</td></tr>
-<tr class="separator:a90853f4ee5cf1074c30e6f6d6be127ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2273bdc33bb3ce0d6e69a2aad76bca8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hitbox_8h.html#ae2273bdc33bb3ce0d6e69a2aad76bca8">charshape_add</a> (CharacterShape *shape, <a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *model, int vertexStartA, int vertexStartB, int vertexEndA, int vertexEndB)</td></tr>
-<tr class="separator:ae2273bdc33bb3ce0d6e69a2aad76bca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b2f840cb9c905c2e146e961b7859e0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___hitboxt_module.html#struct_character_shape">CharacterShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___hitboxt_module.html#ga9b2f840cb9c905c2e146e961b7859e0c">charshape_attach</a> (<a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *ent)</td></tr>
+<tr class="memdesc:ga9b2f840cb9c905c2e146e961b7859e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attaches an character shape to an entity.  <a href="group___hitboxt_module.html#ga9b2f840cb9c905c2e146e961b7859e0c">More...</a><br/></td></tr>
+<tr class="separator:ga9b2f840cb9c905c2e146e961b7859e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga94e4521fab29b885687355536c6ee343"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___hitboxt_module.html#ga94e4521fab29b885687355536c6ee343">charshape_update</a> (<a class="el" href="group___hitboxt_module.html#struct_character_shape">CharacterShape</a> *shape)</td></tr>
+<tr class="memdesc:ga94e4521fab29b885687355536c6ee343"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates an character shape and all hitbox positions.  <a href="group___hitboxt_module.html#ga94e4521fab29b885687355536c6ee343">More...</a><br/></td></tr>
+<tr class="separator:ga94e4521fab29b885687355536c6ee343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga90853f4ee5cf1074c30e6f6d6be127ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___hitboxt_module.html#ga90853f4ee5cf1074c30e6f6d6be127ae">charshape_add</a> (<a class="el" href="group___hitboxt_module.html#struct_character_shape">CharacterShape</a> *shape, <a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *model, int vertexStart, int vertexEnd)</td></tr>
+<tr class="memdesc:ga90853f4ee5cf1074c30e6f6d6be127ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new hitbox to the character shape.  <a href="group___hitboxt_module.html#ga90853f4ee5cf1074c30e6f6d6be127ae">More...</a><br/></td></tr>
+<tr class="separator:ga90853f4ee5cf1074c30e6f6d6be127ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2273bdc33bb3ce0d6e69a2aad76bca8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___hitboxt_module.html#gae2273bdc33bb3ce0d6e69a2aad76bca8">charshape_add</a> (<a class="el" href="group___hitboxt_module.html#struct_character_shape">CharacterShape</a> *shape, <a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *model, int vertexStartA, int vertexStartB, int vertexEndA, int vertexEndB)</td></tr>
+<tr class="memdesc:gae2273bdc33bb3ce0d6e69a2aad76bca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new hitbox to the character shape.  <a href="group___hitboxt_module.html#gae2273bdc33bb3ce0d6e69a2aad76bca8">More...</a><br/></td></tr>
+<tr class="separator:gae2273bdc33bb3ce0d6e69a2aad76bca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Simple hitbox system for bones and vertex attachments </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a90853f4ee5cf1074c30e6f6d6be127ae"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a>* charshape_add </td>
-          <td>(</td>
-          <td class="paramtype">CharacterShape *&#160;</td>
-          <td class="paramname"><em>shape</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vertexStart</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vertexEnd</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds a new hitbox to the character shape. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">shape</td><td>The character shape where the hitbox should be added. </td></tr>
-    <tr><td class="paramname">model</td><td>The hitbox model. </td></tr>
-    <tr><td class="paramname">vertexStart</td><td>The vertex where the hitbox begins. </td></tr>
-    <tr><td class="paramname">vertexEnd</td><td>The vertex where the hitbox ends. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The entity of the hitbox. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae2273bdc33bb3ce0d6e69a2aad76bca8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a>* charshape_add </td>
-          <td>(</td>
-          <td class="paramtype">CharacterShape *&#160;</td>
-          <td class="paramname"><em>shape</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *&#160;</td>
-          <td class="paramname"><em>model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vertexStartA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vertexStartB</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vertexEndA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>vertexEndB</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds a new hitbox to the character shape. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">shape</td><td>The character shape where the hitbox should be added. </td></tr>
-    <tr><td class="paramname">model</td><td>The hitbox model. </td></tr>
-    <tr><td class="paramname">vertexStartA</td><td>The first vertex where the hitbox begins. The resulting position is exactly between the two start vertices. </td></tr>
-    <tr><td class="paramname">vertexStartB</td><td>The second vertex where the hitbox begins. The resulting position is exactly between the two start vertices. </td></tr>
-    <tr><td class="paramname">vertexEndA</td><td>The first vertex where the hitbox ends. The resulting position is exactly between the two end vertices. </td></tr>
-    <tr><td class="paramname">vertexEndB</td><td>The second vertex where the hitbox ends. The resulting position is exactly between the two end vertices. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The entity of the hitbox. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a9b2f840cb9c905c2e146e961b7859e0c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CharacterShape* charshape_attach </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_e_n_t_i_t_y.html">ENTITY</a> *&#160;</td>
-          <td class="paramname"><em>ent</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Attaches an character shape to an entity. A character shape is a container for hitboxes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ent</td><td>The entity where the character shape should be attached. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The created character shape. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a94e4521fab29b885687355536c6ee343"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void charshape_update </td>
-          <td>(</td>
-          <td class="paramtype">CharacterShape *&#160;</td>
-          <td class="paramname"><em>shape</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Updates an character shape and all hitbox positions. Needs to be called periodically. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">shape</td><td>The character shape to be updated. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-</div><!-- contents -->
+<div class="textblock"><p>Header of the hitbox module. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 1 2013 16:12:45 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 2 2013 15:50:44 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

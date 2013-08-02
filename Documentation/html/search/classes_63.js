@@ -1,17 +1,7 @@
 var searchData=
 [
   ['cct',['CCT',['../struct_c_c_t.html',1,'']]],
-  ['cimg',['CImg',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
-  ['cimg_3c_20chart_20_3e',['CImg&lt; charT &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
-  ['cimg_3c_20doublet_20_3e',['CImg&lt; doubleT &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
-  ['cimg_3c_20floatt_20_3e',['CImg&lt; floatT &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
-  ['cimg_3c_20tdouble_20_3e',['CImg&lt; Tdouble &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
-  ['cimg_3c_20uintt_20_3e',['CImg&lt; uintT &gt;',['../structcimg__library__suffixed_1_1_c_img.html',1,'cimg_library_suffixed']]],
-  ['cimgdisplay',['CImgDisplay',['../structcimg__library__suffixed_1_1_c_img_display.html',1,'cimg_library_suffixed']]],
-  ['cimgexception',['CImgException',['../structcimg__library__suffixed_1_1_c_img_exception.html',1,'cimg_library_suffixed']]],
-  ['cimglist',['CImgList',['../structcimg__library__suffixed_1_1_c_img_list.html',1,'cimg_library_suffixed']]],
-  ['cimglist_3c_20chart_20_3e',['CImgList&lt; charT &gt;',['../structcimg__library__suffixed_1_1_c_img_list.html',1,'cimg_library_suffixed']]],
-  ['cimglist_3c_20uintt_20_3e',['CImgList&lt; uintT &gt;',['../structcimg__library__suffixed_1_1_c_img_list.html',1,'cimg_library_suffixed']]],
+  ['charactershape',['CharacterShape',['../group___hitboxt_module.html#struct_character_shape',1,'']]],
   ['cllist',['CLLIST',['../struct_c_l_l_i_s_t.html',1,'']]],
   ['cltext',['CLTEXT',['../struct_c_l_t_e_x_t.html',1,'']]],
   ['cmstyle',['CMStyle',['../group___compact_menu_module.html#struct_c_m_style',1,'']]],

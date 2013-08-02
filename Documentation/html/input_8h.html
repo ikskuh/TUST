@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,241 +90,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">input.h File Reference</div>  </div>
+<div class="title">input.h File Reference<div class="ingroups"><a class="el" href="group___input_module.html">Input Manager</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;input.c&quot;</code><br/>
+
+<p>Header of the input manager module.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="input_8c.html">input.c</a>&quot;</code><br/>
 </div>
 <p><a href="input_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a002df33f6298c53d5ab3892e473bcbde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8h.html#a002df33f6298c53d5ab3892e473bcbde">input_init</a> (void)</td></tr>
-<tr class="separator:a002df33f6298c53d5ab3892e473bcbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5657f606d2829831a634243d6dfaa433"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8h.html#a5657f606d2829831a634243d6dfaa433">input_update</a> (void)</td></tr>
-<tr class="separator:a5657f606d2829831a634243d6dfaa433"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab89911d06b08f6e19fef2bf856fe9f62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8h.html#ab89911d06b08f6e19fef2bf856fe9f62">input_set_button</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name, int key)</td></tr>
-<tr class="separator:ab89911d06b08f6e19fef2bf856fe9f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07df8b1b101b7a1f72ab81f6c6f98ab0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8h.html#a07df8b1b101b7a1f72ab81f6c6f98ab0">input_set_buttons</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name, int keyInc, int keyDec)</td></tr>
-<tr class="separator:a07df8b1b101b7a1f72ab81f6c6f98ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a245b96a920954e947aeae99cf53e0603"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8h.html#a245b96a920954e947aeae99cf53e0603">input_set_axis</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name, var *axis, var scale, var deadzone)</td></tr>
-<tr class="separator:a245b96a920954e947aeae99cf53e0603"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a910e17ec9529636f7a343fc9bc8411d9"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8h.html#a910e17ec9529636f7a343fc9bc8411d9">input_get</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name)</td></tr>
-<tr class="separator:a910e17ec9529636f7a343fc9bc8411d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8c77d78564da214df616511a7c65999"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8h.html#ae8c77d78564da214df616511a7c65999">input_hit</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name)</td></tr>
-<tr class="separator:ae8c77d78564da214df616511a7c65999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga002df33f6298c53d5ab3892e473bcbde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga002df33f6298c53d5ab3892e473bcbde"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___input_module.html#ga002df33f6298c53d5ab3892e473bcbde">input_init</a> (void)</td></tr>
+<tr class="memdesc:ga002df33f6298c53d5ab3892e473bcbde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the input system. <br/></td></tr>
+<tr class="separator:ga002df33f6298c53d5ab3892e473bcbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5657f606d2829831a634243d6dfaa433"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___input_module.html#ga5657f606d2829831a634243d6dfaa433">input_update</a> (void)</td></tr>
+<tr class="memdesc:ga5657f606d2829831a634243d6dfaa433"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all input values.  <a href="group___input_module.html#ga5657f606d2829831a634243d6dfaa433">More...</a><br/></td></tr>
+<tr class="separator:ga5657f606d2829831a634243d6dfaa433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab89911d06b08f6e19fef2bf856fe9f62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___input_module.html#gab89911d06b08f6e19fef2bf856fe9f62">input_set_button</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name, int key)</td></tr>
+<tr class="memdesc:gab89911d06b08f6e19fef2bf856fe9f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a button to an input value.  <a href="group___input_module.html#gab89911d06b08f6e19fef2bf856fe9f62">More...</a><br/></td></tr>
+<tr class="separator:gab89911d06b08f6e19fef2bf856fe9f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga07df8b1b101b7a1f72ab81f6c6f98ab0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___input_module.html#ga07df8b1b101b7a1f72ab81f6c6f98ab0">input_set_buttons</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name, int keyInc, int keyDec)</td></tr>
+<tr class="memdesc:ga07df8b1b101b7a1f72ab81f6c6f98ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a button pair to an input value.  <a href="group___input_module.html#ga07df8b1b101b7a1f72ab81f6c6f98ab0">More...</a><br/></td></tr>
+<tr class="separator:ga07df8b1b101b7a1f72ab81f6c6f98ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga245b96a920954e947aeae99cf53e0603"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___input_module.html#ga245b96a920954e947aeae99cf53e0603">input_set_axis</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name, var *axis, var scale, var deadzone)</td></tr>
+<tr class="memdesc:ga245b96a920954e947aeae99cf53e0603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a axis to an input value.  <a href="group___input_module.html#ga245b96a920954e947aeae99cf53e0603">More...</a><br/></td></tr>
+<tr class="separator:ga245b96a920954e947aeae99cf53e0603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga910e17ec9529636f7a343fc9bc8411d9"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___input_module.html#ga910e17ec9529636f7a343fc9bc8411d9">input_get</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name)</td></tr>
+<tr class="memdesc:ga910e17ec9529636f7a343fc9bc8411d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the value of an input.  <a href="group___input_module.html#ga910e17ec9529636f7a343fc9bc8411d9">More...</a><br/></td></tr>
+<tr class="separator:ga910e17ec9529636f7a343fc9bc8411d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae8c77d78564da214df616511a7c65999"><td class="memItemLeft" align="right" valign="top">var&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___input_module.html#gae8c77d78564da214df616511a7c65999">input_hit</a> (<a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *name)</td></tr>
+<tr class="memdesc:gae8c77d78564da214df616511a7c65999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the hit value of an input.  <a href="group___input_module.html#gae8c77d78564da214df616511a7c65999">More...</a><br/></td></tr>
+<tr class="separator:gae8c77d78564da214df616511a7c65999"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides a simple input manager. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a910e17ec9529636f7a343fc9bc8411d9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">var input_get </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Gets the value of an input. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The name of the input value. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Value of the input. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae8c77d78564da214df616511a7c65999"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">var input_hit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Gets the hit value of an input. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The name of the input value. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if the input value was unchanged or 0 in the last frame, else not 0. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a002df33f6298c53d5ab3892e473bcbde"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void input_init </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Initializes the input system. </p>
-
-</div>
-</div>
-<a class="anchor" id="a245b96a920954e947aeae99cf53e0603"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void input_set_axis </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">var *&#160;</td>
-          <td class="paramname"><em>axis</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">var&#160;</td>
-          <td class="paramname"><em>scale</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">var&#160;</td>
-          <td class="paramname"><em>deadzone</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds a axis to an input value. The value of the axis gets scaled by scale and deadzone is substracted to get a better input feeling. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">axis</td><td>A pointer to a global variable that contains the axis value (eg. key_force.y, joy_force.z, mouse_force.x) </td></tr>
-    <tr><td class="paramname">scale</td><td>The scale applied to the axis value. Allows you to adjust the axis to your needs. </td></tr>
-    <tr><td class="paramname">deadzone</td><td>A deadzone value. If the magnitute of axis is below deadzone, the input value will be 0. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ab89911d06b08f6e19fef2bf856fe9f62"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void input_set_button </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>key</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds a button to an input value. If the button is pressed, the value of the input get's increased by one. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The name of the input value. </td></tr>
-    <tr><td class="paramname">key</td><td>The scan code of the key. Can be obtained by using key_for_str or from the key mapping table in the gamestudio manual. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a07df8b1b101b7a1f72ab81f6c6f98ab0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void input_set_buttons </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_s_t_r_i_n_g.html">STRING</a> *&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>keyInc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>keyDec</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Adds a button pair to an input value. If the increasing button is pressed, the value of the input get's increased by one. If the decreasing button is pressed, the value of the input get's decreased by one. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The name of the input value. </td></tr>
-    <tr><td class="paramname">keyInc</td><td>The scan code of increasing the key. Can be obtained by using key_for_str or from the key mapping table in the gamestudio manual. </td></tr>
-    <tr><td class="paramname">keyDec</td><td>The scan code of decreasing the key. Can be obtained by using key_for_str or from the key mapping table in the gamestudio manual. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a5657f606d2829831a634243d6dfaa433"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void input_update </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Updates all input values. You need to call this function every frame to get updated input. </p>
-
-</div>
-</div>
-</div><!-- contents -->
+<div class="textblock"><p>Header of the input manager module. </p>
+<p>Provides a simple input manager.</p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Aug 1 2013 16:12:45 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 2 2013 15:50:44 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

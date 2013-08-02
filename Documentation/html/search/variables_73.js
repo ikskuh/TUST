@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['skin',['skin',['../struct_dynamic_model.html#a4e826e115f70652d808681c3abeea184',1,'DynamicModel']]]
+  ['skin',['skin',['../group___dynamic_models_module.html#ga4e826e115f70652d808681c3abeea184',1,'DynamicModel']]]
 ];

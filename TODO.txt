@@ -54,7 +54,7 @@ o Generic Script Library
 			o Actions?
 		o Variables
 	o Character Movement Code 
-		o PhysX
+		x PhysX (MasterQ32, 3run)
 		o c_move
 		o no collisionm, just gravity
 	o Pathfinding
