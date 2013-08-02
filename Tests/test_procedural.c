@@ -82,13 +82,6 @@ void create_small_streets()
 	street_addpos(editorStreet, vector(-100,200,0));
 	street_addpos(editorStreet, vector(-350,200,0));
 	street_addpos(editorStreet, vector(100,200,0));
-	
-
-	/*street_addpos(editorStreet, vector(-200,-200,0));
-	street_addpos(editorStreet, vector(-100,-200,0));
-	street_addpos(editorStreet, vector(   0,-100,0));
-	street_addpos(editorStreet, vector( 100,   0,0));
-	street_addpos(editorStreet, vector( 200,   0,0));*/
 
 	// "Draw" streets
 	ENTITY *street = street_build(editorStreet, bmapStreetTexture, false, 0.01);
@@ -442,9 +435,4 @@ void main() {
 	//create_small_streets();
 	//create_intersections();
 	create_random_streets();
-	
-	/*ENTITY* e1 = ent_create(CUBE_MDL, vector(200,0,0), NULL);
-	VECTOR* v1Temp = vector(0,0,0);
-	vec_for_vertex(v1Temp, e1, 0);
-	printf("%.2f %.2f %.2f", (double)v1Temp->x,(double)v1Temp->y,(double)v1Temp->z);*/
 }
