@@ -2,17 +2,23 @@
 #define _HITBOX_H_
 
 #include "list.h"
-
-/**
  
- * Simple hitbox system for bones and vertex attachments
+/**
+ * \defgroup  HitboxSampleModule Hitbox System Example
+ * \ingroup   ExampleModule
+ * A small example for the hitbox system.
+ *
+ * \{
+ * \include hitbox.c
+ * \}
  */
  
  /**
- * \defgroup  HitboxtModule Hitbox System
+ * \defgroup  HitboxModule Hitbox System
  * \ingroup   GenericScriptLibrary
  * \brief     Provides functions to create a simplified shape for a character hitbox.
  *
+ * Simple hitbox system for bones and vertex attachments
  * \{
  *
  * \file hitbox.h

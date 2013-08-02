@@ -1,8 +1,8 @@
 #include <acknex.h>
 #include <default.c>
 
-#include "..\\..\\Source\\tust.h"
-#include "..\\..\\Source\\hitbox.h"
+#include "..\\Source\\tust.h"
+#include "..\\Source\\hitbox.h"
 
 // Small function to show a hitbox half transparent
 void debug_box(ENTITY *box)
@@ -51,6 +51,6 @@ action soldier()
 function main()
 {
 	level_load(NULL);
-	you = ent_create("../../Ressources/Models/Characters/soldier.mdl", vector(128, 0, 0), soldier);
+	you = ent_create("../Ressources/Models/Characters/soldier.mdl", vector(128, 0, 0), soldier);
 	you.pan = 180; // Rotate towards the camera.
 }

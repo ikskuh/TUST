@@ -106,8 +106,7 @@ action player_func()
 /*
 // Init
 int swordDrawn = 0;
-ENTITY *sword = ent_create("katana.mdl", vector(0, 0, 0), NULL); // Create a katana
-vec_fill(&sword->scale_x, 0.05);
+
 //attach_entity(sword, me, vector(-6, -4, 24), vector(0, 0, 20));
 //attach_entity_to_vertex(sword, me, 158, vector(-2, -4, 4), vector(0, -5, 15));
 
@@ -118,7 +117,7 @@ if(input_hit("draw"))
 if(swordDrawn) // Attach sword to hand
 	attach_entity_to_vertices(sword, me, 7, 8, vector(0, 0, 0), vector(0, -90, 0));
 else // Attach sword to backpack
-	attach_entity_to_vertices(sword, me, 158, 157, vector(-2, -4, 4), vector(0, 90, 0));
+	
 */
 
 function main()

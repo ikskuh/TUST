@@ -62,6 +62,9 @@
  * \defgroup GenericScriptLibrary Generic Script Library
  * \brief Generic script library
  *
+ * \defgroup ExampleModule Examples
+ * \brief Small examples that show the usage of the modules.
+ *
  * \defgroup GameTemplates Game Templates
  * \brief Game template sets
  *

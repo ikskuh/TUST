@@ -2,6 +2,16 @@
 #define _ATTACHMENT_H_
 
 /**
+ * \defgroup  AttachmentSampleModule Attachment Example
+ * \ingroup   ExampleModule
+ * A small example for the attachment system.
+ *
+ * \{
+ * \include attachment.c
+ * \}
+ */
+
+/**
  * \defgroup  AttachmentModule Attachments
  * \ingroup   GenericScriptLibrary
  * \brief     Provides functions to attach entities to other entities
