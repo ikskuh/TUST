@@ -26,6 +26,14 @@
  * \brief Code of the animation module.
  */
 
+
+typedef struct Animation
+{
+	char scene[100];
+	var speed;
+	int isLooped;
+} Animation;
+
 /**
  * \struct Animator
  * \brief Entity animation controller

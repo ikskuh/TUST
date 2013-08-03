@@ -2,13 +2,6 @@
 #include <stdio.h>
 #include "animator.h"
 
-typedef struct Animation
-{
-	char scene[100];
-	var speed;
-	int isLooped;
-} Animation;
-
 Animator *animator_attach(ENTITY *ent, int animations)
 {
 	if(ent == NULL) return NULL;
