@@ -290,6 +290,14 @@ VECTOR *vec_to_bezier(VECTOR *pos, VECTOR *points, int count, float p);
  */
 VECTOR *vec_to_catmull(VECTOR *pos, VECTOR *v0, VECTOR *v1, VECTOR *v2, VECTOR *v3, float s);
 
+/**
+ * Compares 2 float values with a precision of %.2f
+ * \param	_f1         First float
+ * \param   _f2         Second float
+ * \return	            "1" if _f1 > _f2, "-1" if _f2 > _f1, "0" if _f1 == _f2
+ */
+int float_cmp(float _f1, float _f2);
+
 #include "math.c"
 
 #endif

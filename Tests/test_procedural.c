@@ -142,8 +142,9 @@ void main() {
 	vec_set(camera.x, vector(-11, -500, 228));
 	vec_set(camera.pan, vector(87, -28, 0));
 	List* intersections = list_create();
-	//roadnetwork_from_voronoi(intersections, 40, -1000, -1000, 1000, 1000);
-	roadnetwork_from_quadtree(intersections, -1000, -1000, 1000, 1000, 300);
+	roadnetwork_from_voronoi(intersections, 40, -1000, -1000, 1000, 1000);
+	//roadnetwork_from_rectangle(intersections, -1000, -1000, 1000, 1000, 500);
+	
 	printf("intersections %i", (long)list_get_count(intersections));
 	roadnetwork_build(intersections);
 	//draw_voronoi();

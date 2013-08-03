@@ -141,15 +141,16 @@ List *roadnetwork_from_voronoi(List *_intersections, int _pointCount, int _minX,
 
 
 /**
- * Generate a random road network using a quadtree
+ * Generate a random road network using a rectangular algorithm
  * \param   _intersections  Target list
  * \param   _minX           Min x value of the network borders.
  * \param   _minY           Min y value of the network borders.
  * \param   _maxX           Max x value of the network borders.
  * \param   _maxY           Max y value of the network borders.
+ * \param   _dist           Distance of the squares
  * \return                  Pointer to _intersections
  */
-List *roadnetwork_from_quadtree(List *_intersections, int _minX, int _minY, int _maxX, int _maxY, int _depth);
+List *roadnetwork_from_rectangle(List *_intersections, int _minX, int _minY, int _maxX, int _maxY, int _dist);
 
 
 /**

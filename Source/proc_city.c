@@ -120,6 +120,28 @@ float optimal_intersection_rotation(Intersection* _inter) {
 			return ic->incomingAngle->pan;
 		break;
 		case 3:
+			IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_inter->incomingConnections, 0);
+			IntersectionConnection *ic2 = (IntersectionConnection*)list_item_at(_inter->incomingConnections, 1);
+			IntersectionConnection *ic3 = (IntersectionConnection*)list_item_at(_inter->incomingConnections, 2);
+		
+			if (ic1->incomingAngle->pan >= ic2->incomingAngle->pan + 180) {
+				// Reconnect endings
+				int tempId = ic1->id;
+				ic1->id = ic2->id;
+				ic2->id = ic3->id;
+				ic3->id = tempId;
+				return ic1->incomingAngle->pan;
+			}
+			if (ic2->incomingAngle->pan >= ic3->incomingAngle->pan + 180) {
+				// Reconnect endings
+				int tempId = ic3->id;
+				ic3->id = ic2->id;
+				ic2->id = ic1->id;
+				ic1->id = tempId;					
+				return ic2->incomingAngle->pan;
+			}
+			return ic3->incomingAngle->pan;
+		break;
 		case 4:
 		
 			int j,k,tempPan, resultPan;
@@ -382,24 +404,18 @@ ENTITY *build_intersection(Intersection *_intersection)
 				IntersectionConnection *ic3 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 2);
 				
 				ic1->pos            = sys_malloc(sizeof(VECTOR));
-				//ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				//ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic2->pos            = sys_malloc(sizeof(VECTOR));
-				//ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				//ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic3->pos            = sys_malloc(sizeof(VECTOR));
-				//ic3->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				//ic3->rightVertexPos = sys_malloc(sizeof(VECTOR));							
 				vec_set(ic1->pos, vector(30,0,0));
 				ic1->leftVertex  = 8;
 				ic1->rightVertex = 7;
-				
 				vec_set(ic2->pos, vector(0,0,-30));
 				ic2->leftVertex  = 10;
 				ic2->rightVertex = 9;				
 				vec_set(ic3->pos, vector(-30,0,0));
 				ic3->leftVertex  = 1;
 				ic3->rightVertex = 3;				
+				
 			}
 			model->skin[0] = bmapStreetIntersection3;
 			
@@ -446,30 +462,21 @@ ENTITY *build_intersection(Intersection *_intersection)
 				IntersectionConnection *ic4 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, 3);
 				
 				ic1->pos            = sys_malloc(sizeof(VECTOR));
-				//ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				//ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic2->pos            = sys_malloc(sizeof(VECTOR));
-				//ic2->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				//ic2->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic3->pos            = sys_malloc(sizeof(VECTOR));
-				//ic3->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				//ic3->rightVertexPos = sys_malloc(sizeof(VECTOR));
 				ic4->pos            = sys_malloc(sizeof(VECTOR));
-				//ic4->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-				//ic4->rightVertexPos = sys_malloc(sizeof(VECTOR));												
-				vec_set(ic1->pos, vector(30,0,0));
-				ic1->leftVertex  = 8;
-				ic1->rightVertex = 7;
-				
-				vec_set(ic2->pos, vector(0,0,30));
-				ic2->leftVertex  = 10;
-				ic2->rightVertex = 9;				
-				vec_set(ic3->pos, vector(-30,0,0)); // Todo left right may be wrong
-				ic3->leftVertex  = 12;
-				ic3->rightVertex = 11;
-				vec_set(ic4->pos, vector(0,0,-30));
+				vec_set(ic4->pos, vector(-30,0,0));
 				ic4->leftVertex  = 1;
-				ic4->rightVertex = 3;								
+				ic4->rightVertex = 3;
+				vec_set(ic3->pos, vector(0,0,-30));
+				ic3->leftVertex  = 12;
+				ic3->rightVertex = 11;				
+				vec_set(ic2->pos, vector(30,0,0)); // Todo left right may be wrong
+				ic2->leftVertex  = 8;
+				ic2->rightVertex = 7;
+				vec_set(ic1->pos, vector(0,0,30));
+				ic1->leftVertex  = 9;
+				ic1->rightVertex = 10;								
 			}		
 			model->skin[0] = bmapStreetIntersection4;
 			
@@ -546,8 +553,6 @@ ENTITY *build_intersection(Intersection *_intersection)
 				for(i=1; i<vNumConnections; i++) {
 					IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, i-1);
 					ic1->pos            = sys_malloc(sizeof(VECTOR));
-					//ic1->leftVertexPos  = sys_malloc(sizeof(VECTOR));
-					//ic1->rightVertexPos = sys_malloc(sizeof(VECTOR));
 					
 					// Calculate new vertex position
 					double fAngle = i / vNumConnections * 2 * PI;
@@ -558,7 +563,6 @@ ENTITY *build_intersection(Intersection *_intersection)
 					D3DVERTEX *v2  = create_vertex(vNewX, 0, vNewY, 0, 1, 0, vNewUVX,   vNewUVY);
 					iNewVertex  = dmdl_add_vertex(model, v2);
 					
-					//vec_set(ic1->pos, vector(vNewX,0,vNewY));
 					vec_lerp(ic1->pos, vector(vNewX, 0, vNewY), vector(vOldX, 0, vOldY), 0.5);
 					ic1->leftVertex  = iLastVertex;
 					ic1->rightVertex = iNewVertex;
@@ -787,42 +791,12 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGrou
 }
 
 
-void _roadnetwork_add_quadtree(List *_points, int *_minX, int *_minY, int *_maxX, int *_maxY, int _depth) {
-
-	//printf("minX: %.2f maxX: %.2f minY: %.2f maxY: %.2f", (double)(*_minX), (double)(*_maxX), (double)(*_minY), (double)(*_maxY));
-	
-	if (((*_maxX - *_minX) > _depth) && ((*_maxY - *_minY) > _depth)) {
-
-		// Allocate memory for list
-		int *fMiddleX = sys_malloc(sizeof(int));
-		int *fMiddleY = sys_malloc(sizeof(int));
-		
-		*fMiddleX = (*_minX + *_maxX) / 2;
-		*fMiddleY = (*_minY + *_maxY) / 2;
-		
-		// New horizontal lines
-		list_add(_points, _minX); list_add(_points, fMiddleY); list_add(_points, fMiddleX); list_add(_points, fMiddleY);
-		_roadnetwork_add_quadtree(_points, _minX, _minY, fMiddleX, fMiddleY, _depth);
-		
-		list_add(_points, fMiddleX); list_add(_points, fMiddleY); list_add(_points, _maxX); list_add(_points, fMiddleY);
-		_roadnetwork_add_quadtree(_points, fMiddleX, _minY, _maxX, fMiddleY, _depth);
-				
-		// New vertical lines
-		list_add(_points, fMiddleX); list_add(_points, _minY); list_add(_points, fMiddleX); list_add(_points, fMiddleY);
-		_roadnetwork_add_quadtree(_points, _minX, fMiddleY, fMiddleX, _maxY, _depth);
-		
-		list_add(_points, fMiddleX); list_add(_points, fMiddleY); list_add(_points, fMiddleX); list_add(_points, fMiddleY);
-		_roadnetwork_add_quadtree(_points, fMiddleX, fMiddleY, _maxX, _maxY, _depth);
-	}
-	return _points;
-}
-
-List *roadnetwork_from_quadtree(List *_intersections, int _minX, int _minY, int _maxX, int _maxY, int _depth) {
+List *roadnetwork_from_rectangle(List *_intersections, int _minX, int _minY, int _maxX, int _maxY, int _dist) {
 
 	int i,j;
 	BOOL bFoundOne = false;
 	BOOL bFoundTwo = false;
-	int *x1, *y1, *x2, *y2; // , x3, y3, x4, y4;
+	float *x1, *y1, *x2, *y2;
 	int nIncomingStreets = 0;	
 	
 	List *points = list_create();
@@ -831,26 +805,40 @@ List *roadnetwork_from_quadtree(List *_intersections, int _minX, int _minY, int 
 	if (intersections == NULL) {
 		intersections = list_create();
 	}
+	
+	for(i=_minX; i<=_maxX; i +=_dist) {
+		for(j=_minY; j<_maxY; j +=_dist) {
+			// Horizontal streets
+			float *fCurrentMinX_H = sys_malloc(sizeof(float));
+			float *fCurrentMinY_H = sys_malloc(sizeof(float));
+			float *fCurrentMaxX_H = sys_malloc(sizeof(float));
+			float *fCurrentMaxY_H = sys_malloc(sizeof(float));
+			
+			*fCurrentMinX_H = j;
+			*fCurrentMaxX_H = j + _dist;
+			*fCurrentMinY_H = i;
+			*fCurrentMaxY_H = i;
+			list_add(points, fCurrentMinX_H); list_add(points, fCurrentMinY_H); list_add(points, fCurrentMaxX_H); list_add(points, fCurrentMaxY_H);
+		}
+	}
+	
+	for(i=_minX; i<=_maxX; i +=_dist) {
+		for(j=_minY; j<_maxY; j +=_dist) {
+		
+			// Vertical streets
+			float *fCurrentMinX_V = sys_malloc(sizeof(float));
+			float *fCurrentMinY_V = sys_malloc(sizeof(float));
+			float *fCurrentMaxX_V = sys_malloc(sizeof(float));
+			float *fCurrentMaxY_V = sys_malloc(sizeof(float));
+			
+			*fCurrentMinX_V = i;
+			*fCurrentMaxX_V = i;			
+			*fCurrentMinY_V = j;
+			*fCurrentMaxY_V = j + _dist;
+			list_add(points, fCurrentMinX_V); list_add(points, fCurrentMinY_V); list_add(points, fCurrentMaxX_V); list_add(points, fCurrentMaxY_V);
+		}
+	}
 
-	// Add the border as streets
-	int *fMinX = sys_malloc(sizeof(int));
-	int *fMinY = sys_malloc(sizeof(int));
-	int *fMaxX = sys_malloc(sizeof(int));
-	int *fMaxY = sys_malloc(sizeof(int));
-	
-	*fMinX = _minX;
-	*fMinY = _minY;
-	*fMaxX = _maxX;
-	*fMaxY = _maxY;
-	
-	// Border	
-	list_add(points, fMinX); list_add(points, fMinY); list_add(points, fMaxX); list_add(points, fMinY);
-	list_add(points, fMaxX); list_add(points, fMinY); list_add(points, fMaxX); list_add(points, fMaxY);
-	list_add(points, fMaxX); list_add(points, fMaxY); list_add(points, fMinX); list_add(points, fMaxY);
-	list_add(points, fMinX); list_add(points, fMaxY); list_add(points, fMinX); list_add(points, fMinY);
-	
-	// Then subdivide
-	_roadnetwork_add_quadtree(points, fMinX, fMinY, fMaxX, fMaxY, _depth);
 	
 	printf("Points %i", list_get_count(points));
 	// Read streets
@@ -865,7 +853,7 @@ List *roadnetwork_from_quadtree(List *_intersections, int _minX, int _minY, int 
 		y2 = list_item_at(points, i+3);
 		
 		// There could be roads with the start==end; ignore them!
-		if ((x1 == x2) && (y1 == y2)) {
+		if ((float_cmp(*x1,*x2) == 0) && (float_cmp(*y1,*y2) == 0)) {
 			i +=4;
 			continue;
 		}
@@ -880,7 +868,7 @@ List *roadnetwork_from_quadtree(List *_intersections, int _minX, int _minY, int 
 			Intersection *tempInter = list_item_at(intersections, j);
 			
 			// Found an intersection at a known point (1st end)
-			if ((integer(tempInter->pos->x) == integer(*x1)) && (integer(tempInter->pos->z) == integer(*y1))) {
+			if ((float_cmp(tempInter->pos->x,*x1) == 0) && (float_cmp(tempInter->pos->z,*y1) == 0)) {
 				bFoundOne = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
@@ -925,7 +913,7 @@ List *roadnetwork_from_quadtree(List *_intersections, int _minX, int _minY, int 
 		for (j=0; j<list_get_count(intersections); j++) {
 		
 			Intersection *tempInter = list_item_at(intersections, j);
-			if ((integer(tempInter->pos->x) == integer(*x2)) && (integer(tempInter->pos->z) == integer(*y2))) {
+				if ((float_cmp(tempInter->pos->x,*x2) == 0) && (float_cmp(tempInter->pos->z,*y2) == 0)) {
 				bFoundTwo = true;
 				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
