@@ -283,6 +283,9 @@ ENTITY *build_intersection(Intersection *_intersection)
 	float fOptimalPan = 0;
 	if (list_get_count(_intersection->incomingConnections) > 0) {
 		
+		// Delete intersections which are too near to each other
+		roadnetwork_join_near_intersections(_intersections, 60);
+		
 		// Sort incoming angles
 		list_sort(_intersection->incomingConnections, pan_angle_compare);	
 			
@@ -788,6 +791,42 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGrou
 	sys_free(splineData);
 	
 	return ent;
+}
+
+void roadnetwork_join_near_intersections(List *_intersections, float _minDist) {
+	int i,j,k,c;
+	BOOL bAllDone = false;
+	BOOL bDeleted = false;
+	do {
+		c = list_get_count(_intersections);
+		bAllDone = true;
+		for(i=0; i<c; i++) {
+			for(j=0; j<c; j++) {
+				if (j != i) {
+					
+					Intersection *i1 = list_item_at(_intersections, i);
+					Intersection *i2 = list_item_at(_intersections, j);
+					if (vec_dist(i1->pos, i2->pos) <= _minDist) {
+						
+						// Transfer connections
+						for(k=0; k<list_get_count(i1->incomingConnections); k++) {
+							IntersectionConnection *ic1 = list_item_at(i1->incomingConnections, k);
+							list_add(i2->incomingConnections, ic1);
+						}
+						// Delete item
+						list_remove_at(_intersections, i);
+						bDeleted = true;
+						bAllDone = false;
+						break;
+					}
+				}
+			}
+			if (bDeleted == true) {
+				bDeleted = false;
+				break;
+			}
+		}
+	} while(bAllDone == false);
 }
 
 
