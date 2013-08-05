@@ -141,11 +141,15 @@ void main() {
 	
 	vec_set(camera.x, vector(-11, -500, 228));
 	vec_set(camera.pan, vector(87, -28, 0));
-	List* intersections = list_create();
-	roadnetwork_from_voronoi(intersections, 40, -1000, -1000, 1000, 1000);
-	//roadnetwork_from_rectangle(intersections, -1000, -1000, 1000, 1000, 500);
+	//List *points = roadnetwork_from_rectlangle(-1000, -1000, 1000, 1000, 500);
+	List *points = roadnetwork_from_voronoi(16, -1000, -1000, 1000, 1000);
+	List *intersections = roadnetwork_calculate(points);
 	
-	printf("intersections %i", (long)list_get_count(intersections));
+	// Delete intersections which are too near to each other
+	printf("intersections before: %i", (long)list_get_count(intersections));
+	//roadnetwork_join_near_intersections(intersections, 60);
+	
+	printf("intersections after: %i", (long)list_get_count(intersections));
 	roadnetwork_build(intersections);
 	//draw_voronoi();
 	//create_small_streets();

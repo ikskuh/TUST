@@ -185,10 +185,49 @@ float optimal_intersection_rotation(Intersection* _inter) {
 			return ic->incomingAngle->pan;
 		break;
 	}
+}
 
 
-
-	
+void roadnetwork_join_near_intersections(List *_intersections, float _minDist) {
+	int i,j,k,c;
+	BOOL bAllDone = false;
+	BOOL bDeleted = false;
+	do {
+		c = list_get_count(_intersections);
+		bAllDone = true;
+		for(i=0; i<c; i++) {
+			for(j=0; j<c; j++) {
+				if (j != i) {
+					
+					Intersection *i1 = list_item_at(_intersections, i);
+					Intersection *i2 = list_item_at(_intersections, j);
+					if (vec_dist(i1->pos, i2->pos) <= _minDist) {
+						
+						// Transfer connections
+						for(k=0; k<list_get_count(i1->incomingConnections); k++) {
+							IntersectionConnection *ic1 = list_item_at(i1->incomingConnections, k);
+							IntersectionConnection *icNew = sys_malloc(sizeof(IntersectionConnection));
+							memcpy(icNew,ic1,sizeof(IntersectionConnection));
+							icNew->pos = sys_malloc(sizeof(VECTOR));
+							icNew->incomingAngle = sys_malloc(sizeof(ANGLE));
+							vec_set(icNew->incomingAngle->pan, ic1->incomingAngle->pan);
+							list_add(i2->incomingConnections, icNew);
+						}
+						// Delete item
+						//list_remove_at(_intersections, i);
+						list_remove(_intersections, i1);
+						bDeleted = true;
+						bAllDone = false;
+						break;
+					}
+				}
+			}
+			if (bDeleted == true) {
+				bDeleted = false;
+				break;
+			}
+		}
+	} while(bAllDone == false);
 }
 
 action inter_info() {
@@ -282,9 +321,6 @@ ENTITY *build_intersection(Intersection *_intersection)
 	// Rotate intersections according the first incoming street
 	float fOptimalPan = 0;
 	if (list_get_count(_intersection->incomingConnections) > 0) {
-		
-		// Delete intersections which are too near to each other
-		roadnetwork_join_near_intersections(_intersections, 60);
 		
 		// Sort incoming angles
 		list_sort(_intersection->incomingConnections, pan_angle_compare);	
@@ -793,57 +829,10 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGrou
 	return ent;
 }
 
-void roadnetwork_join_near_intersections(List *_intersections, float _minDist) {
-	int i,j,k,c;
-	BOOL bAllDone = false;
-	BOOL bDeleted = false;
-	do {
-		c = list_get_count(_intersections);
-		bAllDone = true;
-		for(i=0; i<c; i++) {
-			for(j=0; j<c; j++) {
-				if (j != i) {
-					
-					Intersection *i1 = list_item_at(_intersections, i);
-					Intersection *i2 = list_item_at(_intersections, j);
-					if (vec_dist(i1->pos, i2->pos) <= _minDist) {
-						
-						// Transfer connections
-						for(k=0; k<list_get_count(i1->incomingConnections); k++) {
-							IntersectionConnection *ic1 = list_item_at(i1->incomingConnections, k);
-							list_add(i2->incomingConnections, ic1);
-						}
-						// Delete item
-						list_remove_at(_intersections, i);
-						bDeleted = true;
-						bAllDone = false;
-						break;
-					}
-				}
-			}
-			if (bDeleted == true) {
-				bDeleted = false;
-				break;
-			}
-		}
-	} while(bAllDone == false);
-}
-
-
-List *roadnetwork_from_rectangle(List *_intersections, int _minX, int _minY, int _maxX, int _maxY, int _dist) {
-
+List *roadnetwork_from_rectlangle(int _minX, int _minY, int _maxX, int _maxY, int _dist) {
 	int i,j;
-	BOOL bFoundOne = false;
-	BOOL bFoundTwo = false;
-	float *x1, *y1, *x2, *y2;
-	int nIncomingStreets = 0;	
 	
 	List *points = list_create();
-	
-	List *intersections = _intersections;
-	if (intersections == NULL) {
-		intersections = list_create();
-	}
 	
 	for(i=_minX; i<=_maxX; i +=_dist) {
 		for(j=_minY; j<_maxY; j +=_dist) {
@@ -877,19 +866,28 @@ List *roadnetwork_from_rectangle(List *_intersections, int _minX, int _minY, int
 			list_add(points, fCurrentMinX_V); list_add(points, fCurrentMinY_V); list_add(points, fCurrentMaxX_V); list_add(points, fCurrentMaxY_V);
 		}
 	}
+	return points;	
+}
 
+List* roadnetwork_calculate(List *_points) {
+	int i,j;
+	BOOL bFoundOne = false;
+	BOOL bFoundTwo = false;
+	float *x1, *y1, *x2, *y2;
+	int nIncomingStreets = 0;	
 	
-	printf("Points %i", list_get_count(points));
-	// Read streets
+	//List *points = list_create();
+	
+	List *intersections = list_create();
 	i = 0;
-	int nPointCount = list_get_count(points);
+	int nPointCount = list_get_count(_points);
 	while(i<nPointCount) {
 		
 		nIncomingStreets = 0;
-		x1 = list_item_at(points, i);
-		y1 = list_item_at(points, i+1);
-		x2 = list_item_at(points, i+2);
-		y2 = list_item_at(points, i+3);
+		x1 = list_item_at(_points, i);
+		y1 = list_item_at(_points, i+1);
+		x2 = list_item_at(_points, i+2);
+		y2 = list_item_at(_points, i+3);
 		
 		// There could be roads with the start==end; ignore them!
 		if ((float_cmp(*x1,*x2) == 0) && (float_cmp(*y1,*y2) == 0)) {
@@ -995,16 +993,13 @@ List *roadnetwork_from_rectangle(List *_intersections, int _minX, int _minY, int
 		
 		i +=4;
 	}
-	return intersections;
+	return intersections;	
 }
 
-List *roadnetwork_from_voronoi(List *_intersections, int _pointCount, int _minX, int _minY, int _maxX, int _maxY) {
+List *roadnetwork_from_voronoi(int _pointCount, int _minX, int _minY, int _maxX, int _maxY) {
 	
-	int i,j;
-	BOOL bFoundOne = false;
-	BOOL bFoundTwo = false;
-	float x1, y1, x2, y2, x3, y3, x4, y4;
-	int nIncomingStreets = 0;		
+	int i;
+	List *points = list_create();
 	
 	// Generate voronoi
 	vo_init();
@@ -1014,118 +1009,17 @@ List *roadnetwork_from_voronoi(List *_intersections, int _pointCount, int _minX,
 	vo_execute(_minX, _maxX, _minY, _maxY, 100);
 	int nResults = vo_get_result_count();
 	
-	// Create street list
-	List *intersections = _intersections;
-	if (intersections == NULL) {
-		intersections = list_create();
-	}
-	
 	// Read streets
 	for(i=0; i<nResults; i++) {
-		nIncomingStreets = 0;
-		vo_get_result_at(i, &x1, &y1, &x2, &y2);
-		
-		// There could be roads with the start==end; ignore them!
-		if ((x1 == x2) && (y1 == y2)) continue;
-		
-		bFoundOne = false;
-		bFoundTwo = false;		
-		
-		// We are checking lines, so check start and end point separately
-		// Start point
-		for (j=0; j<list_get_count(intersections); j++) {
-		
-			Intersection *tempInter = list_item_at(intersections, j);
-			
-			// Found an intersection at a known point (1st end)
-			if ((integer(tempInter->pos->x) == integer(x1)) && (integer(tempInter->pos->z) == integer(y1))) {
-				bFoundOne = true;
-				tempInter->incomingStreets +=1;
-				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-				VECTOR* vecTemp2 = vector(0,0,0);
-				vec_set(vecTemp2, vector(x1,y1,0));
-				vec_sub(vecTemp2, vector(x2,y2,0));
-				vec_to_angle(vecNewAngle, vecTemp2);
-				ang_normalize(vecNewAngle);
-				
-				IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
-				ic->incomingAngle = vecNewAngle;
-				ic->id = i;
-				ic->isConnected = 0;
-				
-				list_add(tempInter->incomingConnections, ic);
-			}
-		}
-		
-		if (bFoundOne == false) {
-			Intersection *newInter = intersection_create(vector(x1, 0, y1));
-			newInter->incomingStreets = 1;
-			newInter->source = 1;
-			
-			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-			VECTOR* vecTemp2 = vector(0,0,0);
-			vec_set(vecTemp2, vector(x1,y1,0));
-			vec_sub(vecTemp2, vector(x2,y2,0));
-			vec_to_angle(vecNewAngle, vecTemp2);
-			ang_normalize(vecNewAngle);
-
-			IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
-			ic->incomingAngle = vecNewAngle;
-			ic->id = i;
-			ic->isConnected = 0;
-			
-			list_add(newInter->incomingConnections, ic);
-			
-			list_add(intersections, newInter);
-		}
-	
-		// End point
-		for (j=0; j<list_get_count(intersections); j++) {
-		
-			Intersection *tempInter = list_item_at(intersections, j);
-			if ((integer(tempInter->pos->x) == integer(x2)) && (integer(tempInter->pos->z) == integer(y2))) {
-				bFoundTwo = true;
-				tempInter->incomingStreets +=1;
-				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-				VECTOR* vecTemp2 = vector(0,0,0);
-				vec_set(vecTemp2, vector(x2,y2,0));
-				vec_sub(vecTemp2, vector(x1,y1,0));
-				vec_to_angle(vecNewAngle, vecTemp2);
-				ang_normalize(vecNewAngle);
-				
-				IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
-				ic->incomingAngle = vecNewAngle;
-				ic->id = i;
-				ic->isConnected = 0;
-				
-				list_add(tempInter->incomingConnections, ic);
-			}
-		}
-			
-		if (bFoundTwo == false) {
-			Intersection *newInter = intersection_create(vector(x2, 0, y2));
-			newInter->incomingStreets = 1;
-			newInter->source = 2;
-			
-			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
-			VECTOR* vecTemp2 = vector(0,0,0);
-			vec_set(vecTemp2, vector(x2,y2,0));
-			vec_sub(vecTemp2, vector(x1,y1,0));
-			vec_to_angle(vecNewAngle, vecTemp2);
-			ang_normalize(vecNewAngle);
-
-			IntersectionConnection *ic = sys_malloc(sizeof(IntersectionConnection));
-			ic->incomingAngle = vecNewAngle;
-			ic->id = i;
-			ic->isConnected = 0;
-			
-			list_add(newInter->incomingConnections, ic);
-
-			list_add(intersections, newInter);
-		}
+		float *x1 = sys_malloc(sizeof(float));
+		float *y1 = sys_malloc(sizeof(float));
+		float *x2 = sys_malloc(sizeof(float));
+		float *y2 = sys_malloc(sizeof(float));			
+		vo_get_result_at(i, x1, y1, x2, y2);		
+		list_add(points, x1); list_add(points, y1); list_add(points, x2); list_add(points, y2);
 	}
-	vo_free();	
-	return intersections;
+	vo_free();
+	return points;
 }
 
 void roadnetwork_build(List *_intersections) {

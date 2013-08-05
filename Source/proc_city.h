@@ -122,35 +122,40 @@ typedef struct {
 
 
 /**
- * Builds a roadnetwork from a set of intersections
+ * Builds a physical roadnetwork from a set of intersections
  * \param   _intersections  Intersection list
  */
 void roadnetwork_build(List *_intersections);
 
 /**
+ * Calculates the intersections of a roadnetwork and the intersection points
+ * \param   _points         Single points of street beginning and street endings
+ * \return                  Pointer to a list of intersections
+ */
+List* roadnetwork_calculate(List *_points);
+
+/**
  * Generate a random road network using voronoi
- * \param   _intersections  Target list
  * \param   _pointCount     Number of points for the voronoi elements.
  * \param   _minX           Min x value of the network borders.
  * \param   _minY           Min y value of the network borders.
  * \param   _maxX           Max x value of the network borders.
  * \param   _maxY           Max y value of the network borders.
- * \return                  Pointer to _intersections
+ * \return                  Pointer to a list of float points
  */
-List *roadnetwork_from_voronoi(List *_intersections, int _pointCount, int _minX, int _minY, int _maxX, int _maxY);
+List *roadnetwork_from_voronoi(int _pointCount, int _minX, int _minY, int _maxX, int _maxY);
 
 
 /**
  * Generate a random road network using a rectangular algorithm
- * \param   _intersections  Target list
  * \param   _minX           Min x value of the network borders.
  * \param   _minY           Min y value of the network borders.
  * \param   _maxX           Max x value of the network borders.
  * \param   _maxY           Max y value of the network borders.
  * \param   _dist           Distance of the squares
- * \return                  Pointer to _intersections
+ * \return                  Pointer to a list of float points
  */
-List *roadnetwork_from_rectangle(List *_intersections, int _minX, int _minY, int _maxX, int _maxY, int _dist);
+List *roadnetwork_from_rectlangle(int _minX, int _minY, int _maxX, int _maxY, int _dist);
 
 
 /**
