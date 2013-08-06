@@ -22,6 +22,15 @@ int main ()
 		if (key_4) { while(key_4) wait(1); b = bmap_sharpen(b, 100); }
 		if (key_5) { while(key_5) wait(1); b = bmap_laplace(b); }
 		if (key_6) { while(key_6) wait(1); b = bmap_grayscale(b); }
+		if (key_7) { while(key_7) wait(1); b = bmap_noise(b, 50); }
+		
+		// Reset
+		if (key_0) {
+			while(key_0) wait(1);
+			ptr_remove(b);
+			b = bmap_create("test_bmap\\brownie.bmp");
+		}
+		
 		
 		if (key_q) { while(key_q) wait(1); b = bmap_draw_point(b, 10, 10, vector(255,0,0),  1); }
 		if (key_w) { while(key_w) wait(1); b = bmap_draw_line(b, 5, 5, 100, 2, vector(0,0,255), 1); }
