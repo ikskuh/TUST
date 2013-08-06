@@ -110,7 +110,8 @@ D3DVERTEX *create_vertex(float _x, float _y, float _z, float _nx, float _ny, flo
 float optimal_intersection_rotation(Intersection* _inter) {
 
 
-	switch(_inter->incomingStreets) {
+	//switch(_inter->incomingStreets) {
+	switch(list_get_count(_inter->incomingConnections)) {
 		case 0: 
 			// Error
 		break;
@@ -142,7 +143,8 @@ float optimal_intersection_rotation(Intersection* _inter) {
 			}
 			return ic3->incomingAngle->pan;
 		break;
-		case 4:
+		//case 4:
+		default:
 		
 			int j,k,tempPan, resultPan;
 			var i;
@@ -179,19 +181,20 @@ float optimal_intersection_rotation(Intersection* _inter) {
 				}
 			}
 			return resultPan;				
-		break;
+		/*break;
 		default:
 			IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_inter->incomingConnections, 0);
-			return ic->incomingAngle->pan;
+			return ic->incomingAngle->pan;*/
 		break;
 	}
 }
 
 
 void roadnetwork_join_near_intersections(List *_intersections, float _minDist) {
-	int i,j,k,c;
+	int i,j,k,l,c;
 	BOOL bAllDone = false;
 	BOOL bDeleted = false;
+	BOOL bAlreadyInList = false;
 	do {
 		c = list_get_count(_intersections);
 		bAllDone = true;
@@ -201,21 +204,33 @@ void roadnetwork_join_near_intersections(List *_intersections, float _minDist) {
 					
 					Intersection *i1 = list_item_at(_intersections, i);
 					Intersection *i2 = list_item_at(_intersections, j);
+					
+					// Intersections are nearer than _minDist?
 					if (vec_dist(i1->pos, i2->pos) <= _minDist) {
 						
 						// Transfer connections
 						for(k=0; k<list_get_count(i1->incomingConnections); k++) {
+							
 							IntersectionConnection *ic1 = list_item_at(i1->incomingConnections, k);
-							IntersectionConnection *icNew = sys_malloc(sizeof(IntersectionConnection));
-							memcpy(icNew,ic1,sizeof(IntersectionConnection));
-							icNew->pos = sys_malloc(sizeof(VECTOR));
-							icNew->incomingAngle = sys_malloc(sizeof(ANGLE));
-							vec_set(icNew->incomingAngle->pan, ic1->incomingAngle->pan);
-							list_add(i2->incomingConnections, icNew);
+							bAlreadyInList = false;
+							
+							// ... if it is not yet in list
+							for(l=0; l<list_get_count(i2->incomingConnections); l++) {
+								IntersectionConnection *ic2 = list_item_at(i2->incomingConnections, l);
+								
+								if (ic2->id == ic1->id) {
+									bAlreadyInList = true;
+									break;
+								}
+							}
+							
+							if (bAlreadyInList == false) {
+								list_add(i2->incomingConnections, ic1);
+							}
 						}
 						// Delete item
-						//list_remove_at(_intersections, i);
 						list_remove(_intersections, i1);
+						
 						bDeleted = true;
 						bAllDone = false;
 						break;
@@ -309,7 +324,8 @@ int pan_angle_compare(ListData *left, ListData *right) { //and returns 1 if left
 
 ENTITY *build_intersection(Intersection *_intersection)
 {
-	int nIncomingCount = _intersection->incomingStreets;
+	//int nIncomingCount = _intersection->incomingStreets;
+	int nIncomingCount = list_get_count(_intersection->incomingConnections);
 	DynamicModel *model = dmdl_create();
 	
 	#ifdef PROC_DEBUG
@@ -576,6 +592,8 @@ ENTITY *build_intersection(Intersection *_intersection)
 				// Create vertex on top
 				var vNewX = sin(0) * polyRadius;
 				var vNewY = cos(0) * polyRadius;
+				var vFirstNewX = vNewX;
+				var vFirstNewY = vNewY;
 				var vNewUVX = 0.5 + (1 / (2*polyRadius) * vNewX);
 				var vNewUVY = 0.5 + (1 / (2*polyRadius) * vNewY);
 				D3DVERTEX *v1  = create_vertex(vNewX, 0, vNewY, 0, 1, 0, vNewUVX, vNewUVY);
@@ -610,12 +628,16 @@ ENTITY *build_intersection(Intersection *_intersection)
 					vOldY = vNewY;
 					
 					dmdl_connect_vertices(model, iMiddle, iLastVertex, iNewVertex);
-					
 					iLastVertex = iNewVertex;
 				}
 				
 				// Closing vertex
-				dmdl_connect_vertices(model, iMiddle, iLastVertex, i1);
+				dmdl_connect_vertices(model, iMiddle, iNewVertex, i1);
+				IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, vNumConnections-1);
+				ic1->pos = sys_malloc(sizeof(VECTOR));
+				vec_lerp(ic1->pos, vector(vOldX, 0, vOldY), vector(vFirstNewX, 0, vFirstNewY), 0.5);
+				ic1->leftVertex  = i1; // Todo error
+				ic1->rightVertex = iNewVertex;
 			}
 				
 			model->skin[0] = bmapStreetIntersection5;	
@@ -874,7 +896,8 @@ List* roadnetwork_calculate(List *_points) {
 	BOOL bFoundOne = false;
 	BOOL bFoundTwo = false;
 	float *x1, *y1, *x2, *y2;
-	int nIncomingStreets = 0;	
+	Intersection *tempInter = NULL;
+	//int nIncomingStreets = 0;	
 	
 	//List *points = list_create();
 	
@@ -883,7 +906,7 @@ List* roadnetwork_calculate(List *_points) {
 	int nPointCount = list_get_count(_points);
 	while(i<nPointCount) {
 		
-		nIncomingStreets = 0;
+		//nIncomingStreets = 0;
 		x1 = list_item_at(_points, i);
 		y1 = list_item_at(_points, i+1);
 		x2 = list_item_at(_points, i+2);
@@ -896,7 +919,8 @@ List* roadnetwork_calculate(List *_points) {
 		}
 		
 		bFoundOne = false;
-		bFoundTwo = false;		
+		bFoundTwo = false;	
+			
 		
 		// We are checking lines, so check start and end point separately
 		// Start point
@@ -907,7 +931,6 @@ List* roadnetwork_calculate(List *_points) {
 			// Found an intersection at a known point (1st end)
 			if ((float_cmp(tempInter->pos->x,*x1) == 0) && (float_cmp(tempInter->pos->z,*y1) == 0)) {
 				bFoundOne = true;
-				tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
 				VECTOR* vecTemp2 = vector(0,0,0);
 				vec_set(vecTemp2, vector(*x1,*y1,0));
@@ -926,7 +949,7 @@ List* roadnetwork_calculate(List *_points) {
 		
 		if (bFoundOne == false) {
 			Intersection *newInter = intersection_create(vector(*x1, 0, *y1));
-			newInter->incomingStreets = 1;
+			//newInter->incomingStreets = 1;
 			newInter->source = 1;
 			
 			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
@@ -950,9 +973,9 @@ List* roadnetwork_calculate(List *_points) {
 		for (j=0; j<list_get_count(intersections); j++) {
 		
 			Intersection *tempInter = list_item_at(intersections, j);
-				if ((float_cmp(tempInter->pos->x,*x2) == 0) && (float_cmp(tempInter->pos->z,*y2) == 0)) {
+			if ((float_cmp(tempInter->pos->x,*x2) == 0) && (float_cmp(tempInter->pos->z,*y2) == 0)) {
 				bFoundTwo = true;
-				tempInter->incomingStreets +=1;
+				//tempInter->incomingStreets +=1;
 				VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
 				VECTOR* vecTemp2 = vector(0,0,0);
 				vec_set(vecTemp2, vector(*x2,*y2,0));
@@ -971,7 +994,7 @@ List* roadnetwork_calculate(List *_points) {
 			
 		if (bFoundTwo == false) {
 			Intersection *newInter = intersection_create(vector(*x2, 0, *y2));
-			newInter->incomingStreets = 1;
+			//newInter->incomingStreets = 1;
 			newInter->source = 2;
 			
 			VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
@@ -1058,6 +1081,10 @@ void roadnetwork_build(List *_intersections) {
 								
 								// Create Street	
 								Street *s1 = street_create(20, 0);
+								
+								if (tempCon->pos == 0) {
+									printf("int id: %i con id: %i", i, j);
+								}
 	
 								// Add street positions	
 								VECTOR* vecTemp1 = sys_malloc(sizeof(VECTOR));

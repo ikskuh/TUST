@@ -100,7 +100,7 @@ void create_intersections() {
 	vec_set(camera.pan, vector(87, -28, 0));
 	
 	Intersection *i1 = intersection_create(vector(-200,0,0));
-	i1->incomingStreets +=5;
+	//i1->incomingStreets +=5;
 	
 	for(i=0; i<10; i++) {
 		VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
@@ -113,19 +113,19 @@ void create_intersections() {
 
 	
 	Intersection *i2 = intersection_create(vector(-125,0,0));
-	i2->incomingStreets +=4;
+	//i2->incomingStreets +=4;
 	build_intersection(i2);
 	
 	Intersection *i3 = intersection_create(vector(-50,0,0));
-	i3->incomingStreets +=3;
+	//i3->incomingStreets +=3;
 	build_intersection(i3);
 	
 	Intersection *i4 = intersection_create(vector(25,0,0));
-	i4->incomingStreets +=2;
+	//i4->incomingStreets +=2;
 	build_intersection(i4);
 	
 	Intersection *i5 = intersection_create(vector(100,0,0));
-	i5->incomingStreets +=1;
+	//i5->incomingStreets +=1;
 	build_intersection(i5);
 }
 
@@ -143,11 +143,13 @@ void main() {
 	vec_set(camera.pan, vector(87, -28, 0));
 	//List *points = roadnetwork_from_rectlangle(-1000, -1000, 1000, 1000, 500);
 	List *points = roadnetwork_from_voronoi(16, -1000, -1000, 1000, 1000);
+	
 	List *intersections = roadnetwork_calculate(points);
 	
 	// Delete intersections which are too near to each other
 	printf("intersections before: %i", (long)list_get_count(intersections));
-	//roadnetwork_join_near_intersections(intersections, 60);
+	roadnetwork_join_near_intersections(intersections, 60);
+	
 	
 	printf("intersections after: %i", (long)list_get_count(intersections));
 	roadnetwork_build(intersections);

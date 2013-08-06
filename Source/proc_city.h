@@ -104,7 +104,7 @@ typedef struct Street
 
 typedef struct {
 	VECTOR *pos;
-	int incomingStreets;
+	//int incomingStreets;
 	List *incomingConnections; // Typ: IntersectionConnection
 	int source;
 	ENTITY* ent; // The built entity
