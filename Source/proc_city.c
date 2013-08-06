@@ -181,10 +181,6 @@ float optimal_intersection_rotation(Intersection* _inter) {
 				}
 			}
 			return resultPan;				
-		/*break;
-		default:
-			IntersectionConnection *ic = (IntersectionConnection*)list_item_at(_inter->incomingConnections, 0);
-			return ic->incomingAngle->pan;*/
 		break;
 	}
 }
@@ -195,6 +191,7 @@ void roadnetwork_join_near_intersections(List *_intersections, float _minDist) {
 	BOOL bAllDone = false;
 	BOOL bDeleted = false;
 	BOOL bAlreadyInList = false;
+	ListIterator *it1, *it2;
 	do {
 		c = list_get_count(_intersections);
 		bAllDone = true;
@@ -208,7 +205,25 @@ void roadnetwork_join_near_intersections(List *_intersections, float _minDist) {
 					// Intersections are nearer than _minDist?
 					if (vec_dist(i1->pos, i2->pos) <= _minDist) {
 						
-						// Transfer connections
+						// Delete all connections from i1 to i2
+						ListIterator *it1 = list_begin_iterate(i1->incomingConnections);
+						IntersectionConnection *ic1 = NULL;
+						for(ic1 = list_iterate(it1); it1->hasNext; ic1 = list_iterate(it1))
+						{
+							ListIterator *it2 = list_begin_iterate(i2->incomingConnections);
+							IntersectionConnection *ic2 = NULL;
+							for(ic2 = list_iterate(it2); it2->hasNext; ic2 = list_iterate(it2)) {
+								if (ic1->id == ic2->id) {
+									list_remove(i1->incomingConnections, ic1);
+									list_remove(i2->incomingConnections, ic2);
+								}
+							}
+							list_end_iterate(it2);
+						}
+						list_end_iterate(it1);
+
+						
+						// Transfer remaining connections to i2
 						for(k=0; k<list_get_count(i1->incomingConnections); k++) {
 							
 							IntersectionConnection *ic1 = list_item_at(i1->incomingConnections, k);
@@ -228,7 +243,7 @@ void roadnetwork_join_near_intersections(List *_intersections, float _minDist) {
 								list_add(i2->incomingConnections, ic1);
 							}
 						}
-						// Delete item
+						// Delete item i1
 						list_remove(_intersections, i1);
 						
 						bDeleted = true;
@@ -408,24 +423,45 @@ ENTITY *build_intersection(Intersection *_intersection)
 					difference = ic2->incomingAngle->pan - ic1->incomingAngle->pan;
 				}
 				
-				if (difference < 270) {
+				if ((difference <= 315) && (difference > 225)) {
+					model->skin[0] = bmapStreetIntersection2_2;
+					vec_set(ic2->pos, vector(0,0,-10));
+					ic2->leftVertex = 3;
+					ic2->rightVertex = 1;				
+				}	
+				if ((difference <= 225) && (difference > 135)) {
+					model->skin[0] = bmapStreetIntersection2_1;
+					vec_set(ic2->pos, vector(10,0,0));
+					ic2->leftVertex = 4;
+					ic2->rightVertex = 3;					
+				}								
+				if ((difference <= 135) && (difference > 45)) {
 					model->skin[0] = bmapStreetIntersection2_3;
 					vec_set(ic2->pos, vector(0,0,10));
 					ic2->leftVertex = 2;
 					ic2->rightVertex = 4;
 				}
+								
+				/*if (difference <= 270) {
+					model->skin[0] = bmapStreetIntersection2_2;
+					vec_set(ic2->pos, vector(0,0,-10));
+					ic2->leftVertex = 3;
+					ic2->rightVertex = 1;				
+				}	
 				if (difference < 180) {
 					model->skin[0] = bmapStreetIntersection2_1;
 					vec_set(ic2->pos, vector(10,0,0));
 					ic2->leftVertex = 4;
 					ic2->rightVertex = 3;					
-				}	
+				}								
 				if (difference < 90) {
-					model->skin[0] = bmapStreetIntersection2_2;
-					vec_set(ic2->pos, vector(0,0,-10));
-					ic2->leftVertex = 3;
-					ic2->rightVertex = 1;				
-				}
+					model->skin[0] = bmapStreetIntersection2_3;
+					vec_set(ic2->pos, vector(0,0,10));
+					ic2->leftVertex = 2;
+					ic2->rightVertex = 4;
+				}*/
+
+
 				
 			} else {
 				model->skin[0] = bmapStreetIntersection2_1;
@@ -606,6 +642,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 				int i;
 				int iNewVertex = 0;
 				int iLastVertex = i1;
+				//int iPreLastVertex = 0;
 				
 				for(i=1; i<vNumConnections; i++) {
 					IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, i-1);
@@ -621,8 +658,8 @@ ENTITY *build_intersection(Intersection *_intersection)
 					iNewVertex  = dmdl_add_vertex(model, v2);
 					
 					vec_lerp(ic1->pos, vector(vNewX, 0, vNewY), vector(vOldX, 0, vOldY), 0.5);
-					ic1->leftVertex  = iLastVertex;
-					ic1->rightVertex = iNewVertex;
+					ic1->leftVertex  = iLastVertex+1;
+					ic1->rightVertex = iNewVertex+1;
 					
 					vOldX = vNewX;
 					vOldY = vNewY;
@@ -633,11 +670,11 @@ ENTITY *build_intersection(Intersection *_intersection)
 				
 				// Closing vertex
 				dmdl_connect_vertices(model, iMiddle, iNewVertex, i1);
-				IntersectionConnection *ic1 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, vNumConnections-1);
-				ic1->pos = sys_malloc(sizeof(VECTOR));
-				vec_lerp(ic1->pos, vector(vOldX, 0, vOldY), vector(vFirstNewX, 0, vFirstNewY), 0.5);
-				ic1->leftVertex  = i1; // Todo error
-				ic1->rightVertex = iNewVertex;
+				IntersectionConnection *ic2 = (IntersectionConnection*)list_item_at(_intersection->incomingConnections, vNumConnections-1);
+				ic2->pos = sys_malloc(sizeof(VECTOR));
+				vec_lerp(ic2->pos, vector(vOldX, 0, vOldY), vector(vFirstNewX, 0, vFirstNewY), 0.5);
+				ic2->leftVertex  = iLastVertex+1;
+				ic2->rightVertex = i1+1;
 			}
 				
 			model->skin[0] = bmapStreetIntersection5;	
@@ -795,8 +832,10 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGrou
 			}
 		}
 		left.nx = 0; left.ny = 1; left.nz = 0;
-		left.u1 = 0;
-		left.v1 = 15 * dist;
+		//left.v1 = 15 * dist;
+		//left.u1 = 0;
+		left.u1 = 6 * dist;
+		left.v1 = 0.33;
 		
 		// Setup right vertex
 		if ((dist == 0) && (_v1_2 != NULL)) {
@@ -816,8 +855,10 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGrou
 			}
 		}
 		right.nx = 0; right.ny = 1; right.nz = 0;
-		right.u1 = 1;
-		right.v1 = 15 * dist;
+		//right.v1 = 15 * dist;
+		//right.u1 = 1;		
+		right.u1 = 6 * dist;
+		right.v1 = 0.66;
 		
 		// Create separator for this part
 		int separator = street_create_separator(model, &left, &right);
@@ -851,13 +892,18 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGrou
 	return ent;
 }
 
-List *roadnetwork_from_rectlangle(int _minX, int _minY, int _maxX, int _maxY, int _dist) {
-	int i,j;
+List *roadnetwork_from_rectlangle(int _minX, int _minY, int _maxX, int _maxY, int _dist, int _rndDeleteFactor) {
+	int i,j,k;
 	
 	List *points = list_create();
 	
 	for(i=_minX; i<=_maxX; i +=_dist) {
 		for(j=_minY; j<_maxY; j +=_dist) {
+			
+			// Skip this part if rnd greater than k
+			k = integer(random(10));
+			if (k > _rndDeleteFactor) continue;
+			
 			// Horizontal streets
 			float *fCurrentMinX_H = sys_malloc(sizeof(float));
 			float *fCurrentMinY_H = sys_malloc(sizeof(float));
@@ -875,6 +921,10 @@ List *roadnetwork_from_rectlangle(int _minX, int _minY, int _maxX, int _maxY, in
 	for(i=_minX; i<=_maxX; i +=_dist) {
 		for(j=_minY; j<_maxY; j +=_dist) {
 		
+			// Skip this part if rnd greater than k
+			k = integer(random(10));
+			if (k > _rndDeleteFactor) continue;
+			
 			// Vertical streets
 			float *fCurrentMinX_V = sys_malloc(sizeof(float));
 			float *fCurrentMinY_V = sys_malloc(sizeof(float));
@@ -1048,7 +1098,7 @@ List *roadnetwork_from_voronoi(int _pointCount, int _minX, int _minY, int _maxX,
 void roadnetwork_build(List *_intersections) {
 	
 	int i,j,k,l;
-	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
+	//BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
 	
 	int count = list_get_count(_intersections);
 	for(i=0; i<list_get_count(_intersections); i++) {
@@ -1082,10 +1132,6 @@ void roadnetwork_build(List *_intersections) {
 								// Create Street	
 								Street *s1 = street_create(20, 0);
 								
-								if (tempCon->pos == 0) {
-									printf("int id: %i con id: %i", i, j);
-								}
-	
 								// Add street positions	
 								VECTOR* vecTemp1 = sys_malloc(sizeof(VECTOR));
 								vec_set(vecTemp1, vector(tempInter->pos->x, tempInter->pos->z, tempInter->pos->y));
@@ -1551,6 +1597,41 @@ void proc_city_create_skins() {
 	
 	// Inner circle
 	bmapStreetIntersection5 = bmap_draw_circle(bmapStreetIntersection5, PROC_TEXT_RES / 2, PROC_TEXT_RES / 2, 20, colStreetMarker, 100);
+	
+	
+	// -----------------------------------
+	// Common street texture
+	// -----------------------------------	
+	bmapStreetTexture = bmap_createblack(PROC_TEXT_RES, PROC_TEXT_RES, 32);
+	
+	bmapStreetTexture = bmap_draw_rectangle_filled(bmapStreetTexture,
+		0,             PROC_TEXT_RES / 3,
+		PROC_TEXT_RES, (PROC_TEXT_RES / 3) * 2,
+		colStreet, 100
+	);
+	
+	// Lines at the border
+	bmapStreetTexture = bmap_draw_line(bmapStreetTexture,
+		0,             (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		PROC_TEXT_RES, (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);
+	bmapStreetTexture = bmap_draw_line(bmapStreetTexture,
+		0,             (PROC_TEXT_RES / 3) * 2 - (PROC_TEXT_RES / 51),
+		PROC_TEXT_RES, (PROC_TEXT_RES / 3) * 2 - (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);
+	
+	// Lines in the middle
+	i = PROC_TEXT_RES / 36;
+	while(i < PROC_TEXT_RES) {
+		bmapStreetTexture = bmap_draw_line(bmapStreetTexture,
+			i,                      PROC_TEXT_RES / 2,
+			i+(PROC_TEXT_RES / 17), PROC_TEXT_RES / 2,
+			colStreetMarker, 100
+		);
+		i +=PROC_TEXT_RES / 10.2;
+	}	
 }
 
 #endif

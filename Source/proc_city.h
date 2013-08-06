@@ -93,6 +93,8 @@ BMAP* bmapStreetIntersection3   = NULL;
 BMAP* bmapStreetIntersection4   = NULL;
 BMAP* bmapStreetIntersection5   = NULL;
 
+BMAP* bmapStreetTexture         = NULL;
+
 typedef struct Street
 {
 	List *points;
@@ -148,15 +150,23 @@ List *roadnetwork_from_voronoi(int _pointCount, int _minX, int _minY, int _maxX,
 
 /**
  * Generate a random road network using a rectangular algorithm
- * \param   _minX           Min x value of the network borders.
- * \param   _minY           Min y value of the network borders.
- * \param   _maxX           Max x value of the network borders.
- * \param   _maxY           Max y value of the network borders.
- * \param   _dist           Distance of the squares
- * \return                  Pointer to a list of float points
+ * \param   _minX              Min x value of the network borders.
+ * \param   _minY              Min y value of the network borders.
+ * \param   _maxX              Max x value of the network borders.
+ * \param   _maxY              Max y value of the network borders.
+ * \param   _dist              Distance of the squares
+ * \param   _rndDeleteFactor   The lower this value, the bigger the possibility that parts get deleted. 10 for no deletion. (1-10)
+ * \return                     Pointer to a list of float points
  */
-List *roadnetwork_from_rectlangle(int _minX, int _minY, int _maxX, int _maxY, int _dist);
+List *roadnetwork_from_rectlangle(int _minX, int _minY, int _maxX, int _maxY, int _dist, int _rndDeleteFactor);
 
+
+/**
+ * Joins all intersections that are closer than _minDist to one.
+ * \param   _intersections  List of all intersections in the list.
+ * \param   _dist           All intersections nearer than _minDist get joined.
+ */
+void roadnetwork_join_near_intersections(List *_intersections, float _minDist);
 
 /**
  * Creates a new intersection.

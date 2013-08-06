@@ -132,6 +132,7 @@ void create_intersections() {
 void main() {
 	video_mode = 8;
 	mouse_mode = 4;
+	max_entities = 10000;
 	
 	while(total_frames < 1) wait(1);
 	draw_textmode("Arial", 0, 14, 100);
@@ -141,18 +142,17 @@ void main() {
 	
 	vec_set(camera.x, vector(-11, -500, 228));
 	vec_set(camera.pan, vector(87, -28, 0));
-	//List *points = roadnetwork_from_rectlangle(-1000, -1000, 1000, 1000, 500);
-	List *points = roadnetwork_from_voronoi(16, -1000, -1000, 1000, 1000);
+	
+	List *points = roadnetwork_from_rectlangle(-1000, -1000, 1000, 1000, 200, 6);
+	//List *points = roadnetwork_from_voronoi(50, -1000, -1000, 1000, 1000);
 	
 	List *intersections = roadnetwork_calculate(points);
 	
 	// Delete intersections which are too near to each other
-	printf("intersections before: %i", (long)list_get_count(intersections));
-	roadnetwork_join_near_intersections(intersections, 60);
+	roadnetwork_join_near_intersections(intersections, 100);
 	
-	
-	printf("intersections after: %i", (long)list_get_count(intersections));
 	roadnetwork_build(intersections);
+	
 	//draw_voronoi();
 	//create_small_streets();
 	//create_intersections();
