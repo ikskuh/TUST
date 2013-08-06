@@ -1,6 +1,7 @@
 #include <acknex.h>
 #include <default.c>
 #include <d3d9.h>
+#include <MtlFX.c>
 
 #include "..\\Source\\math.h"
 #include "..\\Source\\proc_city.h"
@@ -133,6 +134,7 @@ void main() {
 	video_mode = 8;
 	mouse_mode = 4;
 	max_entities = 10000;
+	random_seed(0);
 	
 	while(total_frames < 1) wait(1);
 	draw_textmode("Arial", 0, 14, 100);
@@ -153,6 +155,10 @@ void main() {
 	
 	roadnetwork_build(intersections);
 	
+	/*while(1) {
+		DEBUG_BMAP(bmapStreetTextureNM, 10, 1);
+		wait(1);
+	}*/
 	//draw_voronoi();
 	//create_small_streets();
 	//create_intersections();

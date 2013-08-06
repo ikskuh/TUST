@@ -7,6 +7,8 @@
 
 //#define PROC_DEBUG
 
+//#define PROC_USE_SHADERS
+
 #define PROC_INTERSECTION_EXTREMITIES 5
 
 // ----------------------------------------------------------------------------------------
@@ -337,6 +339,26 @@ int pan_angle_compare(ListData *left, ListData *right) { //and returns 1 if left
 	}	
 }
 
+/*action moveme() {
+	VECTOR myPos;
+	vec_set(myPos, my.x);
+	int dir = 0;
+	while(me) {
+		if (dir == 0) {
+			my.x +=3 * time_step;
+			if (my.x > myPos.x+20) {
+				dir = 1;
+			}
+		} else {
+			my.x -=3 * time_step;
+			if (my.x < myPos.x-20) {
+				dir = 0;
+			}
+		}
+		wait(1);
+	}
+}*/
+
 ENTITY *build_intersection(Intersection *_intersection)
 {
 	//int nIncomingCount = _intersection->incomingStreets;
@@ -367,6 +389,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 		case 1:
 		
 			model->skin[0] = bmapStreetIntersection1;
+			model->skin[1] = bmapStreetIntersectionNM1;
 			// y == z
 			D3DVERTEX *v1 = create_vertex(0 - 10,  0, 0 - 10,   0, 1, 0,   0,    0);
 			D3DVERTEX *v2 = create_vertex(0 - 10,  0, 0 + 10,   0, 1, 0,   0,    1);
@@ -425,18 +448,21 @@ ENTITY *build_intersection(Intersection *_intersection)
 				
 				if ((difference <= 315) && (difference > 225)) {
 					model->skin[0] = bmapStreetIntersection2_2;
+					model->skin[1] = bmapStreetIntersectionNM2_2;
 					vec_set(ic2->pos, vector(0,0,-10));
 					ic2->leftVertex = 3;
 					ic2->rightVertex = 1;				
 				}	
 				if ((difference <= 225) && (difference > 135)) {
 					model->skin[0] = bmapStreetIntersection2_1;
+					model->skin[1] = bmapStreetIntersectionNM2_1;
 					vec_set(ic2->pos, vector(10,0,0));
 					ic2->leftVertex = 4;
 					ic2->rightVertex = 3;					
 				}								
 				if ((difference <= 135) && (difference > 45)) {
 					model->skin[0] = bmapStreetIntersection2_3;
+					model->skin[1] = bmapStreetIntersectionNM2_3;
 					vec_set(ic2->pos, vector(0,0,10));
 					ic2->leftVertex = 2;
 					ic2->rightVertex = 4;
@@ -465,6 +491,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 				
 			} else {
 				model->skin[0] = bmapStreetIntersection2_1;
+				model->skin[1] = bmapStreetIntersectionNM2_1;
 			}
 			
 			
@@ -509,6 +536,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 				
 			}
 			model->skin[0] = bmapStreetIntersection3;
+			model->skin[1] = bmapStreetIntersectionNM3;
 			
 			D3DVERTEX *v1  = create_vertex(0 - 30, 0, 0 - 10, 0, 1, 0, 0,    0.33);
 			D3DVERTEX *v2  = create_vertex(0 - 10, 0, 0 - 10, 0, 1, 0, 0.33, 0.33);
@@ -570,6 +598,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 				ic1->rightVertex = 10;								
 			}		
 			model->skin[0] = bmapStreetIntersection4;
+			model->skin[1] = bmapStreetIntersectionNM4;
 			
 			D3DVERTEX *v1  = create_vertex(0 - 30, 0, 0 - 10, 0, 1, 0, 0,    0.33);
 			D3DVERTEX *v2  = create_vertex(0 - 10, 0, 0 - 10, 0, 1, 0, 0.33, 0.33);
@@ -678,10 +707,14 @@ ENTITY *build_intersection(Intersection *_intersection)
 			}
 				
 			model->skin[0] = bmapStreetIntersection5;	
+			model->skin[1] = bmapStreetIntersectionNM5;
 		break;
 	}
 	
 	ENTITY *ent = dmdl_create_instance(model, vector(_intersection->pos->x, _intersection->pos->z, _intersection->pos->y), inter_info);
+	#ifdef PROC_USE_SHADERS
+		ent.material = mtl_specBump;
+	#endif
 	
 	ent->skill1 = _intersection;
 	_intersection->ent = ent;
@@ -689,7 +722,14 @@ ENTITY *build_intersection(Intersection *_intersection)
 	ent->pan = fOptimalPan;
 	
 	dmdl_delete(model);
-	return ent;	
+	
+	
+	/*ENTITY* entTestLight = ent_create(SPHERE_MDL, vector(ent->x, ent->y, ent->z + 50), moveme);
+	set(entTestLight, LIGHT);
+	//set(entTestLight, INVISIBLE);
+	entTestLight->lightrange = 400;
+	vec_set(entTestLight.blue, vector(100 + random(155), 100 + random(155), 100 + random(155)));
+	return ent;	*/
 }
 
 // Places each vertex of an entity's mesh on the ground (and adds a given distance)
@@ -714,11 +754,11 @@ void place_street_on_ground(ENTITY* _street, int _dist) {
 }
 
 ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details) {
-	street_build_ext(street, _streetTexture, _placeOnGround, _details, NULL, NULL, NULL, NULL);
+	street_build_ext(street, _streetTexture, NULL, _placeOnGround, _details, NULL, NULL, NULL, NULL);
 }
 
 // Start and end segments are no longer spline aligned!
-ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details, VECTOR* _v1_1, VECTOR* _v1_2, VECTOR* _v2_1, VECTOR* _v2_2)
+ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNormalMap, BOOL _placeOnGround, float _details, VECTOR* _v1_1, VECTOR* _v1_2, VECTOR* _v2_1, VECTOR* _v2_2)
 {
 	int iPointCount = list_get_count(street->points);
 	
@@ -739,6 +779,11 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGrou
 	
 	DynamicModel *model = dmdl_create();
 	model->skin[0] = _streetTexture;
+	
+	// Appy normal map
+	if (_streetNormalMap != NULL) {
+		model->skin[1] = _streetNormalMap;
+	}
 	
 	DYNAMIC_QUAD quad;
 	
@@ -1170,7 +1215,11 @@ void roadnetwork_build(List *_intersections) {
 								vec_for_ent_ext(&vx4, tempInter2->ent, tempCon2->rightVertex);
 								
 								// "Draw" streets
-								ENTITY *street = street_build_ext(s1, bmapStreetTexture, false, 0.01, vx3, vx4, vx1, vx2);
+								ENTITY *street = street_build_ext(s1, bmapStreetTexture, bmapStreetTextureNM, false, 0.01, vx3, vx4, vx1, vx2);
+								
+								#ifdef PROC_USE_SHADERS
+									street.material = mtl_specBump;
+								#endif
 								
 								//Mark connections as "connected"
 								tempCon2->isConnected = 1;
@@ -1631,7 +1680,40 @@ void proc_city_create_skins() {
 			colStreetMarker, 100
 		);
 		i +=PROC_TEXT_RES / 10.2;
-	}	
+	}
+	
+	
+	// -----------------------------------
+	// Normal maps
+	// -----------------------------------	
+	
+	bmapStreetIntersectionNM1   = bmap_createblack(bmap_width(bmapStreetIntersection1),   bmap_height(bmapStreetIntersection1), 32);
+	bmapStreetIntersectionNM2_1 = bmap_createblack(bmap_width(bmapStreetIntersection2_1), bmap_height(bmapStreetIntersection2_1), 32);
+	bmapStreetIntersectionNM2_2 = bmap_createblack(bmap_width(bmapStreetIntersection2_2), bmap_height(bmapStreetIntersection2_2), 32);
+	bmapStreetIntersectionNM2_3 = bmap_createblack(bmap_width(bmapStreetIntersection2_3), bmap_height(bmapStreetIntersection2_3), 32);
+	bmapStreetIntersectionNM3   = bmap_createblack(bmap_width(bmapStreetIntersection3),   bmap_height(bmapStreetIntersection3), 32);
+	bmapStreetIntersectionNM4   = bmap_createblack(bmap_width(bmapStreetIntersection4),   bmap_height(bmapStreetIntersection4), 32);
+	bmapStreetIntersectionNM5   = bmap_createblack(bmap_width(bmapStreetIntersection5),   bmap_height(bmapStreetIntersection5), 32);
+	bmapStreetTextureNM         = bmap_createblack(bmap_width(bmapStreetTexture),         bmap_height(bmapStreetTexture), 32);
+	
+	
+	bmap_blit(bmapStreetIntersectionNM1,   bmapStreetIntersection1,   NULL, NULL);
+	bmap_blit(bmapStreetIntersectionNM2_1, bmapStreetIntersection2_1, NULL, NULL);
+	bmap_blit(bmapStreetIntersectionNM2_2, bmapStreetIntersection2_2, NULL, NULL);
+	bmap_blit(bmapStreetIntersectionNM2_3, bmapStreetIntersection2_3, NULL, NULL);
+	bmap_blit(bmapStreetIntersectionNM3,   bmapStreetIntersection3,   NULL, NULL);
+	bmap_blit(bmapStreetIntersectionNM4,   bmapStreetIntersection4,   NULL, NULL);
+	bmap_blit(bmapStreetIntersectionNM5,   bmapStreetIntersection5,   NULL, NULL);
+	bmap_blit(bmapStreetTextureNM,         bmapStreetTexture,         NULL, NULL);
+	
+	bmap_to_normals(bmapStreetIntersectionNM1, 100);
+	bmap_to_normals(bmapStreetIntersectionNM2_1, 100);
+	bmap_to_normals(bmapStreetIntersectionNM2_2, 100);
+	bmap_to_normals(bmapStreetIntersectionNM2_3, 100);
+	bmap_to_normals(bmapStreetIntersectionNM3, 100);
+	bmap_to_normals(bmapStreetIntersectionNM4, 100);
+	bmap_to_normals(bmapStreetIntersectionNM5, 100);
+	bmap_to_normals(bmapStreetTextureNM, 100);
 }
 
 #endif
