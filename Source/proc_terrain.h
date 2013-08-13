@@ -1,10 +1,10 @@
 #ifndef __PROC_TERRAIN_H__
 #define __PROC_TERRAIN_H__
 
-void heightmap_to_terrain(ENTITY* _ent, BMAP* _heightmap, float _altitude);
+/*void heightmap_to_terrain(ENTITY* _ent, BMAP* _heightmap, float _altitude);
 ENTITY* generate_random_terrain(VECTOR* _pos, int _verticesX, int _verticesY, int _vertexSize, float _altitude);
 void smooth_to_terrain(ENTITY* _ent);
-void bmap_to_colormap(BMAP* _bitmap);
+void bmap_to_colormap(BMAP* _bitmap);*/
 BMAP* bmap_to_displacementmap(BMAP* _bitmap);
 BMAP* bmap_to_blur(BMAP* _bitmap, int _passes);
 
@@ -31,6 +31,17 @@ MATERIAL* mat_terrain_multi_texture =
 	skin4=bmapDetail;
 	event=mat_terrain_multi_texture_event;
 	effect="
+	
+	#include <define>
+	#include <transform>
+	#include <sun>
+	#include <lights>
+	#include <fog>
+	#include <normal>
+	
+	float4 vecSkill41;
+	float fAmbient;
+
 	texture entSkin1;
 	texture entSkin2;
 	texture entSkin3;
@@ -86,7 +97,7 @@ MATERIAL* mat_terrain_multi_texture =
 		AddressU = WRAP;
 		AddressV = WRAP;
 	};
-	texture terr_color_map_bmap;
+	//texture terr_color_map_bmap;
 	sampler2D ColorMapSampler = sampler_state
 	{
 		//Texture = (terr_color_map_bmap);
@@ -97,7 +108,7 @@ MATERIAL* mat_terrain_multi_texture =
 		AddressU = WRAP;
 		AddressV = WRAP;
 	};
-	texture terr_disp_map_bmap;
+	//texture terr_disp_map_bmap;
 	sampler2D DispMapSampler = sampler_state
 	{
 		//Texture = (terr_disp_map_bmap);
@@ -132,11 +143,49 @@ MATERIAL* mat_terrain_multi_texture =
 		return FinalColor;
 
 	}
-
+	
+	struct out_terraintex3 // Output to the pixelshader fragment
+	{
+		float4 Pos		: POSITION;
+		float4 Color	: COLOR0;
+		float  Fog		: FOG;
+		float2 MaskCoord: TEXCOORD0;
+		float2 BaseCoord: TEXCOORD1;
+		float2 RedCoord : TEXCOORD2;
+		float2 GreenCoord: TEXCOORD3;
+	};
+	
+	out_terraintex3 vs_terraintex3(
+		float4 inPos : POSITION,
+		float3 inNormal : NORMAL,
+		float2 inTexCoord0 : TEXCOORD0)
+	{
+		out_terraintex3 Out;
+	
+		Out.Pos = DoTransform(inPos); // transform to screen coordinates
+	
+		// rotate and normalize the normal
+		float3 N = DoNormal(inNormal);
+		float3 P = mul(inPos,matWorld);
+	
+		Out.Color = fAmbient; // Add ambient and sun light
+		for (int i=0; i<8; i++)  // Add 8 dynamic lights
+			Out.Color += DoLight(P,N,i);
+		Out.Fog = DoFog(inPos); // Add fog
+	
+		// scale the texture coordinates for the masked textures
+		Out.MaskCoord = inTexCoord0.xy;
+		Out.BaseCoord = inTexCoord0.xy * vecSkill41.y;
+		Out.RedCoord = inTexCoord0.xy * vecSkill41.z;
+		Out.GreenCoord = inTexCoord0.xy * vecSkill41.w;
+		return Out;
+	}	
+	
 	technique T1
 	{
 		pass P0
 		{
+			VertexShader = compile vs_2_0 vs_terraintex3();
 			PixelShader = compile ps_2_0 PS_multi_texture();
 		}
 	}";

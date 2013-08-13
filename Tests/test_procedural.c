@@ -153,7 +153,7 @@ void main() {
 	// Delete intersections which are too near to each other
 	roadnetwork_join_near_intersections(intersections, 100);
 	
-	roadnetwork_build(intersections);
+	roadnetwork_build(intersections, 0, false);
 	
 	/*while(1) {
 		DEBUG_BMAP(bmapStreetTextureNM, 10, 1);

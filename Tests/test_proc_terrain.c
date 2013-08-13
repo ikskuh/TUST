@@ -1,21 +1,21 @@
 #include <acknex.h>
 #include <default.c>
-//#include <d3d9.h>
-//#include <MtlFX.c>
-
-//#include "..\\Source\\math.h"
-//#include "..\\Source\\proc_city.h"
-//#include "..\\Source\\DynamicModels.h"
-//#include "..\\Source\\tust.h"
+#include <MtlFX.c>
 
 #include "..\\Source\\proc_terrain.h"
 
 void main() {
 	//video_mode = 11;
-	terrain_chunk = 32;
-	level_load("");
+	terrain_chunk = 0;
+	level_load(NULL);
 	random_seed(0);
 	vec_set(camera.x, vector(-1101, -97, 800));
 	vec_set(camera.pan, vector(4,-29,0));
-	ENTITY* entTerrain = generate_random_terrain(vector(0,0,0), 64, 64, 16, 4);
+	
+	BMAP* bmapHeightMap = generate_random_heightmap(256, 256, 128);
+	BMAP* bmapColorMap = heightmap_to_colormap(bmapHeightMap);
+	ENTITY* entTerrain = terrain_from_heightmap(nullvector, bmapHeightMap, 65, 65, 30, 0.4);
+	ent_setskin(entTerrain, bmapColorMap, 2);
+	entTerrain.material = mat_terrain_multi_texture;
 }
+	

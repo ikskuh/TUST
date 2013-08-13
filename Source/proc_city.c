@@ -466,29 +466,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 					vec_set(ic2->pos, vector(0,0,10));
 					ic2->leftVertex = 2;
 					ic2->rightVertex = 4;
-				}
-								
-				/*if (difference <= 270) {
-					model->skin[0] = bmapStreetIntersection2_2;
-					vec_set(ic2->pos, vector(0,0,-10));
-					ic2->leftVertex = 3;
-					ic2->rightVertex = 1;				
-				}	
-				if (difference < 180) {
-					model->skin[0] = bmapStreetIntersection2_1;
-					vec_set(ic2->pos, vector(10,0,0));
-					ic2->leftVertex = 4;
-					ic2->rightVertex = 3;					
-				}								
-				if (difference < 90) {
-					model->skin[0] = bmapStreetIntersection2_3;
-					vec_set(ic2->pos, vector(0,0,10));
-					ic2->leftVertex = 2;
-					ic2->rightVertex = 4;
-				}*/
-
-
-				
+				}				
 			} else {
 				model->skin[0] = bmapStreetIntersection2_1;
 				model->skin[1] = bmapStreetIntersectionNM2_1;
@@ -723,33 +701,47 @@ ENTITY *build_intersection(Intersection *_intersection)
 	
 	dmdl_delete(model);
 	
-	
-	/*ENTITY* entTestLight = ent_create(SPHERE_MDL, vector(ent->x, ent->y, ent->z + 50), moveme);
-	set(entTestLight, LIGHT);
-	//set(entTestLight, INVISIBLE);
-	entTestLight->lightrange = 400;
-	vec_set(entTestLight.blue, vector(100 + random(155), 100 + random(155), 100 + random(155)));
-	return ent;	*/
+	return ent;
 }
 
 // Places each vertex of an entity's mesh on the ground (and adds a given distance)
 void place_street_on_ground(ENTITY* _street, int _dist) {
 	
+	// Place entity on ground
+	/*if (c_trace(_street.x, vector(_street.x, _street.y, _street.z - 1024), IGNORE_ME | USE_BOX) > 0) {
+		//printf("new.z %i = hit.z %i", (long)_street.z, (long)hit.z);
+		_street.z = hit.z + 20;
+	}*/
+	
 	var nVertexCount = ent_status(_street, 0);
-	var i;
-	VECTOR* vecTemp;
+		
+	var i, j;
+	VECTOR vecTemp;
 	CONTACT* c;
 	for (i=1; i<=nVertexCount; i++) {
+		
 		c = ent_getvertex(_street, NULL, i);
+		
 		if (c != NULL) {
-			if(c_trace(	vector(c.v.x, c.v.z, c.v.y + 1024),
-						vector(c.v.x, c.v.z, c.v.y - 1024),
-						IGNORE_MODELS | IGNORE_SPRITES | IGNORE_PASSABLE | IGNORE_PASSENTS | USE_POLYGON))
+			
+			vec_set(vecTemp, vector(c.v.x, c.v.z, c.v.y));
+			vec_rotate(vecTemp, _street.pan);
+			vec_add(vecTemp, _street.x);
+			if(c_trace(	vecTemp, vector(vecTemp.x, vecTemp.y, vecTemp.z - 1024),
+						IGNORE_MODELS | IGNORE_SPRITES | IGNORE_PASSABLE | IGNORE_PASSENTS | USE_POLYGON | IGNORE_ME))
 			{
-				c.v.y = target.z+_dist;
+				//printf("Street pos (%i, %i, %i) trace from (%i, %i, %i)", (long)_street.x, (long)_street.y, (long)_street.z, (long)vecTemp.x, (long)vecTemp.y, (long)vecTemp.z);
+				
+				c.v.y = target.z + _dist - (_street.z - c.v.y*2);
+				
+				//Rotate the vector around the entities center
+				//vec_set(vecTemp, vector(c.v.x, c.v.z, c.v.y));
+				//vec_rotate(vecTemp, _street.pan);
+				//c.v.x = vecTemp.x; c.v.y = vecTemp.z; c.v.z = vecTemp.y;
+				
+				ent_setvertex(_street, c, i);
 			}
-			ent_setvertex(_street, c, i);
-		}
+		}		
 	}
 }
 
@@ -1140,15 +1132,20 @@ List *roadnetwork_from_voronoi(int _pointCount, int _minX, int _minY, int _maxX,
 	return points;
 }
 
-void roadnetwork_build(List *_intersections) {
+void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround) {
 	
 	int i,j,k,l;
-	//BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
 	
 	int count = list_get_count(_intersections);
 	for(i=0; i<list_get_count(_intersections); i++) {
 		Intersection* tempInter = list_item_at(_intersections, i);
+		tempInter->pos->y = _zPosition;
+		
 		ENTITY* entInter = build_intersection(tempInter);
+		wait(3);
+		if (_placeOnGround) {
+			place_street_on_ground(entInter, 3);
+		}
 	}
 	
 	// Build streets between intersections
@@ -1174,8 +1171,13 @@ void roadnetwork_build(List *_intersections) {
 							
 							if ((tempCon2->isConnected == 0) && (tempCon->id == tempCon2->id)) {
 								
-								// Create Street	
-								Street *s1 = street_create(20, 0);
+								// Create Street (width=20, grounddist=3)
+								Street *s1 = NULL;
+								if (_placeOnGround) {
+									s1 = street_create(20, 3);
+								} else {
+									s1 = street_create(20, 0);
+								}
 								
 								// Add street positions	
 								VECTOR* vecTemp1 = sys_malloc(sizeof(VECTOR));
@@ -1215,7 +1217,7 @@ void roadnetwork_build(List *_intersections) {
 								vec_for_ent_ext(&vx4, tempInter2->ent, tempCon2->rightVertex);
 								
 								// "Draw" streets
-								ENTITY *street = street_build_ext(s1, bmapStreetTexture, bmapStreetTextureNM, false, 0.01, vx3, vx4, vx1, vx2);
+								ENTITY *street = street_build_ext(s1, bmapStreetTexture, bmapStreetTextureNM, _placeOnGround, 0.01, vx3, vx4, vx1, vx2);
 								
 								#ifdef PROC_USE_SHADERS
 									street.material = mtl_specBump;

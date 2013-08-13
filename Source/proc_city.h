@@ -137,8 +137,10 @@ typedef struct {
 /**
  * Builds a physical roadnetwork from a set of intersections
  * \param   _intersections  Intersection list
+ * \param   _zPosition      Initial z position fo all created entities
+ * \param   _placeOnGround  Place the complete road network on ground (if any)
  */
-void roadnetwork_build(List *_intersections);
+void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround);
 
 /**
  * Calculates the intersections of a roadnetwork and the intersection points
@@ -189,10 +191,9 @@ Intersection *intersection_create(VECTOR* _pos);
 /**
  * Builds a mesh and ENTITY* from a given intersection object.
  * \param   _intersection          The _intersection to be built.
- * \param   _intersectionTexture   The texture of the street. Should be tilable in y direction.
  * \return                         The ENTITY* build from the intersection.
  */
-ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTexture);
+ENTITY *build_intersection(Intersection *_intersection);
 
 
 /**
