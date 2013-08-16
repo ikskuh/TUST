@@ -1,6 +1,7 @@
 #include <acknex.h>
 #include <default.c>
 #include <d3d9.h>
+#include <MtlFX.c>
 
 #include "..\\Source\\math.h"
 #include "..\\Source\\proc_city.h"
@@ -100,7 +101,7 @@ void create_intersections() {
 	vec_set(camera.pan, vector(87, -28, 0));
 	
 	Intersection *i1 = intersection_create(vector(-200,0,0));
-	i1->incomingStreets +=5;
+	//i1->incomingStreets +=5;
 	
 	for(i=0; i<10; i++) {
 		VECTOR* vecNewAngle = sys_malloc(sizeof(VECTOR));
@@ -113,25 +114,27 @@ void create_intersections() {
 
 	
 	Intersection *i2 = intersection_create(vector(-125,0,0));
-	i2->incomingStreets +=4;
+	//i2->incomingStreets +=4;
 	build_intersection(i2);
 	
 	Intersection *i3 = intersection_create(vector(-50,0,0));
-	i3->incomingStreets +=3;
+	//i3->incomingStreets +=3;
 	build_intersection(i3);
 	
 	Intersection *i4 = intersection_create(vector(25,0,0));
-	i4->incomingStreets +=2;
+	//i4->incomingStreets +=2;
 	build_intersection(i4);
 	
 	Intersection *i5 = intersection_create(vector(100,0,0));
-	i5->incomingStreets +=1;
+	//i5->incomingStreets +=1;
 	build_intersection(i5);
 }
 
 void main() {
 	video_mode = 8;
 	mouse_mode = 4;
+	max_entities = 10000;
+	random_seed(0);
 	
 	while(total_frames < 1) wait(1);
 	draw_textmode("Arial", 0, 14, 100);
@@ -141,12 +144,21 @@ void main() {
 	
 	vec_set(camera.x, vector(-11, -500, 228));
 	vec_set(camera.pan, vector(87, -28, 0));
-	List* intersections = list_create();
-	roadnetwork_from_voronoi(intersections, 40, -1000, -1000, 1000, 1000);
-	//roadnetwork_from_rectangle(intersections, -1000, -1000, 1000, 1000, 500);
 	
-	printf("intersections %i", (long)list_get_count(intersections));
-	roadnetwork_build(intersections);
+	List *points = roadnetwork_from_rectlangle(-1000, -1000, 1000, 1000, 200, 6);
+	//List *points = roadnetwork_from_voronoi(50, -1000, -1000, 1000, 1000);
+	
+	List *intersections = roadnetwork_calculate(points);
+	
+	// Delete intersections which are too near to each other
+	roadnetwork_join_near_intersections(intersections, 100);
+	
+	roadnetwork_build(intersections, 0, false);
+	
+	/*while(1) {
+		DEBUG_BMAP(bmapStreetTextureNM, 10, 1);
+		wait(1);
+	}*/
 	//draw_voronoi();
 	//create_small_streets();
 	//create_intersections();

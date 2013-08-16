@@ -85,13 +85,26 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 
 #define PROC_TEXT_RES 256
 
-BMAP* bmapStreetIntersection1   = NULL;
-BMAP* bmapStreetIntersection2_1 = NULL;
-BMAP* bmapStreetIntersection2_2 = NULL;
-BMAP* bmapStreetIntersection2_3 = NULL;
-BMAP* bmapStreetIntersection3   = NULL;
-BMAP* bmapStreetIntersection4   = NULL;
-BMAP* bmapStreetIntersection5   = NULL;
+// Color maps
+BMAP* bmapStreetIntersection1     = NULL;
+BMAP* bmapStreetIntersection2_1   = NULL;
+BMAP* bmapStreetIntersection2_2   = NULL;
+BMAP* bmapStreetIntersection2_3   = NULL;
+BMAP* bmapStreetIntersection3     = NULL;
+BMAP* bmapStreetIntersection4     = NULL;
+BMAP* bmapStreetIntersection5     = NULL;
+BMAP* bmapStreetTexture           = NULL;
+
+// Normal maps
+BMAP* bmapStreetIntersectionNM1   = NULL;
+BMAP* bmapStreetIntersectionNM2_1 = NULL;
+BMAP* bmapStreetIntersectionNM2_2 = NULL;
+BMAP* bmapStreetIntersectionNM2_3 = NULL;
+BMAP* bmapStreetIntersectionNM3   = NULL;
+BMAP* bmapStreetIntersectionNM4   = NULL;
+BMAP* bmapStreetIntersectionNM5   = NULL;
+BMAP* bmapStreetTextureNM         = NULL;
+
 
 typedef struct Street
 {
@@ -104,7 +117,7 @@ typedef struct Street
 
 typedef struct {
 	VECTOR *pos;
-	int incomingStreets;
+	//int incomingStreets;
 	List *incomingConnections; // Typ: IntersectionConnection
 	int source;
 	ENTITY* ent; // The built entity
@@ -122,36 +135,51 @@ typedef struct {
 
 
 /**
- * Builds a roadnetwork from a set of intersections
+ * Builds a physical roadnetwork from a set of intersections
  * \param   _intersections  Intersection list
+ * \param   _zPosition      Initial z position fo all created entities
+ * \param   _placeOnGround  Place the complete road network on ground (if any)
  */
-void roadnetwork_build(List *_intersections);
+void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround);
+
+/**
+ * Calculates the intersections of a roadnetwork and the intersection points
+ * \param   _points         Single points of street beginning and street endings
+ * \return                  Pointer to a list of intersections
+ */
+List* roadnetwork_calculate(List *_points);
 
 /**
  * Generate a random road network using voronoi
- * \param   _intersections  Target list
  * \param   _pointCount     Number of points for the voronoi elements.
  * \param   _minX           Min x value of the network borders.
  * \param   _minY           Min y value of the network borders.
  * \param   _maxX           Max x value of the network borders.
  * \param   _maxY           Max y value of the network borders.
- * \return                  Pointer to _intersections
+ * \return                  Pointer to a list of float points
  */
-List *roadnetwork_from_voronoi(List *_intersections, int _pointCount, int _minX, int _minY, int _maxX, int _maxY);
+List *roadnetwork_from_voronoi(int _pointCount, int _minX, int _minY, int _maxX, int _maxY);
 
 
 /**
  * Generate a random road network using a rectangular algorithm
- * \param   _intersections  Target list
- * \param   _minX           Min x value of the network borders.
- * \param   _minY           Min y value of the network borders.
- * \param   _maxX           Max x value of the network borders.
- * \param   _maxY           Max y value of the network borders.
- * \param   _dist           Distance of the squares
- * \return                  Pointer to _intersections
+ * \param   _minX              Min x value of the network borders.
+ * \param   _minY              Min y value of the network borders.
+ * \param   _maxX              Max x value of the network borders.
+ * \param   _maxY              Max y value of the network borders.
+ * \param   _dist              Distance of the squares
+ * \param   _rndDeleteFactor   The lower this value, the bigger the possibility that parts get deleted. 10 for no deletion. (1-10)
+ * \return                     Pointer to a list of float points
  */
-List *roadnetwork_from_rectangle(List *_intersections, int _minX, int _minY, int _maxX, int _maxY, int _dist);
+List *roadnetwork_from_rectlangle(int _minX, int _minY, int _maxX, int _maxY, int _dist, int _rndDeleteFactor);
 
+
+/**
+ * Joins all intersections that are closer than _minDist to one.
+ * \param   _intersections  List of all intersections in the list.
+ * \param   _dist           All intersections nearer than _minDist get joined.
+ */
+void roadnetwork_join_near_intersections(List *_intersections, float _minDist);
 
 /**
  * Creates a new intersection.
@@ -163,10 +191,9 @@ Intersection *intersection_create(VECTOR* _pos);
 /**
  * Builds a mesh and ENTITY* from a given intersection object.
  * \param   _intersection          The _intersection to be built.
- * \param   _intersectionTexture   The texture of the street. Should be tilable in y direction.
  * \return                         The ENTITY* build from the intersection.
  */
-ENTITY *build_intersection(Intersection *_intersection, BMAP* _intersectionTexture);
+ENTITY *build_intersection(Intersection *_intersection);
 
 
 /**
@@ -202,17 +229,18 @@ ENTITY *street_build(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, 
 
 /**
  * Builds a mesh and ENTITY* from a given street object and connects the end vertices to certain points
- * \param   street          The street to be built.
- * \param   _streetTexture  The texture of the street. Should be tilable in y direction.
- * \param   _placeOnGround  Align street to ground?
- * \param   _details        How detailed should the road be?
- * \param   _v1_1           First vertex position of the first end
- * \param   _v1_2           Second vertex position of the first end
- * \param   _v2_1           First vertex position of the second end
- * \param   _v2_2           Second vertex position of the second end
- * \return                  The ENTITY* build from the street.
+ * \param   street             The street to be built.
+ * \param   _streetTexture     The texture of the street. Should be tilable in y direction.
+ * \param   _streetNormalMap   Normal map for the street texture
+ * \param   _placeOnGround     Align street to ground?
+ * \param   _details           How detailed should the road be?
+ * \param   _v1_1              First vertex position of the first end
+ * \param   _v1_2              Second vertex position of the first end
+ * \param   _v2_1              First vertex position of the second end
+ * \param   _v2_2              Second vertex position of the second end
+ * \return                     The ENTITY* build from the street.
  */
-ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BOOL _placeOnGround, float _details, VECTOR* _v1_1, VECTOR* _v1_2, VECTOR* _v2_1, VECTOR* _v2_2);
+ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNormalMap, BOOL _placeOnGround, float _details, VECTOR* _v1_1, VECTOR* _v1_2, VECTOR* _v2_1, VECTOR* _v2_2);
 
 /**
  * Places a street or another flat model on the ground
