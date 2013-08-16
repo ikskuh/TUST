@@ -1,6 +1,58 @@
 #ifndef _KUBUS_H_
 #define _KUBUS_H_
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+/**
+ * \defgroup  KubusSampleModule Kubus Example
+ * \ingroup   ExampleModule
+ * A small example for the kubus voxelizer system.
+ *
+ * \{
+ * \include kubus.c
+ * \}
+ */
+ #endif
+ 
+ /**
+ * \defgroup  KubusModule Kubus Voxelizer
+ * \ingroup   GenericScriptLibrary
+ * \brief     Provides functions to create levels based on voxels.
+ *
+ * Kubus is a complete system for voxel data visualization. It allows you to build levels out of small cubes,
+ * every cube is textured and can store additional data.
+ * 
+ * In Kubus, a voxel is called block and is 16x16x16 quants large. A block contains two informations: The type of the
+ * block and a pointer to user data.
+ * The user data is a free to use pointer for additional game information. It can be read with \ref kubus_get_blockdata and
+ * set with \ref kubus_set_blockdata.
+ * The block type is a pointer to a structure defined by Kubus. It contains the texturing information as well as additional
+ * block flags for transparency or a custom construction method.
+ * A block type is defined like this:
+ * \code{.cpp}
+ * BlockType *blockGlas = 
+ * {
+ * 	textureTop = 96;
+ * 	textureBottom = 96;
+ * 	textureSide = 96;
+ * 	flags = TRANSLUCENT; // We want our block to be transparent.
+ * }
+ * \endcode 
+ * As you can see, the block type definition here contains the three necessary texture definitions as well as an additional
+ * flag definition.
+ * Textures in kubus are stored in an atlas map. The map needs to contain 16 slots in both directions. Kubus supports a max. of 
+ * 256 textures at the moment caused by this restriction. The texture ID used in the block type definition is mapped to the texture
+ * in this way:
+ * \image html kubus_textures.png
+ *
+ * \{
+ *
+ * \file kubus.h
+ * \brief Header of the kubus voxelizer.
+ *
+ * \file kubus.c
+ * \brief Code of the kubus voxelizer.
+ */
+
 #ifndef CHUNK_COUNT_X
 	/**
 	 * \brief Defines the number of chunks in x-direction.

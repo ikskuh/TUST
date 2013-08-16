@@ -1,6 +1,7 @@
 var searchData=
 [
   ['basespeed',['baseSpeed',['../struct_c_c_t.html#a3bd7379641fa211d30be0356fe5e85e6',1,'CCT']]],
+  ['blocktype',['BlockType',['../group___kubus_module.html#struct_block_type',1,'']]],
   ['bmap',['BMAP',['../class_b_m_a_p.html',1,'']]],
   ['bmap_2ec',['bmap.c',['../bmap_8c.html',1,'']]],
   ['bmap_2eh',['bmap.h',['../bmap_8h.html',1,'']]],
