@@ -10,6 +10,7 @@
 //#define PROC_USE_SHADERS
 
 #define PROC_INTERSECTION_EXTREMITIES 5
+#define STREET_GROUND_DIST 3
 
 // ----------------------------------------------------------------------------------------
 // Street tool
@@ -28,14 +29,10 @@ Intersection *intersection_create(VECTOR* _pos)
 
 Street *street_create(int _streetWidth, int groundDistance)
 {
-	// Sets up a new street object
 	Street *street = sys_malloc(sizeof(Street));
-	
 	street->points = list_create();
-	
 	street->width = _streetWidth; // 320
 	street->groundDist = groundDistance;
-	
 	return street;
 }
 
@@ -111,8 +108,6 @@ D3DVERTEX *create_vertex(float _x, float _y, float _z, float _nx, float _ny, flo
 
 float optimal_intersection_rotation(Intersection* _inter) {
 
-
-	//switch(_inter->incomingStreets) {
 	switch(list_get_count(_inter->incomingConnections)) {
 		case 0: 
 			// Error
@@ -145,7 +140,6 @@ float optimal_intersection_rotation(Intersection* _inter) {
 			}
 			return ic3->incomingAngle->pan;
 		break;
-		//case 4:
 		default:
 		
 			int j,k,tempPan, resultPan;
@@ -339,25 +333,6 @@ int pan_angle_compare(ListData *left, ListData *right) { //and returns 1 if left
 	}	
 }
 
-/*action moveme() {
-	VECTOR myPos;
-	vec_set(myPos, my.x);
-	int dir = 0;
-	while(me) {
-		if (dir == 0) {
-			my.x +=3 * time_step;
-			if (my.x > myPos.x+20) {
-				dir = 1;
-			}
-		} else {
-			my.x -=3 * time_step;
-			if (my.x < myPos.x-20) {
-				dir = 0;
-			}
-		}
-		wait(1);
-	}
-}*/
 
 ENTITY *build_intersection(Intersection *_intersection)
 {
@@ -707,12 +682,6 @@ ENTITY *build_intersection(Intersection *_intersection)
 // Places each vertex of an entity's mesh on the ground (and adds a given distance)
 void place_street_on_ground(ENTITY* _street, int _dist) {
 	
-	// Place entity on ground
-	/*if (c_trace(_street.x, vector(_street.x, _street.y, _street.z - 1024), IGNORE_ME | USE_BOX) > 0) {
-		//printf("new.z %i = hit.z %i", (long)_street.z, (long)hit.z);
-		_street.z = hit.z + 20;
-	}*/
-	
 	var nVertexCount = ent_status(_street, 0);
 		
 	var i, j;
@@ -725,20 +694,13 @@ void place_street_on_ground(ENTITY* _street, int _dist) {
 		if (c != NULL) {
 			
 			vec_set(vecTemp, vector(c.v.x, c.v.z, c.v.y));
+			vec_mul(vecTemp, vector(_street.scale_x, _street.scale_y, _street.scale_z));
 			vec_rotate(vecTemp, _street.pan);
 			vec_add(vecTemp, _street.x);
 			if(c_trace(	vecTemp, vector(vecTemp.x, vecTemp.y, vecTemp.z - 1024),
 						IGNORE_MODELS | IGNORE_SPRITES | IGNORE_PASSABLE | IGNORE_PASSENTS | USE_POLYGON | IGNORE_ME))
 			{
-				//printf("Street pos (%i, %i, %i) trace from (%i, %i, %i)", (long)_street.x, (long)_street.y, (long)_street.z, (long)vecTemp.x, (long)vecTemp.y, (long)vecTemp.z);
-				
-				c.v.y = target.z + _dist - (_street.z - c.v.y*2);
-				
-				//Rotate the vector around the entities center
-				//vec_set(vecTemp, vector(c.v.x, c.v.z, c.v.y));
-				//vec_rotate(vecTemp, _street.pan);
-				//c.v.x = vecTemp.x; c.v.y = vecTemp.z; c.v.z = vecTemp.y;
-				
+				c.v.y = target.z + _dist - _street.z;
 				ent_setvertex(_street, c, i);
 			}
 		}		
@@ -1142,9 +1104,8 @@ void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround
 		tempInter->pos->y = _zPosition;
 		
 		ENTITY* entInter = build_intersection(tempInter);
-		wait(3);
 		if (_placeOnGround) {
-			place_street_on_ground(entInter, 3);
+			place_street_on_ground(entInter, STREET_GROUND_DIST);
 		}
 	}
 	
@@ -1174,7 +1135,7 @@ void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround
 								// Create Street (width=20, grounddist=3)
 								Street *s1 = NULL;
 								if (_placeOnGround) {
-									s1 = street_create(20, 3);
+									s1 = street_create(20, STREET_GROUND_DIST);
 								} else {
 									s1 = street_create(20, 0);
 								}
