@@ -83,8 +83,6 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 // Road networks
 // ----------------------------------------------------------------------------------------
 
-#define PROC_TEXT_RES 256
-
 // Color maps
 BMAP* bmapStreetIntersection1     = NULL;
 BMAP* bmapStreetIntersection2_1   = NULL;

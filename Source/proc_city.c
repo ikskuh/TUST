@@ -7,8 +7,9 @@
 
 //#define PROC_DEBUG
 
-//#define PROC_USE_SHADERS
+#define PROC_USE_SHADERS
 
+#define PROC_TEXT_RES 256
 #define PROC_INTERSECTION_EXTREMITIES 5
 #define STREET_GROUND_DIST 3
 
@@ -366,12 +367,18 @@ ENTITY *build_intersection(Intersection *_intersection)
 			model->skin[0] = bmapStreetIntersection1;
 			model->skin[1] = bmapStreetIntersectionNM1;
 			// y == z
-			D3DVERTEX *v1 = create_vertex(0 - 10,  0, 0 - 10,   0, 1, 0,   0,    0);
+			/*D3DVERTEX *v1 = create_vertex(0 - 10,  0, 0 - 10,   0, 1, 0,   0,    0);
 			D3DVERTEX *v2 = create_vertex(0 - 10,  0, 0 + 10,   0, 1, 0,   0,    1);
 			D3DVERTEX *v3 = create_vertex(0 + 2.5, 0, 0 + 10,   0, 1, 0,   0.66, 1);
 			D3DVERTEX *v4 = create_vertex(0 + 7.5, 0, 0 + 2.5,  0, 1, 0,   1,    0.66);
 			D3DVERTEX *v5 = create_vertex(0 + 7.5, 0, 0 - 2.5,  0, 1, 0,   1,    0.33);
-			D3DVERTEX *v6 = create_vertex(0 + 2.5, 0, 0 - 10,   0, 1, 0,   0.66, 0);
+			D3DVERTEX *v6 = create_vertex(0 + 2.5, 0, 0 - 10,   0, 1, 0,   0.66, 0);*/
+			D3DVERTEX *v1 = create_vertex(0 - 10,  0, 0 - 10,   0, 1, 0,   1.0 / 3,            1.0 / 3);
+			D3DVERTEX *v2 = create_vertex(0 - 10,  0, 0 + 10,   0, 1, 0,   1.0 / 3,            2.0 / 3);
+			D3DVERTEX *v3 = create_vertex(0 + 2.5, 0, 0 + 10,   0, 1, 0,   2.0 / 3 - 1.0 / 18, 2.0 / 3);
+			D3DVERTEX *v4 = create_vertex(0 + 7.5, 0, 0 + 2.5,  0, 1, 0,   2.0 / 3,            2.0 / 3 - 1.0 / 9); 
+			D3DVERTEX *v5 = create_vertex(0 + 7.5, 0, 0 - 2.5,  0, 1, 0,   2.0 / 3,            1.0 / 3 + 1.0 / 9);
+			D3DVERTEX *v6 = create_vertex(0 + 2.5, 0, 0 - 10,   0, 1, 0,   2.0 / 3 - 1.0 / 18, 1.0 / 3);
 			
 			
 			// Store the middle of the end that should be connected to a street
@@ -448,10 +455,10 @@ ENTITY *build_intersection(Intersection *_intersection)
 			}
 			
 			
-			D3DVERTEX *v1 = create_vertex(-10,                                 0, -10, 0, 1, 0, 0.33, 0.33);
-			D3DVERTEX *v2 = create_vertex(-10,                                 0,  10, 0, 1, 0, 0.33, 0.66);
-			D3DVERTEX *v3 = create_vertex( 10,                                 0, -10, 0, 1, 0, 0.66, 0.33);
-			D3DVERTEX *v4 = create_vertex( 10,                                 0,  10, 0, 1, 0, 0.66, 0.66);
+			D3DVERTEX *v1 = create_vertex(-10,                                 0, -10, 0, 1, 0, 1.0 / 3, 1.0 / 3);
+			D3DVERTEX *v2 = create_vertex(-10,                                 0,  10, 0, 1, 0, 1.0 / 3, 2.0 / 3);
+			D3DVERTEX *v3 = create_vertex( 10,                                 0, -10, 0, 1, 0, 2.0 / 3, 1.0 / 3);
+			D3DVERTEX *v4 = create_vertex( 10,                                 0,  10, 0, 1, 0, 2.0 / 3, 2.0 / 3);
 		
 			int i1 = dmdl_add_vertex(model, v1);
 			int i2 = dmdl_add_vertex(model, v2);
@@ -491,16 +498,16 @@ ENTITY *build_intersection(Intersection *_intersection)
 			model->skin[0] = bmapStreetIntersection3;
 			model->skin[1] = bmapStreetIntersectionNM3;
 			
-			D3DVERTEX *v1  = create_vertex(0 - 30, 0, 0 - 10, 0, 1, 0, 0,    0.33);
-			D3DVERTEX *v2  = create_vertex(0 - 10, 0, 0 - 10, 0, 1, 0, 0.33, 0.33);
-			D3DVERTEX *v3  = create_vertex(0 - 30, 0, 0 + 10, 0, 1, 0, 0,    0.66);
-			D3DVERTEX *v4  = create_vertex(0 - 10, 0, 0 + 10, 0, 1, 0, 0.33, 0.66);
-			D3DVERTEX *v5  = create_vertex(0 + 10, 0, 0 - 10, 0, 1, 0, 0.66, 0.33);
-			D3DVERTEX *v6  = create_vertex(0 + 10, 0, 0 + 10, 0, 1, 0, 0.66, 0.66);
-			D3DVERTEX *v7  = create_vertex(0 + 30, 0, 0 - 10, 0, 1, 0, 1,    0.33);
-			D3DVERTEX *v8  = create_vertex(0 + 30, 0, 0 + 10, 0, 1, 0, 1,    0.66);
-			D3DVERTEX *v9  = create_vertex(0 - 10, 0, 0 - 30, 0, 1, 0, 0.33, 0);			
-			D3DVERTEX *v10 = create_vertex(0 + 10, 0, 0 - 30, 0, 1, 0, 0.66, 0);			
+			D3DVERTEX *v1  = create_vertex(0 - 30, 0, 0 - 10, 0, 1, 0, 0,       1.0 / 3);
+			D3DVERTEX *v2  = create_vertex(0 - 10, 0, 0 - 10, 0, 1, 0, 1.0 / 3, 1.0 / 3);
+			D3DVERTEX *v3  = create_vertex(0 - 30, 0, 0 + 10, 0, 1, 0, 0,       2.0 / 3);
+			D3DVERTEX *v4  = create_vertex(0 - 10, 0, 0 + 10, 0, 1, 0, 1.0 / 3, 2.0 / 3);
+			D3DVERTEX *v5  = create_vertex(0 + 10, 0, 0 - 10, 0, 1, 0, 2.0 / 3, 1.0 / 3);
+			D3DVERTEX *v6  = create_vertex(0 + 10, 0, 0 + 10, 0, 1, 0, 2.0 / 3, 2.0 / 3);
+			D3DVERTEX *v7  = create_vertex(0 + 30, 0, 0 - 10, 0, 1, 0, 1,       1.0 / 3);
+			D3DVERTEX *v8  = create_vertex(0 + 30, 0, 0 + 10, 0, 1, 0, 1,       2.0 / 3);
+			D3DVERTEX *v9  = create_vertex(0 - 10, 0, 0 - 30, 0, 1, 0, 1.0 / 3, 0);			
+			D3DVERTEX *v10 = create_vertex(0 + 10, 0, 0 - 30, 0, 1, 0, 2.0 / 3, 0);			
 			
 			int i1  = dmdl_add_vertex(model, v1);
 			int i2  = dmdl_add_vertex(model, v2);
@@ -553,18 +560,18 @@ ENTITY *build_intersection(Intersection *_intersection)
 			model->skin[0] = bmapStreetIntersection4;
 			model->skin[1] = bmapStreetIntersectionNM4;
 			
-			D3DVERTEX *v1  = create_vertex(0 - 30, 0, 0 - 10, 0, 1, 0, 0,    0.33);
-			D3DVERTEX *v2  = create_vertex(0 - 10, 0, 0 - 10, 0, 1, 0, 0.33, 0.33);
-			D3DVERTEX *v3  = create_vertex(0 - 30, 0, 0 + 10, 0, 1, 0, 0,    0.66);
-			D3DVERTEX *v4  = create_vertex(0 - 10, 0, 0 + 10, 0, 1, 0, 0.33, 0.66);
-			D3DVERTEX *v5  = create_vertex(0 + 10, 0, 0 - 10, 0, 1, 0, 0.66, 0.33);
-			D3DVERTEX *v6  = create_vertex(0 + 10, 0, 0 + 10, 0, 1, 0, 0.66, 0.66);
-			D3DVERTEX *v7  = create_vertex(0 + 30, 0, 0 - 10, 0, 1, 0, 1,    0.33);
-			D3DVERTEX *v8  = create_vertex(0 + 30, 0, 0 + 10, 0, 1, 0, 1,    0.66);
-			D3DVERTEX *v9  = create_vertex(0 - 10, 0, 0 + 30, 0, 1, 0, 0.33, 1);			
-			D3DVERTEX *v10 = create_vertex(0 + 10, 0, 0 + 30, 0, 1, 0, 0.66, 1);			
-			D3DVERTEX *v11 = create_vertex(0 - 10, 0, 0 - 30, 0, 1, 0, 0.33, 0);
-			D3DVERTEX *v12 = create_vertex(0 + 10, 0, 0 - 30, 0, 1, 0, 0.66, 0);
+			D3DVERTEX *v1  = create_vertex(0 - 30, 0, 0 - 10, 0, 1, 0, 0,       1.0 / 3);
+			D3DVERTEX *v2  = create_vertex(0 - 10, 0, 0 - 10, 0, 1, 0, 1.0 / 3, 1.0 / 3);
+			D3DVERTEX *v3  = create_vertex(0 - 30, 0, 0 + 10, 0, 1, 0, 0,       2.0 / 3);
+			D3DVERTEX *v4  = create_vertex(0 - 10, 0, 0 + 10, 0, 1, 0, 1.0 / 3, 2.0 / 3);
+			D3DVERTEX *v5  = create_vertex(0 + 10, 0, 0 - 10, 0, 1, 0, 2.0 / 3, 1.0 / 3);
+			D3DVERTEX *v6  = create_vertex(0 + 10, 0, 0 + 10, 0, 1, 0, 2.0 / 3, 2.0 / 3);
+			D3DVERTEX *v7  = create_vertex(0 + 30, 0, 0 - 10, 0, 1, 0, 1,       1.0 / 3);
+			D3DVERTEX *v8  = create_vertex(0 + 30, 0, 0 + 10, 0, 1, 0, 1,       2.0 / 3);
+			D3DVERTEX *v9  = create_vertex(0 - 10, 0, 0 + 30, 0, 1, 0, 1.0 / 3, 1);			
+			D3DVERTEX *v10 = create_vertex(0 + 10, 0, 0 + 30, 0, 1, 0, 2.0 / 3, 1);			
+			D3DVERTEX *v11 = create_vertex(0 - 10, 0, 0 - 30, 0, 1, 0, 1.0 / 3, 0);
+			D3DVERTEX *v12 = create_vertex(0 + 10, 0, 0 - 30, 0, 1, 0, 2.0 / 3, 0);
 			
 			int i1  = dmdl_add_vertex(model, v1);
 			int i2  = dmdl_add_vertex(model, v2);
@@ -834,7 +841,7 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 		//left.v1 = 15 * dist;
 		//left.u1 = 0;
 		left.u1 = 6 * dist;
-		left.v1 = 0.33;
+		left.v1 = 1.0 / 3;
 		
 		// Setup right vertex
 		if ((dist == 0) && (_v1_2 != NULL)) {
@@ -857,7 +864,7 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 		//right.v1 = 15 * dist;
 		//right.u1 = 1;		
 		right.u1 = 6 * dist;
-		right.v1 = 0.66;
+		right.v1 = 2.0 / 3;
 		
 		// Create separator for this part
 		int separator = street_create_separator(model, &left, &right);
@@ -1212,7 +1219,7 @@ void proc_city_create_skins() {
 	// -----------------------------------
 	bmapStreetIntersection1 = bmap_createblack(PROC_TEXT_RES, PROC_TEXT_RES, 32);
 	
-	bmapStreetIntersection1 = bmap_draw_triangle_filled(bmapStreetIntersection1, 
+	/*bmapStreetIntersection1 = bmap_draw_triangle_filled(bmapStreetIntersection1, 
 		0,             0,
 		0,             PROC_TEXT_RES,
 		PROC_TEXT_RES, PROC_TEXT_RES / 3,
@@ -1238,9 +1245,45 @@ void proc_city_create_skins() {
 		PROC_TEXT_RES,           (PROC_TEXT_RES / 3) * 2,
 		(PROC_TEXT_RES / 3) * 2, PROC_TEXT_RES,
 		colStreet, 100
+	);*/
+	
+	bmapStreetIntersection1 = bmap_draw_rectangle_filled(bmapStreetIntersection1,
+		0,       0,
+		PROC_TEXT_RES, PROC_TEXT_RES,
+		colStreet, 100
 	);
 	
 	bmapStreetIntersection1 = bmap_draw_line(bmapStreetIntersection1,
+		(PROC_TEXT_RES / 3),                               (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		((PROC_TEXT_RES / 3) * 2) - (PROC_TEXT_RES / 16),  (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);
+	
+	bmapStreetIntersection1 = bmap_draw_line(bmapStreetIntersection1,
+		((PROC_TEXT_RES / 3) * 2) - (PROC_TEXT_RES / 16),  (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 51),
+		((PROC_TEXT_RES / 3) * 2) - (PROC_TEXT_RES / 51),  (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 9) + (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);
+	
+	bmapStreetIntersection1 = bmap_draw_line(bmapStreetIntersection1,
+		((PROC_TEXT_RES / 3) * 2) - (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 9) + (PROC_TEXT_RES / 51),
+		((PROC_TEXT_RES / 3) * 2) - (PROC_TEXT_RES / 51), (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 9)*2 - (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);
+	
+	bmapStreetIntersection1 = bmap_draw_line(bmapStreetIntersection1,
+		((PROC_TEXT_RES / 3) * 2) - (PROC_TEXT_RES / 51),  (PROC_TEXT_RES / 3) + (PROC_TEXT_RES / 9)*2 - (PROC_TEXT_RES / 51),
+		((PROC_TEXT_RES / 3) * 2) - (PROC_TEXT_RES / 16),  (PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51),
+	colStreetMarker, 100
+	);
+	
+	bmapStreetIntersection1 = bmap_draw_line(bmapStreetIntersection1,
+		((PROC_TEXT_RES / 3) * 2) - (PROC_TEXT_RES / 16),  (PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51),
+		(PROC_TEXT_RES / 3),                               (PROC_TEXT_RES / 3)*2 - (PROC_TEXT_RES / 51),
+		colStreetMarker, 100
+	);		
+	
+	/*bmapStreetIntersection1 = bmap_draw_line(bmapStreetIntersection1,
 		0,                                                PROC_TEXT_RES / 51,
 		((PROC_TEXT_RES / 3) * 2) - (PROC_TEXT_RES / 51), PROC_TEXT_RES / 51,
 		colStreetMarker, 100
@@ -1268,7 +1311,7 @@ void proc_city_create_skins() {
 		((PROC_TEXT_RES / 3) * 2), PROC_TEXT_RES - (PROC_TEXT_RES / 51),
 		0,                         PROC_TEXT_RES - (PROC_TEXT_RES / 51),
 		colStreetMarker, 100
-	);
+	);*/
 	
 	
 	
