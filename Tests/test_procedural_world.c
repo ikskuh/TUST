@@ -6,7 +6,7 @@
 
 #include "..\\Source\\proc_terrain.h"
 #include "..\\Source\\math.h"
-#include "..\\Source\\proc_city.h"
+#include "..\\Source\\proc_street.h"
 #include "..\\Source\\DynamicModels.h"
 #include "..\\Source\\tust.h"
 
@@ -33,6 +33,4 @@ void main() {
 	List *intersections = roadnetwork_calculate(points);
 	roadnetwork_join_near_intersections(intersections, 100); // Delete intersections which are too near to each other
 	roadnetwork_build(intersections, 300, true);
-
 }
-	

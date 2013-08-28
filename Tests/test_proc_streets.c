@@ -4,7 +4,7 @@
 #include <MtlFX.c>
 
 #include "..\\Source\\math.h"
-#include "..\\Source\\proc_city.h"
+#include "..\\Source\\proc_street.h"
 #include "..\\Source\\DynamicModels.h"
 #include "..\\Source\\tust.h"
 

@@ -1,5 +1,5 @@
-#ifndef _PROC_CITY_H_
-#define _PROC_CITY_H_
+#ifndef _PROC_STREET_H_
+#define _PROC_STREET_H_
 
 /**
  * \file proc_city.h
@@ -247,6 +247,6 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
  */
 void place_street_on_ground(ENTITY* _street, int _dist);
 
-#include "proc_city.c"
+#include "proc_street.c"
 
 #endif

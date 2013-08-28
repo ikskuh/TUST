@@ -1,5 +1,5 @@
-#ifndef _PROC_CITY_C_
-#define _PROC_CITY_C_
+#ifndef _PROC_STREET_C_
+#define _PROC_STREET_C_
 
 #include "math.h"
 #include "bmap.h" // Needs "BmapGS.dll"
