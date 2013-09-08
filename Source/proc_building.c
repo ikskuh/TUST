@@ -3,6 +3,7 @@
 
 ENTITY* bd_create_house(int _roomheight, int _rooms) {
 
+	// Generate floor plan
 		
 }
 

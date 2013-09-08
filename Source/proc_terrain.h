@@ -1,12 +1,12 @@
 #ifndef __PROC_TERRAIN_H__
 #define __PROC_TERRAIN_H__
 
-/*void heightmap_to_terrain(ENTITY* _ent, BMAP* _heightmap, float _altitude);
-ENTITY* generate_random_terrain(VECTOR* _pos, int _verticesX, int _verticesY, int _vertexSize, float _altitude);
-void smooth_to_terrain(ENTITY* _ent);
-void bmap_to_colormap(BMAP* _bitmap);*/
+ENTITY* terrain_from_heightmap(VECTOR* _pos, BMAP* _source, int _verticesX, int _verticesY, int _vertexSize, float _altitude);
+BMAP* generate_random_heightmap_noise(int _width, int _height, float _altitude);
 BMAP* bmap_to_displacementmap(BMAP* _bitmap);
+BMAP* heightmap_to_colormap(BMAP* _heightmap);
 BMAP* bmap_to_blur(BMAP* _bitmap, int _passes);
+BMAP* flatten_heightmap(BMAP* _heightmap, int _levels);
 
 // Simple multi texture terrain shader
 
@@ -14,6 +14,9 @@ BMAP* bmapRock    = "test_proc_terrain\\rock.tga";
 BMAP* bmapGrass   = "test_proc_terrain\\grass.tga";
 BMAP* bmapSand    = "test_proc_terrain\\sand.tga";
 BMAP* bmapDetail  = "test_proc_terrain\\detailmap.tga";
+
+// Array to be used in "flatten_terrain"
+var g_vFlattenLevels[30];
 
 void mat_terrain_multi_texture_event()  {	
 	bmap_to_mipmap(mtl.skin1);

@@ -20,7 +20,7 @@ void main() {
 	vec_set(camera.pan, vector(4,-29,0));
 	
 	// Terrain
-	BMAP* bmapHeightMap = generate_random_heightmap(256, 256, 64);
+	BMAP* bmapHeightMap = generate_random_heightmap_noise(256, 256, 64);
 	BMAP* bmapColorMap = heightmap_to_colormap(bmapHeightMap);
 	ENTITY* entTerrain = terrain_from_heightmap(vector(0,0,-300), bmapHeightMap, 65, 65, 30, 0.4);
 	ent_setskin(entTerrain, bmapColorMap, 2);
