@@ -145,8 +145,8 @@ void main() {
 	vec_set(camera.x, vector(-11, -500, 228));
 	vec_set(camera.pan, vector(87, -28, 0));
 	
-	List *points = roadnetwork_from_rectlangle(-1000, -1000, 1000, 1000, 200, 6);
-	//List *points = roadnetwork_from_voronoi(50, -1000, -1000, 1000, 1000);
+	//List *points = roadnetwork_from_rectlangle(-1000, -1000, 1000, 1000, 200, 6);
+	List *points = roadnetwork_from_voronoi(50, -1000, -1000, 1000, 1000);
 	
 	List *intersections = roadnetwork_calculate(points);
 	

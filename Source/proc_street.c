@@ -7,7 +7,7 @@
 
 //#define PROC_DEBUG
 
-#define PROC_USE_SHADERS
+//#define PROC_USE_SHADERS
 
 #define PROC_TEXT_RES 256
 #define PROC_INTERSECTION_EXTREMITIES 5
@@ -723,6 +723,10 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 {
 	int iPointCount = list_get_count(street->points);
 	
+	// Optimized model position
+	VECTOR vecStreetPos;
+	vec_set(vecStreetPos, nullvector);
+	
 	// Create array with space for all spline points
 	VECTOR *splineData = sys_malloc(sizeof(VECTOR) * iPointCount);
 	
@@ -765,7 +769,7 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 		// Save beginning to create the entity at the end
 		if (dist == 0) {
 			vec_set(&startSegment, &splineData[0]);
-			//vec_set(vecStartPosition, startSegment);
+			vec_set(vecStreetPos, startSegment);
 			
 			#ifdef PROC_DEBUG
 				ENTITY* entB = ent_create(CUBE_MDL, startSegment, NULL); set(entB, LIGHT); entB.lightrange = 255; vec_set(entB.blue, vector(0,255,0));
@@ -866,6 +870,14 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 		right.u1 = 6 * dist;
 		right.v1 = 2.0 / 3;
 		
+		// Find min/max vertex pos for later positioning
+		if ((right.x <= vecStreetPos.x) && (right.z <= vecStreetPos.z)) {
+			vec_set(vecStreetPos, vector(right.x, right.z, right.y));
+		}
+		if ((left.x <= vecStreetPos.x) && (left.z <= vecStreetPos.z)) {
+			vec_set(vecStreetPos, vector(left.x, left.z, left.y));
+		}		
+		
 		// Create separator for this part
 		int separator = street_create_separator(model, &left, &right);
 		
@@ -887,9 +899,25 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 		street_create_segment(model, previousSeparator, 0);
 	}
 	
-	// Create the entity
-	ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
-	//ENTITY *ent = dmdl_create_instance(model, vecStartPosition, NULL);
+	// Optimize model position
+	for(i=0; i<model->vertexCount; i++) {
+		if (vecStreetPos.x >= 0) {
+			model->vertexBuffer[i].x -=vecStreetPos.x;
+		} else {
+			model->vertexBuffer[i].x +=-vecStreetPos.x;
+		}
+		if (vecStreetPos.z >= 0) {
+			//model->vertexBuffer[i].y +=vecStreetPos.z*2;
+			model->vertexBuffer[i].z -=vecStreetPos.y;
+		} else {
+			//model->vertexBuffer[i].y +=-vecStreetPos.z;
+			model->vertexBuffer[i].z +=-vecStreetPos.y;
+		}
+	}
+	
+	// Create the entity at desired position
+	//ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
+	ENTITY *ent = dmdl_create_instance(model, vector(vecStreetPos.x, vecStreetPos.y, vecStreetPos.z), NULL);
 	
 	// Free data
 	dmdl_delete(model);
