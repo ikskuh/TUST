@@ -202,6 +202,8 @@ Functions</h2></td></tr>
 <tr class="separator:a5a970e2c95685da5c73a6fc92c40012e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd1f5d9437e6d1333c317f7754096226"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#acd1f5d9437e6d1333c317f7754096226">vec_to_catmull</a> (<a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *pos, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v0, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v1, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v2, <a class="el" href="class_v_e_c_t_o_r.html">VECTOR</a> *v3, float s)</td></tr>
 <tr class="separator:acd1f5d9437e6d1333c317f7754096226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a806327808da18a7c1b1528c2451dda6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a806327808da18a7c1b1528c2451dda6a">float_cmp</a> (float _f1, float _f2)</td></tr>
+<tr class="separator:a806327808da18a7c1b1528c2451dda6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Math helpers and other function Provides math helpers and useful functions. </p>
@@ -330,6 +332,41 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>List*(VECTOR*) of Points that make the spline more detailed </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a806327808da18a7c1b1528c2451dda6a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int float_cmp </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>_f1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>_f2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares 2 float values with a precision of %.2f </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_f1</td><td>First float </td></tr>
+    <tr><td class="paramname">_f2</td><td>Second float </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"1" if _f1 &gt; _f2, "-1" if _f2 &gt; _f1, "0" if _f1 == _f2 </dd></dl>
 
 </div>
 </div>
@@ -1549,7 +1586,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 2 2013 19:00:22 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 16 2013 13:38:15 for TUST by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

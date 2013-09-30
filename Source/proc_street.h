@@ -1,5 +1,5 @@
-#ifndef _PROC_CITY_H_
-#define _PROC_CITY_H_
+#ifndef _PROC_STREET_H_
+#define _PROC_STREET_H_
 
 /**
  * \file proc_city.h
@@ -82,8 +82,6 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 // ----------------------------------------------------------------------------------------
 // Road networks
 // ----------------------------------------------------------------------------------------
-
-#define PROC_TEXT_RES 256
 
 // Color maps
 BMAP* bmapStreetIntersection1     = NULL;
@@ -249,6 +247,6 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
  */
 void place_street_on_ground(ENTITY* _street, int _dist);
 
-#include "proc_city.c"
+#include "proc_street.c"
 
 #endif

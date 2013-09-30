@@ -3,7 +3,7 @@
 
 #include "noise.h"
 
-BMAP* generate_random_heightmap(int _width, int _height, float _altitude) {
+BMAP* generate_random_heightmap_noise(int _width, int _height, float _altitude) {
 	
 	// Loop variables
 	int i,j;
@@ -39,6 +39,7 @@ BMAP* generate_random_heightmap(int _width, int _height, float _altitude) {
 	}
 	return b;
 }
+
 
 ENTITY* terrain_from_heightmap(VECTOR* _pos, BMAP* _source, int _verticesX, int _verticesY, int _vertexSize, float _altitude) {
 	
@@ -125,6 +126,70 @@ BMAP* heightmap_to_colormap(BMAP* _heightmap) {
 		}
 	}
 	return bmapColorMap;
+}
+
+
+void flatten_heightmap(BMAP* _heightmap, int _levels) {
+	
+	int i,j,k;
+	int lightest = 0;
+	int darkest  = 255;
+	
+	var vFormat, vPixel;
+	COLOR *color = sys_malloc(sizeof(COLOR));
+	
+	// clear array
+	for(i=0; i<30; i++) {
+		g_vFlattenLevels[i] = 0;
+	}
+	
+	vFormat = bmap_lock(_heightmap, 0);
+		
+	// Find darkest and lightest value
+	for(i=0; i<bmap_width(_heightmap); i++) {
+		
+		for (j=0; j<bmap_height(_heightmap); j++) {
+			
+			vPixel = pixel_for_bmap(_heightmap, i, j);
+			pixel_to_vec(color, NULL, vFormat, vPixel);
+			if (color->red < darkest) darkest = color->red;
+			if (color->red > lightest) lightest = color->red;		
+			
+		}
+		
+	}
+	
+	// Create array
+	for (i=0; i<_levels; i++) {
+		g_vFlattenLevels[i] = integer(darkest + ((lightest - darkest) / (i+1)));
+	}
+	
+	// Assign new heights
+	for(i=0; i<bmap_width(_heightmap); i++) {
+		
+		for (j=0; j<bmap_height(_heightmap); j++) {
+			
+			vPixel = pixel_for_bmap(_heightmap, i, j);
+			pixel_to_vec(color, NULL, vFormat, vPixel);
+
+			//Calculate new height
+			for(k=0; k<_levels; k++) {
+				
+				if (color->red >= g_vFlattenLevels[k]) {
+					
+					color->red = g_vFlattenLevels[k];
+					color->green = g_vFlattenLevels[k];
+					color->blue = g_vFlattenLevels[k];
+					break;
+				}
+			}
+			
+			vPixel = pixel_for_vec(color, 100, vFormat);
+			pixel_to_bmap(_heightmap, i, j, vPixel);
+		}
+	}
+	
+	bmap_unlock(_heightmap);
 }
 
 #endif
