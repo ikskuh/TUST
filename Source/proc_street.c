@@ -782,7 +782,7 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 		}
 		
 		// Get a next segment on the street (to calculate the distance)
-		if(dist >= 0.99)
+		if(dist >= 1.0 - _details) // 0.99
 		{
 			// Special case: Last segment
 			vec_set(&endSegment, &splineData[iPointCount-1]);
@@ -793,10 +793,11 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 			
 			//vec_set(&endSegment, math_get_spline(splineData, iPointCount, dist - 0.01));
 			vec_diff(&dir, &startSegment, &endSegment);
+			
 		}
 		else
 		{
-			vec_set(&endSegment, math_get_spline(splineData, iPointCount, dist + 0.01));
+			vec_set(&endSegment, math_get_spline(splineData, iPointCount, dist + _details)); // + 0.01
 			vec_diff(&dir, &endSegment, &startSegment);
 		}
 		
@@ -917,7 +918,7 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 	
 	// Create the entity at desired position
 	//ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
-	ENTITY *ent = dmdl_create_instance(model, vector(vecStreetPos.x, vecStreetPos.y, vecStreetPos.z), NULL);
+	ENTITY *ent = dmdl_create_instance(model, vector(vecStreetPos.x, vecStreetPos.y, 0), NULL); // vecStreetPos.z
 	
 	// Free data
 	dmdl_delete(model);

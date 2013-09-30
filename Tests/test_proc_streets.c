@@ -61,18 +61,17 @@ void draw_voronoi() {
 // Example 2: Renders a simple street on a terrain
 void create_small_streets()
 {
-	level_load("");
 	vec_set(camera.x, vector(15, 1014, 698));
 	vec_set(camera.pan, vector(270, -35, 0));
 	
 	ENTITY* entTerrain = ent_create("..\\Ressources\\Terrains\\helymap1.hmp", vector(0,0,0), NULL);
-	BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
+	//BMAP* bmapStreetTexture = bmap_create("..\\Ressources\\Graphics\\street.tga");
 	
 	
 	Street *editorStreet = street_create(25, 5);
 
 	// Add street positions	
-	street_addpos(editorStreet, vector(100,200,0));
+	street_addpos(editorStreet, vector(100,250,0));
 	street_addpos(editorStreet, vector(200,200,0));
 	street_addpos(editorStreet, vector(300,100,0));
 	street_addpos(editorStreet, vector(300,0,0));
@@ -82,7 +81,9 @@ void create_small_streets()
 	street_addpos(editorStreet, vector(-200,-200,0));
 	street_addpos(editorStreet, vector(-100,200,0));
 	street_addpos(editorStreet, vector(-350,200,0));
-	street_addpos(editorStreet, vector(100,200,0));
+	street_addpos(editorStreet, vector(-150,300,0));
+	street_addpos(editorStreet, vector(0,350,0));
+	street_addpos(editorStreet, vector(100,250,0));
 
 	// "Draw" streets
 	ENTITY *street = street_build(editorStreet, bmapStreetTexture, false, 0.01);
