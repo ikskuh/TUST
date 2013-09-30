@@ -1,12 +1,63 @@
 #ifndef __PROC_TERRAIN_H__
 #define __PROC_TERRAIN_H__
 
+#include "List.h"
+
 ENTITY* terrain_from_heightmap(VECTOR* _pos, BMAP* _source, int _verticesX, int _verticesY, int _vertexSize, float _altitude);
+
+/**
+ * Generates a height map using a noise algorithm
+ * \param   _width     Width of the target bitmap
+ * \param   _height    Height of the target bitmap
+ * \param   _altitude  Noise altitude
+ * \return             The created height map
+ */
 BMAP* generate_random_heightmap_noise(int _width, int _height, float _altitude);
+
+/**
+ * Creates a displaycement map from a bitmap
+ * \param   _bitmap    The bitmap
+ * \return             The displacement map
+ */
 BMAP* bmap_to_displacementmap(BMAP* _bitmap);
+
+/**
+ * Creates a color map from a height map (For a multi terrain texture shader)
+ * \param   _heightmap    The height map as bitmap
+ * \return             The newly allocated color map
+ */
 BMAP* heightmap_to_colormap(BMAP* _heightmap);
+
+/**
+ * Blurs a bitmap
+ * \param   _bitmap    The bitmap
+ * \param   _passes    Blur passes
+ * \return             The blured bitmap
+ */
 BMAP* bmap_to_blur(BMAP* _bitmap, int _passes);
+
+/**
+ * Flattens the heigt map to n levels
+ * \param   _heightmap    The heigth map
+ * \param   _levels       Number of height levels
+ * \return                The height map
+ */
 BMAP* flatten_heightmap(BMAP* _heightmap, int _levels);
+
+/**
+ * Finds parcels in a roadnetwork and create entities for them
+ * \param   _roadnetwork    Streets and intersections (as returned from "roadnetwork_build" (see proc_street.h))
+ * \return                  List of all all parcel entities
+ */
+List* create_parcels(List* _roadnetwork);
+
+
+
+
+
+
+
+
 
 // Simple multi texture terrain shader
 

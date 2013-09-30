@@ -282,7 +282,7 @@ action inter_info() {
 				draw_text(str_for_int(NULL, ic->leftVertex), 410, i*20, COLOR_RED);
 				draw_text(str_for_int(NULL, ic->rightVertex), 440, i*20, COLOR_RED);	
 				
-				if (key_r) {
+				/*if (key_r) {
 					while(key_r) wait(1);						
 					CONTACT* c = ent_getvertex(entTemp, NULL, ic->leftVertex);
 					VECTOR* vecVert1 = vector(0,0,0);
@@ -291,7 +291,16 @@ action inter_info() {
 					vec_rotate(vecVert1, entTemp.pan);
 					vec_add(vecVert1, entTemp.x);
 					printf("1: %.2f %.2f %.2f", (double)vecVert1.x, (double)vecVert1.y, (double)vecVert1.z);
-				}				
+				}*/
+				
+				vec_set(ic->street->blue, vector(0,0,0));
+				reset(ic->street, LIGHT);
+				if (key_r) {
+				
+					set(ic->street, LIGHT);
+					vec_set(ic->street->blue, vector(0,0,255));
+						
+				}
 			}
 				
 			draw_text("My pan:", 0, (i+3)*20, COLOR_GREEN);
@@ -1130,9 +1139,11 @@ List *roadnetwork_from_voronoi(int _pointCount, int _minX, int _minY, int _maxX,
 	return points;
 }
 
-void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround) {
+List* roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround) {
 	
 	int i,j,k,l;
+	
+	List* resultList = list_create();
 	
 	int count = list_get_count(_intersections);
 	for(i=0; i<list_get_count(_intersections); i++) {
@@ -1140,6 +1151,7 @@ void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround
 		tempInter->pos->y = _zPosition;
 		
 		ENTITY* entInter = build_intersection(tempInter);
+		list_add(resultList, entInter);
 		if (_placeOnGround) {
 			place_street_on_ground(entInter, STREET_GROUND_DIST);
 		}
@@ -1215,6 +1227,7 @@ void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround
 								
 								// "Draw" streets
 								ENTITY *street = street_build_ext(s1, bmapStreetTexture, bmapStreetTextureNM, _placeOnGround, 0.01, vx3, vx4, vx1, vx2);
+								list_add(resultList, street);
 								
 								#ifdef PROC_USE_SHADERS
 									street.material = mtl_specBump;
@@ -1222,7 +1235,9 @@ void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround
 								
 								//Mark connections as "connected"
 								tempCon2->isConnected = 1;
+								tempCon2->street = street;
 								tempCon->isConnected = 1;
+								tempCon->street = street;
 							}
 						}
 					}
@@ -1230,6 +1245,8 @@ void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround
 			}
 		}
 	}
+	
+	return resultList;
 }
 
 
