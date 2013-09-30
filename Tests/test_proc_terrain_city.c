@@ -18,6 +18,7 @@ void main() {
 	vec_set(camera.x, vector(-1101, -97, 800));
 	vec_set(camera.pan, vector(4,-29,0));
 	
+	
 	// Terrain
 	BMAP* bmapHeightMap = generate_random_heightmap(256, 256, 128);
 	BMAP* bmapColorMap = heightmap_to_colormap(bmapHeightMap);
