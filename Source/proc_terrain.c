@@ -198,8 +198,11 @@ List* create_parcels(List* _roadnetwork) {
 	var vVertexCount;
 	List* resultList = list_create();
 	
-	VECTOR* vecSmallestVertex = vector(0,0,0);
-	VECTOR* vecTemp = vector(0,0,0);
+	VECTOR* vecSmallestVertex;
+	VECTOR* vecTemp;
+	
+	ENTITY* entSmallestVertexOwner;
+	int nSmallestVertexIndex;
 	
 	CONTACT* c;
 	
@@ -220,8 +223,9 @@ List* create_parcels(List* _roadnetwork) {
 				vec_set(vecSmallestVertex, vecTemp);
 			} else {
 				if ((vecTemp.x <= vecSmallestVertex.x) && (vecTemp.y <= vecSmallestVertex.y)) {
-					printf("%i <= %i, %i <= %i", (long)vecTemp.x, (long)vecSmallestVertex.x, (long)vecTemp.y, (long)vecSmallestVertex.y);
 					vec_set(vecSmallestVertex, vecTemp);
+					nSmallestVertexIndex = j;
+					entSmallestVertexOwner = tempEnt;
 				}
 			}
 		}
