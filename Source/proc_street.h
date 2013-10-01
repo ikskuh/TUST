@@ -129,6 +129,7 @@ typedef struct {
 	int id;
 	int isConnected;
 	float angle;
+	ENTITY* street;
 } IntersectionConnection;
 
 
@@ -137,8 +138,9 @@ typedef struct {
  * \param   _intersections  Intersection list
  * \param   _zPosition      Initial z position fo all created entities
  * \param   _placeOnGround  Place the complete road network on ground (if any)
+ * \return                  List of all entities belonging to the road network
  */
-void roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround);
+List* roadnetwork_build(List *_intersections, int _zPosition, BOOL _placeOnGround);
 
 /**
  * Calculates the intersections of a roadnetwork and the intersection points
