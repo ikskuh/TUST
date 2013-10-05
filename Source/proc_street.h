@@ -111,6 +111,9 @@ typedef struct Street
 	var groundDist;
 	ENTITY *ent;
 	LPD3DXMESH mesh;
+	List *leftVertices;
+	List *rightVertices;
+	STRING* name;
 } Street;
 
 typedef struct {

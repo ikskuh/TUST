@@ -34,6 +34,9 @@ Street *street_create(int _streetWidth, int groundDistance)
 	street->points = list_create();
 	street->width = _streetWidth; // 320
 	street->groundDist = groundDistance;
+	street->leftVertices = list_create();
+	street->rightVertices = list_create();
+	street->name = str_create("Königsweg");
 	return street;
 }
 
@@ -255,6 +258,47 @@ void roadnetwork_join_near_intersections(List *_intersections, float _minDist) {
 			}
 		}
 	} while(bAllDone == false);
+}
+
+action street_info() {
+
+	int i;
+	int *j;
+	VECTOR vecTemp;
+	
+	while(my.skill1 == NULL) wait(1);
+	
+	Street* s1 = my.skill1;
+	
+	while(me) {
+		if (mouse_ent == me) {
+		
+			if (key_t) {
+				while(key_t) wait(1);
+				
+				for(i=0; i<list_get_count(s1->leftVertices); i++) {
+					j = list_item_at(s1->leftVertices, i);
+					vec_for_ent_ext(&vecTemp, me, *j);
+					//draw_text(str_for_int(NULL, *j), 10, 100+i*20, COLOR_BLUE);
+					ENTITY* entVertexPosition = ent_create(CUBE_MDL, vecTemp, NULL);
+					set(entVertexPosition, LIGHT);
+					vec_set(entVertexPosition.blue, vector(255,0,0));
+				}
+				
+				for (i=0; i<list_get_count(s1->rightVertices); i++) {
+					j = list_item_at(s1->rightVertices, i);
+					vec_for_ent_ext(&vecTemp, me, *j);
+					//draw_text(str_for_int(NULL, *j), 100, 100+i*20, COLOR_BLUE);
+					ENTITY* entVertexPosition = ent_create(CUBE_MDL, vecTemp, NULL);
+					set(entVertexPosition, LIGHT);
+					vec_set(entVertexPosition.blue, vector(0,255,0));					
+				}
+			}
+			
+			draw_text(s1->name, 10, 10, COLOR_RED);
+		}
+		wait(1);
+	}
 }
 
 action inter_info() {
@@ -891,6 +935,15 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 		// Create separator for this part
 		int separator = street_create_separator(model, &left, &right);
 		
+		// Remember left and 
+		int *leftIndex = sys_malloc(sizeof(int));
+		*leftIndex = separator;
+		int *rightIndex = sys_malloc(sizeof(int));
+		*rightIndex = separator+1;
+		
+		list_add(street->leftVertices, leftIndex);
+		list_add(street->rightVertices, rightIndex);
+		
 		// Fix to be able to close loops
 		if((dist > 0) && (dist < 0.99)) {
 			// Connect the current and the last separator to a segment (surface)
@@ -927,7 +980,9 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 	
 	// Create the entity at desired position
 	//ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
-	ENTITY *ent = dmdl_create_instance(model, vector(vecStreetPos.x, vecStreetPos.y, 0), NULL); // vecStreetPos.z
+	ENTITY *ent = dmdl_create_instance(model, vector(vecStreetPos.x, vecStreetPos.y, 0), street_info); // vecStreetPos.z
+	
+	ent->skill1 = street;
 	
 	// Free data
 	dmdl_delete(model);
