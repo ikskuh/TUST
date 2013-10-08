@@ -7,6 +7,7 @@
 #include "..\\Source\\proc_street.h"
 #include "..\\Source\\DynamicModels.h"
 #include "..\\Source\\tust.h"
+#include "..\\Source\\list.h"
 
 //#define PROCEDURAL_DEBUG
 
@@ -154,7 +155,7 @@ void main() {
 	// Delete intersections which are too near to each other
 	roadnetwork_join_near_intersections(intersections, 100);
 	
-	roadnetwork_build(intersections, 0, false);
+	List *roadNetwork = roadnetwork_build(intersections, 0, false);
 	
 	/*while(1) {
 		DEBUG_BMAP(bmapStreetTextureNM, 10, 1);

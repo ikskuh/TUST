@@ -2,6 +2,7 @@
 #define __PROC_TERRAIN_C__
 
 #include "noise.h"
+#include "tust.h"
 
 BMAP* generate_random_heightmap_noise(int _width, int _height, float _altitude) {
 	
@@ -210,20 +211,20 @@ List* create_parcels(List* _roadnetwork) {
 	for(i=0; i<list_get_count(_roadnetwork); i++) {
 		ENTITY *tempEnt = list_item_at(_roadnetwork, i);
 		vVertexCount = ent_status(tempEnt, 0);
-		for(j=0; j<vVertexCount; j++) {
-			c = ent_getvertex(tempEnt, NULL, j);
+		
+		// Vertex list starts with 1
+		for(j=1; j<=vVertexCount; j++) {
 			
 			// Get absolute vertex position
-			vec_set(vecTemp, vector(c.v.x, c.v.z, c.v.y));
-			vec_mul(vecTemp, vector(tempEnt.scale_x, tempEnt.scale_y, tempEnt.scale_z));
-			vec_rotate(vecTemp, tempEnt.pan);
-			vec_add(vecTemp, tempEnt.x);
+			vec_for_ent_ext(vecTemp, tempEnt, j);
 			
-			if ((i==0) && (j==0)) {
-				vec_set(vecSmallestVertex, vecTemp);
+			if ((i==0) && (j==1)) {
+				vec_set(vecSmallestVertex, vector(vecTemp.x, vecTemp.y, vecTemp.z));
+				nSmallestVertexIndex = j;
+				entSmallestVertexOwner = tempEnt;				
 			} else {
 				if ((vecTemp.x <= vecSmallestVertex.x) && (vecTemp.y <= vecSmallestVertex.y)) {
-					vec_set(vecSmallestVertex, vecTemp);
+					vec_set(vecSmallestVertex, vector(vecTemp.x, vecTemp.y, vecTemp.z));
 					nSmallestVertexIndex = j;
 					entSmallestVertexOwner = tempEnt;
 				}
@@ -231,8 +232,10 @@ List* create_parcels(List* _roadnetwork) {
 		}
 	}
 	
-	printf("%i %i %i", (long)vecSmallestVertex.x, (long)vecSmallestVertex.y, (long)vecSmallestVertex.z);
-	ent_create(CUBE_MDL, vecSmallestVertex, NULL);
+	//printf("%i %i %i", (long)vecSmallestVertex.x, (long)vecSmallestVertex.y, (long)vecSmallestVertex.z);
+	//ent_create(CUBE_MDL, vecSmallestVertex, NULL);
+	
+	
 }
 
 #endif
