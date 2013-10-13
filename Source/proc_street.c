@@ -34,8 +34,7 @@ Street *street_create(int _streetWidth, int groundDistance)
 	street->points = list_create();
 	street->width = _streetWidth; // 320
 	street->groundDist = groundDistance;
-	street->leftVertices = list_create();
-	street->rightVertices = list_create();
+	street->outerVertices = list_create();
 	street->name = str_create("Königsweg");
 	return street;
 }
@@ -276,22 +275,12 @@ action street_info() {
 			if (key_t) {
 				while(key_t) wait(1);
 				
-				for(i=0; i<list_get_count(s1->leftVertices); i++) {
-					j = list_item_at(s1->leftVertices, i);
+				for(i=0; i<list_get_count(s1->outerVertices); i++) {
+					j = list_item_at(s1->outerVertices, i);
 					vec_for_ent_ext(&vecTemp, me, *j);
-					//draw_text(str_for_int(NULL, *j), 10, 100+i*20, COLOR_BLUE);
 					ENTITY* entVertexPosition = ent_create(CUBE_MDL, vecTemp, NULL);
 					set(entVertexPosition, LIGHT);
 					vec_set(entVertexPosition.blue, vector(255,0,0));
-				}
-				
-				for (i=0; i<list_get_count(s1->rightVertices); i++) {
-					j = list_item_at(s1->rightVertices, i);
-					vec_for_ent_ext(&vecTemp, me, *j);
-					//draw_text(str_for_int(NULL, *j), 100, 100+i*20, COLOR_BLUE);
-					ENTITY* entVertexPosition = ent_create(CUBE_MDL, vecTemp, NULL);
-					set(entVertexPosition, LIGHT);
-					vec_set(entVertexPosition.blue, vector(0,255,0));					
 				}
 			}
 			
@@ -453,8 +442,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 			dmdl_connect_vertices(model, i1, i2, i5);
 			dmdl_connect_vertices(model, i5, i2, i4);
 			dmdl_connect_vertices(model, i4, i2, i3);
-			dmdl_connect_vertices(model, i1, i5, i6);
-			
+			dmdl_connect_vertices(model, i1, i5, i6);		
 		break;
 		
 		// A simple connection
@@ -581,6 +569,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 			dmdl_connect_vertices(model, i7, i6, i8);
 			dmdl_connect_vertices(model, i2, i5, i10);
 			dmdl_connect_vertices(model, i9, i2, i10);
+			
 		break;
 		
 		// A cross
@@ -649,6 +638,7 @@ ENTITY *build_intersection(Intersection *_intersection)
 			dmdl_connect_vertices(model, i6, i9, i10);
 			dmdl_connect_vertices(model, i12, i11, i2);
 			dmdl_connect_vertices(model, i12, i2, i5);
+			
 		break;
 		
 		// A circle
@@ -941,8 +931,8 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 		int *rightIndex = sys_malloc(sizeof(int));
 		*rightIndex = separator+1;
 		
-		list_add(street->leftVertices, leftIndex);
-		list_add(street->rightVertices, rightIndex);
+		list_add(street->outerVertices, leftIndex);
+		list_add(street->outerVertices, rightIndex);
 		
 		// Fix to be able to close loops
 		if((dist > 0) && (dist < 0.99)) {

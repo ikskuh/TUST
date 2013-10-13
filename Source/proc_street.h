@@ -83,6 +83,11 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 // Road networks
 // ----------------------------------------------------------------------------------------
 
+// Types
+#define STREET 1
+#define INTERSECTION 2
+#define INTERSECTION_CONNECTION 3
+
 // Color maps
 BMAP* bmapStreetIntersection1     = NULL;
 BMAP* bmapStreetIntersection2_1   = NULL;
@@ -111,8 +116,7 @@ typedef struct Street
 	var groundDist;
 	ENTITY *ent;
 	LPD3DXMESH mesh;
-	List *leftVertices;
-	List *rightVertices;
+	List *outerVertices;
 	STRING* name;
 } Street;
 

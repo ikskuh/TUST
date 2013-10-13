@@ -193,48 +193,40 @@ void flatten_heightmap(BMAP* _heightmap, int _levels) {
 	bmap_unlock(_heightmap);
 }
 
+int _vec_in_list(VECTOR* _v, List *_l) {
+	int i;
+	VECTOR *vecTemp;
+	for(i=0; i<list_get_count(_l); i++) {
+		vecTemp = list_item_at(_l, i);
+		if ((vecTemp->x == _v->x) && (vecTemp->y == _v->y) && (vecTemp->z == _v->z)) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+
 List* create_parcels(List* _roadnetwork) {
 
 	int i,j;
 	var vVertexCount;
-	List* resultList = list_create();
-	
-	VECTOR* vecSmallestVertex;
-	VECTOR* vecTemp;
-	
-	ENTITY* entSmallestVertexOwner;
-	int nSmallestVertexIndex;
-	
 	CONTACT* c;
-	
-	// Find outer border by finding the smallest vertex of all entities in the roadnetwork
+	VECTOR vecTemp;
+
+	// Create a list with all entities and vertices in form of vectors (set z = 0)
+	List* points = list_create();
+
 	for(i=0; i<list_get_count(_roadnetwork); i++) {
 		ENTITY *tempEnt = list_item_at(_roadnetwork, i);
-		vVertexCount = ent_status(tempEnt, 0);
 		
-		// Vertex list starts with 1
-		for(j=1; j<=vVertexCount; j++) {
-			
-			// Get absolute vertex position
-			vec_for_ent_ext(vecTemp, tempEnt, j);
-			
-			if ((i==0) && (j==1)) {
-				vec_set(vecSmallestVertex, vector(vecTemp.x, vecTemp.y, vecTemp.z));
-				nSmallestVertexIndex = j;
-				entSmallestVertexOwner = tempEnt;				
-			} else {
-				if ((vecTemp.x <= vecSmallestVertex.x) && (vecTemp.y <= vecSmallestVertex.y)) {
-					vec_set(vecSmallestVertex, vector(vecTemp.x, vecTemp.y, vecTemp.z));
-					nSmallestVertexIndex = j;
-					entSmallestVertexOwner = tempEnt;
-				}
-			}
-		}
+		// Get entity type
 	}
 	
-	//printf("%i %i %i", (long)vecSmallestVertex.x, (long)vecSmallestVertex.y, (long)vecSmallestVertex.z);
-	//ent_create(CUBE_MDL, vecSmallestVertex, NULL);
+	// As long as all vectors are not tried, continue
 	
+		// Trace from the first vector to all other
+		
+		// if one is hit, 
 	
 }
 
