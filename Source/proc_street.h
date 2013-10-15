@@ -84,9 +84,9 @@ void vo_get_result_at(int _i, float *_x1, float *_y1, float *_x2, float *_y2);
 // ----------------------------------------------------------------------------------------
 
 // Types
-#define STREET 1
-#define INTERSECTION 2
-#define INTERSECTION_CONNECTION 3
+#define TYPE_STREET							1
+#define TYPE_INTERSECTION					2
+#define TYPE_INTERSECTION_CONNECTION	3
 
 // Color maps
 BMAP* bmapStreetIntersection1     = NULL;

@@ -3,6 +3,7 @@
 
 #include "noise.h"
 #include "tust.h"
+#include "proc_street.h"
 
 BMAP* generate_random_heightmap_noise(int _width, int _height, float _altitude) {
 	
@@ -208,10 +209,11 @@ int _vec_in_list(VECTOR* _v, List *_l) {
 
 List* create_parcels(List* _roadnetwork) {
 
-	int i,j;
+	int i,j,startIndex;
 	var vVertexCount;
 	CONTACT* c;
 	VECTOR vecTemp;
+	VECTOR* vecNew;
 
 	// Create a list with all entities and vertices in form of vectors (set z = 0)
 	List* points = list_create();
@@ -220,8 +222,53 @@ List* create_parcels(List* _roadnetwork) {
 		ENTITY *tempEnt = list_item_at(_roadnetwork, i);
 		
 		// Get entity type
+		switch(tempEnt->TUST_TYPE) {
+			case TYPE_STREET:
+			
+				if (tempEnt->TUST_DATA != NULL) {
+					Street* street = tempEnt->TUST_DATA;
+					for(j=0; j<list_get_count(street->outerVertices); j++) {
+						
+						int *i = list_item_at(street->outerVertices, j);
+						// Get absolut position of vertex
+						vec_for_ent_ext(&vecTemp, tempEnt, *i);
+						vecNew = sys_malloc(sizeof(VECTOR));
+						vec_set(vecNew, vecTemp);
+						list_add(points, vecNew);
+					}
+				}
+			break;
+			case TYPE_INTERSECTION:
+				if (tempEnt->TUST_DATA != NULL) {
+					Intersection* intersection = tempEnt->TUST_DATA;
+					
+					// In circles, ignore the first vertex which is in the middle
+					if (list_get_count(intersection->incomingConnections) >= 5) {
+						startIndex = 1;
+					} else {
+						startIndex = 0;
+					}
+					
+					for(j=startIndex; j<ent_status(tempEnt, 0); j++) {
+						vec_for_ent_ext(&vecTemp, tempEnt, j+1);
+						vecNew = sys_malloc(sizeof(VECTOR));
+						vec_set(vecNew, vecTemp);
+						list_add(points, vecNew);
+					}
+				}
+			break;
+		}
+		
 	}
 	
+	printf("%i points found", list_get_count(points));
+	
+	
+	for (i=0; i<list_get_count(points); i++) {
+		VECTOR* vecPos = list_item_at(points, i);
+		if (vecPos != NULL)
+			ent_create(CUBE_MDL, vecPos, NULL);
+	}
 	// As long as all vectors are not tried, continue
 	
 		// Trace from the first vector to all other

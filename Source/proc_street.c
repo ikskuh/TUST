@@ -265,9 +265,9 @@ action street_info() {
 	int *j;
 	VECTOR vecTemp;
 	
-	while(my.skill1 == NULL) wait(1);
+	while(my.TUST_DATA == NULL) wait(1);
 	
-	Street* s1 = my.skill1;
+	Street* s1 = my.TUST_DATA;
 	
 	while(me) {
 		if (mouse_ent == me) {
@@ -293,9 +293,9 @@ action street_info() {
 action inter_info() {
 	mouse_range = 10000;
 	int i=0;
-	while(my.skill1 == NULL) wait(1);
+	while(my.TUST_DATA == NULL) wait(1);
 	
-	Intersection* i1 = my.skill1;
+	Intersection* i1 = my.TUST_DATA;
 	while(me) {
 		if(mouse_ent == me) {
 			ENTITY *entTemp = mouse_ent;
@@ -719,7 +719,9 @@ ENTITY *build_intersection(Intersection *_intersection)
 		ent.material = mtl_specBump;
 	#endif
 	
-	ent->skill1 = _intersection;
+	ent->TUST_TYPE = TYPE_INTERSECTION;
+	ent->TUST_DATA = _intersection;
+	
 	_intersection->ent = ent;
 	
 	ent->pan = fOptimalPan;
@@ -972,7 +974,8 @@ ENTITY *street_build_ext(Street *street, BMAP* _streetTexture, BMAP* _streetNorm
 	//ENTITY *ent = dmdl_create_instance(model, vector(0, 0, 0), NULL);
 	ENTITY *ent = dmdl_create_instance(model, vector(vecStreetPos.x, vecStreetPos.y, 0), street_info); // vecStreetPos.z
 	
-	ent->skill1 = street;
+	ent->TUST_TYPE = TYPE_STREET;
+	ent->TUST_DATA = street;
 	
 	// Free data
 	dmdl_delete(model);

@@ -5,14 +5,17 @@
 #include <ackphysx.h>
 
 #include "..\\Source\\proc_terrain.h"
-#include "..\\Source\\math.h"
 #include "..\\Source\\proc_street.h"
+#include "..\\Source\\math.h"
 #include "..\\Source\\DynamicModels.h"
 #include "..\\Source\\tust.h"
 
 
+
+
 void main() {
 	video_mode = 9;
+	max_entities = 30000;
 	terrain_chunk = 0;
 	level_load(NULL);
 	random_seed(0);
