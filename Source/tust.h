@@ -86,6 +86,28 @@
  */
 typedef unsigned char bool;
 
+
+/**
+ * A global skill to save an entity type
+ */
+#ifndef TUST_TYPE
+	#define TUST_TYPE skill[99]
+#endif
+
+/**
+ * A global skill to save an entity sub type
+ */
+#ifndef TUST_SUB_TYPE
+	#define TUST_SUB_TYPE skill[98]
+#endif
+
+/**
+ * A global skill to save a data pointer
+ */
+#ifndef TUST_DATA
+	#define TUST_DATA skill[97]
+#endif
+
 /**
  * \brief This macro maps a varible from type a into type b without changing the bits.
  * 
