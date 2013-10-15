@@ -462,8 +462,4 @@ void eff_generate_fog(int _density) {
 	}
 }
 
-
-
-
-
 #endif
