@@ -126,7 +126,7 @@ TEXT *txtSky =
 
 /* ---------------------------------------------------------------------------------------------------- */
 var nExit = 0;
-void fncExit ( void *object )
+void fncQuit ( void *object )
 {
 	sys_exit ( NULL );
 }
@@ -136,7 +136,7 @@ TEXT *txtSystem =
 	string =
 	(
 		".line=0",
-	 	"exit.button=fncExit",
+	 	"exit.button=fncQuit",
 		".line=2"
 	);
 }
