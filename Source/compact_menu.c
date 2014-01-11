@@ -4,7 +4,7 @@
 #define CM_TAB_SRIGHT          14
 #define CM_TAB_DIGIT           5
 #define CM_TAB_SUB             2
-#define CM_TAB_TEXT            6
+#define CM_TAB_TEXT            7
 #define CM_TAB_LINE            0.85
 #define CM_HEADER_HEIGHT       8
 #define CM_FOOTER_HEIGHT       4
