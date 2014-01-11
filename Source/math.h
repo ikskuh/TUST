@@ -298,6 +298,14 @@ VECTOR *vec_to_catmull(VECTOR *pos, VECTOR *v0, VECTOR *v1, VECTOR *v2, VECTOR *
  */
 int float_cmp(float _f1, float _f2);
 
+/**
+ * \brief   Computes the world to custom coordinates tranformation matrix (matView)
+ * \param   _matrix         Pointer to a float matrix to be filled 
+ * \param   _vecPos         World position vector of the coordinate system
+ * \param   _vecDir         World direction vector of the coordinate system
+ */
+void mat_eye ( float *_matrix, VECTOR *_vecPos, VECTOR *_vecDir );
+
 #include "math.c"
 
 #endif

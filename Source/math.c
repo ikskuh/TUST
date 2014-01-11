@@ -393,3 +393,39 @@ int float_cmp(float _f1, float _f2) {
 	if (f2 > f1) return -1;
 	return 0;
 }
+
+void mat_eye ( float *_matrix, VECTOR *_vecPos, VECTOR *_vecDir )
+{
+	VECTOR _vecEye, _vecX, _vecY, _vecZ;
+	_vecEye.x = _vecPos->x;
+	_vecEye.y = _vecPos->z;
+	_vecEye.z = _vecPos->y;
+	_vecZ.x = _vecDir.x;
+	_vecZ.y = _vecDir.z;
+	_vecZ.z = _vecDir.y;
+	vec_normalize ( &_vecZ, 1 );
+	if ( abs(_vecZ.y) < 0.99 )
+		vec_cross ( &_vecX, vector(0,1,0), &_vecZ );
+	else
+		vec_set ( &_vecX, vector(1,0,0) );
+	vec_normalize ( &_vecX, 1 );
+	vec_cross ( &_vecY, &_vecX, &_vecZ );
+	vec_normalize ( &_vecY, 1 );
+	
+	_matrix[0] = _vecX.x;
+	_matrix[1] = _vecY.x;
+	_matrix[2] = _vecZ.x;
+	_matrix[3] = 0;
+	_matrix[4] = _vecX.y;
+	_matrix[5] = _vecY.y;
+	_matrix[6] = _vecZ.y;
+	_matrix[7] = 0;
+	_matrix[8] = _vecX.z;
+	_matrix[9] = _vecY.z;
+	_matrix[10] = _vecZ.z;
+	_matrix[11] = 0;
+	_matrix[12] = -vec_dot ( &_vecX, &_vecEye );
+	_matrix[13] = -vec_dot ( &_vecY, &_vecEye );
+	_matrix[14] = -vec_dot ( &_vecZ, &_vecEye );
+	_matrix[15] = 1;
+}
