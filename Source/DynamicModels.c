@@ -286,9 +286,13 @@ void dmdl_add_mesh(DynamicModel *model, LPD3DXMESH mesh, VECTOR *offset, ANGLE *
 		model->vertexBuffer[model->vertexCount + i].nz = normal.y;
 		model->vertexBuffer[model->vertexCount + i].ny = normal.z;
 		
-		model->attributeBuffer[model->vertexCount + i] = *attributeBuffer;
-		
 		vertexBufferMesh++;
+	}
+	
+	
+	for(i = 0; i < meshFaceCount; i++)
+	{
+		model->attributeBuffer[model->faceCount + i] = *attributeBuffer;
 		attributeBuffer++;
 	}
 	
