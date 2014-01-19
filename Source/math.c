@@ -400,9 +400,9 @@ void mat_eye ( float *_matrix, VECTOR *_vecPos, VECTOR *_vecDir )
 	_vecEye.x = _vecPos->x;
 	_vecEye.y = _vecPos->z;
 	_vecEye.z = _vecPos->y;
-	_vecZ.x = _vecDir.x;
-	_vecZ.y = _vecDir.z;
-	_vecZ.z = _vecDir.y;
+	_vecZ.x = _vecDir->x;
+	_vecZ.y = _vecDir->z;
+	_vecZ.z = _vecDir->y;
 	vec_normalize ( &_vecZ, 1 );
 	if ( abs(_vecZ.y) < 0.99 )
 		vec_cross ( &_vecX, vector(0,1,0), &_vecZ );
